@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gaphor xmlns="http://gaphor.sourceforge.net/model" version="3.0" gaphor-version="2.24.0">
+<StyleSheet id="58d6989a-66f8-11ec-b4c8-0456e5e540ed"/>
+<Package id="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed">
+<name>
+<val>Új modell</val>
+</name>
+<ownedDiagram>
+<reflist>
+<ref refid="a6030b94-d70b-11ee-8dd7-70d8232b4be2"/>
+</reflist>
+</ownedDiagram>
+<ownedType>
+<reflist>
+<ref refid="d2bce47e-d70b-11ee-a76d-70d8232b4be2"/>
+<ref refid="d75e84b0-d70b-11ee-ac83-70d8232b4be2"/>
+<ref refid="dd50d918-d70b-11ee-8da3-70d8232b4be2"/>
+<ref refid="e09be526-d70b-11ee-9804-70d8232b4be2"/>
+<ref refid="f1aba036-d70b-11ee-8a05-70d8232b4be2"/>
+<ref refid="f755f8d7-d70b-11ee-92d0-70d8232b4be2"/>
+</reflist>
+</ownedType>
+</Package>
+<Diagram id="a6030b94-d70b-11ee-8dd7-70d8232b4be2">
+<diagramType>
+<val>cls</val>
+</diagramType>
+<element>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</element>
+<name>
+<val>New Diagram</val>
+</name>
+<ownedPresentation>
+<reflist>
+<ref refid="f756da16-d70b-11ee-bb27-70d8232b4be2"/>
+<ref refid="f1ac66f9-d70b-11ee-902e-70d8232b4be2"/>
+<ref refid="e09cbc03-d70b-11ee-8d74-70d8232b4be2"/>
+<ref refid="dd5274cb-d70b-11ee-b248-70d8232b4be2"/>
+<ref refid="d75f7e63-d70b-11ee-b7a5-70d8232b4be2"/>
+<ref refid="d2bda7cd-d70b-11ee-ae92-70d8232b4be2"/>
+</reflist>
+</ownedPresentation>
+</Diagram>
+<ClassItem id="f756da16-d70b-11ee-bb27-70d8232b4be2">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 36.0, 581.0)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>100.0</val>
+</width>
+<height>
+<val>58.0</val>
+</height>
+<diagram>
+<ref refid="a6030b94-d70b-11ee-8dd7-70d8232b4be2"/>
+</diagram>
+<subject>
+<ref refid="f755f8d7-d70b-11ee-92d0-70d8232b4be2"/>
+</subject>
+</ClassItem>
+<Class id="f755f8d7-d70b-11ee-92d0-70d8232b4be2">
+<name>
+<val>Scheduler</val>
+</name>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="f756da16-d70b-11ee-bb27-70d8232b4be2"/>
+</reflist>
+</presentation>
+</Class>
+<ClassItem id="f1ac66f9-d70b-11ee-902e-70d8232b4be2">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 65.0, 427.0)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>100.0</val>
+</width>
+<height>
+<val>58.0</val>
+</height>
+<diagram>
+<ref refid="a6030b94-d70b-11ee-8dd7-70d8232b4be2"/>
+</diagram>
+<subject>
+<ref refid="f1aba036-d70b-11ee-8a05-70d8232b4be2"/>
+</subject>
+</ClassItem>
+<Class id="f1aba036-d70b-11ee-8a05-70d8232b4be2">
+<name>
+<val>Map</val>
+</name>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="f1ac66f9-d70b-11ee-902e-70d8232b4be2"/>
+</reflist>
+</presentation>
+</Class>
+<ClassItem id="e09cbc03-d70b-11ee-8d74-70d8232b4be2">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 147.0, 768.0)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>100.0</val>
+</width>
+<height>
+<val>58.0</val>
+</height>
+<diagram>
+<ref refid="a6030b94-d70b-11ee-8dd7-70d8232b4be2"/>
+</diagram>
+<subject>
+<ref refid="e09be526-d70b-11ee-9804-70d8232b4be2"/>
+</subject>
+</ClassItem>
+<Class id="e09be526-d70b-11ee-9804-70d8232b4be2">
+<name>
+<val>Item</val>
+</name>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="e09cbc03-d70b-11ee-8d74-70d8232b4be2"/>
+</reflist>
+</presentation>
+</Class>
+<ClassItem id="dd5274cb-d70b-11ee-b248-70d8232b4be2">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 199.0, 586.0)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>100.0</val>
+</width>
+<height>
+<val>58.0</val>
+</height>
+<diagram>
+<ref refid="a6030b94-d70b-11ee-8dd7-70d8232b4be2"/>
+</diagram>
+<subject>
+<ref refid="dd50d918-d70b-11ee-8da3-70d8232b4be2"/>
+</subject>
+</ClassItem>
+<Class id="dd50d918-d70b-11ee-8da3-70d8232b4be2">
+<name>
+<val>Room</val>
+</name>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="dd5274cb-d70b-11ee-b248-70d8232b4be2"/>
+</reflist>
+</presentation>
+</Class>
+<ClassItem id="d75f7e63-d70b-11ee-b7a5-70d8232b4be2">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 149.0, 272.0)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>100.0</val>
+</width>
+<height>
+<val>58.0</val>
+</height>
+<diagram>
+<ref refid="a6030b94-d70b-11ee-8dd7-70d8232b4be2"/>
+</diagram>
+<subject>
+<ref refid="d75e84b0-d70b-11ee-ac83-70d8232b4be2"/>
+</subject>
+</ClassItem>
+<Class id="d75e84b0-d70b-11ee-ac83-70d8232b4be2">
+<name>
+<val>Professor</val>
+</name>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="d75f7e63-d70b-11ee-b7a5-70d8232b4be2"/>
+</reflist>
+</presentation>
+</Class>
+<ClassItem id="d2bda7cd-d70b-11ee-ae92-70d8232b4be2">
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 197.0, 427.0)</val>
+</matrix>
+<top-left>
+<val>(0.0, 0.0)</val>
+</top-left>
+<width>
+<val>100.0</val>
+</width>
+<height>
+<val>58.0</val>
+</height>
+<diagram>
+<ref refid="a6030b94-d70b-11ee-8dd7-70d8232b4be2"/>
+</diagram>
+<subject>
+<ref refid="d2bce47e-d70b-11ee-a76d-70d8232b4be2"/>
+</subject>
+</ClassItem>
+<Class id="d2bce47e-d70b-11ee-a76d-70d8232b4be2">
+<name>
+<val>Student</val>
+</name>
+<package>
+<ref refid="58d6c2e8-66f8-11ec-b4c8-0456e5e540ed"/>
+</package>
+<presentation>
+<reflist>
+<ref refid="d2bda7cd-d70b-11ee-ae92-70d8232b4be2"/>
+</reflist>
+</presentation>
+</Class>
+</gaphor>
