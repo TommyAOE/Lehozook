@@ -176,7 +176,7 @@
 </Class>
 <ClassItem id="d75f7e63-d70b-11ee-b7a5-70d8232b4be2">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 149.0, 272.0)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 189.0, 287.0)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -240,4 +240,12 @@
 </reflist>
 </presentation>
 </Class>
+<Diagram id="bda1ec92-d710-11ee-980c-9829a6765164">
+<diagramType>
+<val>act</val>
+</diagramType>
+<name>
+<val>New Diagram</val>
+</name>
+</Diagram>
 </gaphor>
