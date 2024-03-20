@@ -10,8 +10,25 @@ public class SkeletonHelper {
 
         Scanner sc = new Scanner(System.in);
         String key = sc.nextLine();
-        sc.close();
 
         return key;
-}
+    }
+
+    public boolean IsTransistor(){
+        System.out.println("Is the item a transistor? (yes/no)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("yes") ? true : false ;
+    }
+
+    public boolean HasTwoTransistors(){
+        System.out.println("Does the student have another transistor? (yes/no)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("yes") ? true : false ;
+    }
 }
