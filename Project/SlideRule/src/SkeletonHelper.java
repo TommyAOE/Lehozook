@@ -141,4 +141,14 @@ public class SkeletonHelper {
 
         return item;
     }
+    //gameresult függvények kezdete
+    public String WhoWon()
+    {
+        System.out.println("Who won? (Professors/Students): ");
+        Scanner input=new Scanner(System.in);
+        String who=input.nextLine();
+        return who;
+    }
+    
+    //gameresult függvények vége
 }

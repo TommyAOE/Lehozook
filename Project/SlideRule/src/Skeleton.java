@@ -386,8 +386,39 @@ public class Skeleton {
     }
     public static void GameResult(){
         System.out.println("GameResult");
+        if(helper.WhoWon().equals("Students"))
+        {
+            new Student().Turn();
+            new Student().EnterRoom();
+            new Room().CharacterEntered();
+            new Room().SearchItem();
+            new Room().PopItem();
+            System.out.println("One of the students found the sliderule. Game Over students Win!4!4!");
+        }
+        else if(helper.WhoWon().equals("Professors"))
+        {
+            new Student().Combat();
+            new Student().Death();
+            System.out.println("The last Student died, Game Over. Professors Win4!4!!");
+        }
+        else
+        System.out.println("Acceptable answers are 'Students' or 'Professors' ");
     }
     public static void ChangeRooms(){
         System.out.println("ChangeRooms");
+        if(!helper.WillItBeCursed())
+        {
+            new Schedular().Play();
+            new Chart().IterateForRoomChanges();
+            new Room().Change();
+        }
+        if(helper.WillItBeCursed())
+        {
+            new Schedular().Play();
+            new Chart().IterateForRoomChanges();
+            new Room().Change();
+            System.out.println("The changed room is cursed! It may changes its neighbours and closes its doors.");
+        }
+
     }
 }
