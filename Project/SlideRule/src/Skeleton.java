@@ -1,5 +1,7 @@
 import java.util.LinkedHashMap;
 
+import Items.Transistor;
+
 public class Skeleton {
     static SkeletonHelper helper = new SkeletonHelper();
     static LinkedHashMap<String, Runnable> commands = new LinkedHashMap<>();
@@ -33,6 +35,23 @@ public class Skeleton {
     }
     public static void StudentItem(){
         System.out.println("StudentItem");
+        new Student().EnterRoom();
+        new Room().CharacterEntered();
+        new Room().SearchItem();
+        new Room().PopItem();
+        if(helper.IsTransistor()){
+            if(helper.HasTwoTransistors()){
+                Transistor t1 = new Transistor(1);
+                Transistor t2 = new Transistor(2);
+
+                t1.SetPair();
+                t2.SetPair();
+            }else{
+                System.out.println("Student picked up only one transistor");
+            }
+        }else{
+            System.out.println("Student picked up an item other than a transistor");
+        }
     }
     public static void StudentGas(){
         System.out.println("StudentGas");
