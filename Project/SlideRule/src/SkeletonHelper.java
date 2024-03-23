@@ -31,22 +31,4 @@ public class SkeletonHelper {
 
         return key.equals("yes") ? true : false ;
     }
-
-    public boolean ProfessorsInRoom(){
-        System.out.println("Is there at least one professor in the room? (yes/no)");
-
-        Scanner sc = new Scanner(System.in);
-        String key = sc.nextLine();
-
-        return key.equals("yes") ? true : false ;
-    }
-
-    public boolean IsProtectedStudent(){
-        System.out.println("Is the student protected against the professor? (yes/no)");
-
-        Scanner sc = new Scanner(System.in);
-        String key = sc.nextLine();
-
-        return key.equals("yes") ? true : false ;
-    }
 }
