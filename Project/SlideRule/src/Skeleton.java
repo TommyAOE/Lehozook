@@ -12,16 +12,16 @@ public class Skeleton {
     }
 
     public static void FillMap(){
-        commands.put("Init", () -> Init());
-        commands.put("Scheduler", () -> Scheduler());
-        commands.put("ProfEnterRoom", () -> ProfEnterRoom());
-        commands.put("StudentItem", () -> StudentItem());
-        commands.put("StudentGas", () -> StudentGas());
-        commands.put("UseItem", () -> UseItem());
-        commands.put("CombatResult", () -> CombatResult());
-        commands.put("CombatProcess", () -> CombatProcess());
-        commands.put("GameResult", () -> GameResult());
-        commands.put("ChangeRooms", () -> ChangeRooms());
+        commands.put("Init", Skeleton::Init);
+        commands.put("Scheduler", Skeleton::Scheduler);
+        commands.put("ProfEnterRoom", Skeleton::ProfEnterRoom);
+        commands.put("StudentItem", Skeleton::StudentItem);
+        commands.put("StudentGas", Skeleton::StudentGas);
+        commands.put("UseItem", Skeleton::UseItem);
+        commands.put("CombatResult", Skeleton::CombatResult);
+        commands.put("CombatProcess", Skeleton::CombatProcess);
+        commands.put("GameResult", Skeleton::GameResult);
+        commands.put("ChangeRooms", Skeleton::ChangeRooms);
     }
 
     public static void Init(){
@@ -40,8 +40,9 @@ public class Skeleton {
             new Room().GetProfessors();
             new Professor().Stun();
         }else {
-            new Room().GetProfessors();
+            new Room().GetStudents();
             if (!helper.StudentInRoom()) {
+                new Room().GetProfessors();
                 if (!helper.ProfInRoom()) {
                     new Room().SearchItem();
                     if (helper.ItemsInRoom()) {
@@ -51,6 +52,7 @@ public class Skeleton {
 
             }
         }
+        System.out.println("Turn ended");
 
     }
     public static void StudentItem(){
