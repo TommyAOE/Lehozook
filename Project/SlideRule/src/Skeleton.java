@@ -13,7 +13,7 @@ public class Skeleton {
 
     public static void FillMap(){
         commands.put("Init", () -> Init());
-        commands.put("Schedular", () -> Schedular());
+        commands.put("Scheduler", () -> Scheduler());
         commands.put("ProfEnterRoom", () -> ProfEnterRoom());
         commands.put("StudentItem", () -> StudentItem());
         commands.put("StudentGas", () -> StudentGas());
@@ -26,12 +26,32 @@ public class Skeleton {
 
     public static void Init(){
         System.out.println("Init");
+        new Scheduler(true);
     }
-    public static void Schedular(){
-        System.out.println("Schedular");
+    public static void Scheduler(){
+        System.out.println("Scheduler");
     }
     public static void ProfEnterRoom(){
         System.out.println("ProfEnterRoom");
+        new Professor().EnterRoom();
+        new Room().CharacterEntered();
+        if (helper.IsGassy()) {
+            new Gas().Gasify();
+            new Room().GetProfessors();
+            new Professor().Stun();
+        }else {
+            new Room().GetProfessors();
+            if (!helper.StudentInRoom()) {
+                if (!helper.ProfInRoom()) {
+                    new Room().SearchItem();
+                    if (helper.ItemsInRoom()) {
+                        new Room().PopItem();
+                    }
+                }
+
+            }
+        }
+
     }
     public static void StudentItem(){
         System.out.println("StudentItem");

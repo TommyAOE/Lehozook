@@ -31,4 +31,52 @@ public class SkeletonHelper {
 
         return key.equals("yes") ? true : false ;
     }
+    public static boolean AddMoreStudents(){
+        System.out.println("Do you want to add more students? (y/n)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("y");
+    }
+    public static boolean AddMoreProfessors(){
+        System.out.println("Do you want to add more professors? (y/n)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("y");
+    }
+    public  boolean ItemsInRoom(){
+        System.out.println("Are there items in the room? (y/n)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("y");
+    }
+    public  boolean ProfInRoom(){
+        System.out.println("Is there a professor in the room? (y/n)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("y");
+    }
+    public boolean StudentInRoom(){
+        System.out.println("Is there a Student in the room? (y/n)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("y");
+    }
+    public  boolean IsGassy(){
+        System.out.println("Is the room gassy? (y/n)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("y");
+    }
 }

@@ -1,4 +1,9 @@
 public class Room {
+    public Room(int i) {
+        System.out.println(i+".Room created");
+    }
+    public Room() {
+    }
     public void GetNeighbours(){
         System.out.println("Room: GetNeighbours()");
     }
