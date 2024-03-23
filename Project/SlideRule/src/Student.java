@@ -1,4 +1,5 @@
 public class Student extends Character{
+
     public int id;
     @Override
     public void Turn() {

@@ -15,26 +15,79 @@ public class Skeleton {
     }
 
     public static void FillMap(){
-        commands.put("Init", () -> Init());
-        commands.put("Schedular", () -> Schedular());
-        commands.put("ProfEnterRoom", () -> ProfEnterRoom());
-        commands.put("StudentItem", () -> StudentItem());
-        commands.put("StudentGas", () -> StudentGas());
-        commands.put("UseItem", () -> UseItem());
-        commands.put("CombatResult", () -> CombatResult());
-        commands.put("CombatProcess", () -> CombatProcess());
-        commands.put("GameResult", () -> GameResult());
-        commands.put("ChangeRooms", () -> ChangeRooms());
+        commands.put("Init", Skeleton::Init);
+        commands.put("Scheduler", Skeleton::Scheduler);
+        commands.put("ProfEnterRoom", Skeleton::ProfEnterRoom);
+        commands.put("StudentItem", Skeleton::StudentItem);
+        commands.put("StudentGas", Skeleton::StudentGas);
+        commands.put("UseItem", Skeleton::UseItem);
+        commands.put("CombatResult", Skeleton::CombatResult);
+        commands.put("CombatProcess", Skeleton::CombatProcess);
+        commands.put("GameResult", Skeleton::GameResult);
+        commands.put("ChangeRooms", Skeleton::ChangeRooms);
     }
 
     public static void Init(){
         System.out.println("Init");
+        new Scheduler();
+        System.out.println("Scheduler created");
+        new Chart();
+        System.out.println("Chart created");
+        new Room();
+        System.out.println(1+".Room created");
+        System.out.print(1+".");
+        new Room().SetNeighbours();
+        new Room();
+        System.out.println(2+".Room created");
+        System.out.print(2+".");
+        new Room().SetNeighbours();
+        int i = 1;
+        do {
+            new Student();
+            System.out.println(i+".Student created");
+            System.out.print(i+".");
+            new Student().EnterRoom();
+            System.out.print(1+".");
+            new Room().CharacterEntered();
+            i++;
+        }while (SkeletonHelper.AddMoreStudents());
+        i=1;
+        do {
+            new Professor();
+            System.out.println(i+".Professor created");
+            System.out.print(i+".");
+            new Professor().EnterRoom();
+            System.out.print(1+".");
+            new Room().CharacterEntered();
+        }while (SkeletonHelper.AddMoreProfessors());
     }
-    public static void Schedular(){
-        System.out.println("Schedular");
+    public static void Scheduler(){
+        System.out.println("Scheduler");
     }
     public static void ProfEnterRoom(){
         System.out.println("ProfEnterRoom");
+        new Professor().EnterRoom();
+        new Room().CharacterEntered();
+        if (helper.IsGassy()) {
+            new Gas().Gasify();
+            new Room().GetProfessors();
+            new Professor().Stun();
+            new Room().GasExpired();
+        }else {
+            new Room().GetStudents();
+            if (!helper.StudentInRoom()) {
+                new Room().GetProfessors();
+                if (!helper.ProfInRoom()) {
+                    new Room().SearchItem();
+                    if (helper.ItemsInRoom()) {
+                        new Room().PopItem();
+                    }
+                }
+
+            }
+        }
+        System.out.println("Turn ended");
+
     }
     public static void StudentItem(){
         System.out.println("StudentItem");
