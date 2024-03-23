@@ -26,7 +26,37 @@ public class Skeleton {
 
     public static void Init(){
         System.out.println("Init");
-        new Scheduler(true);
+        new Scheduler();
+        System.out.println("Scheduler created");
+        new Chart();
+        System.out.println("Chart created");
+        new Room();
+        System.out.println(1+".Room created");
+        System.out.print(1+".");
+        new Room().SetNeighbours();
+        new Room();
+        System.out.println(2+".Room created");
+        System.out.print(2+".");
+        new Room().SetNeighbours();
+        int i = 1;
+        do {
+            new Student();
+            System.out.println(i+".Student created");
+            System.out.print(i+".");
+            new Student().EnterRoom();
+            System.out.print(1+".");
+            new Room().CharacterEntered();
+            i++;
+        }while (SkeletonHelper.AddMoreStudents());
+        i=1;
+        do {
+            new Professor();
+            System.out.println(i+".Professor created");
+            System.out.print(i+".");
+            new Professor().EnterRoom();
+            System.out.print(1+".");
+            new Room().CharacterEntered();
+        }while (SkeletonHelper.AddMoreProfessors());
     }
     public static void Scheduler(){
         System.out.println("Scheduler");

@@ -1,16 +1,5 @@
 public class Student extends Character{
-    Student(int i){
-        System.out.println(i+".Student created");
-        System.out.print(i+".");
-        EnterRoom();
-        System.out.print(1+".");
-        new Room().CharacterEntered();
-    }
-    Student(){
-    }
-    public void Construct(){
 
-    }
     @Override
     public void Turn() {
         System.out.println("Student: Turn()");
