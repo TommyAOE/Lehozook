@@ -9,9 +9,8 @@ public class SkeletonHelper {
         System.out.println("Please enter one of the commands above:");
 
         Scanner sc = new Scanner(System.in);
-        String key = sc.nextLine();
 
-        return key;
+        return sc.nextLine();
     }
 
     public boolean IsTransistor(){
@@ -20,7 +19,7 @@ public class SkeletonHelper {
         Scanner sc = new Scanner(System.in);
         String key = sc.nextLine();
 
-        return key.equals("yes") ? true : false ;
+        return key.equals("yes");
     }
 
     public boolean HasTwoTransistors(){
@@ -29,7 +28,7 @@ public class SkeletonHelper {
         Scanner sc = new Scanner(System.in);
         String key = sc.nextLine();
 
-        return key.equals("yes") ? true : false ;
+        return key.equals("yes");
     }
     public static boolean AddMoreStudents(){
         System.out.println("Do you want to add more students? (y/n)");
