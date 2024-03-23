@@ -1,5 +1,5 @@
 public class Professor extends Character{
-
+    public int id;
     @Override
     public void Turn() {
         System.out.println("Professor: Turn()");
