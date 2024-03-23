@@ -61,6 +61,23 @@ public class Skeleton {
     }
     public static void CombatResult(){
         System.out.println("CombatResult");
+        new Room().GetProfessors();
+        if(helper.ProfessorsInRoom()){
+            if(helper.IsProtectedStudent()){
+                new Professor().Combat();
+                new Room().GetStudents();
+                new Student().Death();
+                System.out.println("The student survived, this combat round ended.");
+            } else{
+                new Professor().Combat();
+                new Room().GetStudents();
+                new Student().Death();
+                new Room().StudentDied();
+                System.out.println("The student died.");
+            }
+        } else{
+            System.out.println("There isn't a combat situation in this.");
+        }
     }
     public static void CombatProcess(){
         System.out.println("CombatProcess");
