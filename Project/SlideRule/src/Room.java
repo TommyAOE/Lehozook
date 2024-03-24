@@ -1,4 +1,7 @@
 public class Room {
+
+    public int id;
+
     public void GetNeighbours(){
         System.out.println("Room: GetNeighbours()");
     }
