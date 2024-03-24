@@ -69,6 +69,7 @@ public class Skeleton {
             new Gas().Gasify();
             new Room().GetProfessors();
             new Professor().Stun();
+            new Room().LeaveRoom();
         }else {
             new Room().GetStudents();
             if (!helper.StudentInRoom()) {

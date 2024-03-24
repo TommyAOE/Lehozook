@@ -32,4 +32,8 @@ public class Room {
     public void AddGas(){
         System.out.println("Room: AddGas()");
     }
+
+    public void LeaveRoom() {
+        System.out.println("Room: LeaveRoom()");
+    }
 }
