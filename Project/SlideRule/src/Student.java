@@ -1,4 +1,5 @@
 public class Student extends Character{
+
     @Override
     public void Turn() {
         System.out.println("Student: Turn()");
