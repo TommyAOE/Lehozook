@@ -1,6 +1,9 @@
 import java.util.LinkedHashMap;
 
+import Items.StBeerCups;
+import Items.TVSZ;
 import Items.Transistor;
+import Items.WetRag;
 
 public class Skeleton {
     static SkeletonHelper helper = new SkeletonHelper();
@@ -76,11 +79,208 @@ public class Skeleton {
                 System.out.println("The student died.");
             }
         } else{
-            System.out.println("There isn't a combat situation in this.");
+            System.out.println("There isn't a combat situation in this room.");
         }
     }
     public static void CombatProcess(){
         System.out.println("CombatProcess");
+        System.out.println("---There are 2 students in this room");
+        Student st1 = new Student();
+        Student st2 = new Student();
+        st1.id = 1;
+        st2.id = 2;
+        helper.printStudentId(st1.id);
+        st1.Combat();
+        new Room().GetProfessors();
+        if(helper.ProfessorsInRoom()){
+            System.out.println("---There are 2 professors in this room");
+            Professor p1 = new Professor();
+            Professor p2 = new Professor();
+            p1.id = 1;
+            p2.id = 2;
+            helper.printStudentId(st1.id);
+            if(helper.HasItem()){
+                String selectedItem = helper.ItemType();
+                switch (selectedItem) {
+                    case "TVSZ":
+                        new TVSZ().ApplyEffect();
+                        new Room().GetStudents();
+                        System.out.println("---The students are protected in this room.");
+                        helper.printStudentId(st2.id);
+                        st2.Combat();
+                        new Room().GetProfessors();
+                        System.out.println("---There are professors in the room.");
+                        System.out.println("---Student2 doesn't use items, because they are already protected. (TVSZ)");
+                        helper.printProfessorId(p1.id);
+                        p1.Combat();
+                        new Room().GetStudents();
+                        helper.printStudentId(st1.id);
+                        st1.Death();
+                        helper.printStudentId(st2.id);
+                        st2.Death();
+                        System.out.println("---The students survived. (TVSZ has 2 charges left)");
+
+                        helper.printProfessorId(p2.id);
+                        p2.Combat();
+                        new Room().GetStudents();
+                        helper.printStudentId(st1.id);
+                        st1.Death();
+                        helper.printStudentId(st2.id);
+                        st2.Death();
+                        System.out.println("---The students survived. (TVSZ has 1 charges left)");
+                        System.out.println("---Combat ended");
+                        break;
+
+                    case "StBeerCups":
+                        new StBeerCups().ApplyEffect();
+                        System.out.println("---Student1 is protected.");
+                        helper.printStudentId(st2.id);
+                        st2.Combat();
+                        new Room().GetProfessors();
+                        System.out.println("---There are professors in the room.");
+                        if(helper.IsProtectedStudent()){
+                            System.out.println("---Student2 is protected, for example used StBeerCups");
+                            helper.printProfessorId(p1.id);
+                            p1.Combat();
+                            new Room().GetStudents();
+                            helper.printStudentId(st1.id);
+                            st1.Death();
+                            helper.printStudentId(st2.id);
+                            st2.Death();
+                            System.out.println("---The students survived.");
+
+                            helper.printProfessorId(p2.id);
+                            p2.Combat();
+                            new Room().GetStudents();
+                            helper.printStudentId(st1.id);
+                            st1.Death();
+                            helper.printStudentId(st2.id);
+                            st2.Death();
+                            System.out.println("---The students survived.");
+
+                        } else{
+                            System.out.println("---Student2 is NOT protected");
+                            helper.printProfessorId(p1.id);
+                            p1.Combat();
+                            new Room().GetStudents();
+                            helper.printStudentId(st1.id);
+                            st1.Death();
+                            helper.printStudentId(st2.id);
+                            st2.Death();
+                            new Room().StudentDied();
+                            System.out.println("---Student1 survived, Student2 died.");
+
+                            helper.printProfessorId(p2.id);
+                            p2.Combat();
+                            new Room().GetStudents();
+                            helper.printStudentId(st1.id);
+                            st1.Death();
+                            System.out.println("---Student1 survived, combat round ended");
+                        }
+                        break;
+
+                    case "WetRag":
+                        new WetRag().ApplyEffect();
+                        new Room().GetProfessors();
+                        helper.printProfessorId(p1.id);
+                        p1.Stun();
+                        helper.printProfessorId(p2.id);
+                        p2.Stun();
+                        System.out.println("---Professor1 and Professor2 are stunned");
+                        helper.printStudentId(st2.id);
+                        st2.Combat();
+                        new Room().GetProfessors();
+                        System.out.println("---There isn't a combat situation in this room, all professors are stunned.");
+                        break;
+                }
+            }else{
+                System.out.println("---Student1 doesn't have items and protection.");
+                helper.printStudentId(st2.id);
+                st2.Combat();
+                new Room().GetProfessors();
+                System.out.println("---There are professors in the room.");
+                helper.printStudentId(st2.id);
+                if(helper.HasItem()){
+                    String selectedItem = helper.ItemType();
+                    switch (selectedItem) {
+                        case "TVSZ":
+                            new TVSZ().ApplyEffect();
+                            new Room().GetStudents();
+                            System.out.println("---The students are protected in this room.");
+                            helper.printProfessorId(p1.id);
+                            p1.Combat();
+                            new Room().GetStudents();
+                            helper.printStudentId(st1.id);
+                            st1.Death();
+                            helper.printStudentId(st2.id);
+                            st2.Death();
+                            System.out.println("---The students survived. (TVSZ has 2 charges left)");
+
+                            helper.printProfessorId(p2.id);
+                            p2.Combat();
+                            new Room().GetStudents();
+                            helper.printStudentId(st1.id);
+                            st1.Death();
+                            helper.printStudentId(st2.id);
+                            st2.Death();
+                            System.out.println("---The students survived. (TVSZ has 1 charges left)");
+                            System.out.println("Combat ended");
+                            break;  
+
+                        case "StBeerCups":
+                            new StBeerCups().ApplyEffect();
+                            System.out.println("---Student2 is protected.");
+                            helper.printProfessorId(p1.id);
+                            p1.Combat();
+                            new Room().GetStudents();
+                            helper.printStudentId(st1.id);
+                            st1.Death();
+                            new Room().StudentDied();
+                            helper.printStudentId(st2.id);
+                            st2.Death();
+                            System.out.println("---Student2 survived, Student1 died.");
+
+                            helper.printProfessorId(p2.id);
+                            p2.Combat();
+                            new Room().GetStudents();
+                            helper.printStudentId(st2.id);
+                            st2.Death();
+                            System.out.println("---Student2 survived, combat round ended");
+                            break;
+
+                        case "WetRag":
+                            new WetRag().ApplyEffect();
+                            new Room().GetProfessors();
+                            helper.printProfessorId(p1.id);
+                            p1.Stun();
+                            helper.printProfessorId(p2.id);
+                            p2.Stun();
+                            System.out.println("---Professor1 and Professor2 are stunned");
+                            System.out.println("---Combat round ended.");
+                            break;
+                    }
+                }else{
+                    System.out.println("---Student1 and Student2 NOT protected.");
+                    helper.printProfessorId(p1.id);
+                    p1.Combat();
+                    new Room().GetStudents();
+                    helper.printStudentId(st1.id);
+                    st1.Death();
+                    new Room().StudentDied();
+                    helper.printStudentId(st2.id);
+                    st2.Death();
+                    new Room().StudentDied();
+                    System.out.println("---Student1 and Student2 died.");
+
+                    helper.printProfessorId(p2.id);
+                    p2.Combat();
+                    new Room().GetStudents();
+                    System.out.println("---There isn't a combat situation in this room.");
+                }
+            }
+        }else{
+            System.out.println("---There isn't a combat situation in this room.");
+        }
     }
     public static void GameResult(){
         System.out.println("GameResult");
