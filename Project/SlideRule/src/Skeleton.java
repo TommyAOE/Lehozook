@@ -1,5 +1,6 @@
 import java.util.LinkedHashMap;
 
+import Items.Camembert;
 import Items.StBeerCups;
 import Items.TVSZ;
 import Items.Transistor;
@@ -112,8 +113,38 @@ public class Skeleton {
     public static void StudentGas(){
         System.out.println("StudentGas");
     }
-    public static void UseItem(){
+    public static void UseItem(){ //Nekem kell
         System.out.println("UseItem");
+        new Camembert().ApplyEffect();
+        new Room().AddGas();
+        new Room().GetStudents();
+        new Student().Stun();
+        
+        new Student().Turn();
+        new Student().EnterRoom();
+        Room r1 = new Room();
+        r1.id = 1;
+        Room r2 = new Room();
+        r2.id = 2;
+        Transistor t1 = new Transistor(1);
+        Transistor t2 = new Transistor(2);
+
+        System.out.println("Room " + r1.id);
+        r1.CharacterEntered();
+        System.out.println("Transistor " + t1.id);
+        t1.ApplyEffect();
+        System.out.println("Room " + r1.id);
+        r1.AddItem();
+
+        new Student().EnterRoom();
+        System.out.println("Room " + r2.id);
+        r2.CharacterEntered();
+        System.out.println("Transistor " + t2.id);
+        t2.ApplyEffect();
+
+        new Student().EnterRoom();
+        System.out.println("Room " + r1.id);
+        r1.CharacterEntered();
     }
     public static void CombatResult(){
         System.out.println("CombatResult");
