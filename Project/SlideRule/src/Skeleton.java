@@ -112,8 +112,30 @@ public class Skeleton {
     public static void StudentGas(){
         System.out.println("StudentGas");
     }
-    public static void UseItem(){
+    public static void UseItem(){ //Nekem kell
         System.out.println("UseItem");
+        new Student().Camembert();
+        new Gas().AddGas();
+        new Gas().GetStudents();
+        new Gas().Stun();
+        
+        new Student().Turn();
+        new Student().EnterRoom();
+        Room r1 = new Room(1);
+        Room r2 = new Room(2);
+        Transistor t1 = new Transistor(1);
+        Transistor t2 = new Transistor(2);
+
+        r1.CharacterEntered();
+        t1.ApplyEffect();
+        r1.AddItem();
+
+        new Studnet().EnterRoom();
+        r2.CharacterEntered();
+        t2.ApplyEffect();
+
+        new Student().EnterRoom();
+        r1.CharacterEntered();
     }
     public static void CombatResult(){
         System.out.println("CombatResult");
