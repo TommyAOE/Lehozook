@@ -29,16 +29,13 @@ public class Room {
     public void CharacterEntered(){
         System.out.println("Room: CharacterEntered()");
     }
-    public void StudentDied(){
-        System.out.println("Room: StudentDied()");
+    public void CharacterLeft(){
+        System.out.println("Room: CharacterLeft()");
     }
     public void AddGas(){
         System.out.println("Room: AddGas()");
     }
     public void GasExpired(){
-        System.out.println("Room: RemoveGas()");
-    }
-    public void CharacterLeave() {
-        System.out.println("Room: CharacterLeave()");
+        System.out.println("Room: GasExpired()");
     }
 }
