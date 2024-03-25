@@ -121,4 +121,24 @@ public class SkeletonHelper {
 
         return item;
     }
+
+    public boolean IsCombat(){
+        System.out.println("Are there any combat situations? (yes/no)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("yes") ? true : false ;
+    }
+    
+    public String NeutralItemType(){
+        System.out.println("Which item would you like to use from among these?");
+        System.out.println("Camembert\nTransistor\n");
+        System.out.println("Please enter the item name: ");
+
+        Scanner sc = new Scanner(System.in);
+        String item = sc.nextLine();
+
+        return item;
+    }
 }

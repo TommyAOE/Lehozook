@@ -63,7 +63,14 @@ public class Skeleton {
         }while (SkeletonHelper.AddMoreProfessors());
     }
     public static void Scheduler(){
-        System.out.println("Scheduler");
+        new Professor().Turn();
+        new Student().Turn();
+        if(helper.IsCombat()){
+            new Student().Combat();
+        }
+        new Chart().IterateForRoomChanges();
+        new Room().Change();
+
     }
     public static void ProfEnterRoom(){
         System.out.println("ProfEnterRoom");
@@ -115,36 +122,47 @@ public class Skeleton {
     }
     public static void UseItem(){ //Nekem kell
         System.out.println("UseItem");
-        new Camembert().ApplyEffect();
-        new Room().AddGas();
-        new Room().GetStudents();
-        new Student().Stun();
+        String useItem = helper.NeutralItemType();
+        switch (useItem) {
+            case "Camembert":
+                new Student().Turn();
+                new Student().EnterRoom();
+                new Camembert().ApplyEffect();
+                new Room().AddGas();
+                new Room().GetStudents();
+                new Student().Stun();
+                break;
         
-        new Student().Turn();
-        new Student().EnterRoom();
-        Room r1 = new Room();
-        r1.id = 1;
-        Room r2 = new Room();
-        r2.id = 2;
-        Transistor t1 = new Transistor(1);
-        Transistor t2 = new Transistor(2);
-
-        System.out.println("Room " + r1.id);
-        r1.CharacterEntered();
-        System.out.println("Transistor " + t1.id);
-        t1.ApplyEffect();
-        System.out.println("Room " + r1.id);
-        r1.AddItem();
-
-        new Student().EnterRoom();
-        System.out.println("Room " + r2.id);
-        r2.CharacterEntered();
-        System.out.println("Transistor " + t2.id);
-        t2.ApplyEffect();
-
-        new Student().EnterRoom();
-        System.out.println("Room " + r1.id);
-        r1.CharacterEntered();
+            case "Tramsistor":
+                new Student().Turn();
+                new Student().EnterRoom();
+                Room r1 = new Room();
+                r1.id = 1;
+                Room r2 = new Room();
+                r2.id = 2;
+                Transistor t1 = new Transistor(1);
+                Transistor t2 = new Transistor(2);
+        
+                System.out.println("Room " + r1.id);
+                r1.CharacterEntered();
+                System.out.println("Transistor " + t1.id);
+                t1.ApplyEffect();
+                System.out.println("Room " + r1.id);
+                r1.AddItem();
+        
+                new Student().Turn();
+                new Student().EnterRoom();
+                System.out.println("Room " + r2.id);
+                r2.CharacterEntered();
+                System.out.println("Transistor " + t2.id);
+                t2.ApplyEffect();
+        
+                new Student().Turn();
+                new Student().EnterRoom();
+                System.out.println("Room " + r1.id);
+                r1.CharacterEntered();
+                break;
+        }
     }
     public static void CombatResult(){
         System.out.println("CombatResult");
