@@ -3,9 +3,16 @@ import java.util.Scanner;
 
 public class SkeletonHelper {
     public String ChooseSequence(LinkedHashMap<String, Runnable> commands){
+        System.out.println();
+        System.out.println("Commands:");
+        int i = 1;
         for (String name : commands.keySet()) {
-            System.out.println(name);
+            System.out.print(name + "\t");
+            if(i % 5 == 0) System.out.println();
+            i++;
         }
+        System.out.println();
+        System.out.println();
         System.out.println("Please enter one of the commands above:");
 
         Scanner sc = new Scanner(System.in);
@@ -31,52 +38,44 @@ public class SkeletonHelper {
         return key.equals("yes");
     }
     public static boolean AddMoreStudents(){
-        System.out.println("Do you want to add more students? (y/n)");
+        System.out.println("Do you want to add more students? (yes/no)");
 
         Scanner sc = new Scanner(System.in);
         String key = sc.nextLine();
 
-        return key.equals("y");
+        return key.equals("yes");
     }
     public static boolean AddMoreProfessors(){
-        System.out.println("Do you want to add more professors? (y/n)");
+        System.out.println("Do you want to add more professors? (yes/no)");
 
         Scanner sc = new Scanner(System.in);
         String key = sc.nextLine();
 
-        return key.equals("y");
+        return key.equals("yes");
     }
     public  boolean ItemsInRoom(){
-        System.out.println("Are there items in the room? (y/n)");
+        System.out.println("Are there items in the room? (yes/no)");
 
         Scanner sc = new Scanner(System.in);
         String key = sc.nextLine();
 
-        return key.equals("y");
-    }
-    public  boolean ProfInRoom(){
-        System.out.println("Is there a professor in the room? (y/n)");
-
-        Scanner sc = new Scanner(System.in);
-        String key = sc.nextLine();
-
-        return key.equals("y");
+        return key.equals("yes");
     }
     public boolean StudentInRoom(){
-        System.out.println("Is there a Student in the room? (y/n)");
+        System.out.println("Is there a Student in the room? (yes/no)");
 
         Scanner sc = new Scanner(System.in);
         String key = sc.nextLine();
 
-        return key.equals("y");
+        return key.equals("yes");
     }
     public  boolean IsGassy(){
-        System.out.println("Is the room gassy? (y/n)");
+        System.out.println("Is the room gassy? (yes/no)");
 
         Scanner sc = new Scanner(System.in);
         String key = sc.nextLine();
 
-        return key.equals("y");
+        return key.equals("yes");
     }
 
     public boolean ProfessorsInRoom(){
@@ -98,6 +97,9 @@ public class SkeletonHelper {
     }
     public void printStudentId(int id){
         System.out.println("\nSTUDENT ID = " + id);
+    }
+    public void printRoomId(int id){
+        System.out.println("\nROOM ID = " + id);
     }
     public void printProfessorId(int id){
         System.out.println("\nPROFESSOR ID = "+ id);
@@ -130,6 +132,15 @@ public class SkeletonHelper {
 
         return key.equals("yes") ? true : false ;
     }
+
+    public boolean IsMask(){
+        System.out.println("Are there any FFP2 Masks? (yes/no)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("yes") ? true : false ;
+    }
     
     public String NeutralItemType(){
         System.out.println("Which item would you like to use from among these?");
@@ -148,6 +159,15 @@ public class SkeletonHelper {
         Scanner input=new Scanner(System.in);
         String who=input.nextLine();
         return who;
+    }
+
+    public boolean WillItBeCursed(){
+        System.out.println("Is the room cursed? (yes/no)");
+
+        Scanner sc = new Scanner(System.in);
+        String key = sc.nextLine();
+
+        return key.equals("yes") ? true : false ;
     }
     
     //gameresult függvények vége

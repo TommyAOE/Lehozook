@@ -11,8 +11,10 @@ public class Skeleton {
     static LinkedHashMap<String, Runnable> commands = new LinkedHashMap<>();
     public static void main(String[] args) {
         FillMap();
-        String key = helper.ChooseSequence(commands);
-        commands.get(key).run();
+        String key;
+        while ((key = helper.ChooseSequence(commands)) != "Exit") {
+            commands.get(key).run();
+        }
     }
 
     public static void FillMap(){
@@ -26,10 +28,13 @@ public class Skeleton {
         commands.put("CombatProcess", Skeleton::CombatProcess);
         commands.put("GameResult", Skeleton::GameResult);
         commands.put("ChangeRooms", Skeleton::ChangeRooms);
+        commands.put("Exit", Skeleton::Exit);
+    }
+    public static void Exit(){
+        System.exit(0);
     }
 
     public static void Init(){
-        System.out.println("Init");
         new Scheduler();
         System.out.println("Scheduler created");
         new Chart();
@@ -48,7 +53,7 @@ public class Skeleton {
             System.out.println(i+".Student created");
             System.out.print(i+".");
             new Student().EnterRoom();
-            System.out.print(1+".");
+            System.out.print(i+".");
             new Room().CharacterEntered();
             i++;
         }while (SkeletonHelper.AddMoreStudents());
@@ -58,8 +63,9 @@ public class Skeleton {
             System.out.println(i+".Professor created");
             System.out.print(i+".");
             new Professor().EnterRoom();
-            System.out.print(1+".");
+            System.out.print(i+".");
             new Room().CharacterEntered();
+            i++;
         }while (SkeletonHelper.AddMoreProfessors());
     }
     public static void Scheduler(){
@@ -73,7 +79,6 @@ public class Skeleton {
 
     }
     public static void ProfEnterRoom(){
-        System.out.println("ProfEnterRoom");
         new Professor().EnterRoom();
         new Room().CharacterEntered();
         if (helper.IsGassy()) {
@@ -85,7 +90,7 @@ public class Skeleton {
             new Room().GetStudents();
             if (!helper.StudentInRoom()) {
                 new Room().GetProfessors();
-                if (!helper.ProfInRoom()) {
+                if (!helper.ProfessorsInRoom()) {
                     new Room().SearchItem();
                     if (helper.ItemsInRoom()) {
                         new Room().PopItem();
@@ -98,7 +103,6 @@ public class Skeleton {
 
     }
     public static void StudentItem(){
-        System.out.println("StudentItem");
         new Student().EnterRoom();
         new Room().CharacterEntered();
         new Room().SearchItem();
@@ -118,10 +122,41 @@ public class Skeleton {
         }
     }
     public static void StudentGas(){
-        System.out.println("StudentGas");
+
+        Room r1 = new Room();
+        r1.id = 1;
+        Room r2 = new Room();
+        r2.id = 2;
+
+        helper.printRoomId(r1.id);
+        r1.SearchItem();
+
+        boolean answer = helper.IsMask();
+
+        if(answer){
+            helper.printRoomId(r1.id);
+            r1.PopItem();
+        }
+        new Student().EnterRoom();
+        helper.printRoomId(r1.id);
+        r1.CharacterLeft();
+        helper.printRoomId(r2.id);
+        r2.CharacterEntered();
+        
+        new Gas().Gasify();
+        helper.printRoomId(r2.id);
+        r2.GetStudents();
+        new Student().Stun();
+        if(answer){
+            System.out.println("The student was protected from the gas (has an FFP2 mask equipped)");
+        }else{
+            System.out.println("The student got stunned");
+            helper.printRoomId(r2.id);
+            r2.GasExpired();
+        }
+
     }
-    public static void UseItem(){ //Nekem kell
-        System.out.println("UseItem");
+    public static void UseItem(){
         String useItem = helper.NeutralItemType();
         switch (useItem) {
             case "Camembert":
@@ -165,7 +200,6 @@ public class Skeleton {
         }
     }
     public static void CombatResult(){
-        System.out.println("CombatResult");
         new Room().GetProfessors();
         if(helper.ProfessorsInRoom()){
             if(helper.IsProtectedStudent()){
@@ -177,7 +211,7 @@ public class Skeleton {
                 new Professor().Combat();
                 new Room().GetStudents();
                 new Student().Death();
-                new Room().StudentDied();
+                new Room().CharacterLeft();
                 System.out.println("The student died.");
             }
         } else{
@@ -185,7 +219,6 @@ public class Skeleton {
         }
     }
     public static void CombatProcess(){
-        System.out.println("CombatProcess");
         System.out.println("---There are 2 students in this room");
         Student st1 = new Student();
         Student st2 = new Student();
@@ -269,7 +302,7 @@ public class Skeleton {
                             st1.Death();
                             helper.printStudentId(st2.id);
                             st2.Death();
-                            new Room().StudentDied();
+                            new Room().CharacterLeft();
                             System.out.println("---Student1 survived, Student2 died.");
 
                             helper.printProfessorId(p2.id);
@@ -337,7 +370,7 @@ public class Skeleton {
                             new Room().GetStudents();
                             helper.printStudentId(st1.id);
                             st1.Death();
-                            new Room().StudentDied();
+                            new Room().CharacterLeft();
                             helper.printStudentId(st2.id);
                             st2.Death();
                             System.out.println("---Student2 survived, Student1 died.");
@@ -368,10 +401,10 @@ public class Skeleton {
                     new Room().GetStudents();
                     helper.printStudentId(st1.id);
                     st1.Death();
-                    new Room().StudentDied();
+                    new Room().CharacterLeft();
                     helper.printStudentId(st2.id);
                     st2.Death();
-                    new Room().StudentDied();
+                    new Room().CharacterLeft();
                     System.out.println("---Student1 and Student2 died.");
 
                     helper.printProfessorId(p2.id);
@@ -385,39 +418,34 @@ public class Skeleton {
         }
     }
     public static void GameResult(){
-        System.out.println("GameResult");
-        if(helper.WhoWon().equals("Students"))
-        {
+        String answer =  helper.WhoWon();
+        if(answer.equals("Students")){
             new Student().Turn();
             new Student().EnterRoom();
             new Room().CharacterEntered();
             new Room().SearchItem();
             new Room().PopItem();
             System.out.println("One of the students found the sliderule. Game Over students Win!4!4!");
-        }
-        else if(helper.WhoWon().equals("Professors"))
-        {
-            new Student().Combat();
-            new Student().Death();
+        }else if(answer.equals("Professors")){
+            System.out.println("Scheduler checks if there are students left");
             System.out.println("The last Student died, Game Over. Professors Win4!4!!");
         }
         else
         System.out.println("Acceptable answers are 'Students' or 'Professors' ");
     }
     public static void ChangeRooms(){
-        System.out.println("ChangeRooms");
-        if(!helper.WillItBeCursed())
-        {
-            new Schedular().Play();
-            new Chart().IterateForRoomChanges();
+        new Chart().IterateForRoomChanges();
+        if(helper.ProfessorsInRoom()) return;
+        if(helper.StudentInRoom()) return;
+        boolean answer = helper.WillItBeCursed();
+        if(!answer){
+            
+            System.out.println("The changed room is not cursed! It can only split into two or merge with another room");
             new Room().Change();
-        }
-        if(helper.WillItBeCursed())
-        {
-            new Schedular().Play();
-            new Chart().IterateForRoomChanges();
+        }else{
+            System.out.println("The changed room is cursed! It may changes its neighbours as it vanishes its doors.");
             new Room().Change();
-            System.out.println("The changed room is cursed! It may changes its neighbours and closes its doors.");
+            
         }
 
     }
