@@ -18,78 +18,37 @@ public class Proto {
         String[] key = helper.ChooseSequence();
 
         while(!key[0].equals("Exit")){
-
-            if(key[0].equals("Help")){
-                helper.Help(commands);
-            }
-            else if(key[0].equals("Random")){
-                Random(key);
-            }
-            else if(key[0].equals("Info")){
-                Info(key);
-            }
-            else if(key[0].equals("Init")){
-                Init(key);
-            } 
-            else if(key[0].equals("Reset")){
-                Reset(key);
-            }
-            else if(key[0].equals("AddRoom")){
-                AddRoom(key);
-            }
-            else if(key[0].equals("SetNeighbour")){
-                SetNeighbour(key);
-            }
-            else if(key[0].equals("SpawnItem")){
-                SpawnItem(key);
-            }
-            else if(key[0].equals("AddCharacter")){
-                AddCharacter(key);
-            }
-            else if(key[0].equals("EnterRoom")){
-                EnterRoom(key);
-            }
-            else if(key[0].equals("AddItem")){
-                AddItem(key);
-            }
-            else if(key[0].equals("UseItem")){
-                UseItem(key);
-            }
-            else if(key[0].equals("PickupItem")){
-                PickupItem(key);
-            }
-            else if(key[0].equals("DropItem")){
-                DropItem(key);
-            }
-            else if(key[0].equals("RoomChange")){
-                RoomChange(key);
-            }
-            else if(key[0].equals("GasRoom")){
-                GasRoom(key);
-            }
-            else if(key[0].equals("GooRoom")){
-                GooRoom(key);
-            }
-            else if(key[0].equals("SetPair")){
-                SetPair(key);
-            }
-            else if(key[0].equals("ActivateTransistor")){
-                ActivateTransistor(key);
-            }
-            else if(key[0].equals("SetRoomFull")){
-                SetRoomFull(key);
-            }
-            else if(key[0].equals("CharacterTurn")){
-                CharacterTurn(key);
-            }
-            else if(key[0].equals("CombatRoom")){
-                CombatRoom(key);
-            }
-            else{
-                System.out.println("Invalid command!");
-            }
+            RunCommand(key);
             key = helper.ChooseSequence();
         }   
+    }
+    public static void RunCommand(String[] key) {
+        switch(key[0]){
+            case "Exit": Exit();
+            case "Help": helper.Help(commands); break;
+            case "Random": Random(key); break;
+            case "Info": Info(key); break;
+            case "Init": Init(key); break;
+            case "Reset": Reset(key); break;
+            case "AddRoom": AddRoom(key); break;
+            case "SetNeighbour": SetNeighbour(key); break;
+            case "SpawnItem": SpawnItem(key); break;
+            case "AddCharacter": AddCharacter(key); break;
+            case "EnterRoom": EnterRoom(key); break;
+            case "AddItem": AddItem(key); break;
+            case "UseItem": UseItem(key); break;
+            case "PickupItem": PickupItem(key); break;
+            case "DropItem": DropItem(key); break;
+            case "RoomChange": RoomChange(key); break;
+            case "GasRoom": GasRoom(key); break;
+            case "GooRoom": GooRoom(key); break;
+            case "SetPair": SetPair(key); break;
+            case "ActivateTransistor": ActivateTransistor(key); break;
+            case "SetRoomFull": SetRoomFull(key); break;
+            case "CharacterTurn": CharacterTurn(key); break;
+            case "CombatRoom": CombatRoom(key); break;
+            default: System.out.println("Invalid command!");
+        }
     }
     /**
      * Fills the commands list with predefined commands.
@@ -101,7 +60,6 @@ public class Proto {
         commands.add(new String[] {"Info", "<Type>"});
         commands.add(new String[] {"Init", "<fileName>"});
         commands.add(new String[] {"Reset"});
-
         commands.add(new String[]{"AddRoom", "<Room_id>", "<Type>"});
         commands.add(new String[]{"SetNeighbour", "<Room_id1>", "<Room_id2>"});
         commands.add(new String[]{"SpawnItem", "<Room_id>", "<name>", "<Item_id>", "<real>"});
