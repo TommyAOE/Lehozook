@@ -1,9 +1,10 @@
 package App;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Helper class for Proto game.
+ * Helper class for App.Proto game.
  */
 public class ProtoHelper {
     /**

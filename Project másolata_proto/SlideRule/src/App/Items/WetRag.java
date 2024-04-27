@@ -5,8 +5,19 @@ package App.Items;
  * Extends the Item class.
  */
 public class WetRag extends Item{
-    
-    /** 
+    private int moistureLevel;
+    /**
+     * Applies the effect of the item.
+     * Each subclass must implement this method to define its specific effect.
+     *
+     * @param name
+     */
+    public WetRag(String name) {
+        super(name, "WetRag");
+        moistureLevel = 3;
+    }
+
+    /**
      * Applies the effect of the wet rag item.
      */
     public void ApplyEffect(){
@@ -19,13 +30,34 @@ public class WetRag extends Item{
     }
 
     @Override
+    public String GetType() {
+        return type;
+    }
+
+    @Override
     public void Glue() {
-        glued= !glued;
+        return;
     }
 
     @Override
     public boolean IsGlued() {
-        return glued;
+        return false;
     }
 
+    @Override
+    public void InfoAll_Test() {
+        System.out.println("WetRag: "+name);
+    }
+
+    @Override
+    public void Info_Test() {
+        System.out.println(type+": "+name);
+        if (owner != null)
+        System.out.println("Owner: "+owner.GetName());
+        System.out.println("Moisture Level: "+moistureLevel);
+    }
+    //new
+    public int GetMoistureLevel(){
+        return moistureLevel;
+    }
 }

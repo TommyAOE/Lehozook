@@ -31,4 +31,10 @@ public class Goo
         }
         visitorcount=0;
     }
+
+    public void Activate_Test() {
+    }
+
+    public void Deactivate_Test() {
+    }
 }
