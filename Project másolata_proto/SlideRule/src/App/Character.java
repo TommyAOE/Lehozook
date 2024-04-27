@@ -1,3 +1,4 @@
+package App;
 /**
  * Represents a character in the game.
  * This class serves as a base for all types of characters.

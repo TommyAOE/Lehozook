@@ -1,16 +1,16 @@
-package Items;
+package App.Items;
 
 /**
- * Represents a TVSZ item in the game.
+ * Represents a SlideRule item in the game.
  * Extends the Item class.
  */
-public class TVSZ extends Item{
+public class SlideRule extends Item {
     
     /** 
-     * Applies the effect of the TVSZ item.
+     * Applies the effect of the SlideRule item.
      */
     public void ApplyEffect(){
-        System.out.println("TVSZ: ApplyEffect()");
+        System.out.println("SlideRule: ApplyEffect()");
     }
 
     @Override
@@ -20,11 +20,11 @@ public class TVSZ extends Item{
 
     @Override
     public void Glue() {
-       return;
+        glued= !glued;
     }
 
     @Override
     public boolean IsGlued() {
-       return false;
+        return glued;
     }
 }

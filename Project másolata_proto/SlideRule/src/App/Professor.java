@@ -1,3 +1,4 @@
+package App;
 /**
  * Represents a professor character in the game.
  */
@@ -21,9 +22,10 @@ public class Professor extends Character{
 
     /** Overrides the Stun method of the Character class. */
     //@Override
-    public void Stun() //boolean lesz majd
+    public boolean Stun() //boolean lesz majd
     {
         System.out.println("Professor: Stun()");
+        return false;
     }
 
     /** Overrides the Combat method of the Character class. */

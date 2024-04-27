@@ -1,4 +1,4 @@
-package Items;
+package App.Items;
 
 /**
  * Represents a StBeerCups item in the game.
@@ -21,10 +21,11 @@ public class StBeerCups extends Item {
     @Override
     public void Glue() {
         System.out.println("StBeer:glue");
+        glued= !glued;
     }
 
     @Override
     public boolean IsGlued() {
-        return false;
+        return glued;
     }
 }

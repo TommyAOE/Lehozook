@@ -1,7 +1,8 @@
+package App;
 import java.util.LinkedList;
 import java.util.List;
 
-import Items.Item;
+import App.Items.Item;
 
 /**
  * Represents a room in the game.
@@ -65,6 +66,10 @@ public class Room {
 
     //Itemekkel kapcsolatos fuggvenyek
 
+    public List<Item> GetItems()//szuksegem volt ra a gooban, visszaadja az adott szobaban levo itemeket
+    {
+        return items;
+    }
     /** 
      * Searches for an item in the room.
      */
@@ -106,17 +111,19 @@ public class Room {
     /** 
      * Gets the professors in the room.
      */
-    public void GetProfessors()
+    public List<Professor> GetProfessors()//visszaadja a professzorokat az adott szobaban
     {
         System.out.println("Room: GetProfessors()");
+        return professors;
     }
 
     /** 
      * Gets the students in the room.
      */
-    public void GetStudents()
+    public List<Student> GetStudents()//visszaadja a tanulokat az adott szobaban
     {
         System.out.println("Room: GetStudents()");
+        return students;
     }
 
     public void GetCleaners()
@@ -155,9 +162,10 @@ public class Room {
     /** 
      * Signals that the gas in the room has expired.
      */
-    public void GasExpired()
+    public void GasExpired()//
     {
         System.out.println("Room: GasExpired()");
+        this.gas=null;
     }
 
     public boolean HasGas()//boolean lesz

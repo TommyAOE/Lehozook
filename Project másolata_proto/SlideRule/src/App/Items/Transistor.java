@@ -1,4 +1,4 @@
-package Items;
+package App.Items;
 
 /**
  * Represents a transistor item in the game.
@@ -56,11 +56,11 @@ public class Transistor extends Item{
 
     @Override
     public void Glue() {
-       return;
+        glued= !glued;
     }
 
     @Override
     public boolean IsGlued() {
-        return false;
+        return glued;
     }
 }

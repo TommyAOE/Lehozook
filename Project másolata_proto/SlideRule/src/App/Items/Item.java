@@ -1,11 +1,13 @@
-package Items;
+package App.Items;
+import App.Student;
 /**
  * Represents an item in the game.
  * This class is abstract and serves as a base for specific item types.
  */
 public abstract class Item {
     String name;
-    //Student owner;
+    protected boolean glued=false;//leragasztott_e 
+    Student owner;
 
     /** 
      * Applies the effect of the item.

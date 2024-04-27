@@ -1,16 +1,16 @@
-package Items;
+package App.Items;
 
 /**
- * Represents an FFP2 mask item in the game.
+ * Represents a TVSZ item in the game.
  * Extends the Item class.
  */
-public class FFP2Mask extends Item {
+public class TVSZ extends Item{
     
     /** 
-     * Applies the effect of the FFP2 mask item.
+     * Applies the effect of the TVSZ item.
      */
     public void ApplyEffect(){
-        System.out.println("FFP2Mask: ApplyEffect()");
+        System.out.println("TVSZ: ApplyEffect()");
     }
 
     @Override
@@ -20,11 +20,11 @@ public class FFP2Mask extends Item {
 
     @Override
     public void Glue() {
-        return;
+        glued= !glued;
     }
 
     @Override
     public boolean IsGlued() {
-        return false;
+        return glued;
     }
 }
