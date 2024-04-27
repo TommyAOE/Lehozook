@@ -1,9 +1,11 @@
 package App.Items;
+import App.Room;
 public class Airfreshener extends Item{
 
     @Override
     public void ApplyEffect() {
         System.out.println("Airfreshener: ApplyEffect()");
+        owner.GetLocation().GasExpired();//a tulajdonosa szobajanak a gasexpired hivja
     }
 
     @Override

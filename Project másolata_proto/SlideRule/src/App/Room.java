@@ -1,4 +1,6 @@
 package App;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class Room {
     int characterCount;
     List<Room> neighbours;
     boolean isCursed;
-    List<Item> items;
+    ArrayList<Item> items;
     List<Professor> professors;
     List<Student> students;
     List<Cleaner> cleaners;
@@ -126,9 +128,10 @@ public class Room {
         return students;
     }
 
-    public void GetCleaners()
+    public List<Cleaner> GetCleaners()
     {
         System.out.println("Room: GetCleaners()");
+        return cleaners;
     }
 
     /** 
@@ -156,6 +159,7 @@ public class Room {
      */
     public void AddGas()
     {
+        gas=new Gas(this);
         System.out.println("Room: AddGas()");
     }
 

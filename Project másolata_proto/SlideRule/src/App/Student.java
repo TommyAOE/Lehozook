@@ -47,9 +47,9 @@ public class Student extends Character{
     }
 
     //returns the position of the student
-    public void GetLocation()//Room lesz a tipus
+    public Room GetLocation()//Room lesz a tipus
     {
-        return;
+        return location;
     }
     public void Drunk()
     {

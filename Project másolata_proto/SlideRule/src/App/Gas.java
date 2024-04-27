@@ -6,6 +6,12 @@ package App;
 public class Gas {
 
     Room location;
+
+    public Gas(Room location)
+    {
+        this.location=location;
+        this.Gasify();
+    }
     
     /** 
      * Gasifies the environment.

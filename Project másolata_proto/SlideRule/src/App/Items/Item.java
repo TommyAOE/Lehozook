@@ -1,5 +1,6 @@
 package App.Items;
 import App.Student;
+import App.Room;
 /**
  * Represents an item in the game.
  * This class is abstract and serves as a base for specific item types.
