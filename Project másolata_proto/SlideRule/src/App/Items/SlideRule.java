@@ -1,34 +1,6 @@
 package App.Items;
 
-/**
- * Represents a SlideRule item in the game.
- * Extends the Item class.
- */
-public class SlideRule extends Item {
-    
-    /** 
-     * Applies the effect of the SlideRule item.
-     */
-    public void ApplyEffect(){
-        System.out.println("SlideRule: ApplyEffect()");
-    }
-
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    @Override
-    public void Glue() {
-        glued= !glued;
-    }
-
-    @Override
-    public boolean IsGlued() {
-        return glued;
-    }
-}
-package App.Items;
+import App.Room;
 
 /**
  * Represents a SlideRule item in the game.
@@ -42,8 +14,8 @@ public class SlideRule extends Item {
      *
      * @param name
      */
-    public SlideRule(String name) {
-        super(name, "SlideRule");
+    public SlideRule(String name, Room location) {
+        super(name, location, "SlideRule");
     }
 
     /**
@@ -61,16 +33,6 @@ public class SlideRule extends Item {
     @Override
     public String GetType() {
         return type;
-    }
-
-    @Override
-    public void Glue() {
-        return;
-    }
-
-    @Override
-    public boolean IsGlued() {
-        return false;
     }
 
     @Override

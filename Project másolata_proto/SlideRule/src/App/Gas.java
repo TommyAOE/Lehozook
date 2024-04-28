@@ -22,11 +22,11 @@ public class Gas {
 
         for(Student student: location.GetStudents())
         {
-            if(student.Stun())expire=true;
+            if(student.Stun(2)) expire=true;
         }
         for(Professor prof: location.GetProfessors())
         {
-            if(prof.Stun())expire=true;
+            if(prof.Stun(2))    expire=true;
         }
         if(expire) location.GasExpired();
     }

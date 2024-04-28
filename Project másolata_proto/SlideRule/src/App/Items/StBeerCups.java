@@ -1,36 +1,6 @@
 package App.Items;
 
-/**
- * Represents a StBeerCups item in the game.
- * Extends the Item class.
- */
-public class StBeerCups extends Item {
-    
-    /** 
-     * Applies the effect of the StBeerCups item.
-     */
-    public void ApplyEffect(){
-        System.out.println("StBeerCups: ApplyEffect()");
-    }
-
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    @Override
-    public void Glue() {
-        System.out.println("StBeer:glue");
-        glued= !glued;
-    }
-
-    @Override
-    public boolean IsGlued() {
-        return glued;
-    }
-}
-
-package App.Items;
+import App.Room;
 
 /**
  * Represents a StBeerCups item in the game.
@@ -44,8 +14,8 @@ public class StBeerCups extends Item {
      *
      * @param name
      */
-    public StBeerCups(String name) {
-        super(name, "StBeerCups");
+    public StBeerCups(String name, Room location) {
+        super(name, location, "StBeerCups");
     }
 
     /**
@@ -63,16 +33,6 @@ public class StBeerCups extends Item {
     @Override
     public String GetType() {
         return type;
-    }
-
-    @Override
-    public void Glue() {
-        System.out.println("StBeer:glue");
-    }
-
-    @Override
-    public boolean IsGlued() {
-        return false;
     }
 
     @Override

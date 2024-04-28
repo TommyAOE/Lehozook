@@ -1,10 +1,6 @@
-package App.App.Items;
+package App.Items;
 import App.Student;
 import App.Room;
-
-
-import App.Student;
-
 /**
  * Represents an item in the game.
  * This class is abstract and serves as a base for specific item types.
@@ -13,16 +9,16 @@ public abstract class Item {
     String name;
     protected boolean glued=false;//leragasztott_e 
     Student owner;
-    Student owner;
-    //new
     String type;
+    Room location;
 
     /** 
      * Applies the effect of the item.
      * Each subclass must implement this method to define its specific effect.
      */
-    public Item(String name, String type){
+    public Item(String name, Room location, String type){
         this.name = name;
+        this.location = location;
         this.type = type;
     }
     public abstract void ApplyEffect();
@@ -31,9 +27,13 @@ public abstract class Item {
 //new
     public abstract String GetType();
 
-    public abstract void Glue();
+    public void Glue(){
+        glued = !glued;
+    }
 
-    public abstract boolean IsGlued();
+    public boolean IsGlued(){
+        return glued;
+    }
 
     public abstract void InfoAll_Test();
 

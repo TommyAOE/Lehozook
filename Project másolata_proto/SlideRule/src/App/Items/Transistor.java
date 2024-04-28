@@ -16,8 +16,8 @@ public class Transistor extends Item{
      * Constructs a transistor with the given ID.
      * @param name The ID of the transistor.
      */
-    public Transistor(String name){
-        super(name,"Transistor");
+    public Transistor(String name, Room location){
+        super(name, location, "Transistor");
     }
 
     /** 
@@ -56,16 +56,6 @@ public class Transistor extends Item{
     @Override
     public String GetType() {
         return null;
-    }
-
-    @Override
-    public void Glue() {
-        glued= !glued;
-    }
-
-    @Override
-    public boolean IsGlued() {
-        return false;
     }
 
     @Override

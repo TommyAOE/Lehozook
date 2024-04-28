@@ -1,32 +1,10 @@
 package App.Items;
+
+import App.Room;
 public class FakeItem extends Item{
 
-    @Override
-    public void ApplyEffect() {
-        System.out.println("FakeItem: ApplyEffect()");
-    }
-
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    @Override
-    public void Glue() {
-        glued= !glued;
-    }
-
-    @Override
-    public boolean IsGlued() {
-        return glued;
-    }
-
-}
-package App.Items;
-public class FakeItem extends Item{
-
-    public FakeItem(String name, String type) {
-        super(name, type);
+    public FakeItem(String name, Room location, String type) {
+        super(name, location, type);
     }
     @Override
     public void ApplyEffect() {
@@ -41,16 +19,6 @@ public class FakeItem extends Item{
     @Override
     public String GetType() {
         return null;
-    }
-
-    @Override
-    public void Glue() {
-        return;
-    }
-
-    @Override
-    public boolean IsGlued() {
-        return false;
     }
 
     @Override

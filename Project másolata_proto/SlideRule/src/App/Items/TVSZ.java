@@ -1,5 +1,7 @@
 package App.Items;
 
+import App.Room;
+
 /**
  * Represents a TVSZ item in the game.
  * Extends the Item class.
@@ -12,8 +14,8 @@ public class TVSZ extends Item{
      *
      * @param name
      */
-    public TVSZ(String name) {
-        super(name, "TVSZ");
+    public TVSZ(String name, Room location) {
+        super(name, location, "TVSZ");
         uses = 3;
     }
 
@@ -32,16 +34,6 @@ public class TVSZ extends Item{
     @Override
     public String GetType() {
         return type;
-    }
-
-    @Override
-    public void Glue() {
-       return;
-    }
-
-    @Override
-    public boolean IsGlued() {
-       return false;
     }
 
     @Override

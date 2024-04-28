@@ -1,34 +1,7 @@
+
 package App.Items;
 
-/**
- * Represents an FFP2 mask item in the game.
- * Extends the Item class.
- */
-public class FFP2Mask extends Item {
-    
-    /** 
-     * Applies the effect of the FFP2 mask item.
-     */
-    public void ApplyEffect(){
-        System.out.println("FFP2Mask: ApplyEffect()");
-    }
-
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    @Override
-    public void Glue() {
-        glued= !glued;
-    }
-
-    @Override
-    public boolean IsGlued() {
-        return glued;
-    }
-}
-package App.Items;
+import App.Room;
 
 /**
  * Represents an FFP2 mask item in the game.
@@ -51,8 +24,8 @@ public class FFP2Mask extends Item {
      *
      * @param name the name of the FFP2 mask item
      */
-    public FFP2Mask(String name) {
-        super(name, "FFP2Mask");
+    public FFP2Mask(String name, Room location) {
+        super(name, location, "FFP2Mask");
         counter = 3;
         durability = 3;
         broken = false;
@@ -109,23 +82,6 @@ public class FFP2Mask extends Item {
      */
     public int GetCounter(){
         return counter;
-    }
-    /**
-     * Does nothing as FFP2 masks cannot be glued.
-     */
-    @Override
-    public void Glue() {
-        return;
-    }
-
-    /**
-     * Checks whether the FFP2 mask is glued.
-     *
-     * @return false as FFP2 masks cannot be glued
-     */
-    @Override
-    public boolean IsGlued() {
-        return false;
     }
 
     @Override

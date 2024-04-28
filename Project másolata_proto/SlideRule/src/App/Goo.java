@@ -6,15 +6,21 @@ public class Goo
     Room location;
     int visitorcount=0;
 
+    public Goo(Room location)
+    {
+        this.location=location;
+    }
+
     //increases visitors by one
     public void UpVisitorCount()//növeli a látogatók számát, ha eléri az ötöt meghivja az itemek ragasztasat
     {
         visitorcount++;
         if(visitorcount>=5)
         {
-            for(Item itemek:location.GetItems())
+            for(Item item:location.SearchItem())
             {
-                itemek.Glue();
+                if(!item.IsGlued())
+                    item.Glue();
             }
         }
     }
@@ -22,19 +28,17 @@ public class Goo
     //resets visitors count
     public void ResetVisitorsCount()//nullázza a látogatók számát, ha 5 volt (vagy annál több) feloldja előtte az itemragasztást
     {
-        if(visitorcount>=5)
+        for(Item item : location.SearchItem())
         {
-            for(Item itemek:location.GetItems())
-            {
-                itemek.Glue();
-            }
+            if(item.IsGlued())
+                item.Glue();
         }
         visitorcount=0;
     }
 
     public void Activate_Test() {
+        visitorcount = 5;
+        UpVisitorCount();
     }
 
-    public void Deactivate_Test() {
-    }
 }

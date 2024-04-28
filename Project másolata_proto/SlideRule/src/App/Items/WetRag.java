@@ -1,5 +1,7 @@
 package App.Items;
 
+import App.Room;
+
 /**
  * Represents a wet rag item in the game.
  * Extends the Item class.
@@ -12,8 +14,8 @@ public class WetRag extends Item{
      *
      * @param name
      */
-    public WetRag(String name) {
-        super(name, "WetRag");
+    public WetRag(String name, Room location) {
+        super(name, location, "WetRag");
         moistureLevel = 3;
     }
 
@@ -32,16 +34,6 @@ public class WetRag extends Item{
     @Override
     public String GetType() {
         return type;
-    }
-
-    @Override
-    public void Glue() {
-        return;
-    }
-
-    @Override
-    public boolean IsGlued() {
-        return false;
     }
 
     @Override

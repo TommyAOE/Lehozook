@@ -1,9 +1,9 @@
 package App;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-
 import App.Items.*;
 
 /**
@@ -118,20 +118,24 @@ public class Room {
     /** 
      * Pops an item from the room.
      */
-    public Item PopItem(Item i)
+    public Item PopItem(Item item)
     {
         System.out.println("App.Room: PopItem()");
         Item seged = null;
-        for (Item item : items) 
+        for (int i = 0; i < items.size(); i++) 
         {
-            if(item.equals(i))
+            if(items.get(i).equals(item))
             {
-                seged=item;
-                items.remove(item);
+                if(!items.get(i).IsGlued()){
+                    seged = items.get(i);
+                    items.remove(i);
+                    System.out.println("Item picked up");
+                }else{
+                    System.out.println("Could not pick up Item" + item.GetName());
+                }
             }
         }
-            return seged;
-
+        return seged;
         
     }
     //////////////////////////////////
@@ -141,26 +145,25 @@ public class Room {
     /** 
      * Gets the professors in the room.
      */
-    public ArrayList<Professor> GetProfessors()
+    public List<Professor> GetProfessors()//visszaadja a professzorokat az adott szobaban
     {
-        System.out.println("App.Room: GetProfessors()");
+        System.out.println("Room: GetProfessors()");
         return professors;
-
     }
 
     /** 
      * Gets the students in the room.
      */
-    public ArrayList<Student> GetStudents()
+    public List<Student> GetStudents()//visszaadja a tanulokat az adott szobaban
     {
-        System.out.println("App.Room: GetStudents()");
+        System.out.println("Room: GetStudents()");
         return students;
-
     }
 
-    public void GetCleaners()
+    public List<Cleaner> GetCleaners()
     {
-        System.out.println("App.Room: GetCleaners()");
+        System.out.println("Room: GetCleaners()");
+        return cleaners;
     }
 
     /** 
@@ -217,15 +220,17 @@ public class Room {
      */
     public void AddGas()
     {
-        System.out.println("App.Room: AddGas()");
+        gas=new Gas(this);
+        System.out.println("Room: AddGas()");
     }
 
     /** 
      * Signals that the gas in the room has expired.
      */
-    public void GasExpired()
+    public void GasExpired()//
     {
-        System.out.println("App.Room: GasExpired()");
+        System.out.println("Room: GasExpired()");
+        this.gas=null;
     }
 
     public boolean HasGas()//boolean lesz
@@ -238,17 +243,17 @@ public class Room {
         System.out.println("App.Room:Clean()");
     }
 
-    public void AddItem_Test(String type,String name,boolean real)
+    public void AddItem_Test(String type, String name,boolean real)
     {
         switch (type) {
-            case "FFP2Mask" -> items.add(real ? new FFP2Mask(name) : new FakeItem(name, "FFP2Mask"));
-            case "Airfreshener" -> items.add(real ? new Airfreshener(name) : new FakeItem(name, "Airfreshener"));
-            case "Camembert" -> items.add(real ? new Camembert(name) : new FakeItem(name, "Camambert"));
-            case "SlideRule" -> items.add(real ? new SlideRule(name) : new FakeItem(name, "SlideRule"));
-            case "StBeerCups" -> items.add(real ? new StBeerCups(name) : new FakeItem(name, "StBeerCups"));
-            case "Transistor" -> items.add(real ? new Transistor(name) : new FakeItem(name, "Transistor"));
-            case "TVSZ" -> items.add(real ? new TVSZ(name) : new FakeItem(name, "TVSZ"));
-            case "WetRag" -> items.add(real ? new WetRag(name) : new FakeItem(name, "WetRag"));
+            case "FFP2Mask" -> items.add(real ? new FFP2Mask(name, this) : new FakeItem(name, this, "FFP2Mask"));
+            case "Airfreshener" -> items.add(real ? new Airfreshener(name, this) : new FakeItem(name, this, "Airfreshener"));
+            case "Camembert" -> items.add(real ? new Camembert(name, this) : new FakeItem(name, this, "Camambert"));
+            case "SlideRule" -> items.add(real ? new SlideRule(name, this) : new FakeItem(name, this, "SlideRule"));
+            case "StBeerCups" -> items.add(real ? new StBeerCups(name, this) : new FakeItem(name, this, "StBeerCups"));
+            case "Transistor" -> items.add(real ? new Transistor(name, this) : new FakeItem(name, this, "Transistor"));
+            case "TVSZ" -> items.add(real ? new TVSZ(name, this) : new FakeItem(name, this, "TVSZ"));
+            case "WetRag" -> items.add(real ? new WetRag(name, this) : new FakeItem(name, this, "WetRag"));
             default -> {
             }
         }
@@ -268,7 +273,7 @@ public class Room {
     }
 
     public void GooUnglue_Test() {
-        goo.Deactivate_Test();
+        goo.ResetVisitorsCount();
     }
 
     public void InfoAll_Test() {
@@ -309,193 +314,7 @@ public class Room {
         System.out.println("Cleaners: "+cleaners.size());
         for (Cleaner cleaner : cleaners) {
             System.out.println("Cleaner: "+cleaner.GetName());
-    }
-    }
-
-    ///////    
-}
-package App;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-import App.Items.Item;
-
-/**
- * Represents a room in the game.
- */
-public class Room {
-
-    //attributomok
-    int maximumcapacity;
-    int characterCount;
-    List<Room> neighbours;
-    boolean isCursed;
-    ArrayList<Item> items;
-    List<Professor> professors;
-    List<Student> students;
-    List<Cleaner> cleaners;
-    Gas gas;
-    Goo goo;
-    boolean isFull;
-    //////////////
-    
-    /** The ID of the room. */
-    public int id;
-//szobaval kapcsolatos metodusok
-    public void Curse()
-    {
-        System.out.println("Szoba:Curse()");
-    }
-    public void split()
-    {
-        System.out.println("Szoba:Split");
-    }
-    public void Merge(Room r)
-    {
-        System.out.println("Szoba:"+r+"osszeolvadt");
-    }
-    /** 
-     * Gets the neighbors of the room.
-     */
-    public void GetNeighbours()
-    {
-        
-        System.out.println("Room: GetNeighbours()");
-        
-    }
-    /** 
-     * Sets the neighbors of the room.
-     */
-    public void SetNeighbours()
-    {
-        System.out.println("Room: SetNeighbours()");
-    }
-    /** 
-     * Changes the room.
-     */
-    public void Change()
-    {
-        System.out.println("Room: Change()");
-    }
-    //////////////////////////////////
-
-
-    //Itemekkel kapcsolatos fuggvenyek
-
-    public List<Item> GetItems()//szuksegem volt ra a gooban, visszaadja az adott szobaban levo itemeket
-    {
-        return items;
-    }
-    /** 
-     * Searches for an item in the room.
-     */
-    public void SearchItem()
-    {
-        System.out.println("Room: SearchItem()");
-    }
-
-    /** 
-     * Adds an item to the room.
-     */
-    public void AddItem()
-    {
-        System.out.println("Room: AddItem()");
-    }
-
-    /** 
-     * Pops an item from the room.
-     */
-    public void PopItem()
-    {
-        System.out.println("Room: PopItem()");
-       /*  Item seged;
-        for (Item item : items) 
-        {
-            if(item.equals(i))
-            {
-                seged=item;
-                items.remove(item);
-            }
         }
-            return seged;*/
-        
-    }
-    //////////////////////////////////
-
-    //karakterekkel kapcsolatos
-
-    /** 
-     * Gets the professors in the room.
-     */
-    public List<Professor> GetProfessors()//visszaadja a professzorokat az adott szobaban
-    {
-        System.out.println("Room: GetProfessors()");
-        return professors;
     }
 
-    /** 
-     * Gets the students in the room.
-     */
-    public List<Student> GetStudents()//visszaadja a tanulokat az adott szobaban
-    {
-        System.out.println("Room: GetStudents()");
-        return students;
-    }
-
-    public List<Cleaner> GetCleaners()
-    {
-        System.out.println("Room: GetCleaners()");
-        return cleaners;
-    }
-
-    /** 
-    * Signals that a character has entered the room.
-    */
-    public void CharacterEntered()
-    {
-        System.out.println("Room: CharacterEntered()");
-    }
-
-     /** 
-     * Signals that a character has left the room.
-     */
-    public void CharacterLeft()
-    {
-        System.out.println("Room: CharacterLeft()");
-    }
-
-    ///////////////////////////
-
-    //egyeb
-
-    /** 
-     * Adds gas to the room.
-     */
-    public void AddGas()
-    {
-        gas=new Gas(this);
-        System.out.println("Room: AddGas()");
-    }
-
-    /** 
-     * Signals that the gas in the room has expired.
-     */
-    public void GasExpired()//
-    {
-        System.out.println("Room: GasExpired()");
-        this.gas=null;
-    }
-
-    public boolean HasGas()//boolean lesz
-    {
-        return (gas==null)? false:true;
-    }
-
-    public void Clean()
-    {
-        System.out.println("Room:Clean()");
-    }
-    ///////    
 }

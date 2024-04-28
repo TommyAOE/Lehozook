@@ -250,7 +250,6 @@ public class Proto {
             return;
         }
         ((Student)chart.findCharacterByName_Test(cmd[1])).PickupItem_Test(cmd[2]);
-        System.out.println("Item picked up");
     }
     /**
      * Allows a character to drop an item from their inventory.
@@ -309,18 +308,19 @@ public class Proto {
             return;
         }
         if (chart.findRoomByName_Test(cmd[1]).goo!=null){
-            if (Objects.equals(cmd[2], "glue"))
+            if (Objects.equals(cmd[2], "glued"))
                 chart.findRoomByName_Test(cmd[1]).GooGlue_Test();
-            else if (Objects.equals(cmd[2], "unglue"))
+            else if (Objects.equals(cmd[2], "unglued"))
                 chart.findRoomByName_Test(cmd[1]).GooUnglue_Test();
             else
                 chart.findRoomByName_Test(cmd[1]).goo=null;
         }
         else {
-            chart.findRoomByName_Test(cmd[1]).goo=new Goo();
-            if (Objects.equals(cmd[2], "glue"))
+            Room roomByID = chart.findRoomByName_Test(cmd[1]);
+            roomByID.goo=new Goo(roomByID);
+            if (Objects.equals(cmd[2], "glued"))
                 chart.findRoomByName_Test(cmd[1]).GooGlue_Test();
-            else if (Objects.equals(cmd[2], "unglue"))
+            else if (Objects.equals(cmd[2], "unglued"))
                 chart.findRoomByName_Test(cmd[1]).GooUnglue_Test();
             System.out.println("Goo added");
         }
