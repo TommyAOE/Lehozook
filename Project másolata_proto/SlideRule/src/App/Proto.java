@@ -1,13 +1,16 @@
 package App;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
- * The Proto class containing the prototype of the game.
+ * The App.Proto class containing the prototype of the game.
  */
 public class Proto {
     static ProtoHelper helper = new ProtoHelper();
     static ArrayList<String[]> commands = new ArrayList<String[]>();
-
+    static boolean rnd = false;
+    static Chart chart = new Chart();
     /**
      * Main method to start the game and execute commands.
      * @param args Command line arguments (not used).
@@ -96,9 +99,11 @@ public class Proto {
         }
         if(cmd[1].equals("on")){
             System.out.println("Random enabled");
+            rnd = true;
         }
         else if(cmd[1].equals("off")){
             System.out.println("Random disabled");
+            rnd = false;
         }
         else{
             System.out.println("Invalid parameter for this command!");
@@ -113,10 +118,12 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
-        if(cmd[1].equals("All")){
+        if(cmd[1].equals("all")){
+            chart.InfoAll_Test();
             System.out.println("List: Info All");
         }
-        else {
+        else if (cmd.length == 3){
+            chart.Info_Test(cmd[1], cmd[2]);
             System.out.println("List: Info something");
         }
     }
@@ -148,10 +155,12 @@ public class Proto {
             return;
         }
         if(cmd.length == 3 && cmd[2].equals("Cursed")){
-            System.out.println("Add Cursed Room");
+            System.out.println("Add Cursed App.Room");
+            chart.AddRoom_Test(cmd[1], cmd[2]);
         }
         else {
-            System.out.println("Add Normal Room");
+            chart.AddRoom_Test(cmd[1], "Normal");
+            System.out.println("Add Normal App.Room");
         }
     }
     /**
@@ -163,6 +172,7 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
+        chart.SetNeighbours_Test(cmd[1], cmd[2]);
         System.out.println("Set neighbours");
     }
     /**
@@ -174,6 +184,7 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
+        chart.findRoomByName_Test(cmd[1]).AddItem_Test(cmd[2], cmd[3], Objects.equals(cmd[4], "true"));
         System.out.println("Item spawned");
     }
     /**
@@ -186,7 +197,8 @@ public class Proto {
             return;
         }
         //type check needed
-        System.out.println("Character added");
+        chart.AddCharacter_Test(cmd[1], cmd[2], cmd[3]);
+        System.out.println(cmd[1]+"-es karakter hozzáadva a "+cmd[3]+"-es szobához.");
     }
     /**
      * Moves a character to a specified room.
@@ -197,7 +209,12 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
-        System.out.println("Character entered room");
+
+        boolean in=chart.findCharacterByName_Test(cmd[1]).EnterRoom(chart.findRoomByName_Test(cmd[2]));
+        if(in)
+            System.out.println(cmd[1] +"karakter áthelyezve a"+ cmd[2] +"szobába.");
+        else
+        System.out.println(cmd[1]+" karakter nem tudott belépni a "+cmd[2]+" szobába.");
     }
     /**
      * Adds an item to a character's inventory.
@@ -208,6 +225,7 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
+        ((Student)chart.findCharacterByName_Test(cmd[1])).AddItem_Test(cmd[2], cmd[3], Objects.equals(cmd[4], "true"));
         System.out.println("Item added");
     }
     /**
@@ -219,6 +237,7 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
+        ((Student)chart.findCharacterByName_Test(cmd[1])).UseItem_Test(cmd[2]);
         System.out.println("Item used");
     }
     /**
@@ -230,7 +249,7 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
-        System.out.println("Item picked up");
+        ((Student)chart.findCharacterByName_Test(cmd[1])).PickupItem_Test(cmd[2]);
     }
     /**
      * Allows a character to drop an item from their inventory.
@@ -241,6 +260,7 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
+        ((Student)chart.findCharacterByName_Test(cmd[1])).DropItem_Test(cmd[2]);
         System.out.println("Item dropped");
     }
     /**
@@ -254,7 +274,10 @@ public class Proto {
         }
         if(cmd[2].equals("Merge") && cmd.length == 4){
             System.out.println("Merge");
+            chart.findRoomByName_Test(cmd[1]).Merge(chart.findRoomByName_Test(cmd[3]));
+            return;
         }
+        chart.findRoomByName_Test(cmd[1]).Change_Test(cmd[2]);
         System.out.println("RoomChange");
     }
     /**
@@ -266,20 +289,40 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
-        /*if(room is gassed)
-            remove gas
-        else if
-            add gas
-         */   
+        if (chart.findRoomByName_Test(cmd[1]).gas!=null){
+            chart.findRoomByName_Test(cmd[1]).GasExpired();
+            System.out.println("Gas expired");
+        }
+        else {
+            chart.findRoomByName_Test(cmd[1]).AddGas();
+            System.out.println("Gas added");
+        }
     }
     /**
      * Sets the goo state of a room.
      * @param cmd The command and its parameters.
      */
     public static void GooRoom(String[] cmd){
-        if(cmd.length < 2){
+        if(cmd.length < 3){
             System.out.println("Missing parameter");
             return;
+        }
+        if (chart.findRoomByName_Test(cmd[1]).goo!=null){
+            if (Objects.equals(cmd[2], "glued"))
+                chart.findRoomByName_Test(cmd[1]).GooGlue_Test();
+            else if (Objects.equals(cmd[2], "unglued"))
+                chart.findRoomByName_Test(cmd[1]).GooUnglue_Test();
+            else
+                chart.findRoomByName_Test(cmd[1]).goo=null;
+        }
+        else {
+            Room roomByID = chart.findRoomByName_Test(cmd[1]);
+            roomByID.goo=new Goo(roomByID);
+            if (Objects.equals(cmd[2], "glued"))
+                chart.findRoomByName_Test(cmd[1]).GooGlue_Test();
+            else if (Objects.equals(cmd[2], "unglued"))
+                chart.findRoomByName_Test(cmd[1]).GooUnglue_Test();
+            System.out.println("Goo added");
         }
         /*if(room contains goo)
             if(unglued)
@@ -323,10 +366,12 @@ public class Proto {
      * @param cmd The command and its parameters.
      */
     public static void SetRoomFull(String[] cmd){
-        if(cmd.length < 3){
+        if(cmd.length < 2){
             System.out.println("Missing parameter");
             return;
         }
+        chart.findRoomByName_Test(cmd[1]).isFull=!chart.findRoomByName_Test(cmd[1]).isFull;
+        System.out.println("Room full status set to "+chart.findRoomByName_Test(cmd[1]).isFull);
         /* if(!room.IsFull)
                 set full
             else 
@@ -342,7 +387,7 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
-        System.out.println("Character turn starts");
+        System.out.println("App.Character turn starts");
     }
     /**
      * Initiates combat in a room.

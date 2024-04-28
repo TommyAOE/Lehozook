@@ -1,6 +1,11 @@
 package App.Items;
+
 import App.Room;
 public class Airfreshener extends Item{
+
+    public Airfreshener(String name, Room location){
+        super(name, location,"Airfreshener");
+    }
 
     @Override
     public void ApplyEffect() {
@@ -14,13 +19,20 @@ public class Airfreshener extends Item{
     }
 
     @Override
-    public void Glue() {
-        glued= !glued;
+    public String GetType() {
+        return type;
     }
 
     @Override
-    public boolean IsGlued() {
-        return glued;
+    public void InfoAll_Test() {
+        System.out.println("Airfreshener: "+name);
+    }
+
+    @Override
+    public void Info_Test() {
+        System.out.println(type+": "+name);
+        if (owner != null)
+        System.out.println("Owner: "+owner.GetName());
     }
 
 }

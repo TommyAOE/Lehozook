@@ -1,12 +1,24 @@
 package App.Items;
 
+import App.Room;
+
 /**
  * Represents a SlideRule item in the game.
  * Extends the Item class.
  */
 public class SlideRule extends Item {
-    
-    /** 
+
+    /**
+     * Applies the effect of the item.
+     * Each subclass must implement this method to define its specific effect.
+     *
+     * @param name
+     */
+    public SlideRule(String name, Room location) {
+        super(name, location, "SlideRule");
+    }
+
+    /**
      * Applies the effect of the SlideRule item.
      */
     public void ApplyEffect(){
@@ -19,12 +31,19 @@ public class SlideRule extends Item {
     }
 
     @Override
-    public void Glue() {
-        glued= !glued;
+    public String GetType() {
+        return type;
     }
 
     @Override
-    public boolean IsGlued() {
-        return glued;
+    public void InfoAll_Test() {
+        System.out.println("SlideRule: "+name);
+    }
+
+    @Override
+    public void Info_Test() {
+        System.out.println(type+": "+name);
+        if (owner != null)
+        System.out.println("Owner: "+owner.GetName());
     }
 }

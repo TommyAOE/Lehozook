@@ -1,5 +1,7 @@
 package App.Items;
 
+import App.Room;
+
 /**
  * Represents a transistor item in the game.
  * Extends the Item class.
@@ -8,17 +10,14 @@ public class Transistor extends Item{
 
     
     Transistor pair;
-    //Room location;
-    
-    /** The ID of the transistor. */
-    public int id;
+    public Room location;
 
     /**
      * Constructs a transistor with the given ID.
-     * @param i The ID of the transistor.
+     * @param name The ID of the transistor.
      */
-    public Transistor(int i){
-        this.id = i;
+    public Transistor(String name, Room location){
+        super(name, location, "Transistor");
     }
 
     /** 
@@ -32,7 +31,7 @@ public class Transistor extends Item{
      * Sets a pair for the transistor.
      */
     public void SetPair(){
-        System.out.println("id = " + id + ", Transistor: SetPair()");
+        //System.out.println("id = " + id + ", Transistor: SetPair()");
     }
 
     /** 
@@ -55,12 +54,23 @@ public class Transistor extends Item{
     }
 
     @Override
-    public void Glue() {
-        glued= !glued;
+    public String GetType() {
+        return null;
     }
 
     @Override
-    public boolean IsGlued() {
-        return glued;
+    public void InfoAll_Test() {
+        System.out.println("Transistor: "+name);
+    }
+
+    @Override
+    public void Info_Test() {
+        System.out.println(type+": "+name);
+        if (owner != null)
+        System.out.println("Owner: "+owner);
+        System.out.println("Pair: "+pair);
+        if (location != null)
+        System.out.println("Location: "+location);
+
     }
 }

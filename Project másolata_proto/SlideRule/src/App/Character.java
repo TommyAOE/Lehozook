@@ -1,30 +1,47 @@
 package App;
+
 /**
  * Represents a character in the game.
  * This class serves as a base for all types of characters.
  */
 public abstract class Character {
-    
-    String name;
-    Room location;
-    /** 
+
+
+    /**
+     * The name of the character.
+     */
+    protected String name;
+
+    /**
+     * The current location of the character.
+     */
+    protected Room location;
+    public Character(String name, Room location) {
+        this.name = name;
+        this.location = location;
+    }
+    /**
      * Performs the character's turn action.
      */
     public abstract void Turn();
-    
-    /* 
-     * Performs the character's action when entering a room.
+
+    /**
+     * Moves the character to a room.
+     *
+     * @param r the room to enter
      */
-    public abstract void EnterRoom();
-   /*  
-    /** 
-     * Performs the character's stun action.
+    public abstract boolean EnterRoom(Room r);
+
+    /**
+     * Gets the name of the character.
+     *
+     * @return the name of the character
      */
-    //public abstract void Stun();
-    
-    /** 
-     * Performs the character's combat action.
-     */
-    //public abstract void Combat();
+    //new
+    public String GetName() {
+        return name;
+    }
+    public abstract void InfoAll_Test();
+    public abstract void Info_Test();
 
 }
