@@ -1,4 +1,4 @@
-package Items;
+package App.Items;
 
 /**
  * Represents a Camembert item in the game.
@@ -11,6 +11,7 @@ public class Camembert extends Item {
      */
     public void ApplyEffect(){
         System.out.println("Camembert: ApplyEffect()");
+        owner.GetLocation().AddGas();
     }
 
     @Override
@@ -20,11 +21,11 @@ public class Camembert extends Item {
 
     @Override
     public void Glue() {
-        return;
+        glued= !glued;
     }
 
     @Override
     public boolean IsGlued() {
-        return false;
+        return glued;
     }
 }

@@ -1,16 +1,16 @@
-package Items;
+package App.Items;
 
 /**
- * Represents a wet rag item in the game.
+ * Represents an FFP2 mask item in the game.
  * Extends the Item class.
  */
-public class WetRag extends Item{
+public class FFP2Mask extends Item {
     
     /** 
-     * Applies the effect of the wet rag item.
+     * Applies the effect of the FFP2 mask item.
      */
     public void ApplyEffect(){
-        System.out.println("WetRag: ApplyEffect()");
+        System.out.println("FFP2Mask: ApplyEffect()");
     }
 
     @Override
@@ -20,11 +20,11 @@ public class WetRag extends Item{
 
     @Override
     public void Glue() {
-        return;
+        glued= !glued;
     }
 
     @Override
     public boolean IsGlued() {
-        return false;
+        return glued;
     }
 }

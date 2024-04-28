@@ -1,6 +1,7 @@
+package App;
 import java.util.List;
 
-import Items.Item;
+import App.Items.Item;
 
 /**
  * Represents a student character in the game.
@@ -29,8 +30,9 @@ public class Student extends Character{
 
     /** Overrides the Stun method of the Character class. */
     //@Override
-    public void Stun() {
+    public boolean Stun() {
         System.out.println("Student: Stun()");
+        return false;
     }
 
     /** Overrides the Combat method of the Character class. */
@@ -45,9 +47,9 @@ public class Student extends Character{
     }
 
     //returns the position of the student
-    public void GetLocation()//Room lesz a tipus
+    public Room GetLocation()//Room lesz a tipus
     {
-        return;
+        return location;
     }
     public void Drunk()
     {

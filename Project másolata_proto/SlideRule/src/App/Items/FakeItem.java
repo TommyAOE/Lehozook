@@ -1,9 +1,9 @@
-package Items;
-public class Airfreshener extends Item{
+package App.Items;
+public class FakeItem extends Item{
 
     @Override
     public void ApplyEffect() {
-        System.out.println("Airfreshener: ApplyEffect()");
+        System.out.println("FakeItem: ApplyEffect()");
     }
 
     @Override
@@ -13,12 +13,12 @@ public class Airfreshener extends Item{
 
     @Override
     public void Glue() {
-        return;
+        glued= !glued;
     }
 
     @Override
     public boolean IsGlued() {
-        return false;
+        return glued;
     }
 
 }
