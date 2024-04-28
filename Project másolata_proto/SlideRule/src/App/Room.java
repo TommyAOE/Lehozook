@@ -24,6 +24,11 @@ public class Room {
     ArrayList<Cleaner> cleaners;
     Gas gas;
     Goo goo;
+
+    public boolean IsFull() {
+        return isFull;
+    }
+
     boolean isFull;
     //////////////
 

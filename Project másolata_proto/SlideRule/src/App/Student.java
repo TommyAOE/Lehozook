@@ -22,6 +22,10 @@ public class Student extends Character implements IFighter {
     //new
     boolean inCombat;
 
+    public void SetIsProtected(int isProtected) {
+        this.isProtected += isProtected;
+    }
+
     /**
      * The protection state of the student.
      */
@@ -57,6 +61,9 @@ public class Student extends Character implements IFighter {
 
     @Override
     public void Turn() {
+        if (--isStunned > 0) {
+            return;
+        }
         for (int i = 0; i < 3&&!inCombat; i++) {
             System.out.println("Add meg az akciódat: ");
             System.out.println("1. Mozgás");
@@ -95,7 +102,7 @@ public class Student extends Character implements IFighter {
                         System.out.println(j + ". " + items.get(j).GetType());
                     }
                     int item3 = Integer.parseInt(new Scanner(System.in).nextLine());
-                    if (items.get(item3) instanceof Transistor){
+                    if (items.get(item3).GetType()=="Transistor"){
                         System.out.println("Add meg, az akciód: ");
                         System.out.println("1. Aktiválás");
                         System.out.println("2. Használat");

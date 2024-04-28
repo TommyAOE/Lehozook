@@ -1,6 +1,6 @@
 package App;
 
-import App.Items.Item;
+import App.Items.*;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package App.Items;
 
-import App.Room;
+import App.*;
 
 /**
  * Represents a StBeerCups item in the game.
@@ -22,6 +22,8 @@ public class StBeerCups extends Item {
      * Applies the effect of the StBeerCups item.
      */
     public void ApplyEffect(){
+        owner.SetIsProtected(3);
+        owner.Drunk();
         System.out.println("StBeerCups: ApplyEffect()");
     }
 
