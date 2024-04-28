@@ -22,7 +22,8 @@ public class SlideRule extends Item {
      * Applies the effect of the SlideRule item.
      */
     public void ApplyEffect(){
-        System.out.println("SlideRule: ApplyEffect()");
+        System.out.println("Student wins the game!");
+        System.exit(0);
     }
 
     @Override

@@ -30,6 +30,12 @@ public class FFP2Mask extends Item {
         durability = 3;
         broken = false;
     }
+    public FFP2Mask(String name, int counter, int durability) {
+        super(name, "FFP2Mask");
+        this.counter = counter;
+        this.durability = durability;
+        broken = false;
+    }
 
     /**
      * Applies the effect of the FFP2 mask item.

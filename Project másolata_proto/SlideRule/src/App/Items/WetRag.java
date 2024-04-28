@@ -18,6 +18,10 @@ public class WetRag extends Item{
         super(name, "WetRag");
         moistureLevel = 3;
     }
+    public WetRag(String name, int moistureLevel) {
+        super(name, "WetRag");
+        this.moistureLevel = moistureLevel;
+    }
 
     /**
      * Applies the effect of the wet rag item.

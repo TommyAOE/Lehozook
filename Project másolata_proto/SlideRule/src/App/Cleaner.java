@@ -31,7 +31,7 @@ public class Cleaner extends Character
                 safe=100;
                 while (newRoom.isFull&&--safe>0)
                     newRoom = location.neighbours.get(new Random().nextInt(location.neighbours.size()+1));
-                s.EnterRoom(location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1)));
+                s.EnterRoom(newRoom);
             }
 
         }
@@ -40,7 +40,7 @@ public class Cleaner extends Character
                 safe=100;
                 while (newRoom.isFull&&--safe>0)
                     newRoom = location.neighbours.get(new Random().nextInt(location.neighbours.size()+1));
-                p.EnterRoom(location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1)));
+                p.EnterRoom(newRoom);
             }
         }
         location.Clean();
