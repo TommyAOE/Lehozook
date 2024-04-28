@@ -14,8 +14,8 @@ public class WetRag extends Item{
      *
      * @param name
      */
-    public WetRag(String name, Room location) {
-        super(name, location, "WetRag");
+    public WetRag(String name) {
+        super(name, "WetRag");
         moistureLevel = 3;
     }
 

@@ -24,8 +24,8 @@ public class FFP2Mask extends Item {
      *
      * @param name the name of the FFP2 mask item
      */
-    public FFP2Mask(String name, Room location) {
-        super(name, location, "FFP2Mask");
+    public FFP2Mask(String name) {
+        super(name, "FFP2Mask");
         counter = 3;
         durability = 3;
         broken = false;

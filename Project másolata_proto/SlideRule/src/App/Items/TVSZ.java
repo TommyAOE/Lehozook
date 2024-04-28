@@ -14,8 +14,8 @@ public class TVSZ extends Item{
      *
      * @param name
      */
-    public TVSZ(String name, Room location) {
-        super(name, location, "TVSZ");
+    public TVSZ(String name) {
+        super(name,"TVSZ");
         uses = 3;
     }
 

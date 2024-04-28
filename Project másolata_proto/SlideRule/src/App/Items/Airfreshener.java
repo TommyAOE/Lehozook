@@ -3,8 +3,8 @@ package App.Items;
 import App.Room;
 public class Airfreshener extends Item{
 
-    public Airfreshener(String name, Room location){
-        super(name, location,"Airfreshener");
+    public Airfreshener(String name){
+        super(name, "Airfreshener");
     }
 
     @Override

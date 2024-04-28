@@ -287,14 +287,14 @@ public class Student extends Character implements IFighter {
     public void AddItem_Test(String type ,String name ,boolean real)
     {
         switch (type) {
-            case "FFP2Mask" -> items.add(real ? new FFP2Mask(name, location) : new FakeItem(name, location, "FFP2Mask"));
-            case "Airfreshener" -> items.add(real ? new Airfreshener(name, location) : new FakeItem(name, location, "Airfreshener"));
-            case "Camembert" -> items.add(real ? new Camembert(name, location) : new FakeItem(name, location, "Camambert"));
-            case "SlideRule" -> items.add(real ? new SlideRule(name, location) : new FakeItem(name, location, "SlideRule"));
-            case "StBeerCups" -> items.add(real ? new StBeerCups(name, location) : new FakeItem(name, location, "StBeerCups"));
-            case "Transistor" -> items.add(real ? new Transistor(name, location) : new FakeItem(name, location, "Transistor"));
-            case "TVSZ" -> items.add(real ? new TVSZ(name, location) : new FakeItem(name, location, "TVSZ"));
-            case "WetRag" -> items.add(real ? new WetRag(name, location) : new FakeItem(name, location, "WetRag"));
+            case "FFP2Mask" -> items.add(real ? new FFP2Mask(name) : new FakeItem(name, "FFP2Mask"));
+            case "Airfreshener" -> items.add(real ? new Airfreshener(name) : new FakeItem(name, "Airfreshener"));
+            case "Camembert" -> items.add(real ? new Camembert(name) : new FakeItem(name, "Camambert"));
+            case "SlideRule" -> items.add(real ? new SlideRule(name) : new FakeItem(name, "SlideRule"));
+            case "StBeerCups" -> items.add(real ? new StBeerCups(name) : new FakeItem(name, "StBeerCups"));
+            case "Transistor" -> items.add(real ? new Transistor(name) : new FakeItem(name, "Transistor"));
+            case "TVSZ" -> items.add(real ? new TVSZ(name) : new FakeItem(name, "TVSZ"));
+            case "WetRag" -> items.add(real ? new WetRag(name) : new FakeItem(name, "WetRag"));
             default -> {
             }
         }

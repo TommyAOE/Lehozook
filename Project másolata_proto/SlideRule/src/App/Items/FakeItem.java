@@ -3,8 +3,8 @@ package App.Items;
 import App.Room;
 public class FakeItem extends Item{
 
-    public FakeItem(String name, Room location, String type) {
-        super(name, location, type);
+    public FakeItem(String name, String type) {
+        super(name, type);
     }
     @Override
     public void ApplyEffect() {

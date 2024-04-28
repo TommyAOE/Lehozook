@@ -14,8 +14,8 @@ public class StBeerCups extends Item {
      *
      * @param name
      */
-    public StBeerCups(String name, Room location) {
-        super(name, location, "StBeerCups");
+    public StBeerCups(String name) {
+        super(name, "StBeerCups");
     }
 
     /**

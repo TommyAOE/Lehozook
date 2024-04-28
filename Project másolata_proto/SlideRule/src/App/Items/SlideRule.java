@@ -14,8 +14,8 @@ public class SlideRule extends Item {
      *
      * @param name
      */
-    public SlideRule(String name, Room location) {
-        super(name, location, "SlideRule");
+    public SlideRule(String name) {
+        super(name, "SlideRule");
     }
 
     /**

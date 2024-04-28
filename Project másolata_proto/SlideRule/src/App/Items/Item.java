@@ -10,15 +10,13 @@ public abstract class Item {
     protected boolean glued=false;//leragasztott_e 
     Student owner;
     String type;
-    Room location;
 
     /** 
      * Applies the effect of the item.
      * Each subclass must implement this method to define its specific effect.
      */
-    public Item(String name, Room location, String type){
+    public Item(String name, String type){
         this.name = name;
-        this.location = location;
         this.type = type;
     }
     public abstract void ApplyEffect();

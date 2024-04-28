@@ -14,8 +14,8 @@ public class Camembert extends Item {
      *
      * @param name
      */
-    public Camembert(String name, Room location) {
-        super(name, location,  "Camembert");
+    public Camembert(String name) {
+        super(name, "Camembert");
     }
 
     /**
