@@ -1,6 +1,7 @@
 package App.Items;
 
 import App.Room;
+import App.Student;
 
 /**
  * Represents a Camembert item in the game.
@@ -16,6 +17,10 @@ public class Camembert extends Item {
      */
     public Camembert(String name) {
         super(name, "Camembert");
+    }
+
+    public Camembert(String name, Student owner) {
+        super(name, "Camembert", owner);
     }
 
     /**

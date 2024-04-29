@@ -1,7 +1,7 @@
 
 package App.Items;
 
-import App.Room;
+import App.Student;
 
 /**
  * Represents an FFP2 mask item in the game.
@@ -26,6 +26,12 @@ public class FFP2Mask extends Item {
      */
     public FFP2Mask(String name) {
         super(name, "FFP2Mask");
+        counter = 3;
+        durability = 3;
+        broken = false;
+    }
+    public FFP2Mask(String name, Student owner) {
+        super(name, "FFP2Mask", owner);
         counter = 3;
         durability = 3;
         broken = false;

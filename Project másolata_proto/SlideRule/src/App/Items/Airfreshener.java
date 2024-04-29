@@ -1,10 +1,14 @@
 package App.Items;
 
-import App.Room;
+import App.Student;
+
 public class Airfreshener extends Item{
 
     public Airfreshener(String name){
         super(name, "Airfreshener");
+    }
+    public Airfreshener(String name, Student owner){
+        super(name, "Airfreshener", owner);
     }
 
     @Override

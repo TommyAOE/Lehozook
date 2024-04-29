@@ -1,6 +1,7 @@
 package App.Items;
 
 import App.Room;
+import App.Student;
 
 import java.util.Random;
 
@@ -8,6 +9,9 @@ public class FakeItem extends Item{
 
     public FakeItem(String name, String type) {
         super(name, type);
+    }
+    public FakeItem(String name, String type, Student owner) {
+        super(name, type, owner);
     }
     @Override
     public void ApplyEffect() {

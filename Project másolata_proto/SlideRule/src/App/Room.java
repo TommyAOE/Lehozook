@@ -256,7 +256,7 @@ public class Room {
             case "Camembert" -> items.add(real ? new Camembert(name) : new FakeItem(name, "Camambert"));
             case "SlideRule" -> items.add(real ? new SlideRule(name) : new FakeItem(name, "SlideRule"));
             case "StBeerCups" -> items.add(real ? new StBeerCups(name) : new FakeItem(name, "StBeerCups"));
-            case "Transistor" -> items.add(real ? new Transistor(name) : new FakeItem(name,"Transistor"));
+            case "Transistor" -> items.add(real ? new Transistor(name, this) : new FakeItem(name,"Transistor"));
             case "TVSZ" -> items.add(real ? new TVSZ(name) : new FakeItem(name, "TVSZ"));
             case "WetRag" -> items.add(real ? new WetRag(name) : new FakeItem(name, "WetRag"));
             default -> {

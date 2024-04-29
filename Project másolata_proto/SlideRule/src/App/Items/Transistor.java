@@ -1,6 +1,7 @@
 package App.Items;
 
 import App.Room;
+import App.Student;
 
 /**
  * Represents a transistor item in the game.
@@ -16,8 +17,12 @@ public class Transistor extends Item{
      * Constructs a transistor with the given ID.
      * @param name The ID of the transistor.
      */
-    public Transistor(String name){
+    public Transistor(String name, Student owner){
+        super(name, "Transistor", owner);
+    }
+    public Transistor(String name, Room location){
         super(name, "Transistor");
+        this.location = location;
     }
 
     /** 
@@ -25,13 +30,18 @@ public class Transistor extends Item{
      */
     public void ApplyEffect(){
         System.out.println("Transistor: ApplyEffect()");
+        if(this.pair != null){
+            owner.DropItem(this);
+            owner = null;
+        }
     }
 
     /** 
      * Sets a pair for the transistor.
      */
-    public void SetPair(){
-        //System.out.println("id = " + id + ", Transistor: SetPair()");
+    public void SetPair(Transistor t){
+        this.pair = t;
+        if(!t.HasPair())    t.SetPair(this);
     }
 
     /** 
@@ -39,13 +49,22 @@ public class Transistor extends Item{
      */
     public void Activate(){
         System.out.println("Transistor: Activate()");
+        if(pair != null){
+            System.out.println("The transistor has a pair");
+            Room newRoom = pair.location;
+            owner.DropItem(this);
+            if(owner.EnterRoom(newRoom)){
+                System.out.println("Succesfully entered the new room");
+            }
+        }
     }
 
     /** 
      * Checks if the transistor has a pair.
      */
-    public void HasPair(){
+    public boolean HasPair(){
         System.out.println("Transistor: HasPair()");
+        return pair != null;
     }
 
     @Override
@@ -55,7 +74,7 @@ public class Transistor extends Item{
 
     @Override
     public String GetType() {
-        return null;
+        return type;
     }
 
     @Override

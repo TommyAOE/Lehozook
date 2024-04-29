@@ -19,6 +19,11 @@ public abstract class Item {
         this.name = name;
         this.type = type;
     }
+    public Item(String name, String type, Student owner){
+        this.name = name;
+        this.type = type;
+        this.owner = owner;
+    }
     public abstract void ApplyEffect();
 
     public abstract String GetName();

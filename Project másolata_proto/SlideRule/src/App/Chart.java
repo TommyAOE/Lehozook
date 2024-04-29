@@ -124,9 +124,17 @@ public class Chart {
         }
     }
 
-    private Item findItemByName_Test(String name) {
+    public Item findItemByName_Test(String name) {
         for (Room room : rooms) {
             for (Item item : room.items) {
+                if (item.GetName().equals(name)) {
+                    return item;
+                }
+            }
+        }
+        for (Room room : rooms) {
+            for (Student student : room.GetStudents()) {
+                for(Item item : student.GetItems())
                 if (item.GetName().equals(name)) {
                     return item;
                 }

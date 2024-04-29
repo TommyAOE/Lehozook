@@ -1,6 +1,7 @@
 package App.Items;
 
 import App.Room;
+import App.Student;
 
 /**
  * Represents a TVSZ item in the game.
@@ -16,6 +17,10 @@ public class TVSZ extends Item{
      */
     public TVSZ(String name) {
         super(name,"TVSZ");
+        uses = 3;
+    }
+    public TVSZ(String name, Student owner) {
+        super(name,"TVSZ", owner);
         uses = 3;
     }
 
