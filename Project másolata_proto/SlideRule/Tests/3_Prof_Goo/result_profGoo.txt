@@ -1,0 +1,17 @@
+[18:59:50] INFO    Room r1 added to chart 
+[18:59:50] INFO    Room r2 added to chart 
+[18:59:50] INFO    Room r2 set as neighbour of Room r1 
+[18:59:50] INFO    Character p1 added to Room r1 
+[18:59:50] INFO    Normal Item Camembert i1 has been added to Room r2 
+[18:59:50] INFO    Fake Item TVSZ i2 has been added to Room r2 
+[18:59:50] INFO    Goo activated in Room r2, items glued 
+[18:59:50] INFO    init_profGoo.txt Chart loaded 
+[18:59:50] INFO    Character p1 has entered Room r2 
+[18:59:50] INFO    r2.neighbours 0 
+[18:59:50] INFO    r2.items 2 
+[18:59:50] INFO    Item i1 
+[18:59:50] INFO    Item i2 
+[18:59:50] INFO    r2.professors 1 
+[18:59:50] INFO    Professor p1 
+[18:59:50] INFO    r2.students 0 
+[18:59:50] INFO    r2.cleaners 0 
