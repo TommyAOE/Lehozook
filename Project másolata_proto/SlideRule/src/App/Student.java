@@ -172,6 +172,7 @@ public class Student extends Character implements IFighter {
             //
             resultLogger.log(Level.INFO, name+" karakter nem tudott belépni a "+r.name+" szobába.");
             return false;
+        }
         location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;
@@ -415,7 +416,7 @@ public class Student extends Character implements IFighter {
                 if (seged != null)
                 {
                     items.add(seged);
-                    resultLogger.log(Level.INFO,"A "+this.name+"-es karakter felvette a "+i.GetName()+" tárgyat");
+                    resultLogger.log(Level.INFO,"A "+this.name+"-es karakter felvette a "+seged.GetName()+" tárgyat");
                     if (seged.GetType()=="SlideRule")
                     {
                         seged.ApplyEffect();
@@ -424,7 +425,6 @@ public class Student extends Character implements IFighter {
                 }else{
                     resultLogger.log(Level.INFO,"A "+this.name+"-es karakter nem tudta felvenni a "+i.GetName()+" -es item-et");
                 }
-                items.add(location.PopItem(i));
 
                 break;
             }

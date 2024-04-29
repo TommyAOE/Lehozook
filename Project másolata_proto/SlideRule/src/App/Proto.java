@@ -17,7 +17,7 @@ import App.Items.Transistor;
  */
 public class Proto {
     static ProtoHelper helper = new ProtoHelper();
-    public static Logger resultLogger;
+    public static Logger resultLogger = Logger.getLogger("resultLogger");;
     static ArrayList<String[]> commands = new ArrayList<String[]>();
     static boolean rnd = false;
     static Chart chart = new Chart();
@@ -115,7 +115,6 @@ public class Proto {
             SimpleFormatter formatter = new SimpleFormatter();
             fileHandler.setFormatter(formatter);
 
-            resultLogger = Logger.getLogger("resultLogger");
             //resultLogger.setUseParentHandlers(false);
             fileHandler.setLevel(Level.INFO);
             resultLogger.addHandler(fileHandler);
@@ -188,7 +187,7 @@ public class Proto {
         for(String[] key:commands){
             RunCommand(key);
         }
-        System.out.println("A " + cmd[1] + "pálya betöltve.");
+        System.out.println("A " + cmd[1] + " pálya betöltve.");
     }
     /**
      * Resets the game state.

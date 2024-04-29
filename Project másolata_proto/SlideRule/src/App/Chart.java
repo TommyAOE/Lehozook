@@ -95,19 +95,19 @@ public class Chart {
             Professor p = new Professor(name,r);
             //Character p1 added to Room r1
             r.professors.add(p);
-            String msg = "Character" + name + " added to Room" + roomname;
+            String msg = "Character " + name + " added to Room " + roomname;
             resultLogger.log(Level.INFO, msg);
 
         } else if (type.equals("Student")) {
             Student s = new Student(name,r);
             r.students.add(s);
-            String msg = "Character" + name + " added to Room" + roomname;
+            String msg = "Character " + name + " added to Room " + roomname;
             resultLogger.log(Level.INFO, msg);
 
         } else if (type.equals("Cleaner")) {
             Cleaner c = new Cleaner(name,r);
             r.cleaners.add(c);
-            String msg = "Character" + name + " added to Room" + roomname;
+            String msg = "Character " + name + " added to Room " + roomname;
             resultLogger.log(Level.INFO, msg);
         }
     }

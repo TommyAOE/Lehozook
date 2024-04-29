@@ -1,3 +1,5 @@
-Random
-Random on
-Exit
+AddRoom r1
+AddCharacter s1 Student r1
+SpawnItem r1 i1 Camembert true
+GooRoom r1 glued
+PickupItem s1 i1

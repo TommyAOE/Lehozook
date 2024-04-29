@@ -31,7 +31,7 @@ public class Airfreshener extends Item{
 
     @Override
     public void InfoAll_Test() {
-        resultLogger.log(Level.INFO, "Camembert: " + name);
+        resultLogger.log(Level.INFO, "Airfreshener: "+name);
     }
 
     @Override

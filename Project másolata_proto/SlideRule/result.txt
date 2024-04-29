@@ -1,8 +1,4 @@
-Apr 29, 2024 11:50:31 AM App.Proto InitLogger
-INFO: Missing parameter
-Apr 29, 2024 11:50:31 AM App.Proto Random
-INFO: Missing parameter
-Apr 29, 2024 11:50:31 AM App.Proto Random
-INFO: Random enabled
-Apr 29, 2024 11:50:31 AM App.Proto Exit
-INFO: Exit
+Apr 29, 2024 1:25:16 PM App.Chart AddRoom_Test
+INFO: Room r1 added to chart
+Apr 29, 2024 1:25:16 PM App.Chart AddCharacter_Test
+INFO: Characters1 added to Roomr1
