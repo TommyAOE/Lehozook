@@ -1,8 +1,14 @@
 package App;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import App.Items.Transistor;
 
@@ -11,6 +17,7 @@ import App.Items.Transistor;
  */
 public class Proto {
     static ProtoHelper helper = new ProtoHelper();
+    static Logger resultLogger;
     static ArrayList<String[]> commands = new ArrayList<String[]>();
     static boolean rnd = false;
     static Chart chart = new Chart();
@@ -30,11 +37,15 @@ public class Proto {
                 key = helper.ChooseSequence();
             }  
         }
-        else{
+        else if(args.length == 2){
             ArrayList<String[]> commands = helper.ReadCommands(new File(args[0]));
+            InitLogger(args[1]);
             for(String[] key : commands){
                 RunCommand(key);
             }
+        }
+        else{
+            System.out.println("Something is wrong with the args...");
         }
  
     }
@@ -94,10 +105,39 @@ public class Proto {
         commands.add(new String[]{"CharacterTurn", "<Character_id>"});
         commands.add(new String[]{"CombatRoom", "<Room_id>"});
     }
+    public static void InitLogger(String output){
+
+        FileHandler fileHandler = null;
+        try {
+            fileHandler = new FileHandler(output);
+
+            SimpleFormatter formatter = new SimpleFormatter();
+            fileHandler.setFormatter(formatter);
+
+            resultLogger = Logger.getLogger("resultLogger");
+            //resultLogger.setUseParentHandlers(false);
+            fileHandler.setLevel(Level.INFO);
+            resultLogger.addHandler(fileHandler);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } finally {
+            if (fileHandler != null) {
+                fileHandler.close();
+            }
+        }
+    }
     /**
      * Exits the game.
      */
     public static void Exit(){
+        resultLogger.log(Level.INFO, "Exit");
+        if (resultLogger != null) {
+            for (Handler handler : resultLogger.getHandlers()) {
+                handler.close();
+            }
+        }
         System.exit(0);
     }
     /**
@@ -106,19 +146,39 @@ public class Proto {
      */
     public static void Random(String[] cmd){
         if(cmd.length < 2){
-            System.out.println("Missing parameter");
+            resultLogger.log(Level.INFO, "Missing parameter");
+            if (resultLogger != null) {
+                for (Handler handler : resultLogger.getHandlers()) {
+                    handler.close();
+                }
+            }
             return;
         }
         if(cmd[1].equals("on")){
-            System.out.println("Random enabled");
+            resultLogger.log(Level.INFO,"Random enabled");
+            if (resultLogger != null) {
+                for (Handler handler : resultLogger.getHandlers()) {
+                    handler.close();
+                }
+            }
             rnd = true;
         }
         else if(cmd[1].equals("off")){
-            System.out.println("Random disabled");
+            resultLogger.log(Level.INFO,"Random disabled");
+            if (resultLogger != null) {
+                for (Handler handler : resultLogger.getHandlers()) {
+                    handler.close();
+                }
+            }
             rnd = false;
         }
         else{
-            System.out.println("Invalid parameter for this command!");
+            resultLogger.log(Level.INFO,"Invalid parameter for this command!");
+            if (resultLogger != null) {
+                for (Handler handler : resultLogger.getHandlers()) {
+                    handler.close();
+                }
+            }
         }
     }
     /**

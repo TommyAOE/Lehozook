@@ -2,8 +2,11 @@ package App;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 /**
  * Helper class for App.Proto game.
@@ -52,4 +55,5 @@ public class ProtoHelper {
         
         return lines;
     }
+
 }
