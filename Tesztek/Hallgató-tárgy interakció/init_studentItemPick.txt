@@ -1,5 +1,0 @@
-AddRoom r1
-AddRoom r2
-SetNeighbour r1 r2
-AddCharacter s1 Student r1
-SpawnItem r2 TVSZ i1  true

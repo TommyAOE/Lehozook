@@ -1,3 +1,0 @@
-Init init_profgoo.txt
-EnterRoom p1 r2
-Info r2

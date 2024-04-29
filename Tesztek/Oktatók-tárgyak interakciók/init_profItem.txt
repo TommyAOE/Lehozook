@@ -1,6 +1,0 @@
-AddRoom r1
-AddRoom r2
-SetNeighbour r1 r2
-AddCharacter p1 Professor r1
-SpawnItem r2 Camembert i1 true
-SpawnItem r2 TVSZ i2 false

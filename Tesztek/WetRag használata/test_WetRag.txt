@@ -1,6 +1,0 @@
-Init init_WetRag.txt
-UseItem s2 i1
-CombatRoom r1
-Info r1
-Info p1
-Info p2

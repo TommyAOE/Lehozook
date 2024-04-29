@@ -1,5 +1,0 @@
-AddRoom r1
-AddRoom r2
-SetNeighbours r1 r2
-AddCharacter c1 Cleaner r1
-GasRoom r2

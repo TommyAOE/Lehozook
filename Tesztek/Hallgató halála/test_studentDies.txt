@@ -1,3 +1,0 @@
-Init init_StudentDies.txt
-CombatRoom r1
-Info r1

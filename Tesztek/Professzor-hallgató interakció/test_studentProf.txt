@@ -1,3 +1,0 @@
-Init init_studentprof.txt
-EnterRoom s1 r2
-Info s1

@@ -1,4 +1,0 @@
-Init init_profgas.txt
-EnterRoom p1 r2
-Info r2
-Info p1

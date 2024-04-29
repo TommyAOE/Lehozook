@@ -1,5 +1,0 @@
-Init init_useStBeerCups.txt
-UseItem s1 i1
-CombatRoom r1
-Info s1
-Info r1
