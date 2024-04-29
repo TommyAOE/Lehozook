@@ -1,5 +1,7 @@
 package App;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,5 +33,23 @@ public class ProtoHelper {
             }
             System.out.println();
         }
+    }
+
+    public ArrayList<String[]> ReadCommands(File input){
+        ArrayList<String[]> lines = new ArrayList<>();
+        String[] currentLine;
+        try{
+            Scanner sc = new Scanner(input);
+
+            while(sc.hasNextLine()){
+                currentLine = sc.nextLine().split(" ");
+                lines.add(currentLine);
+            }
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        
+        return lines;
     }
 }

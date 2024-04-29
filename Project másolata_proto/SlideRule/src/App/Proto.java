@@ -1,5 +1,6 @@
 package App;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,14 +20,23 @@ public class Proto {
      */
     public static void main(String[] args) {
         FillCommands();
-        System.out.println("If you want any guide with the commands, please enter: Help");
+        if(args.length == 0){
+            System.out.println("If you want any guide with the commands, please enter: Help");
 
-        String[] key = helper.ChooseSequence();
-
-        while(!key[0].equals("Exit")){
-            RunCommand(key);
-            key = helper.ChooseSequence();
-        }   
+            String[] key = helper.ChooseSequence();
+    
+            while(!key[0].equals("Exit")){
+                RunCommand(key);
+                key = helper.ChooseSequence();
+            }  
+        }
+        else{
+            ArrayList<String[]> commands = helper.ReadCommands(new File(args[0]));
+            for(String[] key : commands){
+                RunCommand(key);
+            }
+        }
+ 
     }
     public static void RunCommand(String[] key) {
         switch(key[0]){
@@ -325,21 +335,7 @@ public class Proto {
             else if (Objects.equals(cmd[2], "unglued"))
                 chart.findRoomByName_Test(cmd[1]).GooUnglue_Test();
             System.out.println("Goo added");
-        }
-        /*if(room contains goo)
-            if(unglued)
-                unglued items
-            else if(glued)
-                glued items
-            else
-                remove goo
-        else if
-            add goo
-            if(glued)
-                glued items
-            else if(unglued)
-                unglued items
-         */   
+        } 
     }
     /**
      * Sets a pair of items (usually a transistor pair).
