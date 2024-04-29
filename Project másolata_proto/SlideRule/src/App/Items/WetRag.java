@@ -1,6 +1,7 @@
 package App.Items;
 
 import App.Room;
+import App.Student;
 
 /**
  * Represents a wet rag item in the game.
@@ -18,8 +19,16 @@ public class WetRag extends Item{
         super(name, "WetRag");
         moistureLevel = 3;
     }
+    public WetRag(String name, Student owner) {
+        super(name, "WetRag", owner);
+        moistureLevel = 3;
+    }
     public WetRag(String name, int moistureLevel) {
         super(name, "WetRag");
+        this.moistureLevel = moistureLevel;
+    }
+    public WetRag(String name, int moistureLevel, Student owner) {
+        super(name, "WetRag", owner);
         this.moistureLevel = moistureLevel;
     }
 

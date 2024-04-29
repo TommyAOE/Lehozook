@@ -50,6 +50,20 @@ public class Student extends Character implements IFighter {
         isStunned = 0;
         items = new ArrayList<>();
     }
+
+    public ArrayList<Item> GetItems(){
+        return items;
+    }
+
+    public void DropItem(Item item){
+        if(items.contains(item)){
+            items.remove(item);
+            location.AddItem(item);
+            if(item.GetType() == "Transistor"){
+                ((Transistor)item).location = location;
+            }
+        }
+    }
     /**
      * Performs the student's turn actions. During the turn, the student can perform up to three actions
      * unless they are in combat. The available actions include moving to another room,
@@ -294,17 +308,51 @@ public class Student extends Character implements IFighter {
     public void AddItem_Test(String type ,String name ,boolean real)
     {
         switch (type) {
-            case "FFP2Mask" -> items.add(real ? new FFP2Mask(name) : new FakeItem(name, "FFP2Mask"));
-            case "Airfreshener" -> items.add(real ? new Airfreshener(name) : new FakeItem(name, "Airfreshener"));
-            case "Camembert" -> items.add(real ? new Camembert(name) : new FakeItem(name, "Camambert"));
-            case "SlideRule" -> items.add(real ? new SlideRule(name) : new FakeItem(name, "SlideRule"));
-            case "StBeerCups" -> items.add(real ? new StBeerCups(name) : new FakeItem(name, "StBeerCups"));
-            case "Transistor" -> items.add(real ? new Transistor(name) : new FakeItem(name, "Transistor"));
-            case "TVSZ" -> items.add(real ? new TVSZ(name) : new FakeItem(name, "TVSZ"));
-            case "WetRag" -> items.add(real ? new WetRag(name) : new FakeItem(name, "WetRag"));
-            default -> {
-            }
+            case "FFP2Mask":
+                items.add(real ? new FFP2Mask(name, this) : new FakeItem(name, "FFP2Mask", this));
+                break;
+            case "Airfreshener":
+                items.add(real ? new Airfreshener(name, this) : new FakeItem(name, "Airfreshener", this));
+                break;
+            case "Camembert":
+                items.add(real ? new Camembert(name, this) : new FakeItem(name, "Camambert", this));
+                break;
+            case "SlideRule":
+                items.add(real ? new SlideRule(name, this) : new FakeItem(name, "SlideRule", this));
+                break;
+            case "StBeerCups":
+                items.add(real ? new StBeerCups(name, this) : new FakeItem(name, "StBeerCups", this));
+                break;
+            case "Transistor":
+
+                Transistor newTransistor = null;
+                if(real){
+                    newTransistor = new Transistor(name, this);
+                }else{
+                    items.add(new FakeItem(name, "Transistor", this));
+                }
+                for(Item item : items){
+                    if(item.GetType().equals("Transistor")){
+                        Transistor temp = (Transistor)item;
+                        if(!temp.HasPair()){
+                            if(newTransistor != null){
+                                newTransistor.SetPair((Transistor)item);
+                            }
+                        }
+                    }
+                }
+                if(newTransistor != null)   items.add(newTransistor);
+                break;
+            case "TVSZ":
+                items.add(real ? new TVSZ(name) : new FakeItem(name, "TVSZ"));
+                break;
+            case "WetRag":
+                items.add(real ? new WetRag(name) : new FakeItem(name, "WetRag"));
+                break;
+            default:
+                break;
         }
+        
     }
     public void DropItem_Test(String name)
     {

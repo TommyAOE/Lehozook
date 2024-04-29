@@ -3,6 +3,8 @@ package App;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import App.Items.Transistor;
+
 /**
  * The App.Proto class containing the prototype of the game.
  */
@@ -35,7 +37,7 @@ public class Proto {
             case "Init": Init(key); break;
             case "Reset": Reset(key); break;
             case "AddRoom": AddRoom(key); break;
-            case "SetNeighbour": SetNeighbour(key); break;
+            case "SetNeighbours": SetNeighbours(key); break;
             case "SpawnItem": SpawnItem(key); break;
             case "AddCharacter": AddCharacter(key); break;
             case "EnterRoom": EnterRoom(key); break;
@@ -167,7 +169,7 @@ public class Proto {
      * Sets the neighbor relationship between two rooms.
      * @param cmd The command and its parameters.
      */
-    public static void SetNeighbour(String[] cmd){
+    public static void SetNeighbours(String[] cmd){
         if(cmd.length < 3){
             System.out.println("Missing parameter");
             return;
@@ -348,7 +350,6 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
-        System.out.println("Transistor paired");
     }
     /**
      * Activates a transistor.
@@ -359,6 +360,7 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
+        ((Transistor)chart.findItemByName_Test(cmd[1])).Activate();
         System.out.println("Transistor activated");
     }
     /**

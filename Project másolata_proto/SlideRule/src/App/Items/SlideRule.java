@@ -1,6 +1,7 @@
 package App.Items;
 
 import App.Room;
+import App.Student;
 
 /**
  * Represents a SlideRule item in the game.
@@ -16,6 +17,9 @@ public class SlideRule extends Item {
      */
     public SlideRule(String name) {
         super(name, "SlideRule");
+    }
+    public SlideRule(String name, Student owner) {
+        super(name, "SlideRule", owner);
     }
 
     /**
