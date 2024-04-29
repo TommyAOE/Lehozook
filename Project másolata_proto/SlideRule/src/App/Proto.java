@@ -21,6 +21,7 @@ public class Proto {
     static ArrayList<String[]> commands = new ArrayList<String[]>();
     static boolean rnd = false;
     static Chart chart = new Chart();
+    static FileHandler fileHandler;
     /**
      * Main method to start the game and execute commands.
      * @param args Command line arguments (not used).
@@ -107,7 +108,7 @@ public class Proto {
     }
     public static void InitLogger(String output){
 
-        FileHandler fileHandler = null;
+        fileHandler = null;
         try {
             fileHandler = new FileHandler(output);
 
@@ -119,13 +120,11 @@ public class Proto {
             fileHandler.setLevel(Level.INFO);
             resultLogger.addHandler(fileHandler);
 
+            resultLogger.log(Level.INFO, "Missing parameter");
+
         } catch (IOException e) {
             e.printStackTrace();
 
-        } finally {
-            if (fileHandler != null) {
-                fileHandler.close();
-            }
         }
     }
     /**
@@ -147,38 +146,18 @@ public class Proto {
     public static void Random(String[] cmd){
         if(cmd.length < 2){
             resultLogger.log(Level.INFO, "Missing parameter");
-            if (resultLogger != null) {
-                for (Handler handler : resultLogger.getHandlers()) {
-                    handler.close();
-                }
-            }
             return;
         }
         if(cmd[1].equals("on")){
             resultLogger.log(Level.INFO,"Random enabled");
-            if (resultLogger != null) {
-                for (Handler handler : resultLogger.getHandlers()) {
-                    handler.close();
-                }
-            }
             rnd = true;
         }
         else if(cmd[1].equals("off")){
             resultLogger.log(Level.INFO,"Random disabled");
-            if (resultLogger != null) {
-                for (Handler handler : resultLogger.getHandlers()) {
-                    handler.close();
-                }
-            }
             rnd = false;
         }
         else{
             resultLogger.log(Level.INFO,"Invalid parameter for this command!");
-            if (resultLogger != null) {
-                for (Handler handler : resultLogger.getHandlers()) {
-                    handler.close();
-                }
-            }
         }
     }
     /**

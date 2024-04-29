@@ -1,0 +1,8 @@
+Apr 29, 2024 11:50:31 AM App.Proto InitLogger
+INFO: Missing parameter
+Apr 29, 2024 11:50:31 AM App.Proto Random
+INFO: Missing parameter
+Apr 29, 2024 11:50:31 AM App.Proto Random
+INFO: Random enabled
+Apr 29, 2024 11:50:31 AM App.Proto Exit
+INFO: Exit
