@@ -272,6 +272,11 @@ public class Room {
             }
         }
     }
+    public void CombatRoom_Test(){
+        for (Professor prof : this.professors) {
+            prof.Combat();
+        }
+    }
 
     public void GooGlue_Test() {
         goo.Activate_Test();

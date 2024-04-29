@@ -31,11 +31,11 @@ public class TVSZ extends Item{
         System.out.println("TVSZ: ApplyEffect()");
         Room location = owner.GetLocation();
         for (Student student : location.GetStudents()) {
-            student.SetIsProtected(1);
+            student.SetIsProtected(location.GetProfessors().size());
         }
         uses--;
         if(uses <= 0){
-            
+            owner.RemoveItem(this);
         }
     }
 

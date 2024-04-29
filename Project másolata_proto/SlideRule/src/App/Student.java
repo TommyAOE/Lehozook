@@ -64,6 +64,12 @@ public class Student extends Character implements IFighter {
             }
         }
     }
+
+    public void RemoveItem(Item item){
+        if(items.contains(item)){
+            items.remove(item);
+        }
+    }
     /**
      * Performs the student's turn actions. During the turn, the student can perform up to three actions
      * unless they are in combat. The available actions include moving to another room,
@@ -344,10 +350,10 @@ public class Student extends Character implements IFighter {
                 if(newTransistor != null)   items.add(newTransistor);
                 break;
             case "TVSZ":
-                items.add(real ? new TVSZ(name) : new FakeItem(name, "TVSZ"));
+                items.add(real ? new TVSZ(name, this) : new FakeItem(name, "TVSZ", this));
                 break;
             case "WetRag":
-                items.add(real ? new WetRag(name) : new FakeItem(name, "WetRag"));
+                items.add(real ? new WetRag(name, this) : new FakeItem(name, "WetRag", this));
                 break;
             default:
                 break;
@@ -368,8 +374,7 @@ public class Student extends Character implements IFighter {
     }
     public void UseItem_Test(String name)
     {
-        for (Item i:items
-        ) {
+        for (Item i:items) {
             if (i.GetName().equals(name))
             {
                 i.ApplyEffect();
