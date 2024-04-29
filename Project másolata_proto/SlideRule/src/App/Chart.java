@@ -2,8 +2,11 @@ package App;
 
 import App.Items.*;
 
+import static App.Proto.resultLogger;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Represents a chart in the game.
@@ -22,11 +25,11 @@ public class Chart {
         for (Room room : rooms) {
             room.Change(rooms);
         }
-        System.out.println("App.Characters.Chart: IterateForRoomChanges()");
     }
     public void init()
     {
-        System.out.println("App.Chart loaded");
+        String msg = "Chart loaded";
+        resultLogger.log(Level.INFO, msg);
     }
     public List<Room> GetAllRooms()
     {
@@ -35,7 +38,9 @@ public class Chart {
     public void AddRoom_Test(String name,String type)
     {
         Room r=new Room(name,type, this);
-        rooms.add(r);
+        AddRoom(r);
+        String msg = "Room " + name + " added to chart";
+        resultLogger.log(Level.INFO, msg);
     }
 
     public void removeRoom(Room r){
@@ -88,18 +93,24 @@ public class Chart {
         Room r = findRoomByName_Test(roomname);
         if (type.equals("Professor")) {
             Professor p = new Professor(name,r);
+            //Character p1 added to Room r1
             r.professors.add(p);
+            String msg = "Character" + name + " added to Room" + roomname;
+            resultLogger.log(Level.INFO, msg);
+
         } else if (type.equals("Student")) {
             Student s = new Student(name,r);
             r.students.add(s);
+            String msg = "Character" + name + " added to Room" + roomname;
+            resultLogger.log(Level.INFO, msg);
+
         } else if (type.equals("Cleaner")) {
             Cleaner c = new Cleaner(name,r);
             r.cleaners.add(c);
+            String msg = "Character" + name + " added to Room" + roomname;
+            resultLogger.log(Level.INFO, msg);
         }
     }
-
-
-
 
     public void InfoAll_Test() {
         for (Room room : rooms) {

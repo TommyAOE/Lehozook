@@ -3,6 +3,8 @@ package App;
 import App.Items.Item;
 
 import java.util.Random;
+import java.util.logging.Level;
+import static App.Proto.resultLogger;
 
 /**
  * Represents a professor character in the game.
@@ -65,27 +67,33 @@ public class Professor extends Character implements IFighter {
      */
     @Override
     public boolean EnterRoom(Room r) {
-        if (r.isFull)
+        if (r.isFull){
+            String msg = "Room " + r.name + " is full";
+            resultLogger.log(Level.INFO, msg);
             return false;
+        }
         location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;
-        System.out.println("App.Professor: EnterRoom()");
+        String msg = "Character "+ name + " added to Room " + r.name;
+        resultLogger.log(Level.INFO, msg);
         return false;
     }
 
     @Override
     public void InfoAll_Test() {
-        System.out.println("Professor: "+name);
+        String msg = "Professor "+ name;
+        resultLogger.log(Level.INFO, msg);
     }
 
     @Override
     public void Info_Test() {
-        System.out.println("Professor: "+name);
-        System.out.println("Location: "+location.name);
-        System.out.println("Stunned: "+isStunned);
-        System.out.println("In Combat: "+inCombat);
-
+        String room = name + ".location : " + location.name;
+        resultLogger.log(Level.INFO, room);
+        String stunned = name + ".isStunned : " + ((isStunned > 0) ? "positive" : "0");
+        resultLogger.log(Level.INFO, stunned);
+        String combat = name + ".inCombat : " + inCombat;
+        resultLogger.log(Level.INFO, combat);
     }
 
 
@@ -109,12 +117,16 @@ public class Professor extends Character implements IFighter {
      */
     @Override
     public void Combat() {
-        if (isStunned>0)
+        if (isStunned > 0){
+            String msg = name + ".isStunned : positive";
+            resultLogger.log(Level.INFO, msg);
             return;
+        }
         for (Student s :location.GetStudents()) {
+            String msg = "Attack Student : " + s.name;
+            resultLogger.log(Level.INFO, msg);
             s.Death();
         }
-        System.out.println("App.Professor: Combat()");
     }
 
     @Override

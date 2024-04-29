@@ -17,7 +17,7 @@ import App.Items.Transistor;
  */
 public class Proto {
     static ProtoHelper helper = new ProtoHelper();
-    static Logger resultLogger;
+    public static Logger resultLogger;
     static ArrayList<String[]> commands = new ArrayList<String[]>();
     static boolean rnd = false;
     static Chart chart = new Chart();

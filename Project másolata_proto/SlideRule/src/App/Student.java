@@ -3,7 +3,9 @@ package App;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
 
+import static App.Proto.resultLogger;
 import App.Items.*;
 
 /**
@@ -156,10 +158,8 @@ public class Student extends Character implements IFighter {
      */
     @Override
     public boolean EnterRoom(Room r) {
-        if (r.isFull){
-            System.out.println("A szoba tele van!");
+        if (r.isFull)
             return false;
-        }
         location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;

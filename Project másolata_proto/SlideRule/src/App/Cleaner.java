@@ -1,6 +1,9 @@
 package App;
 
 import java.util.Random;
+import java.util.logging.Level;
+
+import static App.Proto.resultLogger;
 /**
  * Represents a cleaner character in the game.
  */
@@ -54,20 +57,28 @@ public class Cleaner extends Character
      */
     @Override
     public boolean EnterRoom(Room r) {
-        if (r.isFull)
+        if (r.isFull){
+            String msg = "Room " + r.name + " is full";
+            resultLogger.log(Level.INFO, msg);
             return false;
+        }
         location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;
+        String msg = "Character "+ name + " added to Room " + r.name;
+        resultLogger.log(Level.INFO, msg);
         return true;
     }
     @Override
     public void InfoAll_Test() {
-        System.out.println("Cleaner: "+name);
+        String msg = "Cleaner "+ name;
+        resultLogger.log(Level.INFO, msg);
+        
     }
 
     @Override
     public void Info_Test() {
-        System.out.println("Cleaner:\n"+"Name:"+name+"\nLocation:"+location.name+"\n");
+        String msg = name + ".location " + location.name;
+        resultLogger.log(Level.INFO, msg);        
     }
 }
