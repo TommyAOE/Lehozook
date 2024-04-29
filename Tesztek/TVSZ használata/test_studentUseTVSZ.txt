@@ -1,0 +1,3 @@
+UseItem s2 i1
+CombatRoom r1
+Info r1

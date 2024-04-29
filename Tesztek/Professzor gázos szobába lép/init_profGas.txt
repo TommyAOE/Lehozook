@@ -1,0 +1,5 @@
+AddRoom r1
+AddRoom r2
+SetNeighbour r1 r2
+AddCharacter p1 Professor r1
+GasRoom r2

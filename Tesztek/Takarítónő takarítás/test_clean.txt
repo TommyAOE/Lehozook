@@ -1,0 +1,4 @@
+Init init_clean.txt
+EnterRoom c1 r2
+EnterRoom s1 r2
+PickupItem s1 i1

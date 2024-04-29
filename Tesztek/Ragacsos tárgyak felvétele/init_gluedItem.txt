@@ -1,0 +1,4 @@
+AddRoom r1
+AddCharacter s1 Student r1
+SpawnItem r1 Camembert i1 true
+GooRoom r1 glued

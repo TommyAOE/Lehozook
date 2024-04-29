@@ -1,0 +1,2 @@
+Init init_professorsWin.txt
+CombatRoom r1

@@ -1,0 +1,2 @@
+AddRoom r1
+AddCharacter s1 Student r1
