@@ -179,12 +179,30 @@ public class Student extends Character implements IFighter {
     @Override
     public boolean EnterRoom(Room r) {
         if (r.isFull){
-            //
             resultLogger.log(Level.INFO, "Room "+r.name+" is full");
             return false;
         }
         if(!this.location.GetNeighbours().contains(r)){
             resultLogger.log(Level.INFO, "Room "+r.name+" is not neighbour of the character's current room");
+            return false;
+        }
+        location.CharacterLeft(this);
+        r.CharacterEntered(this);
+        location=r;
+        resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.name);
+        if (!location.GetProfessors().isEmpty()){
+            inCombat = true;
+            for(Professor p: location.GetProfessors()){
+                if(p.isStunned == 0)
+                    p.inCombat = true;
+            }
+        }
+        return true;
+    }
+
+    public boolean TravelWithTransistor(Room r) {
+        if (r.isFull){
+            resultLogger.log(Level.INFO, "Room "+r.name+" is full");
             return false;
         }
         location.CharacterLeft(this);
@@ -218,7 +236,7 @@ public class Student extends Character implements IFighter {
         resultLogger.log(Level.INFO, name+".items : "+items.size());
         resultLogger.log(Level.INFO, name+".inCombat : "+inCombat);
         resultLogger.log(Level.INFO, name+".isProtected : "+isProtected);
-        resultLogger.log(Level.INFO, name+".isStunned : "+isStunned);
+        resultLogger.log(Level.INFO, name+".isStunned : "+ ((isStunned > 0) ? "positive" : "0"));
     }
 
     /**
@@ -235,11 +253,12 @@ public class Student extends Character implements IFighter {
     @Override
     public boolean Stun(int stunDuration) {
         boolean stun = false;
-        for (Item i :items
-                ) {
+        boolean hasMask = false;
+        for (Item i :items) {
             if(i.GetType().equals("FFP2Mask"))
             {
                 FFP2Mask mask = (FFP2Mask)i;
+                hasMask = true;
                 if (mask.GetCounter() > 0)
                 {
                     mask.ApplyEffect();
@@ -257,6 +276,10 @@ public class Student extends Character implements IFighter {
                     isStunned+=stunDuration;
                 }
             }
+        }
+        if(!hasMask){
+            stun= true;
+            isStunned+=stunDuration;
         }
         return stun;
 
@@ -308,7 +331,9 @@ public class Student extends Character implements IFighter {
      */
     public void Death(){
         if (--isProtected==-1){
-            location.CharacterLeft(this);
+            Room temp = location;
+            location = null;
+            temp.CharacterLeft(this);
         }
     }
 
@@ -327,7 +352,7 @@ public class Student extends Character implements IFighter {
      */
     public void Drunk()
     {
-        location.AddItem(items.remove(new Random().nextInt(items.size()+1)));
+        location.AddItem(items.remove(new Random().nextInt(items.size())));
     }
     /**
      * Returns the current stun state of the student.
@@ -445,9 +470,12 @@ public class Student extends Character implements IFighter {
                 if (seged != null)
                 {
                     items.add(seged);
+                    seged.SetOwner(this);
                     resultLogger.log(Level.INFO,"Character "+ this.name+ " picked up Item "+ seged.GetName());
-                    if (seged.GetType()=="SlideRule")
-                    {
+                    if (seged.GetType()=="SlideRule"){
+                        seged.ApplyEffect();
+                    }
+                    if(seged.GetType() == "FakeItem"){
                         seged.ApplyEffect();
                     }
 

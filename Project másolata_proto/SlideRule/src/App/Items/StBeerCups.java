@@ -29,8 +29,9 @@ public class StBeerCups extends Item {
      */
     public void ApplyEffect(){
         owner.SetIsProtected(3);
+        owner.RemoveItem(this);
         owner.Drunk();
-        System.out.println("StBeerCups: ApplyEffect()");
+        owner = null;
     }
 
     /**

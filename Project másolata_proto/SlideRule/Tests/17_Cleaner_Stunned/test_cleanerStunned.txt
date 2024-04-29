@@ -1,2 +1,3 @@
-EnterRoom c1 r1
-Info r2
+Init init_cleanerStunned.txt
+EnterRoom c1 r2
+Info r2 Room

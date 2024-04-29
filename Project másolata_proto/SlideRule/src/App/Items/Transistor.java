@@ -67,7 +67,7 @@ public class Transistor extends Item{
             resultLogger.log(Level.INFO, "The transistor has a pair");
             Room newRoom = pair.location;
             owner.DropItem(this);
-            if (owner.EnterRoom(newRoom)) {
+            if (owner.TravelWithTransistor(newRoom)) {
                 resultLogger.log(Level.INFO, "Successfully entered the new room");
             }
         }

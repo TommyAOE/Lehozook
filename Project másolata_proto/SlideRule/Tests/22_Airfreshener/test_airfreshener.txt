@@ -1,0 +1,4 @@
+Init init_airfreshener.txt
+EnterRoom s1 r2
+UseItem s1 i2
+Info r2 Room

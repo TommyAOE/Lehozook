@@ -55,6 +55,9 @@ public abstract class Item {
      */
     public abstract String GetType();
 
+    public void SetOwner(Student s){
+        owner = s;
+    }
     /**
      * Glues or unglues the item.
      * If the item is glued, it becomes unglued; if it's unglued, it becomes glued.

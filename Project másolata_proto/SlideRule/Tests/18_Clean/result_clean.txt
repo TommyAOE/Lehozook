@@ -1,0 +1,11 @@
+[22:33:53] INFO    Room r1 added to chart 
+[22:33:53] INFO    Room r2 added to chart 
+[22:33:53] INFO    Room r2 set as neighbour of Room r1 
+[22:33:53] INFO    Character s1 added to Room r1 
+[22:33:53] INFO    Character c1 added to Room r1 
+[22:33:53] INFO    Normal Item Camembert i1 has been added to Room r2 
+[22:33:53] INFO    Goo activated in Room r2, items glued 
+[22:33:53] INFO    init_clean.txt Chart loaded 
+[22:33:53] INFO    Character c1 has entered Room r2 
+[22:33:53] INFO    Character s1 has entered Room r2 
+[22:33:53] INFO    Character s1 picked up Item i1 

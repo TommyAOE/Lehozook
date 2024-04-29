@@ -1,0 +1,11 @@
+[19:59:07] INFO    Room r1 added to chart 
+[19:59:07] INFO    Character s1 added to Room r1 
+[19:59:07] INFO    Character p1 added to Room r1 
+[19:59:07] INFO    init_studentDies.txt Chart loaded 
+[19:59:07] INFO    Attack Student : s1 
+[19:59:07] INFO    r1.neighbours 0 
+[19:59:07] INFO    r1.items 0 
+[19:59:07] INFO    r1.professors 1 
+[19:59:07] INFO    Professor p1 
+[19:59:07] INFO    r1.students 0 
+[19:59:07] INFO    r1.cleaners 0 

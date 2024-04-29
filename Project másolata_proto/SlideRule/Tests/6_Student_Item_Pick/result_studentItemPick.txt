@@ -1,0 +1,19 @@
+[19:39:50] INFO    Room r1 added to chart 
+[19:39:50] INFO    Room r2 added to chart 
+[19:39:50] INFO    Room r2 set as neighbour of Room r1 
+[19:39:50] INFO    Character s1 added to Room r1 
+[19:39:50] INFO    Fake Item TVSZ i1 has been added to Room r2 
+[19:39:50] INFO    init_studentItemPick.txt Chart loaded 
+[19:39:50] INFO    Character s1 has entered Room r2 
+[19:39:50] INFO    Character s1 picked up Item i1 
+[19:39:50] INFO    r2.neighbours 0 
+[19:39:50] INFO    r2.items 0 
+[19:39:50] INFO    r2.professors 0 
+[19:39:50] INFO    r2.students 1 
+[19:39:50] INFO    Student s1 
+[19:39:50] INFO    r2.cleaners 0 
+[19:39:50] INFO    s1.location : r2 
+[19:39:50] INFO    s1.items : 1 
+[19:39:50] INFO    s1.inCombat : false 
+[19:39:50] INFO    s1.isProtected : 0 
+[19:39:50] INFO    s1.isStunned : 0 

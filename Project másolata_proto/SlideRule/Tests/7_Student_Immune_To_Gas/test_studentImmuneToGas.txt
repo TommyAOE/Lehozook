@@ -2,4 +2,4 @@ Init init_studentImmuneToGas.txt
 EnterRoom s1 r2
 PickupItem s1 i1
 EnterRoom s1 r3
-Info s1
+Info s1 Student

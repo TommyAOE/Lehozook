@@ -1,0 +1,22 @@
+[23:17:53] INFO    Room r1 added to chart 
+[23:17:53] INFO    Character s1 added to Room r1 
+[23:17:53] INFO    Character p1 added to Room r1 
+[23:17:53] INFO    Normal Item StBeerCups i1 has been added to Student s1 
+[23:17:53] INFO    Normal Item Camembert i2 has been added to Student s1 
+[23:17:53] INFO    init_useStBeerCups.txt Chart loaded 
+[23:17:53] INFO    Character s1 used Item i1 
+[23:17:53] INFO    Attack Student : s1 
+[23:17:53] INFO    s1.location : r1 
+[23:17:53] INFO    s1.items : 0 
+[23:17:53] INFO    s1.inCombat : false 
+[23:17:53] INFO    s1.isProtected : 2 
+[23:17:53] INFO    s1.isStunned : 0 
+[23:17:53] INFO    r1.neighbours 0 
+[23:17:53] INFO    r1.items 1 
+[23:17:53] INFO    Item i2 
+[23:17:53] INFO    r1.professors 1 
+[23:17:53] INFO    Professor p1 
+[23:17:53] INFO    r1.students 1 
+[23:17:53] INFO    Student s1 
+[23:17:53] INFO    r1.cleaners 0 
+[23:17:53] INFO    r1.gas : NULL 

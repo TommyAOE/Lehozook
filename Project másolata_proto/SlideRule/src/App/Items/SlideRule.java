@@ -35,7 +35,7 @@ public class SlideRule extends Item {
      * This method prints a message indicating that the student wins the game and exits the program.
      */
     public void ApplyEffect() {
-        resultLogger.log(Level.INFO,"Student wins the game!");
+        resultLogger.log(Level.INFO,"Students have won!");
         System.exit(0);
     }
 

@@ -1,0 +1,19 @@
+[22:52:03] INFO    Room r1 added to chart 
+[22:52:03] INFO    Room r2 added to chart 
+[22:52:03] INFO    Room r2 set as neighbour of Room r1 
+[22:52:03] INFO    Character s1 added to Room r1 
+[22:52:03] INFO    Normal Item FFP2Mask i1 has been added to Student s1 
+[22:52:03] INFO    Normal Item Airfreshener i2 has been added to Student s1 
+[22:52:03] INFO    Gasify called 
+[22:52:03] INFO    Gas added 
+[22:52:03] INFO    init_airfreshener.txt Chart loaded 
+[22:52:03] INFO    Gasify called 
+[22:52:03] INFO    Character s1 has entered Room r2 
+[22:52:03] INFO    Character s1 used Item i2 
+[22:52:03] INFO    r2.neighbours 0 
+[22:52:03] INFO    r2.items 0 
+[22:52:03] INFO    r2.professors 0 
+[22:52:03] INFO    r2.students 1 
+[22:52:03] INFO    Student s1 
+[22:52:03] INFO    r2.cleaners 0 
+[22:52:03] INFO    r2.gas : NULL 

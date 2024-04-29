@@ -1,2 +1,2 @@
-Init gluedItem.txt
+Init init_gluedItem.txt
 PickupItem s1 i1

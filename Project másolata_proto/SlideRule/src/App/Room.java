@@ -302,6 +302,19 @@ public class Room {
                 break;
             case 's':
                 students.remove(c);
+                //A Grafikusnál nem itt lesz implementálva, hanem a schedulerben
+                if(((Student)c).location == null){
+                    int studentCounter = 0;
+                    for (Room room : chart.GetAllRooms()) {
+                        if(room.GetStudents().size() > 0){
+                            studentCounter += room.GetStudents().size();
+                        }
+                    }
+                    if(studentCounter <= 0){
+                        resultLogger.log(Level.INFO, "Professors have won");
+                        System.exit(0);
+                    }
+                }
                 break;
             case 'c':
                 cleaners.remove(c);
@@ -317,7 +330,7 @@ public class Room {
      */
     public void AddGas()
     {
-        gas=new Gas(this);
+        gas = new Gas(this);
     }
 
     /** 
@@ -341,11 +354,37 @@ public class Room {
      */
     public void Clean()
     {
+        int studentCounter = 0;
+        while(students.size() > studentCounter) {
+            if(students.get(studentCounter).IsStunned() == 0){
+                Room newRoom = this.neighbours.get(new Random().nextInt(this.neighbours.size()));
+                while(!(students.get(studentCounter).EnterRoom(newRoom)))
+                    newRoom = this.neighbours.get(new Random().nextInt(this.neighbours.size()));
+            }
+            else {
+                studentCounter++;
+            }
+        }
+        int professorCounter = 0;
+        while(professors.size() > professorCounter) {
+            if(professors.get(professorCounter).IsStunned() == 0){
+                Room newRoom = this.neighbours.get(new Random().nextInt(this.neighbours.size()));
+                while(!(professors.get(professorCounter).EnterRoom(newRoom)))
+                    newRoom = this.neighbours.get(new Random().nextInt(this.neighbours.size()));
+            }
+            else {
+                professorCounter++;
+            }
+        }
         if(goo == null){
             goo = new Goo(this);
         }
         else{
             goo.ResetVisitorsCount();
+        }
+
+        if(gas != null){
+            gas = null;
         }
     }
     /**
@@ -451,6 +490,7 @@ public class Room {
         for (Cleaner cleaner : cleaners) {
             resultLogger.log(Level.INFO, "Cleaner "+cleaner.GetName());
         }
+        resultLogger.log(Level.INFO, name+".gas : "+ ((gas == null) ? "NULL" : "notnull"));
     }
     /**
      * Resets the room and its contents for testing purposes.

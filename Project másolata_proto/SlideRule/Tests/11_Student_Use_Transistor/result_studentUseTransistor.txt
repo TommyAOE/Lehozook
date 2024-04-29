@@ -1,0 +1,25 @@
+[20:43:45] INFO    Room r1 added to chart 
+[20:43:45] INFO    Room r2 added to chart 
+[20:43:45] INFO    Room r2 set as neighbour of Room r1 
+[20:43:45] INFO    Character s1 added to Room r1 
+[20:43:45] INFO    Normal Item Transistor i1 has been added to Student s1 
+[20:43:45] INFO    Normal Item Transistor i2 has been added to Student s1 
+[20:43:45] INFO    init_studentUseTransistor.txt Chart loaded 
+[20:43:45] INFO    Character s1 used Item i1 
+[20:43:45] INFO    Character s1 has entered Room r2 
+[20:43:45] INFO    Transistor activated 
+[20:43:45] INFO    The transistor has a pair 
+[20:43:45] INFO    Character s1 has entered Room r1 
+[20:43:45] INFO    Successfully entered the new room 
+[20:43:45] INFO    s1.location : r1 
+[20:43:45] INFO    s1.items : 0 
+[20:43:45] INFO    s1.inCombat : false 
+[20:43:45] INFO    s1.isProtected : 0 
+[20:43:45] INFO    s1.isStunned : 0 
+[20:43:45] INFO    r2.neighbours 0 
+[20:43:45] INFO    r2.items 1 
+[20:43:45] INFO    Item i2 
+[20:43:45] INFO    r2.professors 0 
+[20:43:45] INFO    r2.students 0 
+[20:43:45] INFO    r2.cleaners 0 
+[20:43:45] INFO    r2.gas : NULL 

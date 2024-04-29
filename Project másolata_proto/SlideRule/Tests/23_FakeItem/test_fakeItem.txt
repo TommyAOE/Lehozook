@@ -1,4 +1,4 @@
 Init init_fakeItem.txt
 PickupItem s1 i1
-Info r1
-Info r2
+Info r1 Room
+Info r2 Room

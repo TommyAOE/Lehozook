@@ -1,0 +1,24 @@
+[23:09:32] INFO    Room r1 added to chart 
+[23:09:32] INFO    Room r2 added to chart 
+[23:09:32] INFO    Room r2 set as neighbour of Room r1 
+[23:09:32] INFO    Room r1 set as neighbour of Room r2 
+[23:09:32] INFO    Character s1 added to Room r1 
+[23:09:32] INFO    Fake Item FFP2Mask i1 has been added to Room r1 
+[23:09:32] INFO    init_fakeItem.txt Chart loaded 
+[23:09:32] INFO    Character s1 picked up Item i1 
+[23:09:32] INFO    Character s1 has entered Room r2 
+[23:09:32] INFO    r1.neighbours 1 
+[23:09:32] INFO    Room r2 
+[23:09:32] INFO    r1.items 0 
+[23:09:32] INFO    r1.professors 0 
+[23:09:32] INFO    r1.students 0 
+[23:09:32] INFO    r1.cleaners 0 
+[23:09:32] INFO    r1.gas : NULL 
+[23:09:32] INFO    r2.neighbours 1 
+[23:09:32] INFO    Room r1 
+[23:09:32] INFO    r2.items 0 
+[23:09:32] INFO    r2.professors 0 
+[23:09:32] INFO    r2.students 1 
+[23:09:32] INFO    Student s1 
+[23:09:32] INFO    r2.cleaners 0 
+[23:09:32] INFO    r2.gas : NULL 

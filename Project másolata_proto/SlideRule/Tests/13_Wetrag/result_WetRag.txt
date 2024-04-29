@@ -1,0 +1,28 @@
+[20:59:52] INFO    Room r1 added to chart 
+[20:59:52] INFO    Room r2 added to chart 
+[20:59:52] INFO    Room r2 set as neighbour of Room r1 
+[20:59:52] INFO    Character p1 added to Room r2 
+[20:59:52] INFO    Character p2 added to Room r2 
+[20:59:52] INFO    Character s1 added to Room r1 
+[20:59:52] INFO    Character s2 added to Room r1 
+[20:59:52] INFO    Normal Item WetRag i1 has been added to Student s2 
+[20:59:52] INFO    Character s1 has entered Room r2 
+[20:59:52] INFO    Character s2 has entered Room r2 
+[20:59:52] INFO    init_WetRag.txt Chart loaded 
+[20:59:52] INFO    Character s2 used Item i1 
+[20:59:52] INFO    r2.neighbours 0 
+[20:59:52] INFO    r2.items 0 
+[20:59:52] INFO    r2.professors 2 
+[20:59:52] INFO    Professor p1 
+[20:59:52] INFO    Professor p2 
+[20:59:52] INFO    r2.students 2 
+[20:59:52] INFO    Student s1 
+[20:59:52] INFO    Student s2 
+[20:59:52] INFO    r2.cleaners 0 
+[20:59:52] INFO    r2.gas : NULL 
+[20:59:52] INFO    p1.location : r2 
+[20:59:52] INFO    p1.isStunned : positive 
+[20:59:52] INFO    p1.inCombat : true 
+[20:59:52] INFO    p2.location : r2 
+[20:59:52] INFO    p2.isStunned : positive 
+[20:59:52] INFO    p2.inCombat : true 

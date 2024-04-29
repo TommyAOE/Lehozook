@@ -1,2 +1,2 @@
-Init init_studentsWin.txt
-PickupItem r1 i1
+Init init_studentWin.txt
+PickupItem s1 i1
