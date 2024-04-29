@@ -1,3 +1,0 @@
-AddRoom r1
-AddCharacter c1 Professor r1
-AddGoo r1 unglued
