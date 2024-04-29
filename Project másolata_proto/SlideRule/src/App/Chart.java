@@ -156,4 +156,11 @@ public class Chart {
         }
         return null; // Ha nem található a megadott névvel item
     }
+
+    public void Reset_Test() {
+        for (Room room : rooms) {
+            room.Reset_Test();
+        }
+        rooms.clear();
+    }
 }

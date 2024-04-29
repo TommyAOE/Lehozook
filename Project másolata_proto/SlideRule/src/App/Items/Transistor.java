@@ -92,4 +92,10 @@ public class Transistor extends Item{
         System.out.println("Location: "+location);
 
     }
+    @Override
+    public void Reset_Test(){
+        super.Reset_Test();
+        pair = null;
+        location = null;
+    }
 }

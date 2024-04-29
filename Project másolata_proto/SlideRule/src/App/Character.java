@@ -43,5 +43,7 @@ public abstract class Character {
     }
     public abstract void InfoAll_Test();
     public abstract void Info_Test();
-
+    public void Reset_Test(){
+        location = null;
+    };
 }

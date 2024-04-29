@@ -407,4 +407,18 @@ public class Room {
         }
     }
 
+    public void Reset_Test() {
+        for (Item item : items) {
+            item.Reset_Test();
+        }
+        for (Professor professor : professors) {
+            professor.Reset_Test();
+        }
+        for (Student student : students) {
+            student.Reset_Test();
+        }
+        for (Cleaner cleaner : cleaners) {
+            cleaner.Reset_Test();
+        }
+    }
 }
