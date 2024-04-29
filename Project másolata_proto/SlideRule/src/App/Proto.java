@@ -396,6 +396,7 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
+        chart.findRoomByName_Test(cmd[1]).CombatRoom_Test();
         System.out.println("Combat results");
     }
 }
