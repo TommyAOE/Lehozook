@@ -183,10 +183,14 @@ public class Student extends Character implements IFighter {
             resultLogger.log(Level.INFO, "Room "+r.name+" is full");
             return false;
         }
+        if(!this.location.GetNeighbours().contains(r)){
+            resultLogger.log(Level.INFO, "Room "+r.name+" is not neighbour of the character's current room");
+            return false;
+        }
         location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;
-        resultLogger.log(Level.INFO, "Character "+ name + " added to Room " + r.name);
+        resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.name);
         if (!location.GetProfessors().isEmpty()){
             inCombat = true;
             for(Professor p: location.GetProfessors()){

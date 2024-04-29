@@ -1,3 +1,3 @@
-Init init_profitem.txt
+Init init_profItem.txt
 EnterRoom p1 r2
-Info r2
+Info r2 Room

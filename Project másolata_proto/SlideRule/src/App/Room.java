@@ -19,7 +19,7 @@ public class Room {
     String name;
     int maximumcapacity;
     int characterCount;
-    public ArrayList<Room> neighbours;
+    ArrayList<Room> neighbours;
     boolean isCursed;
     ArrayList<Item> items;
     ArrayList<Professor> professors;
@@ -268,12 +268,17 @@ public class Room {
         {
             case 'p':
                 professors.add((Professor)c);
+                if(this.gas != null)
+                    this.gas.Gasify();
                 break;
             case 's':
                 students.add((Student)c);
+                if(this.gas != null)
+                    this.gas.Gasify();
                 break;
             case 'c':
                 cleaners.add((Cleaner)c);
+                this.Clean();
                 break;
             default:
                 resultLogger.log(Level.INFO,"Something went wrong with the character");

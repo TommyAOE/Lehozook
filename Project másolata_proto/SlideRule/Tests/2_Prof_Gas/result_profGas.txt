@@ -1,0 +1,16 @@
+[18:52:57] INFO    Room r1 added to chart 
+[18:52:57] INFO    Room r2 added to chart 
+[18:52:57] INFO    Room r2 set as neighbour of Room r1 
+[18:52:57] INFO    Character p1 added to Room r1 
+[18:52:57] INFO    Gas added 
+[18:52:57] INFO    init_profGas.txt Chart loaded 
+[18:52:57] INFO    Character p1 has entered Room r2 
+[18:52:57] INFO    r2.neighbours 0 
+[18:52:57] INFO    r2.items 0 
+[18:52:57] INFO    r2.professors 1 
+[18:52:57] INFO    Professor p1 
+[18:52:57] INFO    r2.students 0 
+[18:52:57] INFO    r2.cleaners 0 
+[18:52:57] INFO    p1.location : r2 
+[18:52:57] INFO    p1.isStunned : positive 
+[18:52:57] INFO    p1.inCombat : false 

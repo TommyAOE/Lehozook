@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -30,7 +32,6 @@ public class Proto {
         FillCommands();
         if(args.length == 0){
             System.out.println("If you want any guide with the commands, please enter: Help");
-
             String[] key = helper.ChooseSequence();
     
             while(!key[0].equals("Exit")){
@@ -117,11 +118,20 @@ public class Proto {
         fileHandler = null;
         try {
             fileHandler = new FileHandler(output);
-
-            SimpleFormatter formatter = new SimpleFormatter();
+            SimpleFormatter formatter = new SimpleFormatter(){
+                private static final String format = "[%1$tT] %2$-7s %3$s %n";
+                @Override
+                public synchronized String format(LogRecord lr) {
+                    return String.format(format, lr.getMillis(), lr.getLevel().getLocalizedName(), lr.getMessage());
+                }
+            };
             fileHandler.setFormatter(formatter);
-
             fileHandler.setLevel(Level.INFO);
+            ConsoleHandler consoleHandler = new ConsoleHandler();
+            consoleHandler.setFormatter(formatter);
+            consoleHandler.setLevel(Level.INFO);
+            resultLogger.setUseParentHandlers(false);
+            resultLogger.addHandler(consoleHandler);
             resultLogger.addHandler(fileHandler);
         } catch (IOException e) {
             e.printStackTrace();

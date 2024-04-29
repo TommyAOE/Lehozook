@@ -40,9 +40,9 @@ public class FakeItem extends Item {
     @Override
     public void ApplyEffect() {
         int safe = 100;
-        Room newRoom = owner.GetLocation().neighbours.get(new Random().nextInt(owner.GetLocation().neighbours.size() + 1));
+        Room newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size() + 1));
         while (newRoom.IsFull() && --safe > 0)
-            newRoom = owner.GetLocation().neighbours.get(new Random().nextInt(owner.GetLocation().neighbours.size() + 1));
+            newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size() + 1));
         owner.EnterRoom(newRoom);
     }
 

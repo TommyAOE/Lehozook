@@ -1,4 +1,4 @@
-Init init_profgas.txt
+Init init_profGas.txt
 EnterRoom p1 r2
-Info r2
-Info p1
+Info r2 Room
+Info p1 Professor
