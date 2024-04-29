@@ -41,4 +41,8 @@ public abstract class Item {
     public abstract void InfoAll_Test();
 
     public abstract void Info_Test();
+
+    public void Reset_Test(){
+        owner = null;
+    };
 }

@@ -393,4 +393,9 @@ public class Student extends Character implements IFighter {
             }
         }
     }
+    @Override
+    public void Reset_Test() {
+        super.Reset_Test();
+        items.clear();
+    }
 }

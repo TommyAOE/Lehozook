@@ -148,14 +148,19 @@ public class Proto {
             System.out.println("Missing parameter");
             return;
         }
-        System.out.println("Init " + cmd[1] + " file loading...");
+        ArrayList<String[]> commands=helper.ReadCommands(new File(cmd[1]));
+        for(String[] key:commands){
+            RunCommand(key);
+        }
+        System.out.println("A " + cmd[1] + "pálya betöltve.");
     }
     /**
      * Resets the game state.
      * @param cmd The command and its parameter.
      */
     public static void Reset(String[] cmd){
-        System.out.println("Reset");
+        chart.Reset_Test();
+        System.out.println("A játék alaphelyzetbe állítva.\n");
     }
     /**
      * Adds a room to the game environment.
