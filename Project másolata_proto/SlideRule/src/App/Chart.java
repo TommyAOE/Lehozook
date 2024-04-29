@@ -20,7 +20,7 @@ public class Chart {
      */
     public void IterateForRoomChanges(){
         for (Room room : rooms) {
-            room.Change();
+            room.Change(rooms);
         }
         System.out.println("App.Characters.Chart: IterateForRoomChanges()");
     }
@@ -34,9 +34,21 @@ public class Chart {
     }
     public void AddRoom_Test(String name,String type)
     {
-        Room r=new Room(name,type);
+        Room r=new Room(name,type, this);
         rooms.add(r);
     }
+
+    public void removeRoom(Room r){
+        try{
+            rooms.remove(r);
+        }
+        catch (Exception e){}
+    }
+
+    public void AddRoom(Room r){
+        rooms.add(r);
+    }
+
     public Room findRoomByName_Test(String name) {
         for (Room room : rooms) {
             if (room.name.equals(name)) {
@@ -85,6 +97,8 @@ public class Chart {
             r.cleaners.add(c);
         }
     }
+
+
 
 
     public void InfoAll_Test() {

@@ -1,0 +1,19 @@
+
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(“£æìûÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ï†¦ıÿÿÿÿ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–Í²İÿÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(ÈØÄüÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(£ŸÈÿÿÿÿÿ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åá…ùÿÿÿÿ
+c	java:S100#"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕßØ´
+c	java:S100("NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú²¨
+h	java:S1000"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºÒİñûÿÿÿÿ
+m
+java:S37760"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ºÒİñûÿÿÿÿ
+c	java:S100D"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÅ
+h	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úˆçşÿÿÿÿ
+b	java:S100["NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—§‹y
+h	java:S100a"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î¿•×úÿÿÿÿ
+@	java:S106|"+Replace this use of System.out by a logger.(ø©€“
+i	java:S100€"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏØÉÿùÿÿÿÿ

@@ -1,0 +1,94 @@
+
+v
+java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(è™ õ8µ›¸¹ò1
+{
+java:S2293("YReplace the type specification in this constructor call with the diamond operator ("<>").(Î®œ™üÿÿÿÿ8µ›¸¹ò1
+{
+java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(î÷“Ãùÿÿÿÿ8µ›¸¹ò1
+{
+java:S2293*"YReplace the type specification in this constructor call with the diamond operator ("<>").(ŒĞïóşÿÿÿÿ8µ›¸¹ò1
+u
+java:S2293+"YReplace the type specification in this constructor call with the diamond operator ("<>").(Öãy8µ›¸¹ò1
+v
+java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(è™ õ8µ›¸¹ò1
+{
+java:S22931"YReplace the type specification in this constructor call with the diamond operator ("<>").(Î®œ™üÿÿÿÿ8µ›¸¹ò1
+{
+java:S22932"YReplace the type specification in this constructor call with the diamond operator ("<>").(î÷“Ãùÿÿÿÿ8µ›¸¹ò1
+{
+java:S22933"YReplace the type specification in this constructor call with the diamond operator ("<>").(ŒĞïóşÿÿÿÿ8µ›¸¹ò1
+u
+java:S22934"YReplace the type specification in this constructor call with the diamond operator ("<>").(Öãy8µ›¸¹ò1
+e
+java:S1192å"GDefine a constant instead of duplicating this literal "Room: " 3 times.(ğ Îã8µ›¸¹ò1
+Œ
+java:S1319"jThe type of "neighbours" should be an interface such as "List" rather than the implementation "ArrayList".(˜“É½ûÿÿÿÿ8µ›¸¹ò1
+“
+java:S1319Œ"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(–…·¼ùÿÿÿÿ8½›¸¹ò1
+
+java:S1319«"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(úâŠ58½›¸¹ò1
+x
+java:S1104"VMake neighbours a static final constant or non-public and provide accessors if needed.(˜“É½ûÿÿÿÿ8½›¸¹ò1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ï†¦ıÿÿÿÿ8¿›¸¹ò1
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ®±ş8ç›¸¹ò1
+o	java:S1008"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãµëŸıÿÿÿÿ8ç›¸¹ò1
+o	java:S100<"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢À‰úÿÿÿÿ8ç›¸¹ò1
+F	java:S106P"+Replace this use of System.out by a logger.(ŞÁb8ğ›¸¹ò1
+j	java:S100R"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë§’â8ğ›¸¹ò1
+L	java:S106U"+Replace this use of System.out by a logger.(™‡êÍüÿÿÿÿ8ğ›¸¹ò1
+L	java:S106l"+Replace this use of System.out by a logger.(ğçÍ´ùÿÿÿÿ8ğ›¸¹ò1
+o	java:S100o"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§„‹ûùÿÿÿÿ8ğ›¸¹ò1
+M	java:S106‡"+Replace this use of System.out by a logger.(¡®Ğíüÿÿÿÿ8ğ›¸¹ò1
+p	java:S100Œ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–…·¼ùÿÿÿÿ8ğ›¸¹ò1
+H	java:S106"+Replace this use of System.out by a logger.(Öç…©8õ›¸¹ò1
+k	java:S100”"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(––‹Ø8õ›¸¹ò1
+F	java:S108")Either remove or fill this block of code.(üØô8ö›¸¹ò1
+M	java:S106¢"+Replace this use of System.out by a logger.(ŞäŒÉøÿÿÿÿ8÷›¸¹ò1
+j	java:S100«"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úâŠ58÷›¸¹ò1
+G	java:S106­"+Replace this use of System.out by a logger.(ò”æH8÷›¸¹ò1
+p	java:S100¶"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óœø•şÿÿÿÿ8÷›¸¹ò1
+H	java:S106¹"+Replace this use of System.out by a logger.(µ ¥İ8÷›¸¹ò1
+p	java:S100¿"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»”¯äÿÿÿÿÿ8÷›¸¹ò1
+M	java:S106Á"+Replace this use of System.out by a logger.(àÙéúÿÿÿÿ8÷›¸¹ò1
+M	java:S106Ê"+Replace this use of System.out by a logger.(á´‰üÿÿÿÿ8ú›¸¹ò1
+M	java:S106Ì"+Replace this use of System.out by a logger.(¿”Ùçşÿÿÿÿ8ú›¸¹ò1
+k	java:S100Ú"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—şÕĞ8û›¸¹ò1
+H	java:S106Ü"+Replace this use of System.out by a logger.(ß¼›ß8û›¸¹ò1
+p	java:S100ã"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò²ÈÁıÿÿÿÿ8û›¸¹ò1
+M	java:S106å"+Replace this use of System.out by a logger.(³‹Úøÿÿÿÿ8û›¸¹ò1
+p	java:S100é"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€Å›Šùÿÿÿÿ8û›¸¹ò1
+H	java:S106ë"+Replace this use of System.out by a logger.(ÒĞáî8ü›¸¹ò1
+p	java:S100ò"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃØº¹ûÿÿÿÿ8ü›¸¹ò1
+H	java:S106€"+Replace this use of System.out by a logger.(îÅƒ8ü›¸¹ò1
+H	java:S106ƒ"+Replace this use of System.out by a logger.(‚å„Ã8ü›¸¹ò1
+p	java:S100‰"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º…şıÿÿÿÿ8ü›¸¹ò1
+M	java:S106—"+Replace this use of System.out by a logger.(àïˆáıÿÿÿÿ8ü›¸¹ò1
+k	java:S100£"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õĞëƒ8ü›¸¹ò1
+M	java:S106¦"+Replace this use of System.out by a logger.(Ç©§íşÿÿÿÿ8ü›¸¹ò1
+k	java:S100¬"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îàûà8ü›¸¹ò1
+H	java:S106®"+Replace this use of System.out by a logger.(£ğÌ¦8ü›¸¹ò1
+p	java:S100²"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞßØæşÿÿÿÿ8ü›¸¹ò1
+k	java:S100·"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÛŠ¿8ü›¸¹ò1
+H	java:S106¿"+Replace this use of System.out by a logger.(¾°†ş8ü›¸¹ò1
+k	java:S100Â"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷–Æì8ü›¸¹ò1
+p
+java:S3776Â"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(÷–Æì8ü›¸¹ò1
+F	java:S108Í")Either remove or fill this block of code.(üØô8ü›¸¹ò1
+k	java:S100Ò"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹«†µ8ü›¸¹ò1
+F	java:S108Ö")Either remove or fill this block of code.(üØô8ü›¸¹ò1
+k	java:S100Ü"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Åøß£8ü›¸¹ò1
+j	java:S100à"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿØ¦|8ü›¸¹ò1
+j	java:S100ä"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—§‹y8„œ¸¹ò1
+H	java:S106å"+Replace this use of System.out by a logger.(ğ Îã8„œ¸¹ò1
+j	java:S100õ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÈŸÚv8„œ¸¹ò1
+H	java:S106ö"+Replace this use of System.out by a logger.(ğ Îã8…œ¸¹ò1
+M	java:S106÷"+Replace this use of System.out by a logger.(ŸğœÊıÿÿÿÿ8…œ¸¹ò1
+M	java:S106ù"+Replace this use of System.out by a logger.(¯êÊ–ÿÿÿÿÿ8…œ¸¹ò1
+M	java:S106û"+Replace this use of System.out by a logger.(ƒû¯ûÿÿÿÿ8…œ¸¹ò1
+M	java:S106ı"+Replace this use of System.out by a logger.(øÛ‹¢üÿÿÿÿ8…œ¸¹ò1
+G	java:S106ÿ"+Replace this use of System.out by a logger.(åñµ[8…œ¸¹ò1
+H	java:S106"+Replace this use of System.out by a logger.(îØø´8…œ¸¹ò1
+H	java:S106ƒ"+Replace this use of System.out by a logger.(ãÏ‘Ó8…œ¸¹ò1
+M	java:S106…"+Replace this use of System.out by a logger.(–î†Øùÿÿÿÿ8…œ¸¹ò1
+H	java:S106‡"+Replace this use of System.out by a logger.(›°¯Ö8…œ¸¹ò1
+H	java:S106‰"+Replace this use of System.out by a logger.(š—Ö³8…œ¸¹ò1
