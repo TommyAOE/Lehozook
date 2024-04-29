@@ -33,21 +33,38 @@ public class StBeerCups extends Item {
         System.out.println("StBeerCups: ApplyEffect()");
     }
 
+    /**
+     * Gets the name of the StBeerCups item.
+     *
+     * @return The name of the StBeerCups item.
+     */
     @Override
     public String GetName() {
         return name;
     }
 
+    /**
+     * Gets the type of the StBeerCups item.
+     *
+     * @return The type of the StBeerCups item.
+     */
     @Override
     public String GetType() {
         return type;
     }
 
+    /**
+     * Logs information about all instances of the StBeerCups item.
+     */
     @Override
     public void InfoAll_Test() {
-        resultLogger.log(Level.INFO, "StBeerCups: "+name);
+        resultLogger.log(Level.INFO, "StBeerCups: " + name);
     }
 
+    /**
+     * Logs information about the owner of the StBeerCups item.
+     * If the owner is null, logs that the owner is NULL.
+     */
     @Override
     public void Info_Test() {
         if (owner != null)
@@ -55,4 +72,5 @@ public class StBeerCups extends Item {
         else
             resultLogger.log(Level.INFO, name + ".owner : NULL");
     }
+
 }

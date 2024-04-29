@@ -12,41 +12,64 @@ import static App.Proto.*;
 public class SlideRule extends Item {
 
     /**
-     * Applies the effect of the item.
-     * Each subclass must implement this method to define its specific effect.
+     * Constructs a slide rule item with the given name.
      *
-     * @param name
+     * @param name The name of the slide rule item.
      */
     public SlideRule(String name) {
         super(name, "SlideRule");
     }
+
+    /**
+     * Constructs a slide rule item with the given name and owner.
+     *
+     * @param name  The name of the slide rule item.
+     * @param owner The owner of the slide rule item.
+     */
     public SlideRule(String name, Student owner) {
         super(name, "SlideRule", owner);
     }
 
     /**
-     * Applies the effect of the SlideRule item.
+     * Applies the effect of the slide rule item.
+     * This method prints a message indicating that the student wins the game and exits the program.
      */
-    public void ApplyEffect(){
-        System.out.println("Student wins the game!");
+    public void ApplyEffect() {
+        resultLogger.log(Level.INFO,"Student wins the game!");
         System.exit(0);
     }
 
+    /**
+     * Gets the name of the slide rule item.
+     *
+     * @return The name of the slide rule item.
+     */
     @Override
     public String GetName() {
         return name;
     }
 
+    /**
+     * Gets the type of the slide rule item.
+     *
+     * @return The type of the slide rule item.
+     */
     @Override
     public String GetType() {
         return type;
     }
 
+    /**
+     * Logs information about the slide rule item.
+     */
     @Override
     public void InfoAll_Test() {
-        resultLogger.log(Level.INFO, "SlideRule: "+name);
+        resultLogger.log(Level.INFO, "SlideRule: " + name);
     }
 
+    /**
+     * Logs information about the owner of the slide rule item.
+     */
     @Override
     public void Info_Test() {
         if (owner != null)

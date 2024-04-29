@@ -37,12 +37,20 @@ public abstract class Character {
      *
      * @return the name of the character
      */
-    //new
     public String GetName() {
         return name;
     }
+    /**
+     * Logs information about the character.
+     */
     public abstract void InfoAll_Test();
+    /**
+     * Logs information about the character state, location etc.
+     */
     public abstract void Info_Test();
+    /**
+     * Resets the character location
+     */
     public void Reset_Test(){
         location = null;
     };

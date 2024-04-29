@@ -1,4 +1,12 @@
-Apr 29, 2024 1:25:16 PM App.Chart AddRoom_Test
+Apr 29, 2024 3:32:12 PM App.Chart AddRoom_Test
 INFO: Room r1 added to chart
-Apr 29, 2024 1:25:16 PM App.Chart AddCharacter_Test
-INFO: Characters1 added to Roomr1
+Apr 29, 2024 3:32:12 PM App.Chart AddCharacter_Test
+INFO: Character s1 added to Room r1
+Apr 29, 2024 3:32:12 PM App.Room AddItem_Test
+INFO: Normal Item Camembert i1 has been added to Room r1
+Apr 29, 2024 3:32:12 PM App.Room GooGlue_Test
+INFO: Goo activated in Room r1, items glued
+Apr 29, 2024 3:32:12 PM App.Student PickupItem_Test
+INFO: Character s1 could not pick up Item i1
+Apr 29, 2024 3:32:12 PM App.Proto Init
+INFO: init.txt Chart loaded

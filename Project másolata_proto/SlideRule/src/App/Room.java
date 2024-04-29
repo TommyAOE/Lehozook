@@ -15,7 +15,6 @@ import static App.Proto.resultLogger;
  */
 public class Room {
 
-    //attributomok
     Random rand = new Random();
     String name;
     int maximumcapacity;
@@ -29,15 +28,15 @@ public class Room {
     Gas gas;
     Goo goo;
     Chart chart;
-
-    public boolean IsFull() {
-        return isFull;
-    }
-
     boolean isFull;
-    //////////////
 
-
+    /**
+     * Constructs a room with the specified name, type, and chart.
+     *
+     * @param name  The name of the room.
+     * @param type  The type of the room.
+     * @param chart The chart containing the room.
+     */
     public Room(String name, String type, Chart chart) {
         this.name = name;
         this.isCursed= Objects.equals(type, "Cursed");
@@ -49,6 +48,11 @@ public class Room {
         this.isFull = false;
         this.chart =  chart;
     }
+    /**
+     * Constructs a room with the specified name.
+     *
+     * @param name The name of the room.
+     */
     public Room(String name) {
         this.name = name;
         this.neighbours = new ArrayList<Room>();
@@ -59,11 +63,28 @@ public class Room {
         this.isFull = false;
         this.isCursed = false;
     }
+    /**
+     * Checks if the room is full.
+     *
+     * @return true if the room is full, false otherwise.
+     */
+    public boolean IsFull() {
+        return isFull;
+    }
+    /**
+     * Sets the given room as a neighbour of this room.
+     *
+     * @param r The room to set as a neighbour.
+     */
     public void SetNeighbours(Room r){
         neighbours.add(r);
-        resultLogger.log(Level.INFO, r.name+"szoba hozzáadva szomédkéént a "+name+" szobához");
+        resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
     }
-    //szobaval kapcsolatos metodusok
+    /**
+     * Curses the room by modifying its neighbours.
+     *
+     * @param rooms The list of rooms in the game.
+     */
     public void Curse(List<Room> rooms)
     {
         Room curRoom = new Room("whatever");
@@ -87,12 +108,15 @@ public class Room {
                 break;
             }
         }
-        System.out.println("Szoba:Curse() \n "+curRoom+"added, "+delRoom+"deleted");
+        resultLogger.log(Level.INFO,"Room Curse() "+curRoom.name+" added "+delRoom.name+" deleted");
     }
+    /**
+     * Splits the room into two rooms.
+     */
     public void Split()
     {
         if(professors.size()+ students.size()+cleaners.size()>0){
-            System.out.println("Szoba: Split is impossible");
+            resultLogger.log(Level.INFO,"Split is impossible, characters exist in the Room");
             return;
         }
         Room newRoom = new Room("Whatever");
@@ -118,9 +142,14 @@ public class Room {
         newRoom.SetNeighbours(this);
         SetNeighbours(newRoom);
         chart.AddRoom(newRoom);
-        System.out.println("Szoba:Split");
+        resultLogger.log(Level.INFO,"Split");
 
     }
+    /**
+     * Merges this room with the given room.
+     *
+     * @param r The room to merge with.
+     */
     public void Merge(Room r)
     {
         if(r.maximumcapacity<maximumcapacity){
@@ -145,14 +174,13 @@ public class Room {
             }
             chart.removeRoom(this);
         }
-        System.out.println("Szoba:"+r+"osszeolvadt");
+        resultLogger.log(Level.INFO,"Room merged");
     }
     /** 
      * Gets the neighbors of the room.
      */
     public ArrayList<Room> GetNeighbours()
     {
-        System.out.println("App.Room: GetNeighbours()");
         return neighbours;
     }
     /**
@@ -171,20 +199,13 @@ public class Room {
                 }
             }
         }
-
-        System.out.println("App.Room: Change()");
     }
-    //////////////////////////////////
-
-    //Itemekkel kapcsolatos fuggvenyek
 
     /** 
      * Searches for an item in the room.
      */
     public ArrayList<Item> SearchItem()
     {
-        System.out.println("App.Room: SearchItem()");
-
         return items;
     }
 
@@ -195,7 +216,6 @@ public class Room {
     public void AddItem(Item item)
     {
         items.add(item);
-        System.out.println("App.Room: AddItem()");
     }
 
     /** 
@@ -203,7 +223,6 @@ public class Room {
      */
     public Item PopItem(Item item)
     {
-        System.out.println("App.Room: PopItem()");
         Item seged = null;
         for (int i = 0; i < items.size(); i++) 
         {
@@ -212,25 +231,18 @@ public class Room {
                 if(!items.get(i).IsGlued()){
                     seged = items.get(i);
                     items.remove(i);
-                    System.out.println("Item picked up");
-                }else{
-                    System.out.println("Could not pick up Item" + item.GetName());
                 }
             }
         }
         return seged;
         
     }
-    //////////////////////////////////
-
-    //karakterekkel kapcsolatos
 
     /** 
      * Gets the professors in the room.
      */
     public List<Professor> GetProfessors()//visszaadja a professzorokat az adott szobaban
     {
-        System.out.println("Room: GetProfessors()");
         return professors;
     }
 
@@ -239,13 +251,11 @@ public class Room {
      */
     public List<Student> GetStudents()//visszaadja a tanulokat az adott szobaban
     {
-        System.out.println("Room: GetStudents()");
         return students;
     }
 
     public List<Cleaner> GetCleaners()
     {
-        System.out.println("Room: GetCleaners()");
         return cleaners;
     }
 
@@ -266,10 +276,9 @@ public class Room {
                 cleaners.add((Cleaner)c);
                 break;
             default:
-                System.out.println("Valami nem okés a karakterrel");
+                resultLogger.log(Level.INFO,"Something went wrong with the character");
                 break;
         }
-        System.out.println("App.Room: CharacterEntered()");
 
     }
 
@@ -290,14 +299,10 @@ public class Room {
                 cleaners.remove(c);
                 break;
             default:
-                System.out.println("Nem talalhato karakter a szobaban");
+            resultLogger.log(Level.INFO,"Character could not be found in this Room");
                 break;
         }
     }
-
-    ///////////////////////////
-
-    //egyeb
 
     /** 
      * Adds gas to the room.
@@ -305,7 +310,6 @@ public class Room {
     public void AddGas()
     {
         gas=new Gas(this);
-        System.out.println("Room: AddGas()");
     }
 
     /** 
@@ -313,15 +317,20 @@ public class Room {
      */
     public void GasExpired()//
     {
-        System.out.println("Room: GasExpired()");
         this.gas=null;
     }
-
-    public boolean HasGas()//boolean lesz
+    /**
+     * Checks if the room has gas.
+     *
+     * @return true if the room has gas, false otherwise.
+     */
+    public boolean HasGas()
     {
         return gas != null;
     }
-
+    /**
+     * Cleans the room by resetting the visitor count.
+     */
     public void Clean()
     {
         if(goo == null){
@@ -330,9 +339,14 @@ public class Room {
         else{
             goo.ResetVisitorsCount();
         }
-        System.out.println("App.Room:Clean()");
     }
-
+    /**
+     * Adds an item to the room for testing purposes.
+     *
+     * @param type The type of the item.
+     * @param name The name of the item.
+     * @param real Indicates whether the item is real.
+     */
     public void AddItem_Test(String type, String name,boolean real)
     {
         switch (type) {
@@ -348,9 +362,14 @@ public class Room {
                 return;
             }
         }
-        resultLogger.log(Level.INFO, name+"-es item hozzáadva a "+this.name+" -es szobához");
+        String msg = (real ? "Normal" : "Fake") + " Item " + type +" "+ name + " has been added to Room " + this.name;
+        resultLogger.log(Level.INFO, msg);
     }
-
+    /**
+     * Changes the room based on the given type for testing purposes.
+     *
+     * @param type The type of change to apply.
+     */
     public void Change_Test(String type) {
         switch (type) {
             case "Curse" -> Curse(chart.GetAllRooms());
@@ -359,24 +378,33 @@ public class Room {
             }
         }
     }
+    /**
+     * Initiates combat for all professors in the room for testing purposes.
+     */
     public void CombatRoom_Test(){
         for (Professor prof : this.professors) {
             prof.Combat();
         }
     }
-
-
+    /**
+     * Initiates the goo glue effect for testing purposes.
+     */
     public void GooGlue_Test() {
         goo.Activate_Test();
+        resultLogger.log(Level.INFO, "Goo activated in Room " + this.name + ", items glued");
     }
-
+    /**
+     * Resets the goo visitor count for testing purposes.
+     */
     public void GooUnglue_Test() {
         goo.ResetVisitorsCount();
+        resultLogger.log(Level.INFO, "Goo deactivated in Room " + this.name + ", items unglued");
     }
-
+    /**
+     * Logs information about the room and its contents for testing purposes.
+     */
     public void InfoAll_Test() {
         resultLogger.log(Level.INFO, "Room "+name);
-        //System.out.println("Room "+name);
         for (Item item : items) {
             item.InfoAll_Test();
         }
@@ -391,41 +419,34 @@ public class Room {
         }
 
     }
-
+    /**
+     * Logs basic information about the room for testing purposes.
+     */
     public void Info_Test() {
-        //System.out.println("Room: "+name);
         resultLogger.log(Level.INFO, name+".neighbours "+neighbours.size());
-        //System.out.println("Neighbours: "+neighbours.size());
         for (Room room : neighbours) {
             resultLogger.log(Level.INFO, "Room "+room.name);
-            //System.out.println("Room: "+room.name);
         }
         resultLogger.log(Level.INFO, name+".items "+items.size());
-        //System.out.println("Items: "+items.size());
         for (Item item : items) {
             resultLogger.log(Level.INFO, "Item "+item.GetName());
-            //System.out.println("Item: "+item.GetName());
         }
         resultLogger.log(Level.INFO, name+".professors "+professors.size());
-        //System.out.println("Professors: "+professors.size());
         for (Professor professor : professors) {
             resultLogger.log(Level.INFO, "Professor "+professor.GetName());
-            //System.out.println("Professor: "+professor.GetName());
         }
         resultLogger.log(Level.INFO, name+".students "+students.size());
-        //System.out.println("Students: "+students.size());
         for (Student student : students) {
             resultLogger.log(Level.INFO, "Student "+student.GetName());
-            //System.out.println("Student: "+student.GetName());
         }
         resultLogger.log(Level.INFO, name+".cleaners "+cleaners.size());
-        //System.out.println("Cleaners: "+cleaners.size());
         for (Cleaner cleaner : cleaners) {
             resultLogger.log(Level.INFO, "Cleaner "+cleaner.GetName());
-            //System.out.println("Cleaner: "+cleaner.GetName());
         }
     }
-
+    /**
+     * Resets the room and its contents for testing purposes.
+     */
     public void Reset_Test() {
         for (Item item : items) {
             item.Reset_Test();
@@ -439,6 +460,6 @@ public class Room {
         for (Cleaner cleaner : cleaners) {
             cleaner.Reset_Test();
         }
-        resultLogger.log(Level.INFO, "A játék alaphelyzetbe állítva");
+        resultLogger.log(Level.INFO, "The game has been reset");
     }
 }

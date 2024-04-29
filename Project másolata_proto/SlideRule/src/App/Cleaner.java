@@ -10,7 +10,12 @@ import static App.Proto.resultLogger;
 public class Cleaner extends Character
 {
 
-
+    /**
+     * Constructs a Cleaner object with the given name and assigns it to the specified room.
+     *
+     * @param name The name of the Cleaner.
+     * @param r    The room where the Cleaner will be assigned.
+     */
     public Cleaner(String name, Room r) {
         super(name,r);
     }
@@ -69,13 +74,21 @@ public class Cleaner extends Character
         resultLogger.log(Level.INFO, msg);
         return true;
     }
+    /**
+     * Logs information about the Cleaner, including their name.
+     * This method is used for testing purposes to log information about all Cleaners.
+     */
     @Override
     public void InfoAll_Test() {
         String msg = "Cleaner "+ name;
         resultLogger.log(Level.INFO, msg);
         
     }
-
+    
+    /**
+     * Logs information about the Cleaner's location, including the room's name.
+     * This method is used for testing purposes to log specific information about a Cleaner.
+     */
     @Override
     public void Info_Test() {
         String msg = name + ".location " + location.name;
