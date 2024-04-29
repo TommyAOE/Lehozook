@@ -29,6 +29,14 @@ public class TVSZ extends Item{
      */
     public void ApplyEffect(){
         System.out.println("TVSZ: ApplyEffect()");
+        Room location = owner.GetLocation();
+        for (Student student : location.GetStudents()) {
+            student.SetIsProtected(1);
+        }
+        uses--;
+        if(uses <= 0){
+            
+        }
     }
 
     @Override
