@@ -1,28 +1,35 @@
 package App.Items;
 
 import java.util.Random;
+import java.util.logging.Level;
 
-import App.Professor;
-import App.Room;
-import App.Student;
+import App.*;
+import static App.Proto.*;
 
 /**
  * Represents a wet rag item in the game.
  * Extends the Item class.
  */
 public class WetRag extends Item{
-    private int moistureLevel;
+    private int moistureLevel; // The moisture level of the wet rag
+
     /**
-     * Applies the effect of the item.
-     * Each subclass must implement this method to define its specific effect.
+     * Constructs a wet rag item with the given name and randomly generates a moisture level.
      *
-     * @param name
+     * @param name The name of the wet rag item.
      */
     public WetRag(String name) {
         super(name, "WetRag");
         Random random = new Random();
         moistureLevel = random.nextInt(3) + 1;
     }
+
+    /**
+     * Constructs a wet rag item with the given name and owner, and randomly generates a moisture level.
+     *
+     * @param name  The name of the wet rag item.
+     * @param owner The owner of the wet rag item.
+     */
     public WetRag(String name, Student owner) {
         super(name, "WetRag", owner);
         Random random = new Random();
@@ -31,38 +38,61 @@ public class WetRag extends Item{
 
     /**
      * Applies the effect of the wet rag item.
+     * Stuns professors in the same room as the owner based on the moisture level of the rag.
      */
-    public void ApplyEffect(){
+    public void ApplyEffect() {
         System.out.println("WetRag: ApplyEffect()");
-        for(Professor prof : owner.GetLocation().GetProfessors()){
+        for (Professor prof : owner.GetLocation().GetProfessors()) {
             prof.Stun(moistureLevel);
         }
     }
 
+    /**
+     * Gets the name of the wet rag item.
+     *
+     * @return The name of the wet rag item.
+     */
     @Override
     public String GetName() {
         return name;
     }
 
+    /**
+     * Gets the type of the wet rag item.
+     *
+     * @return The type of the wet rag item.
+     */
     @Override
     public String GetType() {
         return type;
     }
 
+    /**
+     * Logs information about the wet rag item.
+     */
     @Override
     public void InfoAll_Test() {
-        System.out.println("WetRag: "+name);
+        resultLogger.log(Level.INFO, "WetRag: " + name);
     }
 
+    /**
+     * Logs detailed information about the wet rag item, including its owner and moisture level.
+     */
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
-        System.out.println("Moisture Level: "+moistureLevel);
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
+        resultLogger.log(Level.INFO, name + ".moistureLevel : " + moistureLevel);
     }
-    //new
-    public int GetMoistureLevel(){
+
+    /**
+     * Gets the moisture level of the wet rag item.
+     *
+     * @return The moisture level of the wet rag item.
+     */
+    public int GetMoistureLevel() {
         return moistureLevel;
     }
 }

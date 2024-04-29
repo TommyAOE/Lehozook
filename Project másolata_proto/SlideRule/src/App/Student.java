@@ -3,8 +3,11 @@ package App;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
 
+import static App.Proto.resultLogger;
 import App.Items.*;
+
 
 /**
  * Represents a student character in the game.
@@ -50,11 +53,19 @@ public class Student extends Character implements IFighter {
         isStunned = 0;
         items = new ArrayList<>();
     }
-
+    /**
+     * Retrieves a list of items in the room.
+     *
+     * @return The list of items in the room.
+     */
     public ArrayList<Item> GetItems(){
         return items;
     }
-
+    /**
+     * Drops an item in the room.
+     *
+     * @param item The item to drop.
+     */
     public void DropItem(Item item){
         if(items.contains(item)){
             items.remove(item);
@@ -64,7 +75,11 @@ public class Student extends Character implements IFighter {
             }
         }
     }
-
+    /**
+     * Removes an item from the room.
+     *
+     * @param item The item to remove.
+     */
     public void RemoveItem(Item item){
         if(items.contains(item)){
             items.remove(item);
@@ -83,7 +98,7 @@ public class Student extends Character implements IFighter {
     public void Turn() {
         if (--isStunned > 0) {
             return;
-        }
+        }else if(!location.GetProfessors().isEmpty()){
         for (int i = 0; i < 3&&!inCombat; i++) {
             System.out.println("Add meg az akciódat: ");
             System.out.println("1. Mozgás");
@@ -106,7 +121,14 @@ public class Student extends Character implements IFighter {
                         System.out.println(j + ". " + location.SearchItem().get(j).GetType());
                     }
                     int item = Integer.parseInt(new Scanner(System.in).nextLine());
-                    location.PopItem(location.SearchItem().get(item));
+                    Item seged=location.PopItem(location.SearchItem().get(item));
+                    if (seged!=null){
+                        items.add(seged);
+                    }
+                    else {
+                        System.out.println("Sikertelen felvétel!");
+                        i--;
+                    }
                 }
                 case 3 -> {
                     System.out.println("Add meg a tárgy számát: ");
@@ -144,7 +166,7 @@ public class Student extends Character implements IFighter {
                 }
             }
         }
-
+        }
         System.out.println("App.Student: Turn()");
     }
     /**
@@ -157,31 +179,42 @@ public class Student extends Character implements IFighter {
     @Override
     public boolean EnterRoom(Room r) {
         if (r.isFull){
-            System.out.println("A szoba tele van!");
+            //
+            resultLogger.log(Level.INFO, "Room "+r.name+" is full");
             return false;
         }
         location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;
+        resultLogger.log(Level.INFO, "Character "+ name + " added to Room " + r.name);
         if (!location.GetProfessors().isEmpty()){
             inCombat = true;
+            for(Professor p: location.GetProfessors()){
+                if(p.isStunned == 0)
+                    p.inCombat = true;
+            }
         }
         return true;
     }
 
     @Override
+    /**
+     * Logs information about the student.
+     */
     public void InfoAll_Test() {
-        System.out.println("Student: "+name);
+        resultLogger.log(Level.INFO, "Student: "+name);
     }
 
     @Override
+    /**
+     * Logs detailed information about the student, including location, items, combat status, protection status, and stun status.
+     */
     public void Info_Test() {
-        System.out.println("Student: "+name);
-        System.out.println("Location: "+location.name);
-        System.out.println("Items: "+items.size());
-        System.out.println("In combat: "+inCombat);
-        System.out.println("Protected: "+isProtected);
-        System.out.println("Stunned: "+isStunned);
+        resultLogger.log(Level.INFO, name+".location: "+location);
+        resultLogger.log(Level.INFO, name+".items: "+items.size());
+        resultLogger.log(Level.INFO, name+".inCombat: "+inCombat);
+        resultLogger.log(Level.INFO, name+".isProtected: "+isProtected);
+        resultLogger.log(Level.INFO, name+".isStunned: "+isStunned);
     }
 
     /**
@@ -221,7 +254,6 @@ public class Student extends Character implements IFighter {
                 }
             }
         }
-        System.out.println("App.Student: Stun()");
         return stun;
 
     }
@@ -255,7 +287,6 @@ public class Student extends Character implements IFighter {
                 System.out.println("Nem megfelelő számot adtál meg");
             }
         }
-        System.out.println("App.Student: Combat()");
 
     }
     /**
@@ -272,7 +303,6 @@ public class Student extends Character implements IFighter {
      * Custom method to handle student's death.
      */
     public void Death(){
-        System.out.println("App.Student: Death()");
         if (--isProtected==-1){
             location.CharacterLeft(this);
         }
@@ -356,10 +386,17 @@ public class Student extends Character implements IFighter {
                 items.add(real ? new WetRag(name, this) : new FakeItem(name, "WetRag", this));
                 break;
             default:
-                break;
+                return;
+
         }
-        
+        String msg = (real ? "Normal" : "Fake") + " Item " + type +" "+ name + " has been added to Student " + this.name;
+        resultLogger.log(Level.INFO, msg);
     }
+    /**
+     * Drops the specified item from the student's inventory into the current room.
+     *
+     * @param name the name of the item to drop
+     */
     public void DropItem_Test(String name)
     {
         for (Item i:items
@@ -367,33 +404,61 @@ public class Student extends Character implements IFighter {
             if (i.GetName().equals(name))
             {
                 location.AddItem(i);
+                resultLogger.log(Level.INFO,"Character "+ this.name+" dropped Item "+i.GetName()+" in Room " +location.name);
                 items.remove(i);
                 break;
             }
         }
+
     }
+    /**
+     * Uses the specified item from the student's inventory.
+     *
+     * @param name the name of the item to use
+     */
     public void UseItem_Test(String name)
     {
         for (Item i:items) {
             if (i.GetName().equals(name))
             {
                 i.ApplyEffect();
+                resultLogger.log(Level.INFO, "Character "+ this.name+ " used Item "+ i.GetName());
                 break;
             }
         }
     }
+    /**
+     * Picks up the specified item from the current room and adds it to the student's inventory.
+     *
+     * @param name the name of the item to pick up
+     */
     public void PickupItem_Test(String name)
     {
-        for (Item i:location.SearchItem()
-        ) {
+        for (Item i:location.SearchItem()) {
             if (i.GetName().equals(name))
             {
-                items.add(location.PopItem(i));
+                Item seged = location.PopItem(i);
+                if (seged != null)
+                {
+                    items.add(seged);
+                    resultLogger.log(Level.INFO,"Character "+ this.name+ " picked up Item "+ seged.GetName());
+                    if (seged.GetType()=="SlideRule")
+                    {
+                        seged.ApplyEffect();
+                    }
+
+                }else{
+                    resultLogger.log(Level.INFO,"Character "+ this.name+ " could not pick up Item "+ i.GetName());
+                }
+
                 break;
             }
         }
     }
     @Override
+    /**
+     * Resets the student's state and clears their inventory.
+     */
     public void Reset_Test() {
         super.Reset_Test();
         items.clear();

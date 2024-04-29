@@ -1,64 +1,92 @@
 package App.Items;
 
-import App.Room;
-import App.Student;
+import App.*;
+import static App.Proto.*;
+
+import java.util.logging.Level;
 
 /**
  * Represents a TVSZ item in the game.
  * Extends the Item class.
  */
 public class TVSZ extends Item{
-    int uses ;
+    int uses; // The number of uses remaining for the TVSZ item
+
     /**
-     * Applies the effect of the item.
-     * Each subclass must implement this method to define its specific effect.
+     * Constructs a TVSZ item with the given name and initializes the number of uses.
      *
-     * @param name
+     * @param name The name of the TVSZ item.
      */
     public TVSZ(String name) {
-        super(name,"TVSZ");
+        super(name, "TVSZ");
         uses = 3;
     }
+
+    /**
+     * Constructs a TVSZ item with the given name and owner, and initializes the number of uses.
+     *
+     * @param name  The name of the TVSZ item.
+     * @param owner The owner of the TVSZ item.
+     */
     public TVSZ(String name, Student owner) {
-        super(name,"TVSZ", owner);
+        super(name, "TVSZ", owner);
         uses = 3;
     }
 
     /**
      * Applies the effect of the TVSZ item.
+     * Protects all students in the same room as the owner from professors' attacks.
+     * Decreases the number of uses remaining.
+     * If there are no uses left, removes the item from the owner's inventory.
      */
-    public void ApplyEffect(){
-        System.out.println("TVSZ: ApplyEffect()");
+    public void ApplyEffect() {
         Room location = owner.GetLocation();
         for (Student student : location.GetStudents()) {
             student.SetIsProtected(location.GetProfessors().size());
         }
         uses--;
-        if(uses <= 0){
+        if (uses <= 0) {
             owner.RemoveItem(this);
         }
     }
 
+    /**
+     * Gets the name of the TVSZ item.
+     *
+     * @return The name of the TVSZ item.
+     */
     @Override
     public String GetName() {
         return name;
     }
 
+    /**
+     * Gets the type of the TVSZ item.
+     *
+     * @return The type of the TVSZ item.
+     */
     @Override
     public String GetType() {
         return type;
     }
 
+    /**
+     * Logs information about the TVSZ item, including its owner and the number of uses remaining.
+     */
     @Override
     public void InfoAll_Test() {
-        System.out.println("TVSZ: "+name);
+        resultLogger.log(Level.INFO, "TVSZ: " + name);
     }
 
+    /**
+     * Logs detailed information about the TVSZ item, including its owner and the number of uses remaining.
+     */
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
-        System.out.println("Uses: "+uses);
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
+        resultLogger.log(Level.INFO, name + ".uses : " + uses);
     }
 }

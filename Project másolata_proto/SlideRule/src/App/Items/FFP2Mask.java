@@ -1,7 +1,10 @@
 
 package App.Items;
 
-import App.Student;
+import java.util.logging.Level;
+
+import App.*;
+import static App.Proto.*;
 
 /**
  * Represents an FFP2 mask item in the game.
@@ -16,7 +19,6 @@ public class FFP2Mask extends Item {
     private int durability;
 
     /** Indicates whether the mask is broken. */
-    //new
     private boolean broken;
 
     /**
@@ -30,12 +32,27 @@ public class FFP2Mask extends Item {
         durability = 3;
         broken = false;
     }
+
+    /**
+     * Constructs a new FFP2 mask item with the specified name and owner.
+     *
+     * @param name  the name of the FFP2 mask item
+     * @param owner the owner of the FFP2 mask item
+     */
     public FFP2Mask(String name, Student owner) {
         super(name, "FFP2Mask", owner);
         counter = 3;
         durability = 3;
         broken = false;
     }
+
+    /**
+     * Constructs a new FFP2 mask item with the specified name, usage counter, and durability.
+     *
+     * @param name       the name of the FFP2 mask item
+     * @param counter    the usage counter of the FFP2 mask item
+     * @param durability the durability of the FFP2 mask item
+     */
     public FFP2Mask(String name, int counter, int durability) {
         super(name, "FFP2Mask");
         this.counter = counter;
@@ -63,7 +80,6 @@ public class FFP2Mask extends Item {
      *
      * @return true if the mask is broken, false otherwise
      */
-    //new
     public boolean IsBroken() {
         return broken;
     }
@@ -87,27 +103,36 @@ public class FFP2Mask extends Item {
     public String GetType() {
         return type;
     }
+
     /**
      * Gets the counter of the FFP2 mask item.
      *
      * @return the counter of the mask item
      */
-    public int GetCounter(){
+    public int GetCounter() {
         return counter;
     }
 
+    /**
+     * Logs information about the FFP2 mask item.
+     */
     @Override
     public void InfoAll_Test() {
-        System.out.println("FFP2Mask: "+name);
+        System.out.println("FFP2Mask: " + name);
     }
 
+    /**
+     * Logs detailed information about the FFP2 mask item, including its owner, counter, durability, and broken status.
+     */
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
-        System.out.println("Counter: "+counter);
-        System.out.println("Durability: "+durability);
-        System.out.println("Broken: "+broken);
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
+        resultLogger.log(Level.INFO, name + ".counter : " + counter);
+        resultLogger.log(Level.INFO, name + ".durability : " + durability);
+        resultLogger.log(Level.INFO, name + ".broken : " + broken);
     }
 }
+

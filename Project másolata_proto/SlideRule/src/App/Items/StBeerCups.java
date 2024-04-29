@@ -1,6 +1,9 @@
 package App.Items;
 
+import java.util.logging.Level;
+
 import App.*;
+import static App.Proto.*;
 
 /**
  * Represents a StBeerCups item in the game.
@@ -30,25 +33,44 @@ public class StBeerCups extends Item {
         System.out.println("StBeerCups: ApplyEffect()");
     }
 
+    /**
+     * Gets the name of the StBeerCups item.
+     *
+     * @return The name of the StBeerCups item.
+     */
     @Override
     public String GetName() {
         return name;
     }
 
+    /**
+     * Gets the type of the StBeerCups item.
+     *
+     * @return The type of the StBeerCups item.
+     */
     @Override
     public String GetType() {
         return type;
     }
 
+    /**
+     * Logs information about all instances of the StBeerCups item.
+     */
     @Override
     public void InfoAll_Test() {
-        System.out.println("StBeerCups: "+name);
+        resultLogger.log(Level.INFO, "StBeerCups: " + name);
     }
 
+    /**
+     * Logs information about the owner of the StBeerCups item.
+     * If the owner is null, logs that the owner is NULL.
+     */
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
     }
+
 }

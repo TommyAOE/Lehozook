@@ -6,7 +6,11 @@ package App;
 public class Gas {
 
     Room location;
-
+    /**
+     * Constructs a Gas object associated with the specified room and immediately triggers the Gasify method.
+     *
+     * @param location The room where the Gas object is located.
+     */
     public Gas(Room location)
     {
         this.location=location;
@@ -17,7 +21,6 @@ public class Gas {
      * Gasifies the environment.
      */
     public void Gasify(){
-        System.out.println("Gas: Gasify()");
         boolean expire=false;
 
         for(Student student: location.GetStudents())

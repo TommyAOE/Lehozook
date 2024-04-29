@@ -1,13 +1,21 @@
 package App;
 
 import java.util.Random;
+import java.util.logging.Level;
+
+import static App.Proto.resultLogger;
 /**
  * Represents a cleaner character in the game.
  */
 public class Cleaner extends Character
 {
 
-
+    /**
+     * Constructs a Cleaner object with the given name and assigns it to the specified room.
+     *
+     * @param name The name of the Cleaner.
+     * @param r    The room where the Cleaner will be assigned.
+     */
     public Cleaner(String name, Room r) {
         super(name,r);
     }
@@ -54,20 +62,36 @@ public class Cleaner extends Character
      */
     @Override
     public boolean EnterRoom(Room r) {
-        if (r.isFull)
+        if (r.isFull){
+            String msg = "Room " + r.name + " is full";
+            resultLogger.log(Level.INFO, msg);
             return false;
+        }
         location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;
+        String msg = "Character "+ name + " added to Room " + r.name;
+        resultLogger.log(Level.INFO, msg);
         return true;
     }
+    /**
+     * Logs information about the Cleaner, including their name.
+     * This method is used for testing purposes to log information about all Cleaners.
+     */
     @Override
     public void InfoAll_Test() {
-        System.out.println("Cleaner: "+name);
+        String msg = "Cleaner "+ name;
+        resultLogger.log(Level.INFO, msg);
+        
     }
-
+    
+    /**
+     * Logs information about the Cleaner's location, including the room's name.
+     * This method is used for testing purposes to log specific information about a Cleaner.
+     */
     @Override
     public void Info_Test() {
-        System.out.println("Cleaner:\n"+"Name:"+name+"\nLocation:"+location.name+"\n");
+        String msg = name + ".location " + location.name;
+        resultLogger.log(Level.INFO, msg);        
     }
 }
