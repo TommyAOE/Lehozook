@@ -1,6 +1,9 @@
 package App.Items;
 
+import java.util.logging.Level;
+
 import App.*;
+import static App.Proto.*;
 
 /**
  * Represents a StBeerCups item in the game.
@@ -42,13 +45,14 @@ public class StBeerCups extends Item {
 
     @Override
     public void InfoAll_Test() {
-        System.out.println("StBeerCups: "+name);
+        resultLogger.log(Level.INFO, "StBeerCups: "+name);
     }
 
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
     }
 }

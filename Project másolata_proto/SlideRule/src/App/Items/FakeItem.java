@@ -1,9 +1,10 @@
 package App.Items;
 
-import App.Room;
-import App.Student;
+import App.*;
+import static App.Proto.*;
 
 import java.util.Random;
+import java.util.logging.Level;
 
 public class FakeItem extends Item{
 
@@ -20,7 +21,6 @@ public class FakeItem extends Item{
         while (newRoom.IsFull()&&--safe>0)
             newRoom = owner.GetLocation().neighbours.get(new Random().nextInt(owner.GetLocation().neighbours.size()+1));
         owner.EnterRoom(newRoom);
-        System.out.println("FakeItem: ApplyEffect()");
     }
 
     @Override
@@ -35,14 +35,15 @@ public class FakeItem extends Item{
 
     @Override
     public void InfoAll_Test() {
-        System.out.println("FakeItem: "+name);
+        resultLogger.log(Level.INFO, "FakeItem: "+name);
     }
 
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
     }
 
 }

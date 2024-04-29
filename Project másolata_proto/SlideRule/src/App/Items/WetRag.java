@@ -1,10 +1,10 @@
 package App.Items;
 
 import java.util.Random;
+import java.util.logging.Level;
 
-import App.Professor;
-import App.Room;
-import App.Student;
+import App.*;
+import static App.Proto.*;
 
 /**
  * Represents a wet rag item in the game.
@@ -51,15 +51,16 @@ public class WetRag extends Item{
 
     @Override
     public void InfoAll_Test() {
-        System.out.println("WetRag: "+name);
+        resultLogger.log(Level.INFO, "StBeerCups: "+name);
     }
 
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
-        System.out.println("Moisture Level: "+moistureLevel);
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
+        resultLogger.log(Level.INFO, name + ".moistureLevel : " + moistureLevel);
     }
     //new
     public int GetMoistureLevel(){

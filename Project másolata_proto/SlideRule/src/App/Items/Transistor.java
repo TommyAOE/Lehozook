@@ -1,7 +1,9 @@
 package App.Items;
 
-import App.Room;
-import App.Student;
+import java.util.logging.Level;
+
+import App.*;
+import static App.Proto.*;
 
 /**
  * Represents a transistor item in the game.
@@ -48,13 +50,13 @@ public class Transistor extends Item{
      * Activates the transistor.
      */
     public void Activate(){
-        System.out.println("Transistor: Activate()");
+        resultLogger.log(Level.INFO, "Transistor activated");
         if(pair != null){
-            System.out.println("The transistor has a pair");
+            resultLogger.log(Level.INFO, "The transistor has a pair");
             Room newRoom = pair.location;
             owner.DropItem(this);
             if(owner.EnterRoom(newRoom)){
-                System.out.println("Succesfully entered the new room");
+                resultLogger.log(Level.INFO, "Succesfully entered the new room");
             }
         }
     }
@@ -63,7 +65,6 @@ public class Transistor extends Item{
      * Checks if the transistor has a pair.
      */
     public boolean HasPair(){
-        System.out.println("Transistor: HasPair()");
         return pair != null;
     }
 
@@ -79,18 +80,23 @@ public class Transistor extends Item{
 
     @Override
     public void InfoAll_Test() {
-        System.out.println("Transistor: "+name);
+        resultLogger.log(Level.INFO, "Transistor: "+name);
     }
 
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner);
-        System.out.println("Pair: "+pair);
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
+        if (pair != null)
+            resultLogger.log(Level.INFO, name + ".pair: " + pair.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".pair : NULL");
         if (location != null)
-        System.out.println("Location: "+location);
-
+            resultLogger.log(Level.INFO, name + ".location: " + name);
+        else
+            resultLogger.log(Level.INFO, name + ".location : NULL");
     }
     @Override
     public void Reset_Test(){

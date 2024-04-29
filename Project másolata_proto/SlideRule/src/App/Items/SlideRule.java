@@ -1,7 +1,9 @@
 package App.Items;
 
-import App.Room;
-import App.Student;
+import java.util.logging.Level;
+
+import App.*;
+import static App.Proto.*;
 
 /**
  * Represents a SlideRule item in the game.
@@ -42,13 +44,14 @@ public class SlideRule extends Item {
 
     @Override
     public void InfoAll_Test() {
-        System.out.println("SlideRule: "+name);
+        resultLogger.log(Level.INFO, "SlideRule: "+name);
     }
 
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
     }
 }

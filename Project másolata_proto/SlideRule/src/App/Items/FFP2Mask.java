@@ -1,7 +1,10 @@
 
 package App.Items;
 
-import App.Student;
+import java.util.logging.Level;
+
+import App.*;
+import static App.Proto.*;
 
 /**
  * Represents an FFP2 mask item in the game.
@@ -103,11 +106,12 @@ public class FFP2Mask extends Item {
 
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
-        System.out.println("Counter: "+counter);
-        System.out.println("Durability: "+durability);
-        System.out.println("Broken: "+broken);
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
+        resultLogger.log(Level.INFO, name + ".counter : " + counter);
+        resultLogger.log(Level.INFO, name + ".durability : " + durability);
+        resultLogger.log(Level.INFO, name + ".broken : " + broken);
     }
 }

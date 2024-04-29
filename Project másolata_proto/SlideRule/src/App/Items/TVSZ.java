@@ -1,7 +1,9 @@
 package App.Items;
 
-import App.Room;
-import App.Student;
+import App.*;
+import static App.Proto.*;
+
+import java.util.logging.Level;
 
 /**
  * Represents a TVSZ item in the game.
@@ -28,7 +30,6 @@ public class TVSZ extends Item{
      * Applies the effect of the TVSZ item.
      */
     public void ApplyEffect(){
-        System.out.println("TVSZ: ApplyEffect()");
         Room location = owner.GetLocation();
         for (Student student : location.GetStudents()) {
             student.SetIsProtected(location.GetProfessors().size());
@@ -51,14 +52,15 @@ public class TVSZ extends Item{
 
     @Override
     public void InfoAll_Test() {
-        System.out.println("TVSZ: "+name);
+        resultLogger.log(Level.INFO, "StBeerCups: "+name);
     }
 
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
-        System.out.println("Uses: "+uses);
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
+        resultLogger.log(Level.INFO, name + ".uses : " + uses);
     }
 }

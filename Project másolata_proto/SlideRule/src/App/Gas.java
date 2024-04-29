@@ -17,7 +17,6 @@ public class Gas {
      * Gasifies the environment.
      */
     public void Gasify(){
-        System.out.println("Gas: Gasify()");
         boolean expire=false;
 
         for(Student student: location.GetStudents())

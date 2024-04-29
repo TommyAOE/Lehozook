@@ -1,7 +1,9 @@
 package App.Items;
 
-import App.Room;
-import App.Student;
+import java.util.logging.Level;
+
+import App.*;
+import static App.Proto.*;
 
 /**
  * Represents a Camembert item in the game.
@@ -27,7 +29,6 @@ public class Camembert extends Item {
      * Applies the effect of the Camembert item.
      */
     public void ApplyEffect(){
-        System.out.println("Camembert: ApplyEffect()");
         owner.GetLocation().AddGas();
     }
 
@@ -41,18 +42,17 @@ public class Camembert extends Item {
         return type;
     }
 
-    
-
     @Override
     public void InfoAll_Test() {
-        System.out.println("Camembert: "+name);
+        resultLogger.log(Level.INFO, "Camembert: " + name);
     }
 
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
     }
 
 }

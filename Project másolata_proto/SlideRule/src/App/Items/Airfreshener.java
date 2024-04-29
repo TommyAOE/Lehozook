@@ -1,6 +1,9 @@
 package App.Items;
 
-import App.Student;
+import App.*;
+import static App.Proto.*;
+
+import java.util.logging.Level;
 
 public class Airfreshener extends Item{
 
@@ -13,8 +16,7 @@ public class Airfreshener extends Item{
 
     @Override
     public void ApplyEffect() {
-        System.out.println("Airfreshener: ApplyEffect()");
-        owner.GetLocation().GasExpired();//a tulajdonosa szobajanak a gasexpired hivja
+        owner.GetLocation().GasExpired();
     }
 
     @Override
@@ -29,15 +31,14 @@ public class Airfreshener extends Item{
 
     @Override
     public void InfoAll_Test() {
-        System.out.println("Airfreshener: "+name);
+        resultLogger.log(Level.INFO, "Camembert: " + name);
     }
 
     @Override
     public void Info_Test() {
-        System.out.println(type+": "+name);
         if (owner != null)
-        System.out.println("Owner: "+owner.GetName());
+            resultLogger.log(Level.INFO, name + ".owner : " + owner.GetName());
+        else
+            resultLogger.log(Level.INFO, name + ".owner : NULL");
     }
-
-
 }
