@@ -1,0 +1,2 @@
+Init init_cleanerFull.txt
+EnterRoom c1 r2

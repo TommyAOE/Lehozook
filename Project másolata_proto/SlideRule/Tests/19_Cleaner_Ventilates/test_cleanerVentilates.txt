@@ -1,0 +1,2 @@
+EnterRoom c1 r2
+Info r2

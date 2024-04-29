@@ -1,0 +1,2 @@
+Init gluedItem.txt
+PickupItem s1 i1

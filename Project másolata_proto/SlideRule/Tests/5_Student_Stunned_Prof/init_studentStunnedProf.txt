@@ -1,0 +1,2 @@
+Init init_profgas.txt
+AddCharacter s1 Student r1

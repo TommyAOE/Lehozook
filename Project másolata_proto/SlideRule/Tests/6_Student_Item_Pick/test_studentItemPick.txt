@@ -1,0 +1,5 @@
+Init init_StudentItemPick.txt
+EnterRoom s1 r2
+PickupItem s1 i1
+Info r2
+Info s1
