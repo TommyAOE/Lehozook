@@ -71,6 +71,9 @@ public class Room {
     public boolean IsFull() {
         return isFull;
     }
+    public String GetName(){
+        return name;
+    }
     /**
      * Sets the given room as a neighbour of this room.
      *

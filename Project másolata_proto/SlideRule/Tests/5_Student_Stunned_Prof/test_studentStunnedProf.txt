@@ -1,3 +1,3 @@
-Init init_studentprof.txt
+Init init_studentStunnedProf.txt
 EnterRoom s1 r2
-Info s1
+Info s1 Student

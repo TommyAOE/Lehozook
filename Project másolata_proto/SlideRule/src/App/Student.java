@@ -214,11 +214,11 @@ public class Student extends Character implements IFighter {
      * Logs detailed information about the student, including location, items, combat status, protection status, and stun status.
      */
     public void Info_Test() {
-        resultLogger.log(Level.INFO, name+".location: "+location);
-        resultLogger.log(Level.INFO, name+".items: "+items.size());
-        resultLogger.log(Level.INFO, name+".inCombat: "+inCombat);
-        resultLogger.log(Level.INFO, name+".isProtected: "+isProtected);
-        resultLogger.log(Level.INFO, name+".isStunned: "+isStunned);
+        resultLogger.log(Level.INFO, name+".location : "+location.name);
+        resultLogger.log(Level.INFO, name+".items : "+items.size());
+        resultLogger.log(Level.INFO, name+".inCombat : "+inCombat);
+        resultLogger.log(Level.INFO, name+".isProtected : "+isProtected);
+        resultLogger.log(Level.INFO, name+".isStunned : "+isStunned);
     }
 
     /**

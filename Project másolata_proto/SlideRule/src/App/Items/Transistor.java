@@ -124,7 +124,7 @@ public class Transistor extends Item{
         else
             resultLogger.log(Level.INFO, name + ".pair : NULL");
         if (location != null)
-            resultLogger.log(Level.INFO, name + ".location: " + name);
+            resultLogger.log(Level.INFO, name + ".location: " + location.GetName());
         else
             resultLogger.log(Level.INFO, name + ".location : NULL");
     }
