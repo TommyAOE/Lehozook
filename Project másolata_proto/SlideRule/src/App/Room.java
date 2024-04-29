@@ -24,6 +24,7 @@ public class Room {
     ArrayList<Cleaner> cleaners;
     Gas gas;
     Goo goo;
+    Chart chart;
 
     public boolean IsFull() {
         return isFull;
@@ -33,7 +34,7 @@ public class Room {
     //////////////
 
 
-    public Room(String name, String type) {
+    public Room(String name, String type, Chart chart) {
         this.name = name;
         this.isCursed= Objects.equals(type, "Cursed");
         this.neighbours = new ArrayList<Room>();
@@ -42,6 +43,7 @@ public class Room {
         this.students = new ArrayList<Student>();
         this.cleaners = new ArrayList<Cleaner>();
         this.isFull = false;
+        this.chart =  chart;
     }
     public Room(String name) {
         this.name = name;
@@ -57,16 +59,87 @@ public class Room {
         neighbours.add(r);
     }
     //szobaval kapcsolatos metodusok
-    public void Curse()
+    public void Curse(List<Room> rooms)
     {
-        System.out.println("Szoba:Curse()");
+        Room curRoom = new Room("whatever");
+        Room delRoom = new Room("whatever");
+        while(true) {
+            curRoom = rooms.get(rand.nextInt(rooms.size() - 1));
+            if(!neighbours.contains(curRoom)){
+                neighbours.add(curRoom);
+                curRoom.SetNeighbours(this);
+                while(true){
+                    delRoom = rooms.get(rand.nextInt(neighbours.size() - 1));
+                    if(delRoom!=curRoom){
+                        rooms.remove(delRoom);
+                        try {
+                            delRoom.neighbours.remove(this);
+                        }
+                        catch (Exception e){}
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        System.out.println("Szoba:Curse() \n "+curRoom+"added, "+delRoom+"deleted");
     }
     public void Split()
     {
+        if(professors.size()+ students.size()+cleaners.size()>0){
+            System.out.println("Szoba: Split is impossible");
+            return;
+        }
+        Room newRoom = new Room("Whatever");
+        newRoom.maximumcapacity=this.maximumcapacity/2+1;
+        for(int i=neighbours.size()/2;i<neighbours.size();i++){
+            newRoom.SetNeighbours(neighbours.get(i));
+        }
+        for (Room roomsOfNew:newRoom.neighbours) {
+            neighbours.remove(roomsOfNew);
+            try{
+                roomsOfNew.neighbours.remove(this);
+                roomsOfNew.SetNeighbours(newRoom);
+            }
+            catch (Exception e){}
+        }
+
+        for(int i=items.size()/2;i<items.size();i++){
+            newRoom.AddItem(items.get(i));
+        }
+        for (Item itemsOfNew:newRoom.items) {
+            items.remove(itemsOfNew);
+        }
+        newRoom.SetNeighbours(this);
+        SetNeighbours(newRoom);
+        chart.AddRoom(newRoom);
         System.out.println("Szoba:Split");
+
     }
     public void Merge(Room r)
     {
+        if(r.maximumcapacity<maximumcapacity){
+            for(Item itemsOfSmaller : r.items){
+                items.add(itemsOfSmaller);
+            }
+            for(Room neighboursOfSmaller : r.neighbours){
+                neighbours.add(neighboursOfSmaller);
+                neighboursOfSmaller.neighbours.remove(r);
+                neighboursOfSmaller.SetNeighbours(this);
+            }
+            chart.removeRoom(this);
+        }
+        else{
+            for(Item itemsOfSmaller : this.items){
+                r.items.add(itemsOfSmaller);
+            }
+            for(Room neighboursOfSmaller : this.neighbours){
+                r.neighbours.add(neighboursOfSmaller);
+                neighboursOfSmaller.neighbours.remove(this);
+                neighboursOfSmaller.SetNeighbours(r);
+            }
+            chart.removeRoom(this);
+        }
         System.out.println("Szoba:"+r+"osszeolvadt");
     }
     /** 
@@ -80,11 +153,11 @@ public class Room {
     /**
      * Changes the room.
      */
-    public void Change()
+    public void Change(List<Room> rooms)
     {
         if (isCursed)
         {
-            Curse();
+            Curse(rooms);
         }else{
             switch (rand.nextInt(2)) {
                 case 0 -> Merge(neighbours.get(rand.nextInt(neighbours.size() + 1)));
@@ -245,6 +318,12 @@ public class Room {
 
     public void Clean()
     {
+        if(goo == null){
+            goo = new Goo(this);
+        }
+        else{
+            goo.ResetVisitorsCount();
+        }
         System.out.println("App.Room:Clean()");
     }
 
@@ -266,7 +345,7 @@ public class Room {
 
     public void Change_Test(String type) {
         switch (type) {
-            case "Curse" -> Curse();
+            case "Curse" -> Curse(chart.GetAllRooms());
             case "Split" -> Split();
             default -> {
             }
@@ -277,6 +356,7 @@ public class Room {
             prof.Combat();
         }
     }
+
 
     public void GooGlue_Test() {
         goo.Activate_Test();

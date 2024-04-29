@@ -1,0 +1,12 @@
+
+H
+java:S1199"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+H
+java:S1199"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ï†¦Žýÿÿÿÿ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®²’ôüÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(“ü•÷ýÿÿÿÿ
+V	java:S125*"<This block of commented-out lines of code should be removed.(êŠöøÿÿÿÿ
+<
+java:S14819"&Remove this unused "r" local variable.(Ú¬ú§
+>	java:S1089")Either remove or fill this block of code.(Ú¬ú§

@@ -289,6 +289,14 @@ public class Proto {
             chart.findRoomByName_Test(cmd[1]).Merge(chart.findRoomByName_Test(cmd[3]));
             return;
         }
+
+        if(cmd[2].equals("Split") && cmd.length == 3){
+            System.out.println("Split");
+            chart.findRoomByName_Test(cmd[1]).Split();
+            return;
+        }
+
+
         chart.findRoomByName_Test(cmd[1]).Change_Test(cmd[2]);
         System.out.println("RoomChange");
     }

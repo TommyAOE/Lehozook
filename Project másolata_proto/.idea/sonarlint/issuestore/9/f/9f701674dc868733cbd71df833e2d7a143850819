@@ -1,0 +1,13 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(›–Ïıÿÿÿÿ
+O
+java:S5993"9Change the visibility of this constructor to "protected".( ¬õû
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ëüÆùÿÿÿÿ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆéËÉüÿÿÿÿ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùî‰‚øÿÿÿÿ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Êõ–Êûÿÿÿÿ
+b	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ…¹#
+c	java:S100$"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿¢İ
+c	java:S100&"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ¤¿ø
+:
+java:S1128"%Remove this unused import 'App.Room'.(ó£ş+

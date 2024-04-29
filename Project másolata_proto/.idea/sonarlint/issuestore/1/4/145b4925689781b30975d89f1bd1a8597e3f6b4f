@@ -1,0 +1,14 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(›–Ïıÿÿÿÿ
+]
+java:S39733"GUse indentation to denote the code conditionally executed by this "if".(Ó“Ä
+œ
+java:S26815"†This line will not be executed conditionally; only the first line of this 2-line block will be. The rest will execute unconditionally.(¶ÙÃA
+@	java:S106"+Replace this use of System.out by a logger.(º¿Ìá
+?	java:S106-"+Replace this use of System.out by a logger.(ıá®^
+E	java:S1062"+Replace this use of System.out by a logger.(§çˆÔøÿÿÿÿ
+E	java:S1064"+Replace this use of System.out by a logger.(ÖÙØ¶ÿÿÿÿÿ
+?	java:S1065"+Replace this use of System.out by a logger.(¶ÙÃA
+h	java:S1008"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áµ›øÿÿÿÿ
+:
+java:S1128"%Remove this unused import 'App.Room'.(ó£ş+
