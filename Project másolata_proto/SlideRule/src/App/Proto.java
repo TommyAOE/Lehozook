@@ -119,9 +119,6 @@ public class Proto {
             //resultLogger.setUseParentHandlers(false);
             fileHandler.setLevel(Level.INFO);
             resultLogger.addHandler(fileHandler);
-
-            resultLogger.log(Level.INFO, "Missing parameter");
-
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -207,16 +204,17 @@ public class Proto {
      */
     public static void AddRoom(String[] cmd){
         if(cmd.length < 2){
-            System.out.println("Missing parameter");
+            resultLogger.log(Level.INFO, "Missing parameter");
+            //System.out.println("Missing parameter");
             return;
         }
         if(cmd.length == 3 && cmd[2].equals("Cursed")){
-            System.out.println("Add Cursed App.Room");
+            //System.out.println("Add Cursed App.Room");
             chart.AddRoom_Test(cmd[1], cmd[2]);
         }
         else {
             chart.AddRoom_Test(cmd[1], "Normal");
-            System.out.println("Add Normal App.Room");
+            //System.out.println("Add Normal App.Room");
         }
     }
     /**
@@ -341,7 +339,7 @@ public class Proto {
         }
 
 
-        chart.findRoomByName_Test(cmd[1]).Change_Test(cmd[2]);
+//        chart.findRoomByName_Test(cmd[1]).Change_Test(cmd[2]);
         System.out.println("RoomChange");
     }
     /**
@@ -421,6 +419,7 @@ public class Proto {
             return;
         }
         chart.findRoomByName_Test(cmd[1]).isFull=!chart.findRoomByName_Test(cmd[1]).isFull;
+        resultLogger.log(Level.INFO, "A szoba"+cmd[1]+" tele van");
         System.out.println("Room full status set to "+chart.findRoomByName_Test(cmd[1]).isFull);
         /* if(!room.IsFull)
                 set full
@@ -439,7 +438,7 @@ public class Proto {
         }
         System.out.println("App.Character turn starts");
     }
-    /**
+    /*
      * Initiates combat in a room.
      * @param cmd The command and its parameters.
      */

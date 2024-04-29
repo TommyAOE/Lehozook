@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.logging.Level;
+
 import App.Items.*;
+
+import static App.Proto.resultLogger;
 
 /**
  * Represents a room in the game.
@@ -57,6 +61,7 @@ public class Room {
     }
     public void SetNeighbours(Room r){
         neighbours.add(r);
+        resultLogger.log(Level.INFO, r.name+"szoba hozzáadva szomédkéént a "+name+" szobához");
     }
     //szobaval kapcsolatos metodusok
     public void Curse(List<Room> rooms)
@@ -265,6 +270,7 @@ public class Room {
                 break;
         }
         System.out.println("App.Room: CharacterEntered()");
+
     }
 
      /** 
@@ -339,8 +345,10 @@ public class Room {
             case "TVSZ" -> items.add(real ? new TVSZ(name) : new FakeItem(name, "TVSZ"));
             case "WetRag" -> items.add(real ? new WetRag(name) : new FakeItem(name, "WetRag"));
             default -> {
+                return;
             }
         }
+        resultLogger.log(Level.INFO, name+"-es item hozzáadva a "+this.name+" -es szobához");
     }
 
     public void Change_Test(String type) {
@@ -367,7 +375,8 @@ public class Room {
     }
 
     public void InfoAll_Test() {
-        System.out.println("Room: "+name);
+        resultLogger.log(Level.INFO, "Room "+name);
+        //System.out.println("Room "+name);
         for (Item item : items) {
             item.InfoAll_Test();
         }
@@ -384,26 +393,36 @@ public class Room {
     }
 
     public void Info_Test() {
-        System.out.println("Room: "+name);
-        System.out.println("Neighbours: "+neighbours.size());
+        //System.out.println("Room: "+name);
+        resultLogger.log(Level.INFO, name+".neighbours "+neighbours.size());
+        //System.out.println("Neighbours: "+neighbours.size());
         for (Room room : neighbours) {
-            System.out.println("Room: "+room.name);
+            resultLogger.log(Level.INFO, "Room "+room.name);
+            //System.out.println("Room: "+room.name);
         }
-        System.out.println("Items: "+items.size());
+        resultLogger.log(Level.INFO, name+".items "+items.size());
+        //System.out.println("Items: "+items.size());
         for (Item item : items) {
-            System.out.println("Item: "+item.GetName());
+            resultLogger.log(Level.INFO, "Item "+item.GetName());
+            //System.out.println("Item: "+item.GetName());
         }
-        System.out.println("Professors: "+professors.size());
+        resultLogger.log(Level.INFO, name+".professors "+professors.size());
+        //System.out.println("Professors: "+professors.size());
         for (Professor professor : professors) {
-            System.out.println("Professor: "+professor.GetName());
+            resultLogger.log(Level.INFO, "Professor "+professor.GetName());
+            //System.out.println("Professor: "+professor.GetName());
         }
-        System.out.println("Students: "+students.size());
+        resultLogger.log(Level.INFO, name+".students "+students.size());
+        //System.out.println("Students: "+students.size());
         for (Student student : students) {
-            System.out.println("Student: "+student.GetName());
+            resultLogger.log(Level.INFO, "Student "+student.GetName());
+            //System.out.println("Student: "+student.GetName());
         }
-        System.out.println("Cleaners: "+cleaners.size());
+        resultLogger.log(Level.INFO, name+".cleaners "+cleaners.size());
+        //System.out.println("Cleaners: "+cleaners.size());
         for (Cleaner cleaner : cleaners) {
-            System.out.println("Cleaner: "+cleaner.GetName());
+            resultLogger.log(Level.INFO, "Cleaner "+cleaner.GetName());
+            //System.out.println("Cleaner: "+cleaner.GetName());
         }
     }
 
@@ -420,5 +439,6 @@ public class Room {
         for (Cleaner cleaner : cleaners) {
             cleaner.Reset_Test();
         }
+        resultLogger.log(Level.INFO, "A játék alaphelyzetbe állítva");
     }
 }
