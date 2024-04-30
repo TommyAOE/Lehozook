@@ -1,0 +1,29 @@
+[09:15:01] INFO    Room r1 added to chart 
+[09:15:01] INFO    Room r2 added to chart 
+[09:15:01] INFO    Room r2 set as neighbour of Room r1 
+[09:15:01] INFO    Character s1 added to Room r2 
+[09:15:01] INFO    Character p1 added to Room r2 
+[09:15:01] INFO    Character c1 added to Room r1 
+[09:15:01] INFO    Normal Item Camembert i1 has been added to Student s1 
+[09:15:01] INFO    Gasify called 
+[09:15:01] INFO    Stun called for student 
+[09:15:01] INFO    Character s1 used Item i1 
+[09:15:01] INFO    s1.location : r2 
+[09:15:01] INFO    s1.items : 1 
+[09:15:01] INFO    s1.inCombat : false 
+[09:15:01] INFO    s1.isProtected : 0 
+[09:15:01] INFO    s1.isStunned : positive 
+[09:15:01] INFO    p1.location : r2 
+[09:15:01] INFO    p1.isStunned : positive 
+[09:15:01] INFO    p1.inCombat : false 
+[09:15:01] INFO    init_cleanerStunned.txt Chart loaded 
+[09:15:01] INFO    Character c1 has entered Room r2 
+[09:15:01] INFO    r2.neighbours 0 
+[09:15:01] INFO    r2.items 0 
+[09:15:01] INFO    r2.professors 1 
+[09:15:01] INFO    Professor p1 
+[09:15:01] INFO    r2.students 1 
+[09:15:01] INFO    Student s1 
+[09:15:01] INFO    r2.cleaners 1 
+[09:15:01] INFO    Cleaner c1 
+[09:15:01] INFO    r2.gas : NULL 

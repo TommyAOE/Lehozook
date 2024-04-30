@@ -1,0 +1,5 @@
+AddRoom r1
+AddCharacter s1 Student r1
+AddCharacter s2 Student r1
+AddItem s2 TVSZ i1 true
+AddCharacter p1 Professor r1

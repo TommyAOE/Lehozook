@@ -1,0 +1,2 @@
+Init init_studentWin.txt
+PickupItem s1 i1

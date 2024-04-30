@@ -1,0 +1,22 @@
+[09:14:59] INFO    Room r1 added to chart 
+[09:14:59] INFO    Room r2 added to chart 
+[09:14:59] INFO    Room r2 set as neighbour of Room r1 
+[09:14:59] INFO    Gasify called 
+[09:14:59] INFO    Gas added 
+[09:14:59] INFO    Character s1 added to Room r1 
+[09:14:59] INFO    init_studentNotImmuneToGas.txt Chart loaded 
+[09:14:59] INFO    Gasify called 
+[09:14:59] INFO    Stun called for student 
+[09:14:59] INFO    Character s1 has entered Room r2 
+[09:14:59] INFO    r2.neighbours 0 
+[09:14:59] INFO    r2.items 0 
+[09:14:59] INFO    r2.professors 0 
+[09:14:59] INFO    r2.students 1 
+[09:14:59] INFO    Student s1 
+[09:14:59] INFO    r2.cleaners 0 
+[09:14:59] INFO    r2.gas : NULL 
+[09:14:59] INFO    s1.location : r2 
+[09:14:59] INFO    s1.items : 0 
+[09:14:59] INFO    s1.inCombat : false 
+[09:14:59] INFO    s1.isProtected : 0 
+[09:14:59] INFO    s1.isStunned : positive 

@@ -1,0 +1,6 @@
+AddRoom r1
+AddRoom r2
+SetNeighbours r1 r2
+SetNeighbours r2 r1
+AddCharacter s1 Student r1
+SpawnItem r1 FFP2Mask i1 false

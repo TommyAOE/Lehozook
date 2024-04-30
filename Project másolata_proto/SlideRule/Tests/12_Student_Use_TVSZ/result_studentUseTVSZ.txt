@@ -1,0 +1,18 @@
+[09:15:00] INFO    Room r1 added to chart 
+[09:15:00] INFO    Character s1 added to Room r1 
+[09:15:00] INFO    Character s2 added to Room r1 
+[09:15:00] INFO    Normal Item TVSZ i1 has been added to Student s2 
+[09:15:00] INFO    Character p1 added to Room r1 
+[09:15:00] INFO    init_studentUseTVSZ.txt Chart loaded 
+[09:15:00] INFO    Character s2 used Item i1 
+[09:15:00] INFO    Attack Student : s1 
+[09:15:00] INFO    Attack Student : s2 
+[09:15:00] INFO    r1.neighbours 0 
+[09:15:00] INFO    r1.items 0 
+[09:15:00] INFO    r1.professors 1 
+[09:15:00] INFO    Professor p1 
+[09:15:00] INFO    r1.students 2 
+[09:15:00] INFO    Student s1 
+[09:15:00] INFO    Student s2 
+[09:15:00] INFO    r1.cleaners 0 
+[09:15:00] INFO    r1.gas : NULL 

@@ -1,0 +1,19 @@
+[09:14:59] INFO    Room r1 added to chart 
+[09:14:59] INFO    Room r2 added to chart 
+[09:14:59] INFO    Room r3 added to chart 
+[09:14:59] INFO    Room r2 set as neighbour of Room r1 
+[09:14:59] INFO    Room r3 set as neighbour of Room r2 
+[09:14:59] INFO    Gasify called 
+[09:14:59] INFO    Gas added 
+[09:14:59] INFO    Character s1 added to Room r1 
+[09:14:59] INFO    Normal Item FFP2Mask i1 has been added to Room r2 
+[09:14:59] INFO    init_studentImmuneToGas.txt Chart loaded 
+[09:14:59] INFO    Character s1 has entered Room r2 
+[09:14:59] INFO    Character s1 picked up Item i1 
+[09:14:59] INFO    Gasify called 
+[09:14:59] INFO    Character s1 has entered Room r3 
+[09:14:59] INFO    s1.location : r3 
+[09:14:59] INFO    s1.items : 1 
+[09:14:59] INFO    s1.inCombat : false 
+[09:14:59] INFO    s1.isProtected : 0 
+[09:14:59] INFO    s1.isStunned : 0 

@@ -1,0 +1,8 @@
+AddRoom r1
+AddRoom r2
+AddRoom r3
+SetNeighbours r1 r2
+SetNeighbours r2 r3
+GasRoom r3
+AddCharacter s1 Student r1
+SpawnItem r2 FFP2Mask i1 true

@@ -1,0 +1,6 @@
+[09:15:01] INFO    Room r1 added to chart 
+[09:15:01] INFO    Character s1 added to Room r1 
+[09:15:01] INFO    Normal Item Camembert i1 has been added to Room r1 
+[09:15:01] INFO    Goo activated in Room r1, items glued 
+[09:15:01] INFO    init_gluedItem.txt Chart loaded 
+[09:15:01] INFO    Character s1 could not pick up Item i1 

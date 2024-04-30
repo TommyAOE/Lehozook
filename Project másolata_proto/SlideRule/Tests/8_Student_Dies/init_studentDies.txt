@@ -1,0 +1,5 @@
+AddRoom r1
+AddRoom r2
+AddCharacter s1 Student r1
+AddCharacter s2 Student r2
+AddCharacter p1 Professor r1

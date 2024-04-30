@@ -1,0 +1,15 @@
+[09:15:01] INFO    Room r1 added to chart 
+[09:15:01] INFO    Room r2 added to chart 
+[09:15:01] INFO    Room r2 set as neighbour of Room r1 
+[09:15:01] INFO    Character c1 added to Room r1 
+[09:15:01] INFO    Gasify called 
+[09:15:01] INFO    Gas added 
+[09:15:01] INFO    init_cleanerVentilates.txt Chart loaded 
+[09:15:01] INFO    Character c1 has entered Room r2 
+[09:15:01] INFO    r2.neighbours 0 
+[09:15:01] INFO    r2.items 0 
+[09:15:01] INFO    r2.professors 0 
+[09:15:01] INFO    r2.students 0 
+[09:15:01] INFO    r2.cleaners 1 
+[09:15:01] INFO    Cleaner c1 
+[09:15:01] INFO    r2.gas : NULL 

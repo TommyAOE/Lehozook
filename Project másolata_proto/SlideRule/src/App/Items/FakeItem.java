@@ -39,11 +39,13 @@ public class FakeItem extends Item {
      */
     @Override
     public void ApplyEffect() {
-        int safe = 100;
-        Room newRoom = owner.GetLocation().neighbours.get(new Random().nextInt(owner.GetLocation().neighbours.size() + 1));
-        while (newRoom.IsFull() && --safe > 0)
-            newRoom = owner.GetLocation().neighbours.get(new Random().nextInt(owner.GetLocation().neighbours.size() + 1));
-        owner.EnterRoom(newRoom);
+        if(owner.GetLocation().GetNeighbours().size() == 0){
+            resultLogger.log(Level.WARNING, "The room has no neighbours");
+            return;
+        }
+        Room newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size()));
+        while(!owner.EnterRoom(newRoom))
+            newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size()));
     }
 
     /**
@@ -63,9 +65,11 @@ public class FakeItem extends Item {
      */
     @Override
     public String GetType() {
-        return null;
+        return "FakeItem";
     }
-
+    public String GetFakeType(){
+        return type;
+    }
     /**
      * Logs information about the fake item.
      */

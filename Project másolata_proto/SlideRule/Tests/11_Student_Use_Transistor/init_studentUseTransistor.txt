@@ -1,0 +1,6 @@
+AddRoom r1
+AddRoom r2
+SetNeighbours r1 r2
+AddCharacter s1 Student r1
+AddItem s1 Transistor i1 true
+AddItem s1 Transistor i2 true

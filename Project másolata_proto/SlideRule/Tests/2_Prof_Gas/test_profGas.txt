@@ -1,0 +1,4 @@
+Init init_profGas.txt
+EnterRoom p1 r2
+Info r2 Room
+Info p1 Professor

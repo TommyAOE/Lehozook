@@ -1,0 +1,31 @@
+[09:15:00] INFO    Room r1 added to chart 
+[09:15:00] INFO    Room r2 added to chart 
+[09:15:00] INFO    Room r2 set as neighbour of Room r1 
+[09:15:00] INFO    Room r1 set as neighbour of Room r2 
+[09:15:00] INFO    Character s1 added to Room r2 
+[09:15:00] INFO    Character s2 added to Room r2 
+[09:15:00] INFO    Character p1 added to Room r2 
+[09:15:00] INFO    Character c1 added to Room r1 
+[09:15:00] INFO    init_cleanerThrowOut.txt Chart loaded 
+[09:15:00] INFO    Character s1 has entered Room r1 
+[09:15:00] INFO    Character s2 has entered Room r1 
+[09:15:00] INFO    Character p1 has entered Room r1 
+[09:15:00] INFO    Character c1 has entered Room r2 
+[09:15:00] INFO    r2.neighbours 1 
+[09:15:00] INFO    Room r1 
+[09:15:00] INFO    r2.items 0 
+[09:15:00] INFO    r2.professors 0 
+[09:15:00] INFO    r2.students 0 
+[09:15:00] INFO    r2.cleaners 1 
+[09:15:00] INFO    Cleaner c1 
+[09:15:00] INFO    r2.gas : NULL 
+[09:15:00] INFO    r1.neighbours 1 
+[09:15:00] INFO    Room r2 
+[09:15:00] INFO    r1.items 0 
+[09:15:00] INFO    r1.professors 1 
+[09:15:00] INFO    Professor p1 
+[09:15:00] INFO    r1.students 2 
+[09:15:00] INFO    Student s1 
+[09:15:00] INFO    Student s2 
+[09:15:00] INFO    r1.cleaners 0 
+[09:15:00] INFO    r1.gas : NULL 

@@ -1,0 +1,2 @@
+Init init_profGas.txt
+AddCharacter s1 Student r1

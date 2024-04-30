@@ -1,0 +1,10 @@
+AddRoom r1
+AddRoom r2
+SetNeighbours r1 r2
+AddCharacter p1 Professor r2
+AddCharacter p2 Professor r2
+AddCharacter s1 Student r1
+AddCharacter s2 Student r1
+AddItem s2 WetRag i1 true
+EnterRoom s1 r2
+EnterRoom s2 r2

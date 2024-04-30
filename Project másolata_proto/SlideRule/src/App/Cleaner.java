@@ -67,10 +67,14 @@ public class Cleaner extends Character
             resultLogger.log(Level.INFO, msg);
             return false;
         }
+        if(!this.location.GetNeighbours().contains(r)){
+            resultLogger.log(Level.INFO, "Room "+r.name+" is not neighbour of the character's current room");
+            return false;
+        }
         location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;
-        String msg = "Character "+ name + " added to Room " + r.name;
+        String msg = "Character "+ name + " has entered Room " + r.name;
         resultLogger.log(Level.INFO, msg);
         return true;
     }

@@ -1,0 +1,7 @@
+Init init_studentUseTransistor.txt
+UseItem s1 i1
+EnterRoom s1 r2
+UseItem s1 i1
+ActivateTransistor i2
+Info s1 Student
+Info r2 Room

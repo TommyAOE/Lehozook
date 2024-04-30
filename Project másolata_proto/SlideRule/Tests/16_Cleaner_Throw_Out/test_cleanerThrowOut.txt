@@ -1,0 +1,4 @@
+Init init_cleanerThrowOut.txt
+EnterRoom c1 r2
+Info r2 Room
+Info r1 Room

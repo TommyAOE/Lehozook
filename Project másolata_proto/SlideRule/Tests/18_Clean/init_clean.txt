@@ -1,0 +1,7 @@
+AddRoom r1
+AddRoom r2
+SetNeighbours r1 r2
+AddCharacter s1 Student r1
+AddCharacter c1 Cleaner r1
+SpawnItem r2 Camembert i1 true
+GooRoom r2 glued

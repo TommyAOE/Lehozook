@@ -1,0 +1,3 @@
+Init init_studentDies.txt
+CombatRoom r1
+Info r1 Room

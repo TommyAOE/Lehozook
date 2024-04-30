@@ -41,7 +41,6 @@ public class WetRag extends Item{
      * Stuns professors in the same room as the owner based on the moisture level of the rag.
      */
     public void ApplyEffect() {
-        System.out.println("WetRag: ApplyEffect()");
         for (Professor prof : owner.GetLocation().GetProfessors()) {
             prof.Stun(moistureLevel);
         }
