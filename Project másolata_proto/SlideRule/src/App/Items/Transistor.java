@@ -40,7 +40,6 @@ public class Transistor extends Item{
      * If the transistor has a pair, it drops itself from the owner.
      */
     public void ApplyEffect() {
-        System.out.println("Transistor: ApplyEffect()");
         if (this.pair != null) {
             owner.DropItem(this);
             owner = null;

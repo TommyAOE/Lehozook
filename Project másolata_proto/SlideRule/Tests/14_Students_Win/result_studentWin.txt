@@ -1,6 +1,6 @@
-[21:41:53] INFO    Room r1 added to chart 
-[21:41:53] INFO    Character s1 added to Room r1 
-[21:41:53] INFO    Normal Item SlideRule i1 has been added to Room r1 
-[21:41:53] INFO    init_studentWin.txt Chart loaded 
-[21:41:53] INFO    Character s1 picked up Item i1 
-[21:41:53] INFO    Students have won! 
+[09:15:00] INFO    Room r1 added to chart 
+[09:15:00] INFO    Character s1 added to Room r1 
+[09:15:00] INFO    Normal Item SlideRule i1 has been added to Room r1 
+[09:15:00] INFO    init_studentWin.txt Chart loaded 
+[09:15:00] INFO    Character s1 picked up Item i1 
+[09:15:00] INFO    Students have won! 

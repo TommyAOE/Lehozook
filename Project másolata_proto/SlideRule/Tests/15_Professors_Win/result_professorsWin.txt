@@ -1,6 +1,6 @@
-[21:54:58] INFO    Room r1 added to chart 
-[21:54:58] INFO    Character s1 added to Room r1 
-[21:54:58] INFO    Character p1 added to Room r1 
-[21:54:58] INFO    init_professorsWin.txt Chart loaded 
-[21:54:58] INFO    Attack Student : s1 
-[21:54:58] INFO    Professors have won 
+[09:15:00] INFO    Room r1 added to chart 
+[09:15:00] INFO    Character s1 added to Room r1 
+[09:15:00] INFO    Character p1 added to Room r1 
+[09:15:00] INFO    init_professorsWin.txt Chart loaded 
+[09:15:00] INFO    Attack Student : s1 
+[09:15:00] INFO    Professors have won 

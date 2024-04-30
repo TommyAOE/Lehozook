@@ -1,11 +1,14 @@
-[19:59:07] INFO    Room r1 added to chart 
-[19:59:07] INFO    Character s1 added to Room r1 
-[19:59:07] INFO    Character p1 added to Room r1 
-[19:59:07] INFO    init_studentDies.txt Chart loaded 
-[19:59:07] INFO    Attack Student : s1 
-[19:59:07] INFO    r1.neighbours 0 
-[19:59:07] INFO    r1.items 0 
-[19:59:07] INFO    r1.professors 1 
-[19:59:07] INFO    Professor p1 
-[19:59:07] INFO    r1.students 0 
-[19:59:07] INFO    r1.cleaners 0 
+[09:14:59] INFO    Room r1 added to chart 
+[09:14:59] INFO    Room r2 added to chart 
+[09:14:59] INFO    Character s1 added to Room r1 
+[09:14:59] INFO    Character s2 added to Room r2 
+[09:14:59] INFO    Character p1 added to Room r1 
+[09:14:59] INFO    init_studentDies.txt Chart loaded 
+[09:14:59] INFO    Attack Student : s1 
+[09:14:59] INFO    r1.neighbours 0 
+[09:14:59] INFO    r1.items 0 
+[09:14:59] INFO    r1.professors 1 
+[09:14:59] INFO    Professor p1 
+[09:14:59] INFO    r1.students 0 
+[09:14:59] INFO    r1.cleaners 0 
+[09:14:59] INFO    r1.gas : NULL 

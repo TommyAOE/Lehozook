@@ -39,6 +39,10 @@ public class FakeItem extends Item {
      */
     @Override
     public void ApplyEffect() {
+        if(owner.GetLocation().GetNeighbours().size() == 0){
+            resultLogger.log(Level.WARNING, "The room has no neighbours");
+            return;
+        }
         Room newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size()));
         while(!owner.EnterRoom(newRoom))
             newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size()));

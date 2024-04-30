@@ -1,14 +1,14 @@
-[20:23:41] INFO    Room r1 added to chart 
-[20:23:41] INFO    Character s1 added to Room r1 
-[20:23:41] INFO    Normal Item Camembert i1 has been added to Student s1 
-[20:23:41] INFO    init_studentUseCamembert.txt Chart loaded 
-[20:23:41] INFO    Gasify called 
-[20:23:41] INFO    Stun called for student 
-[20:23:41] INFO    Character s1 used Item i1 
-[20:23:41] INFO    r1.neighbours 0 
-[20:23:41] INFO    r1.items 0 
-[20:23:41] INFO    r1.professors 0 
-[20:23:41] INFO    r1.students 1 
-[20:23:41] INFO    Student s1 
-[20:23:41] INFO    r1.cleaners 0 
-[20:23:41] INFO    r1.gas : notnull 
+[09:15:00] INFO    Room r1 added to chart 
+[09:15:00] INFO    Character s1 added to Room r1 
+[09:15:00] INFO    Normal Item Camembert i1 has been added to Student s1 
+[09:15:00] INFO    init_studentUseCamembert.txt Chart loaded 
+[09:15:00] INFO    Gasify called 
+[09:15:00] INFO    Stun called for student 
+[09:15:00] INFO    Character s1 used Item i1 
+[09:15:00] INFO    r1.neighbours 0 
+[09:15:00] INFO    r1.items 0 
+[09:15:00] INFO    r1.professors 0 
+[09:15:00] INFO    r1.students 1 
+[09:15:00] INFO    Student s1 
+[09:15:00] INFO    r1.cleaners 0 
+[09:15:00] INFO    r1.gas : notnull 

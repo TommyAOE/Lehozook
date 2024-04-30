@@ -1,12 +1,12 @@
-[19:16:45] INFO    Room r1 added to chart 
-[19:16:45] INFO    Room r2 added to chart 
-[19:16:45] INFO    Room r2 set as neighbour of Room r1 
-[19:16:45] INFO    Character p1 added to Room r2 
-[19:16:45] INFO    Character s1 added to Room r1 
-[19:16:45] INFO    init_studentProf.txt Chart loaded 
-[19:16:45] INFO    Character s1 has entered Room r2 
-[19:16:45] INFO    s1.location : App.Room@15aeb7ab 
-[19:16:45] INFO    s1.items : 0 
-[19:16:45] INFO    s1.inCombat : true 
-[19:16:45] INFO    s1.isProtected : 0 
-[19:16:45] INFO    s1.isStunned : 0 
+[09:14:59] INFO    Room r1 added to chart 
+[09:14:59] INFO    Room r2 added to chart 
+[09:14:59] INFO    Room r2 set as neighbour of Room r1 
+[09:14:59] INFO    Character p1 added to Room r2 
+[09:14:59] INFO    Character s1 added to Room r1 
+[09:14:59] INFO    init_studentProf.txt Chart loaded 
+[09:14:59] INFO    Character s1 has entered Room r2 
+[09:14:59] INFO    s1.location : r2 
+[09:14:59] INFO    s1.items : 0 
+[09:14:59] INFO    s1.inCombat : true 
+[09:14:59] INFO    s1.isProtected : 0 
+[09:14:59] INFO    s1.isStunned : 0 

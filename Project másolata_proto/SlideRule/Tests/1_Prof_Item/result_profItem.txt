@@ -2,10 +2,9 @@
 [09:14:58] INFO    Room r2 added to chart 
 [09:14:58] INFO    Room r2 set as neighbour of Room r1 
 [09:14:58] INFO    Character p1 added to Room r1 
-[09:14:58] INFO    Gasify called 
-[09:14:58] INFO    Gas added 
-[09:14:58] INFO    init_profGas.txt Chart loaded 
-[09:14:58] INFO    Gasify called 
+[09:14:58] INFO    Normal Item Camembert i1 has been added to Room r2 
+[09:14:58] INFO    Fake Item TVSZ i2 has been added to Room r2 
+[09:14:58] INFO    init_profItem.txt Chart loaded 
 [09:14:58] INFO    Character p1 has entered Room r2 
 [09:14:58] INFO    r2.neighbours 0 
 [09:14:58] INFO    r2.items 0 
@@ -14,6 +13,3 @@
 [09:14:58] INFO    r2.students 0 
 [09:14:58] INFO    r2.cleaners 0 
 [09:14:58] INFO    r2.gas : NULL 
-[09:14:58] INFO    p1.location : r2 
-[09:14:58] INFO    p1.isStunned : positive 
-[09:14:58] INFO    p1.inCombat : false 

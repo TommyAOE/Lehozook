@@ -1,6 +1,6 @@
-[22:41:19] INFO    Room r1 added to chart 
-[22:41:19] INFO    Room r2 added to chart 
-[22:41:19] INFO    Room r2 set as neighbour of Room r1 
-[22:41:19] INFO    Character c1 added to Room r1 
-[22:41:19] INFO    init_cleanerFull.txt Chart loaded 
-[22:41:19] INFO    Room r2 is full 
+[09:15:01] INFO    Room r1 added to chart 
+[09:15:01] INFO    Room r2 added to chart 
+[09:15:01] INFO    Room r2 set as neighbour of Room r1 
+[09:15:01] INFO    Character c1 added to Room r1 
+[09:15:01] INFO    init_cleanerFull.txt Chart loaded 
+[09:15:01] INFO    Room r2 is full 
