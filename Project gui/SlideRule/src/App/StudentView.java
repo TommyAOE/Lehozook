@@ -9,29 +9,20 @@ import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 
-public class StudentView extends JLabel implements EventListener {
+public class StudentView extends JLabel implements PropertyChangeListener {
     Student student ;
     public StudentView(Student student) {
         this.student = student;
+        this.student.AddPropertyChangeListener(this);
         this.setText(student.GetName());
         this.setBounds(10, 10, 50, 50);
         this.setBorder(BorderFactory.createEtchedBorder());;
     }
 
     @Override
-    public void update(String eventType, Object target, Object data){
-        Student s = (Student) target;
-        if (Objects.equals(s, student)){
-                System.out.println("StudentView: " + s.GetName());
-                this.setText(s.GetName());
-
-            if (eventType.equals("move")) {
-
-                Point p = (Point) data;
-                this.setLocation(this.getX()+p.x, this.getY()+p.y);
-            }else {
-                System.out.println("StudentView: " + s.GetName());
-                this.setText(s.GetName());}
-            }
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("name")) {
+            this.setText((String) evt.getNewValue());
         }
     }
+}

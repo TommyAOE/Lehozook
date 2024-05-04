@@ -1,16 +1,19 @@
 package App;
 
+import java.beans.PropertyChangeListener;
 import java.util.*;
 import java.util.logging.Level;
 
 import static App.Proto.resultLogger;
 import App.Items.*;
+import java.beans.PropertyChangeSupport;
 
 
 /**
  * Represents a student character in the game.
  */
 public class Student extends Character implements IFighter {
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     public int x;
     public int y;
     public int width;
@@ -57,7 +60,10 @@ public class Student extends Character implements IFighter {
         String s= name.substring(1);
         int i = Integer.parseInt(s)+1;
         name = "s"+i;
-
+        pcs.firePropertyChange("name", null, name);
+    }
+    public void AddPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
     }
     /**
      * Retrieves a list of items in the room.
