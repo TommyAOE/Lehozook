@@ -1,20 +1,23 @@
 package App;
 
+import App.Items.FFP2Mask;
+import App.Items.Item;
+import App.Items.StBeerCups;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class ListTest extends JList {
-    ArrayList<Student> students = new ArrayList<>();
+    ArrayList<Item> items = new ArrayList<>();
     public ListTest(){
 
-        Room room = new Room("r1", "normal", new Chart());
-        students.add(new Student("Alice", room));
-        students.add(new Student("Bob", room));
-        students.add(new Student("Charlie", room));
-        this.setListData(students.toArray());
+        items.add(new FFP2Mask("i1"));
+        items.add(new StBeerCups("i2"));
+        this.setListData(items.toArray());
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e)  {check(e);}
@@ -27,10 +30,17 @@ public class ListTest extends JList {
 
             public void check(MouseEvent e) {
                 System.out.println("clicked");
+                Item item = (Item) ListTest.this.getSelectedValue();
                 JPopupMenu popup = new JPopupMenu();
-                popup.add(new JMenuItem("Test"));
-                popup.add(new JMenuItem("Test2"));
-                popup.add(new JMenuItem("Test3")    );
+                JMenuItem use = new JMenuItem("Use");
+                use.setAction(new AbstractAction("Use") {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        item.ApplyEffect();
+                    }
+                });
+                popup.add(use);
+                popup.add(new JMenuItem("Drop"));
                 ListTest.this.setSelectedIndex(ListTest.this.locationToIndex(e.getPoint())); //select the item
                     popup.show(ListTest.this, e.getX(), e.getY()); //and show the menu
                 ListTest.this.clearSelection(); //clear the selection

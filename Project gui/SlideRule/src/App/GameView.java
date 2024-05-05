@@ -25,32 +25,12 @@ public class GameView extends JFrame {
             this.setTitle("Game Window");
             this.setSize(1000, 1000);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            this.addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent e) {
-                    System.out.println(e.getKeyChar());
-                    if (e.getKeyChar() == 'w') {
-                        Point p = new Point(0,  - 10);
-                    } else if (e.getKeyChar() == 's') {
-                        Point p = new Point(0, + 10);
-                    } else if (e.getKeyChar() == 'a') {
-                        Point p = new Point( - 10, 0);
-                    } else if (e.getKeyChar() == 'd') {
-                        Point p = new Point(+ 10, 0);
-                    }else if (e.getKeyChar() == 'n') {
-                        students.get(0).NameTest();
-                        System.out.println(students.get(0).GetName());
-                    }
-                }
-                @Override
-                public void keyPressed(KeyEvent e) {
-                    System.out.println(e.getKeyChar());
-                }
-                @Override
-                public void keyReleased(KeyEvent e) {
-                }
+            JButton button = new JButton("Test");
+            button.setBounds(50, 50, 100, 50);
+            button.addActionListener(e -> {
+                students.get(0).NameTest();
             });
+            add(button);
             this.add(studentView1);
             this.add(studentView2);
             ListTest listTest = new ListTest();
