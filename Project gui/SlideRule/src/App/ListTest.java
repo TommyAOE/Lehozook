@@ -1,8 +1,6 @@
 package App;
 
-import App.Items.FFP2Mask;
-import App.Items.Item;
-import App.Items.StBeerCups;
+import App.Items.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +15,9 @@ public class ListTest extends JList {
 
         items.add(new FFP2Mask("i1"));
         items.add(new StBeerCups("i2"));
+        items.add(new Camembert("i3"));
+        items.add(new TVSZ("i4"));
+        items.add(new Airfreshener("i5"));
         this.setListData(items.toArray());
         this.addMouseListener(new MouseAdapter() {
             @Override
@@ -31,6 +32,7 @@ public class ListTest extends JList {
             public void check(MouseEvent e) {
                 System.out.println("clicked");
                 Item item = (Item) ListTest.this.getSelectedValue();
+                System.out.println(item.GetType());
                 JPopupMenu popup = new JPopupMenu();
                 JMenuItem use = new JMenuItem("Use");
                 use.setAction(new AbstractAction("Use") {
@@ -48,6 +50,10 @@ public class ListTest extends JList {
         });
         this.setBorder(BorderFactory.createEtchedBorder());
         this.setVisible(true);
-        this.setBounds(300,300,200,200);
+        this.setBounds(300,300,265,56);
+        this.setCellRenderer(new ItemCellRenderer());
+        setBackground(Color.decode("#69430A"));
+        setVisibleRowCount(-1);
+        setLayoutOrientation(JList.HORIZONTAL_WRAP);
     }
 }
