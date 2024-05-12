@@ -1,25 +1,25 @@
-[09:15:00] INFO    Room r1 added to chart 
-[09:15:00] INFO    Room r2 added to chart 
-[09:15:00] INFO    Room r2 set as neighbour of Room r1 
-[09:15:00] INFO    Character s1 added to Room r1 
-[09:15:00] INFO    Normal Item Transistor i1 has been added to Student s1 
-[09:15:00] INFO    Normal Item Transistor i2 has been added to Student s1 
-[09:15:00] INFO    init_studentUseTransistor.txt Chart loaded 
-[09:15:00] INFO    Character s1 used Item i1 
-[09:15:00] INFO    Character s1 has entered Room r2 
-[09:15:00] INFO    Transistor activated 
-[09:15:00] INFO    The transistor has a pair 
-[09:15:00] INFO    Character s1 has entered Room r1 
-[09:15:00] INFO    Successfully entered the new room 
-[09:15:00] INFO    s1.location : r1 
-[09:15:00] INFO    s1.items : 0 
-[09:15:00] INFO    s1.inCombat : false 
-[09:15:00] INFO    s1.isProtected : 0 
-[09:15:00] INFO    s1.isStunned : 0 
-[09:15:00] INFO    r2.neighbours 0 
-[09:15:00] INFO    r2.items 1 
-[09:15:00] INFO    Item i2 
-[09:15:00] INFO    r2.professors 0 
-[09:15:00] INFO    r2.students 0 
-[09:15:00] INFO    r2.cleaners 0 
-[09:15:00] INFO    r2.gas : NULL 
+[23:03:23] INFO    Room r1 added to chart 
+[23:03:23] INFO    Room r2 added to chart 
+[23:03:23] INFO    Room r2 set as neighbour of Room r1 
+[23:03:23] INFO    Character s1 added to Room r1 
+[23:03:23] INFO    Normal Item Transistor i1 has been added to Student s1 
+[23:03:23] INFO    Normal Item Transistor i2 has been added to Student s1 
+[23:03:23] INFO    init_studentUseTransistor.txt Chart loaded 
+[23:03:23] INFO    Character s1 used Item i1 
+[23:03:23] INFO    Character s1 has entered Room r2 
+[23:03:23] INFO    Transistor activated 
+[23:03:23] INFO    The transistor has a pair 
+[23:03:23] INFO    Character s1 has entered Room r1 
+[23:03:23] INFO    Successfully entered the new room 
+[23:03:23] INFO    s1.location : r1 
+[23:03:23] INFO    s1.items : 0 
+[23:03:23] INFO    s1.inCombat : false 
+[23:03:23] INFO    s1.isProtected : 0 
+[23:03:23] INFO    s1.isStunned : 0 
+[23:03:23] INFO    r2.neighbours 0 
+[23:03:23] INFO    r2.items 1 
+[23:03:23] INFO    Item i2 
+[23:03:23] INFO    r2.professors 0 
+[23:03:23] INFO    r2.students 0 
+[23:03:23] INFO    r2.cleaners 0 
+[23:03:23] INFO    r2.gas : NULL 

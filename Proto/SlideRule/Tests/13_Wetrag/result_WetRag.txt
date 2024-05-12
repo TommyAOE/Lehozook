@@ -1,28 +1,28 @@
-[09:15:00] INFO    Room r1 added to chart 
-[09:15:00] INFO    Room r2 added to chart 
-[09:15:00] INFO    Room r2 set as neighbour of Room r1 
-[09:15:00] INFO    Character p1 added to Room r2 
-[09:15:00] INFO    Character p2 added to Room r2 
-[09:15:00] INFO    Character s1 added to Room r1 
-[09:15:00] INFO    Character s2 added to Room r1 
-[09:15:00] INFO    Normal Item WetRag i1 has been added to Student s2 
-[09:15:00] INFO    Character s1 has entered Room r2 
-[09:15:00] INFO    Character s2 has entered Room r2 
-[09:15:00] INFO    init_WetRag.txt Chart loaded 
-[09:15:00] INFO    Character s2 used Item i1 
-[09:15:00] INFO    r2.neighbours 0 
-[09:15:00] INFO    r2.items 0 
-[09:15:00] INFO    r2.professors 2 
-[09:15:00] INFO    Professor p1 
-[09:15:00] INFO    Professor p2 
-[09:15:00] INFO    r2.students 2 
-[09:15:00] INFO    Student s1 
-[09:15:00] INFO    Student s2 
-[09:15:00] INFO    r2.cleaners 0 
-[09:15:00] INFO    r2.gas : NULL 
-[09:15:00] INFO    p1.location : r2 
-[09:15:00] INFO    p1.isStunned : positive 
-[09:15:00] INFO    p1.inCombat : true 
-[09:15:00] INFO    p2.location : r2 
-[09:15:00] INFO    p2.isStunned : positive 
-[09:15:00] INFO    p2.inCombat : true 
+[23:03:24] INFO    Room r1 added to chart 
+[23:03:24] INFO    Room r2 added to chart 
+[23:03:25] INFO    Room r2 set as neighbour of Room r1 
+[23:03:25] INFO    Character p1 added to Room r2 
+[23:03:25] INFO    Character p2 added to Room r2 
+[23:03:25] INFO    Character s1 added to Room r1 
+[23:03:25] INFO    Character s2 added to Room r1 
+[23:03:25] INFO    Normal Item WetRag i1 has been added to Student s2 
+[23:03:25] INFO    Character s1 has entered Room r2 
+[23:03:25] INFO    Character s2 has entered Room r2 
+[23:03:25] INFO    init_WetRag.txt Chart loaded 
+[23:03:25] INFO    Character s2 used Item i1 
+[23:03:25] INFO    r2.neighbours 0 
+[23:03:25] INFO    r2.items 0 
+[23:03:25] INFO    r2.professors 2 
+[23:03:25] INFO    Professor p1 
+[23:03:25] INFO    Professor p2 
+[23:03:25] INFO    r2.students 2 
+[23:03:25] INFO    Student s1 
+[23:03:25] INFO    Student s2 
+[23:03:25] INFO    r2.cleaners 0 
+[23:03:25] INFO    r2.gas : NULL 
+[23:03:25] INFO    p1.location : r2 
+[23:03:25] INFO    p1.isStunned : positive 
+[23:03:25] INFO    p1.inCombat : true 
+[23:03:25] INFO    p2.location : r2 
+[23:03:25] INFO    p2.isStunned : positive 
+[23:03:25] INFO    p2.inCombat : true 

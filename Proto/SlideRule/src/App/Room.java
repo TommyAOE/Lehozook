@@ -226,18 +226,18 @@ public class Room {
      */
     public Item PopItem(Item item)
     {
-        Item seged = null;
+        Item tempItem = null;
         for (int i = 0; i < items.size(); i++) 
         {
             if(items.get(i).equals(item))
             {
                 if(!items.get(i).IsGlued()){
-                    seged = items.get(i);
+                    tempItem = items.get(i);
                     items.remove(i);
                 }
             }
         }
-        return seged;
+        return tempItem;
         
     }
 

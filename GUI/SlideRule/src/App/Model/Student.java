@@ -428,18 +428,21 @@ public class Student extends Character implements IFighter {
      */
     public void DropItem_Test(String name)
     {
-        for (Item i:items
-             ) {
+        for (Item i:items) {
             if (i.GetName().equals(name))
             {
-                location.AddItem(i);
+                DropItem(i);
                 resultLogger.log(Level.INFO,"Character "+ this.name+" dropped Item "+i.GetName()+" in Room " +location.name);
-                items.remove(i);
                 break;
             }
         }
 
     }
+
+    public void UseItem(Item i) {
+        i.ApplyEffect();
+    }
+
     /**
      * Uses the specified item from the student's inventory.
      *
@@ -450,7 +453,7 @@ public class Student extends Character implements IFighter {
         for (Item i:items) {
             if (i.GetName().equals(name))
             {
-                i.ApplyEffect();
+                UseItem(i);
                 resultLogger.log(Level.INFO, "Character "+ this.name+ " used Item "+ i.GetName());
                 break;
             }
@@ -461,28 +464,30 @@ public class Student extends Character implements IFighter {
      *
      * @param name the name of the item to pick up
      */
+    public void PickUpItem(Item i) {
+        Item tempItem = location.PopItem(i);
+        if (tempItem != null)
+        {
+            items.add(tempItem);
+            tempItem.SetOwner(this);
+            resultLogger.log(Level.INFO,"Character "+ this.name+ " picked up Item "+ tempItem.GetName());
+            if (tempItem.GetType()=="SlideRule"){
+                tempItem.ApplyEffect();
+            }
+            if(tempItem.GetType() == "FakeItem"){
+                tempItem.ApplyEffect();
+            }
+
+        }else{
+            resultLogger.log(Level.INFO,"Character "+ this.name+ " could not pick up Item "+ i.GetName());
+        }
+    }
     public void PickupItem_Test(String name)
     {
         for (Item i:location.SearchItem()) {
             if (i.GetName().equals(name))
             {
-                Item seged = location.PopItem(i);
-                if (seged != null)
-                {
-                    items.add(seged);
-                    seged.SetOwner(this);
-                    resultLogger.log(Level.INFO,"Character "+ this.name+ " picked up Item "+ seged.GetName());
-                    if (seged.GetType()=="SlideRule"){
-                        seged.ApplyEffect();
-                    }
-                    if(seged.GetType() == "FakeItem"){
-                        seged.ApplyEffect();
-                    }
-
-                }else{
-                    resultLogger.log(Level.INFO,"Character "+ this.name+ " could not pick up Item "+ i.GetName());
-                }
-
+                PickUpItem(i);
                 break;
             }
         }

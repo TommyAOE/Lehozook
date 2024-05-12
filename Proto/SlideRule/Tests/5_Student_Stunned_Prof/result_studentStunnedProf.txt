@@ -1,17 +1,17 @@
-[09:14:59] INFO    Room r1 added to chart 
-[09:14:59] INFO    Room r2 added to chart 
-[09:14:59] INFO    Room r2 set as neighbour of Room r1 
-[09:14:59] INFO    Character p1 added to Room r1 
-[09:14:59] INFO    Gasify called 
-[09:14:59] INFO    Gas added 
-[09:14:59] INFO    init_profGas.txt Chart loaded 
-[09:14:59] INFO    Character s1 added to Room r1 
-[09:14:59] INFO    init_studentStunnedProf.txt Chart loaded 
-[09:14:59] INFO    Gasify called 
-[09:14:59] INFO    Stun called for student 
-[09:14:59] INFO    Character s1 has entered Room r2 
-[09:14:59] INFO    s1.location : r2 
-[09:14:59] INFO    s1.items : 0 
-[09:14:59] INFO    s1.inCombat : false 
-[09:14:59] INFO    s1.isProtected : 0 
-[09:14:59] INFO    s1.isStunned : positive 
+[23:03:19] INFO    Room r1 added to chart 
+[23:03:19] INFO    Room r2 added to chart 
+[23:03:19] INFO    Room r2 set as neighbour of Room r1 
+[23:03:19] INFO    Character p1 added to Room r1 
+[23:03:19] INFO    Gasify called 
+[23:03:19] INFO    Gas added 
+[23:03:19] INFO    init_profGas.txt Chart loaded 
+[23:03:19] INFO    Character s1 added to Room r1 
+[23:03:19] INFO    init_studentStunnedProf.txt Chart loaded 
+[23:03:19] INFO    Gasify called 
+[23:03:19] INFO    Stun called for student 
+[23:03:19] INFO    Character s1 has entered Room r2 
+[23:03:19] INFO    s1.location : r2 
+[23:03:19] INFO    s1.items : 0 
+[23:03:19] INFO    s1.inCombat : false 
+[23:03:19] INFO    s1.isProtected : 0 
+[23:03:19] INFO    s1.isStunned : positive 

@@ -1,18 +1,18 @@
-[09:14:59] INFO    Room r1 added to chart 
-[09:14:59] INFO    Room r2 added to chart 
-[09:14:59] INFO    Room r2 set as neighbour of Room r1 
-[09:14:59] INFO    Character p1 added to Room r1 
-[09:14:59] INFO    Normal Item Camembert i1 has been added to Room r2 
-[09:14:59] INFO    Fake Item TVSZ i2 has been added to Room r2 
-[09:14:59] INFO    Goo activated in Room r2, items glued 
-[09:14:59] INFO    init_profGoo.txt Chart loaded 
-[09:14:59] INFO    Character p1 has entered Room r2 
-[09:14:59] INFO    r2.neighbours 0 
-[09:14:59] INFO    r2.items 2 
-[09:14:59] INFO    Item i1 
-[09:14:59] INFO    Item i2 
-[09:14:59] INFO    r2.professors 1 
-[09:14:59] INFO    Professor p1 
-[09:14:59] INFO    r2.students 0 
-[09:14:59] INFO    r2.cleaners 0 
-[09:14:59] INFO    r2.gas : NULL 
+[23:03:18] INFO    Room r1 added to chart 
+[23:03:18] INFO    Room r2 added to chart 
+[23:03:18] INFO    Room r2 set as neighbour of Room r1 
+[23:03:18] INFO    Character p1 added to Room r1 
+[23:03:18] INFO    Normal Item Camembert i1 has been added to Room r2 
+[23:03:18] INFO    Fake Item TVSZ i2 has been added to Room r2 
+[23:03:18] INFO    Goo activated in Room r2, items glued 
+[23:03:18] INFO    init_profGoo.txt Chart loaded 
+[23:03:18] INFO    Character p1 has entered Room r2 
+[23:03:18] INFO    r2.neighbours 0 
+[23:03:18] INFO    r2.items 2 
+[23:03:18] INFO    Item i1 
+[23:03:18] INFO    Item i2 
+[23:03:18] INFO    r2.professors 1 
+[23:03:18] INFO    Professor p1 
+[23:03:18] INFO    r2.students 0 
+[23:03:18] INFO    r2.cleaners 0 
+[23:03:18] INFO    r2.gas : NULL 
