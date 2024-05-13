@@ -18,6 +18,14 @@ public class GameController implements PropertyChangeListener{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'propertyChange'");
     }
+
+    public Scheduler GetModel(){
+        return model;
+    }
+
+    public Student GetCurrentPlayer(){
+        return currentPlayer;
+    }
     
     public void EnterRoom(Room r){}
 
