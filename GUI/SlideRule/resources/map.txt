@@ -1,1 +1,62 @@
 AddRoom r11 normal
+AddRoom r12 normal
+AddRoom r13 normal
+AddRoom r14 normal
+AddRoom r15 normal
+AddRoom r21 normal
+AddRoom r22 normal
+AddRoom r23 normal
+AddRoom r24 normal
+AddRoom r25 normal
+AddRoom r31 normal
+AddRoom r32 normal
+AddRoom r33 cursed
+AddRoom r34 normal
+AddRoom r35 normal
+AddRoom r41 normal
+AddRoom r42 cursed
+AddRoom r43 normal
+AddRoom r44 cursed
+AddRoom r45 normal
+AddRoom r51 normal
+AddRoom r52 normal
+AddRoom r53 normal
+AddRoom r54 normal
+AddRoom r55 normal
+SetNeighboursOneWay r13 r23
+SetNeighboursOneWay r21 r22
+SetNeighboursOneWay r22 r23
+SetNeighboursOneWay r23 r33
+SetNeighboursOneWay r25 r24
+SetNeighboursOneWay r32 r42
+SetNeighboursOneWay r33 r34
+SetNeighboursOneWay r41 r42
+SetNeighboursOneWay r42 r43
+SetNeighboursOneWay r43 r44
+SetNeighboursOneWay r45 r44
+SetNeighboursOneWay r53 r43
+SetNeighboursTwoWay r11 r12 r21
+SetNeighboursTwoWay r12 r11 r13 r22
+SetNeighboursTwoWay r13 r12 r14 r23
+SetNeighboursTwoWay r14 r13 r15 r24
+SetNeighboursTwoWay r15 r14 r25
+SetNeighboursTwoWay r21 r11 r31
+SetNeighboursTwoWay r22 r12 r32
+SetNeighboursTwoWay r23 r24
+SetNeighboursTwoWay r24 r14 r23
+SetNeighboursTwoWay r25 r15 r35
+SetNeighboursTwoWay r31 r21 r32 r41
+SetNeighboursTwoWay r32 r22 r31 r33
+SetNeighboursTwoWay r33 r32
+SetNeighboursTwoWay r34 r24 r35 r44
+SetNeighboursTwoWay r35 r25 r34 r45
+SetNeighboursTwoWay r41 r31 r51
+SetNeighboursTwoWay r42 r52
+SetNeighboursTwoWay r43 r33
+SetNeighboursTwoWay r44 r34 r54
+SetNeighboursTwoWay r45 r35 r55
+SetNeighboursTwoWay r51 r41 r52
+SetNeighboursTwoWay r52 r51 r53
+SetNeighboursTwoWay r53 r52 r54
+SetNeighboursTwoWay r54 r53 r55
+SetNeighboursTwoWay r55 r45 r54

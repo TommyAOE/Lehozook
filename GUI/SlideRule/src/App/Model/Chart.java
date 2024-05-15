@@ -23,9 +23,12 @@ public class Chart {
      */
     public Chart() {
         rooms = new ArrayList<Room>();
-        ArrayList<String[]> lines = ReadFile(new File("./GUI/SlideRule/resources/map.txt"));
+        ArrayList<String[]> lines = ReadFile(new File("./SlideRule/resources/map.txt"));
         for(String[] command : lines){
             BuildMap(command);
+        }
+        for(Room r : rooms){
+            r.Info_Test();
         }
     }
 
@@ -43,7 +46,6 @@ public class Chart {
             e.printStackTrace();
             System.exit(0);
         }
-
         return lines;
     }
 
@@ -73,7 +75,6 @@ public class Chart {
             default:
                 break;
         }
-        rooms.get(rooms.size()-1).Info_Test();
     }
     private Room FindRoomByName(String name){
         for (Room room : rooms) {
@@ -155,6 +156,7 @@ public class Chart {
      */
     public void AddRoom(Room r) {
         rooms.add(r);
+        System.out.println("added " + r.name);
     }
 
     /**

@@ -83,14 +83,14 @@ public class Room {
     public void SetNeighboursOneWay(ArrayList<Room> rooms){
         for (Room r : rooms) {
             neighbours.add(r);
-            resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
+            //resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
         }
     }
     public void SetNeighboursTwoWay(ArrayList<Room> rooms){
         for (Room r : rooms) {
             neighbours.add(r);
             r.SetNeighboursOneWay(new ArrayList<Room>(Collections.singletonList(this)));
-            resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
+            //resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
         }
     }
 
@@ -478,10 +478,11 @@ public class Room {
      * Logs basic information about the room for testing purposes.
      */
     public void Info_Test() {
-        resultLogger.log(Level.INFO, name+".neighbours "+neighbours.size());
+        //resultLogger.log(Level.INFO, name+".neighbours "+neighbours.size());
+        System.out.println(name+".neighbours "+neighbours.size());
         for (Room room : neighbours) {
-            resultLogger.log(Level.INFO, "Room "+room.name);
-        }
+            System.out.println("neighbour: "+room.name);
+        }/* 
         resultLogger.log(Level.INFO, name+".items "+items.size());
         for (Item item : items) {
             resultLogger.log(Level.INFO, "Item "+item.GetName());
@@ -498,7 +499,7 @@ public class Room {
         for (Cleaner cleaner : cleaners) {
             resultLogger.log(Level.INFO, "Cleaner "+cleaner.GetName());
         }
-        resultLogger.log(Level.INFO, name+".gas : "+ ((gas == null) ? "NULL" : "notnull"));
+        resultLogger.log(Level.INFO, name+".gas : "+ ((gas == null) ? "NULL" : "notnull"));*/
     }
     /**
      * Resets the room and its contents for testing purposes.
