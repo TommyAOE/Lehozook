@@ -20,6 +20,10 @@ public class SlideRule extends Item {
         super(name, "SlideRule");
     }
 
+    public SlideRule() {
+        super("SlideRule");
+    }
+
     /**
      * Constructs a slide rule item with the given name and owner.
      *

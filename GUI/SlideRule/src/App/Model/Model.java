@@ -40,6 +40,8 @@ public class Model {
         NPCs.add(new Cleaner("c1", chart.FindRoomByName("r31")));
         NPCs.add(new Cleaner("c2", chart.FindRoomByName("r35")));
 
+        chart.IterateForItemSpawn(true, playerCount);
+
         chart.InfoAll_Test();
     }
 }

@@ -33,6 +33,13 @@ public class FFP2Mask extends Item {
         broken = false;
     }
 
+    public FFP2Mask() {
+        super("FFP2Mask");
+        counter = 3;
+        durability = 3;
+        broken = false;
+    }
+
     /**
      * Constructs a new FFP2 mask item with the specified name and owner.
      *
@@ -118,7 +125,7 @@ public class FFP2Mask extends Item {
      */
     @Override
     public void InfoAll_Test() {
-        System.out.println("FFP2Mask: " + name);
+        resultLogger.log(Level.INFO, "FFP2Mask" + name);
     }
 
     /**

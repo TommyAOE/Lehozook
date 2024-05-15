@@ -22,6 +22,10 @@ public class FakeItem extends Item {
         super(name, type);
     }
 
+    public FakeItem(String type) {
+        super(type);
+    }
+
     /**
      * Constructs a fake item with the given name, type, and owner.
      *

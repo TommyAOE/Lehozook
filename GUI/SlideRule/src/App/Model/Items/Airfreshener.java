@@ -16,6 +16,9 @@ public class Airfreshener extends Item{
     public Airfreshener(String name){
         super(name, "Airfreshener");
     }
+    public Airfreshener(){
+        super("Airfreshener");
+    }
     /**
      * Constructs an air freshener item with the given name and owner.
      *

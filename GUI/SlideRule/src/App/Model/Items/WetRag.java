@@ -24,6 +24,12 @@ public class WetRag extends Item{
         moistureLevel = random.nextInt(3) + 1;
     }
 
+    public WetRag() {
+        super("WetRag");
+        Random random = new Random();
+        moistureLevel = random.nextInt(3) + 1;
+    }
+
     /**
      * Constructs a wet rag item with the given name and owner, and randomly generates a moisture level.
      *

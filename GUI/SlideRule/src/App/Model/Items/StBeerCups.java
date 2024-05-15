@@ -20,6 +20,9 @@ public class StBeerCups extends Item {
     public StBeerCups(String name) {
         super(name, "StBeerCups");
     }
+    public StBeerCups() {
+        super("StBeerCups");
+    }
     public StBeerCups(String name, Student owner) {
         super(name, "StBeerCups", owner);
     }

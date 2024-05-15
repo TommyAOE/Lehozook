@@ -21,6 +21,10 @@ public class Camembert extends Item {
         super(name, "Camembert");
     }
 
+    public Camembert() {
+        super("Camembert");
+    }
+
     /**
      * Constructs a Camembert item with the given name and owner.
      *

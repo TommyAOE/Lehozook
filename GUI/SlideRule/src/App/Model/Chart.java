@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 
@@ -16,6 +17,7 @@ import java.util.logging.Level;
  * Represents a chart in the game.
  */
 public class Chart {
+
 
     private ArrayList<Room> rooms; // List of rooms in the chart
 
@@ -151,6 +153,30 @@ public class Chart {
     public void IterateForRoomChanges(){
         for (Room room : rooms) {
             room.Change(rooms);
+        }
+    }
+
+    public void IterateForItemSpawn(boolean initial, int playerCount){
+        if(initial){
+            rooms.get(new Random().nextInt(1, rooms.size())).AddItem(new SlideRule());
+            if(playerCount < 3){
+                for (Room room : rooms) {
+                    room.SpawnItem();
+                }
+            }else{
+                for (Room room : rooms) {
+                    room.SpawnItem();
+                    room.SpawnItem();
+                }
+            }
+        }
+        else{
+            Random r = new Random();
+            for (Room room : rooms) {
+                if(r.nextInt(100) < playerCount * 10){
+                    room.SpawnItem();
+                }
+            }
         }
     }
     

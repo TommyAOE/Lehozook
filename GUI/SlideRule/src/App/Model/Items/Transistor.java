@@ -34,6 +34,10 @@ public class Transistor extends Item{
         super(name, "Transistor");
         this.location = location;
     }
+    public Transistor(Room location) {
+        super("Transistor");
+        this.location = location;
+    }
 
     /**
      * Applies the effect of the transistor item.

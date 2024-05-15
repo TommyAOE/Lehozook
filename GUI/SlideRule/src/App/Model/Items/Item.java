@@ -21,6 +21,10 @@ public abstract class Item {
         this.name = name;
         this.type = type;
     }
+    public Item(String type){
+        this.type = type;
+        name = "empty";
+    }
 
     /** 
      * Constructs an item with the specified name, type, and owner.

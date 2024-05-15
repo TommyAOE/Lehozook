@@ -21,6 +21,10 @@ public class TVSZ extends Item{
         super(name, "TVSZ");
         uses = 3;
     }
+    public TVSZ() {
+        super("TVSZ");
+        uses = 3;
+    }
 
     /**
      * Constructs a TVSZ item with the given name and owner, and initializes the number of uses.

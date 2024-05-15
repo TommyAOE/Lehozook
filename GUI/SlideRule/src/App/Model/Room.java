@@ -30,6 +30,16 @@ public class Room {
     Goo goo;
     Chart chart;
     boolean isFull;
+    
+    private String[] itemNames = {
+        "FFP2Mask",
+        "Airfreshener",
+        "Camembert",
+        "StBeerCups",
+        "Transistor",
+        "TVSZ",
+        "WetRag"
+    };
 
     /**
      * Constructs a room with the specified name, type, and chart.
@@ -251,6 +261,22 @@ public class Room {
     public void AddItem(Item item)
     {
         items.add(item);
+    }
+
+    public void SpawnItem(){
+        Random r = new Random();
+        String type = itemNames[r.nextInt(itemNames.length)];
+        boolean real = r.nextInt(100) < 80;
+        switch (type) {
+            case "FFP2Mask" -> items.add(real ? new FFP2Mask() : new FakeItem("FFP2Mask"));
+            case "Airfreshener" -> items.add(real ? new Airfreshener() : new FakeItem("Airfreshener"));
+            case "Camembert" -> items.add(real ? new Camembert() : new FakeItem("Camambert"));
+            case "SlideRule" -> items.add(real ? new SlideRule() : new FakeItem("SlideRule"));
+            case "StBeerCups" -> items.add(real ? new StBeerCups() : new FakeItem("StBeerCups"));
+            case "Transistor" -> items.add(real ? new Transistor(this) : new FakeItem("Transistor"));
+            case "TVSZ" -> items.add(real ? new TVSZ() : new FakeItem("TVSZ"));
+            case "WetRag" -> items.add(real ? new WetRag() : new FakeItem("WetRag"));
+        }
     }
 
     /** 
@@ -484,9 +510,9 @@ public class Room {
      */
     public void InfoAll_Test() {
         resultLogger.log(Level.INFO, "Room "+name);
-        /*for (Item item : items) {
+        for (Item item : items) {
             item.InfoAll_Test();
-        }*/
+        }
         for (Professor professor : professors) {
             professor.InfoAll_Test();
         }
