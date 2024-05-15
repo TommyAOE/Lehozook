@@ -197,7 +197,7 @@ public class Room {
                 SetNeighboursTwoWay(r.neighbours);
                 neighboursOfSmaller.neighbours.remove(r);
             }
-            chart.removeRoom(r);
+            chart.RemoveRoom(r);
         }
         else{
             for(Item itemsOfSmaller : this.items){
@@ -207,7 +207,7 @@ public class Room {
                 SetNeighboursTwoWay(this.neighbours);
                 neighboursOfSmaller.neighbours.remove(this);
             }
-            chart.removeRoom(this);
+            chart.RemoveRoom(this);
         }
         resultLogger.log(Level.INFO,"Room merged");
     }
