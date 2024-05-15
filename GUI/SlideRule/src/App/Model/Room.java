@@ -82,18 +82,37 @@ public class Room {
      */
     public void SetNeighboursOneWay(ArrayList<Room> rooms){
         for (Room r : rooms) {
-            neighbours.add(r);
+            if(!isNeighbour(r)){
+                neighbours.add(r);
+                //System.out.println("new neighbours: " + name + " " + r.name);
+            }
+            else{
+                //System.err.println("already neighbours: " + name + " " + r.name);
+            }
             //resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
         }
     }
     public void SetNeighboursTwoWay(ArrayList<Room> rooms){
         for (Room r : rooms) {
-            neighbours.add(r);
-            r.SetNeighboursOneWay(new ArrayList<Room>(Collections.singletonList(this)));
+            if(!isNeighbour(r)){
+                neighbours.add(r);
+                r.SetNeighboursOneWay(new ArrayList<Room>(Collections.singletonList(this)));
+                //System.out.println("new neighbours: " + name + " " + r.name);
+            }
+            else{
+                //System.err.println("already neighbours: " + name + " " + r.name);
+            }
             //resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
         }
     }
-
+    private boolean isNeighbour(Room r){
+        boolean isNeighbour = false;
+        for(Room current: neighbours){
+            if(current == r)
+                isNeighbour = true;
+        }
+        return isNeighbour;
+    }
     /**
      * Curses the room by modifying its neighbours.
      *
