@@ -1,6 +1,7 @@
 package App.Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -79,10 +80,20 @@ public class Room {
      *
      * @param r The room to set as a neighbour.
      */
-    public void SetNeighbours(Room r){
-        neighbours.add(r);
-        resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
+    public void SetNeighboursOneWay(ArrayList<Room> rooms){
+        for (Room r : rooms) {
+            neighbours.add(r);
+            resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
+        }
     }
+    public void SetNeighboursTwoWay(ArrayList<Room> rooms){
+        for (Room r : rooms) {
+            neighbours.add(r);
+            r.SetNeighboursOneWay(new ArrayList<Room>(Collections.singletonList(this)));
+            resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
+        }
+    }
+
     /**
      * Curses the room by modifying its neighbours.
      *
@@ -95,8 +106,7 @@ public class Room {
         while(true) {
             curRoom = rooms.get(rand.nextInt(rooms.size() - 1));
             if(!neighbours.contains(curRoom)){
-                neighbours.add(curRoom);
-                curRoom.SetNeighbours(this);
+                curRoom.SetNeighboursTwoWay(new ArrayList<Room>(Collections.singletonList(this)));
                 while(true){
                     delRoom = rooms.get(rand.nextInt(neighbours.size() - 1));
                     if(delRoom!=curRoom){
@@ -124,14 +134,15 @@ public class Room {
         }
         Room newRoom = new Room("Whatever");
         newRoom.maximumcapacity=this.maximumcapacity/2+1;
-        for(int i=neighbours.size()/2;i<neighbours.size();i++){
-            newRoom.SetNeighbours(neighbours.get(i));
+        ArrayList<Room> rooms = new ArrayList<>();
+        for(int i = neighbours.size() / 2; i < neighbours.size(); i++){
+            rooms.add(neighbours.get(i));
         }
-        for (Room roomsOfNew:newRoom.neighbours) {
+        newRoom.SetNeighboursOneWay(rooms);
+        for (Room roomsOfNew : newRoom.neighbours) {
             neighbours.remove(roomsOfNew);
             try{
                 roomsOfNew.neighbours.remove(this);
-                roomsOfNew.SetNeighbours(newRoom);
             }
             catch (Exception e){}
         }
@@ -142,8 +153,7 @@ public class Room {
         for (Item itemsOfNew:newRoom.items) {
             items.remove(itemsOfNew);
         }
-        newRoom.SetNeighbours(this);
-        SetNeighbours(newRoom);
+        SetNeighboursTwoWay(new ArrayList<Room>(Collections.singletonList(newRoom)));
         chart.AddRoom(newRoom);
         resultLogger.log(Level.INFO,"Split");
 
@@ -160,20 +170,18 @@ public class Room {
                 items.add(itemsOfSmaller);
             }
             for(Room neighboursOfSmaller : r.neighbours){
-                neighbours.add(neighboursOfSmaller);
+                SetNeighboursTwoWay(r.neighbours);
                 neighboursOfSmaller.neighbours.remove(r);
-                neighboursOfSmaller.SetNeighbours(this);
             }
-            chart.removeRoom(this);
+            chart.removeRoom(r);
         }
         else{
             for(Item itemsOfSmaller : this.items){
                 r.items.add(itemsOfSmaller);
             }
             for(Room neighboursOfSmaller : this.neighbours){
-                r.neighbours.add(neighboursOfSmaller);
+                SetNeighboursTwoWay(this.neighbours);
                 neighboursOfSmaller.neighbours.remove(this);
-                neighboursOfSmaller.SetNeighbours(r);
             }
             chart.removeRoom(this);
         }

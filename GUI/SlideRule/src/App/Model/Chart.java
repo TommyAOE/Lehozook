@@ -4,8 +4,12 @@ import App.Model.Items.*;
 
 import static App.Program.resultLogger;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 
 /**
@@ -19,6 +23,78 @@ public class Chart {
      */
     public Chart() {
         rooms = new ArrayList<Room>();
+        ArrayList<String[]> lines = ReadFile(new File("./GUI/SlideRule/resources/map.txt"));
+        for(String[] command : lines){
+            BuildMap(command);
+        }
+    }
+
+    private ArrayList<String[]> ReadFile(File input) {
+        ArrayList<String[]> lines = new ArrayList<>();
+        String[] currentLine;
+        try{
+            Scanner sc = new Scanner(input);
+
+            while(sc.hasNextLine()){
+                currentLine = sc.nextLine().split(" ");
+                lines.add(currentLine);
+            }
+        } catch(FileNotFoundException e){
+            e.printStackTrace();
+            System.exit(0);
+        }
+
+        return lines;
+    }
+
+    private void BuildMap(String[] command){
+        switch (command[0]) {
+            case "AddRoom":
+                Room r = new Room(command[1], command[2], this);
+                AddRoom(r);
+                break;
+
+            case "SetNeighboursOneWay":
+                Room current = FindRoomByName(command[1]);
+                if(current != null){
+                    ArrayList<Room> neighbours = CollectNeighbours(current, command);
+                    current.SetNeighboursOneWay(neighbours);
+                }
+                break;
+
+            case "SetNeighboursTwoWay":
+                Room current2 = FindRoomByName(command[1]);
+                if(current2 != null){
+                    ArrayList<Room> neighbours = CollectNeighbours(current2, command);
+                    current2.SetNeighboursTwoWay(neighbours);
+                }
+                break;
+            
+            default:
+                break;
+        }
+        rooms.get(rooms.size()-1).Info_Test();
+    }
+    private Room FindRoomByName(String name){
+        for (Room room : rooms) {
+            if (room.name.equals(name)) {
+                return room;
+            }
+        }
+        return null; // Returns null if the room with the given name is not found
+    }
+
+    private ArrayList<Room> CollectNeighbours(Room current, String[] command){
+        ArrayList<Room> neighbours = new ArrayList<>();
+        //command[0] command
+        //command[1] room to set neighbours to
+        for(int i = 2; i < command.length; i++){
+            Room neighbourRoom = FindRoomByName(command[i]);
+            if(neighbourRoom != null){
+                neighbours.add(neighbourRoom);
+            }
+        }
+        return neighbours;
     }
 
     /** 
@@ -88,12 +164,7 @@ public class Chart {
      * @return The room with the specified name, or null if not found.
      */
     public Room findRoomByName_Test(String name) {
-        for (Room room : rooms) {
-            if (room.name.equals(name)) {
-                return room;
-            }
-        }
-        return null; // Returns null if the room with the given name is not found
+        return FindRoomByName(name);
     }
 
     /**
@@ -132,7 +203,7 @@ public class Chart {
     public void SetNeighbours_Test(String name1, String name2) {
         Room r1 = findRoomByName_Test(name1);
         Room r2 = findRoomByName_Test(name2);
-        r1.SetNeighbours(r2);
+        r1.SetNeighboursOneWay(new ArrayList<Room>(Collections.singletonList(r2)));
     }
 
     /**

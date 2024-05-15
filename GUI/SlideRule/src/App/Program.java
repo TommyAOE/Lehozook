@@ -1,4 +1,5 @@
 package App;
+
 import App.Model.Items.*;
 import java.util.logging.Logger;
 
@@ -11,7 +12,7 @@ public class Program {
      * @param args Command line arguments (not used).
      */
     public static void main(String[] args) {
-        System.out.println("Hello Grafikus valtozat");
+        GameController gc = new GameController();
     }
 
 }
