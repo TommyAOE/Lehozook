@@ -9,7 +9,6 @@ import static App.Program.resultLogger;
  */
 public class Cleaner extends Character
 {
-
     /**
      * Constructs a Cleaner object with the given name and assigns it to the specified room.
      *
@@ -30,16 +29,16 @@ public class Cleaner extends Character
     @Override
     public void Turn() {
         int safe=100;
-        Room newRoom = location.neighbours.get(new Random().nextInt(location.neighbours.size()+1));
-        while (newRoom.isFull&&--safe>0)
-            newRoom = location.neighbours.get(new Random().nextInt(location.neighbours.size()+1));
+        Room newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1));
+        while (newRoom.IsFull() && --safe>0)
+            newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1));
         EnterRoom(newRoom);
 
         for (Student s :location.GetStudents()) {
             if (s.isStunned()==0){
                 safe=100;
-                while (newRoom.isFull&&--safe>0)
-                    newRoom = location.neighbours.get(new Random().nextInt(location.neighbours.size()+1));
+                while (newRoom.IsFull() && --safe>0)
+                    newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1));
                 s.EnterRoom(newRoom);
             }
 
@@ -47,8 +46,8 @@ public class Cleaner extends Character
         for (Professor p :location.GetProfessors()) {
             if(p.IsStunned()==0) {
                 safe=100;
-                while (newRoom.isFull&&--safe>0)
-                    newRoom = location.neighbours.get(new Random().nextInt(location.neighbours.size()+1));
+                while (newRoom.IsFull() && --safe>0)
+                    newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1));
                 p.EnterRoom(newRoom);
             }
         }
@@ -63,13 +62,13 @@ public class Cleaner extends Character
      */
     @Override
     public boolean EnterRoom(Room r) {
-        if (r.isFull){
-            String msg = "Room " + r.name + " is full";
+        if (r.IsFull()){
+            String msg = "Room " + r.GetName() + " is full";
             resultLogger.log(Level.INFO, msg);
             return false;
         }
         if(location != null && !this.location.GetNeighbours().contains(r)){
-            resultLogger.log(Level.INFO, "Room "+r.name+" is not neighbour of the character's current room");
+            resultLogger.log(Level.INFO, "Room "+r.GetName()+" is not neighbour of the character's current room");
             return false;
         }
         if(location != null){
@@ -78,7 +77,7 @@ public class Cleaner extends Character
 
         r.CharacterEntered(this);
         location=r;
-        String msg = "Character "+ name + " has entered Room " + r.name;
+        String msg = "Character "+ name + " has entered Room " + r.GetName();
         resultLogger.log(Level.INFO, msg);
         return true;
     }
@@ -99,7 +98,7 @@ public class Cleaner extends Character
      */
     @Override
     public void Info_Test() {
-        String msg = name + ".location " + location.name;
+        String msg = name + ".location " + location.GetName();
         resultLogger.log(Level.INFO, msg);        
     }
 }

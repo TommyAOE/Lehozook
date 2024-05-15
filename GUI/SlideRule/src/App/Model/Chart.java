@@ -96,7 +96,7 @@ public class Chart {
      */
     public Room FindRoomByName(String name){
         for (Room room : rooms) {
-            if (room.name.equals(name)) {
+            if (room.GetName().equals(name)) {
                 return room;
             }
         }
@@ -210,17 +210,17 @@ public class Chart {
      */
     public Character findCharacterByName_Test(String name) {
         for (Room room : rooms) {
-            for (Character character : room.professors) {
+            for (Character character : room.GetProfessors()) {
                 if (character.GetName().equals(name)) {
                     return character;
                 }
             }
-            for (Character character : room.students) {
+            for (Character character : room.GetStudents()) {
                 if (character.GetName().equals(name)) {
                     return character;
                 }
             }
-            for (Character character : room.cleaners) {
+            for (Character character : room.GetCleaners()) {
                 if (character.GetName().equals(name)) {
                     return character;
                 }
@@ -250,19 +250,19 @@ public class Chart {
         Room r = FindRoomByName(roomname);
         if (type.equals("Professor")) {
             Professor p = new Professor(name, r);
-            r.professors.add(p);
+            r.GetProfessors().add(p);
             String msg = "Character " + name + " added to Room " + roomname;
             resultLogger.log(Level.INFO, msg);
 
         } else if (type.equals("Student")) {
             Student s = new Student(name, r);
-            r.students.add(s);
+            r.GetStudents().add(s);
             String msg = "Character " + name + " added to Room " + roomname;
             resultLogger.log(Level.INFO, msg);
 
         } else if (type.equals("Cleaner")) {
             Cleaner c = new Cleaner(name, r);
-            r.cleaners.add(c);
+            r.GetCleaners().add(c);
             String msg = "Character " + name + " added to Room " + roomname;
             resultLogger.log(Level.INFO, msg);
         }
@@ -319,7 +319,7 @@ public class Chart {
      */
     public Item findItemByName_Test(String name) {
         for (Room room : rooms) {
-            for (Item item : room.items) {
+            for (Item item : room.SearchItem()) {
                 if (item.GetName().equals(name)) {
                     return item;
                 }

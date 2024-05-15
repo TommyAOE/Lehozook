@@ -10,23 +10,44 @@ import static App.Program.*;
  * Extends the Item class.
  */
 public class StBeerCups extends Item {
-
+    /**
+     * Constructs a StBeerCups object with the default name "StBeerCups".
+     */
+    public StBeerCups() {
+        super("StBeerCups");
+    }
     /**
      * Applies the effect of the item.
      * Each subclass must implement this method to define its specific effect.
-     *
      * @param name
      */
     public StBeerCups(String name) {
         super(name, "StBeerCups");
     }
-    public StBeerCups() {
-        super("StBeerCups");
-    }
+    /**
+     * Constructs a StBeerCups object with the specified name and owner.
+     * @param name  The name of the StBeerCups object.
+     * @param owner The owner (Student) of the StBeerCups object.
+     */
     public StBeerCups(String name, Student owner) {
         super(name, "StBeerCups", owner);
     }
-
+    /**
+     * Gets the name of the StBeerCups item.
+     * @return The name of the StBeerCups item.
+     */
+    @Override
+    public String GetName() {
+        return name;
+    }
+    /**
+     * Gets the type of the StBeerCups item.
+     * @return The type of the StBeerCups item.
+     */
+    @Override
+    public String GetType() {
+        return type;
+    }
     /**
      * Applies the effect of the StBeerCups item.
      */
@@ -37,26 +58,7 @@ public class StBeerCups extends Item {
         owner = null;
     }
 
-    /**
-     * Gets the name of the StBeerCups item.
-     *
-     * @return The name of the StBeerCups item.
-     */
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    /**
-     * Gets the type of the StBeerCups item.
-     *
-     * @return The type of the StBeerCups item.
-     */
-    @Override
-    public String GetType() {
-        return type;
-    }
-
+    //------------------Functions for testing------------------
     /**
      * Logs information about all instances of the StBeerCups item.
      */

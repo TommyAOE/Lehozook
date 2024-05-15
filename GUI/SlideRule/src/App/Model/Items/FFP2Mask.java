@@ -11,16 +11,20 @@ import static App.Program.*;
  * Extends the Item class.
  */
 public class FFP2Mask extends Item {
-
-    /** The number of times the mask can be used. */
-    public int counter;
-
-    /** The durability of the mask. */
+    
     private int durability;
-
-    /** Indicates whether the mask is broken. */
     private boolean broken;
-
+    public int counter;
+    
+    /**
+    * Constructs a new FFP2 mask item
+    */
+    public FFP2Mask() {
+        super("FFP2Mask");
+        counter = 3;
+        durability = 3;
+        broken = false;
+    }
     /**
      * Constructs a new FFP2 mask item with the specified name.
      *
@@ -32,17 +36,8 @@ public class FFP2Mask extends Item {
         durability = 3;
         broken = false;
     }
-
-    public FFP2Mask() {
-        super("FFP2Mask");
-        counter = 3;
-        durability = 3;
-        broken = false;
-    }
-
     /**
      * Constructs a new FFP2 mask item with the specified name and owner.
-     *
      * @param name  the name of the FFP2 mask item
      * @param owner the owner of the FFP2 mask item
      */
@@ -52,10 +47,8 @@ public class FFP2Mask extends Item {
         durability = 3;
         broken = false;
     }
-
     /**
      * Constructs a new FFP2 mask item with the specified name, usage counter, and durability.
-     *
      * @param name       the name of the FFP2 mask item
      * @param counter    the usage counter of the FFP2 mask item
      * @param durability the durability of the FFP2 mask item
@@ -66,7 +59,36 @@ public class FFP2Mask extends Item {
         this.durability = durability;
         broken = false;
     }
-
+    /**
+     * Checks whether the FFP2 mask is broken.
+     * @return true if the mask is broken, false otherwise
+     */
+    public boolean IsBroken() {
+        return broken;
+    }
+    /**
+     * Gets the name of the FFP2 mask item.
+     * @return the name of the mask item
+     */
+    @Override
+    public String GetName() {
+        return name;
+    }
+    /**
+     * Gets the type of the FFP2 mask item.
+     * @return the type of the mask item
+     */
+    @Override
+    public String GetType() {
+        return type;
+    }
+    /**
+     * Gets the counter of the FFP2 mask item.
+     * @return the counter of the mask item
+     */
+    public int GetCounter() {
+        return counter;
+    }
     /**
      * Applies the effect of the FFP2 mask item.
      * Decrements the usage counter and updates the durability and broken status accordingly.
@@ -82,44 +104,7 @@ public class FFP2Mask extends Item {
         }
     }
 
-    /**
-     * Checks whether the FFP2 mask is broken.
-     *
-     * @return true if the mask is broken, false otherwise
-     */
-    public boolean IsBroken() {
-        return broken;
-    }
-
-    /**
-     * Gets the name of the FFP2 mask item.
-     *
-     * @return the name of the mask item
-     */
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    /**
-     * Gets the type of the FFP2 mask item.
-     *
-     * @return the type of the mask item
-     */
-    @Override
-    public String GetType() {
-        return type;
-    }
-
-    /**
-     * Gets the counter of the FFP2 mask item.
-     *
-     * @return the counter of the mask item
-     */
-    public int GetCounter() {
-        return counter;
-    }
-
+    //------------------Functions for testing------------------
     /**
      * Logs information about the FFP2 mask item.
      */

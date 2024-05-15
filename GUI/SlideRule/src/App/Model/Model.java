@@ -7,12 +7,12 @@ import java.util.Random;
  * Represents a scheduler in the game.
  */
 public class Model {
-    Chart chart;
-    ArrayList<Character> NPCs = new ArrayList<>();
-    ArrayList<Student> players = new ArrayList<>();
-    int playerCount;
-    int professorCount;
-    int maxRounds;
+    private Chart chart;
+    private ArrayList<Character> NPCs = new ArrayList<>();
+    private ArrayList<Student> players = new ArrayList<>();
+    private int playerCount;
+    private int professorCount;
+    private int maxRounds;
 
     Random random = new Random();
 

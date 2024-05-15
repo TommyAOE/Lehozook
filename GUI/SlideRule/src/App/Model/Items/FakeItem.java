@@ -11,24 +11,22 @@ import java.util.logging.Level;
  * Extends the Item class.
  */
 public class FakeItem extends Item {
-
+    /**
+     * Constructs a fake item 
+     */
+    public FakeItem(String type) {
+        super(type);
+    }
     /**
      * Constructs a fake item with the given name and type.
-     *
      * @param name The name of the fake item.
      * @param type The type of the fake item.
      */
     public FakeItem(String name, String type) {
         super(name, type);
     }
-
-    public FakeItem(String type) {
-        super(type);
-    }
-
     /**
      * Constructs a fake item with the given name, type, and owner.
-     *
      * @param name  The name of the fake item.
      * @param type  The type of the fake item.
      * @param owner The owner of the fake item.
@@ -36,7 +34,29 @@ public class FakeItem extends Item {
     public FakeItem(String name, String type, Student owner) {
         super(name, type, owner);
     }
-
+        /**
+     * Gets the name of the fake item.
+     * @return The name of the fake item.
+     */
+    @Override
+    public String GetName() {
+        return name;
+    }
+    /**
+     * Gets the type of the fake item.
+     * @return The type of the fake item.
+     */
+    @Override
+    public String GetType() {
+        return "FakeItem";
+    }
+    /**
+     * Gets the represented type of the fake item.
+     * @return The represented type of the fake item.
+     */
+    public String GetFakeType(){
+        return type;
+    }
     /**
      * Applies the effect of the fake item.
      * This method randomly moves the owner to an adjacent room if it's not full.
@@ -52,28 +72,7 @@ public class FakeItem extends Item {
             newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size()));
     }
 
-    /**
-     * Gets the name of the fake item.
-     *
-     * @return The name of the fake item.
-     */
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    /**
-     * Gets the type of the fake item.
-     *
-     * @return The type of the fake item.
-     */
-    @Override
-    public String GetType() {
-        return "FakeItem";
-    }
-    public String GetFakeType(){
-        return type;
-    }
+    //------------------Functions for testing------------------
     /**
      * Logs information about the fake item.
      */

@@ -6,14 +6,22 @@ import App.Model.Student;
  * This class is abstract and serves as a base for specific item types.
  */
 public abstract class Item {
-    String name;
-    protected boolean glued = false; // Indicates whether the item is glued
-    Student owner; // The owner of the item
-    String type; // The type of the item
+    
+    protected String name;
+    protected Student owner;
+    protected String type;
+    protected boolean glued = false;
 
     /** 
+     * Constructs an item with the specified type.
+     * @param type The type of the item.
+     */
+    public Item(String type){
+        this.type = type;
+        name = "empty";
+    }
+    /** 
      * Constructs an item with the specified name and type.
-     *
      * @param name The name of the item.
      * @param type The type of the item.
      */
@@ -21,14 +29,8 @@ public abstract class Item {
         this.name = name;
         this.type = type;
     }
-    public Item(String type){
-        this.type = type;
-        name = "empty";
-    }
-
     /** 
      * Constructs an item with the specified name, type, and owner.
-     *
      * @param name  The name of the item.
      * @param type  The type of the item.
      * @param owner The owner of the item.
@@ -38,29 +40,31 @@ public abstract class Item {
         this.type = type;
         this.owner = owner;
     }
-
-    /** 
-     * Applies the effect of the item.
-     * Each subclass must implement this method to define its specific effect.
-     */
-    public abstract void ApplyEffect();
-
     /**
      * Gets the name of the item.
-     *
      * @return The name of the item.
      */
     public abstract String GetName();
 
     /**
      * Gets the type of the item.
-     *
      * @return The type of the item.
      */
     public abstract String GetType();
-
+    
+    /**
+     * Sets the owner of the room to the specified student.
+     * @param s The student to set as the owner of the room.
+     */
     public void SetOwner(Student s){
         owner = s;
+    }
+    /**
+     * Checks whether the item is glued.
+     * @return true if the item is glued, false otherwise.
+     */
+    public boolean IsGlued() {
+        return glued;
     }
     /**
      * Glues or unglues the item.
@@ -70,15 +74,13 @@ public abstract class Item {
         glued = !glued;
     }
 
-    /**
-     * Checks whether the item is glued.
-     *
-     * @return true if the item is glued, false otherwise.
+    /** 
+     * Applies the effect of the item.
+     * Each subclass must implement this method to define its specific effect.
      */
-    public boolean IsGlued() {
-        return glued;
-    }
+    public abstract void ApplyEffect();
 
+    //------------------Functions for testing------------------
     /**
      * Logs general information about the item.
      * Each subclass must implement this method to log specific information.

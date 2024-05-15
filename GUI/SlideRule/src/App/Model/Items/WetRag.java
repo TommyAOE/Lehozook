@@ -10,12 +10,19 @@ import static App.Program.*;
  * Represents a wet rag item in the game.
  * Extends the Item class.
  */
-public class WetRag extends Item{
-    private int moistureLevel; // The moisture level of the wet rag
+public class WetRag extends Item {
 
+    private int moistureLevel;
+    /**
+     * Constructs a wet rag item 
+     */
+    public WetRag() {
+        super("WetRag");
+        Random random = new Random();
+        moistureLevel = random.nextInt(3) + 1;
+    }
     /**
      * Constructs a wet rag item with the given name and randomly generates a moisture level.
-     *
      * @param name The name of the wet rag item.
      */
     public WetRag(String name) {
@@ -23,13 +30,6 @@ public class WetRag extends Item{
         Random random = new Random();
         moistureLevel = random.nextInt(3) + 1;
     }
-
-    public WetRag() {
-        super("WetRag");
-        Random random = new Random();
-        moistureLevel = random.nextInt(3) + 1;
-    }
-
     /**
      * Constructs a wet rag item with the given name and owner, and randomly generates a moisture level.
      *
@@ -41,7 +41,22 @@ public class WetRag extends Item{
         Random random = new Random();
         moistureLevel = random.nextInt(3) + 1;
     }
-
+    /**
+     * Gets the name of the wet rag item.
+     * @return The name of the wet rag item.
+     */
+    @Override
+    public String GetName() {
+        return name;
+    }
+    /**
+     * Gets the type of the wet rag item.
+     * @return The type of the wet rag item.
+     */
+    @Override
+    public String GetType() {
+        return type;
+    }
     /**
      * Applies the effect of the wet rag item.
      * Stuns professors in the same room as the owner based on the moisture level of the rag.
@@ -52,26 +67,7 @@ public class WetRag extends Item{
         }
     }
 
-    /**
-     * Gets the name of the wet rag item.
-     *
-     * @return The name of the wet rag item.
-     */
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    /**
-     * Gets the type of the wet rag item.
-     *
-     * @return The type of the wet rag item.
-     */
-    @Override
-    public String GetType() {
-        return type;
-    }
-
+    //------------------Functions for testing------------------
     /**
      * Logs information about the wet rag item.
      */

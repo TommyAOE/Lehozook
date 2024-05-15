@@ -43,9 +43,9 @@ public class Professor extends Character implements IFighter {
             return;
         }
         int safe = 100;
-        Room newRoom = location.neighbours.get(new Random().nextInt(location.neighbours.size() + 1));
-        while (newRoom.isFull && --safe > 0)
-            newRoom = location.neighbours.get(new Random().nextInt(location.neighbours.size() + 1));
+        Room newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size() + 1));
+        while (newRoom.IsFull() && --safe > 0)
+            newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size() + 1));
         EnterRoom(newRoom);
         if (!inCombat) {
             for (Item i : location.SearchItem()) {
@@ -64,13 +64,13 @@ public class Professor extends Character implements IFighter {
      */
     @Override
     public boolean EnterRoom(Room r) {
-        if (r.isFull) {
-            String msg = "Room " + r.name + " is full";
+        if (r.IsFull()) {
+            String msg = "Room " + r.GetName() + " is full";
             resultLogger.log(Level.INFO, msg);
             return false;
         }
         if(location != null && !this.location.GetNeighbours().contains(r)){
-            resultLogger.log(Level.INFO, "Room "+r.name+" is not neighbour of the character's current room");
+            resultLogger.log(Level.INFO, "Room "+r.GetName()+" is not neighbour of the character's current room");
             return false;
         }
         if(location != null){
@@ -78,13 +78,13 @@ public class Professor extends Character implements IFighter {
         }
         r.CharacterEntered(this);
         location = r;
-        while(location.items.size() != 0){
-            if(!location.items.get(0).IsGlued())
-                location.items.remove(0);
+        while(location.SearchItem().size() != 0){
+            if(!location.SearchItem().get(0).IsGlued())
+                location.SearchItem().remove(0);
             else
                 break;
         }
-        String msg = "Character " + name + " has entered Room " + r.name;
+        String msg = "Character " + name + " has entered Room " + r.GetName();
         resultLogger.log(Level.INFO, msg);
         return true;
     }
@@ -105,7 +105,7 @@ public class Professor extends Character implements IFighter {
      */
     @Override
     public void Info_Test() {
-        String room = name + ".location : " + location.name;
+        String room = name + ".location : " + location.GetName();
         resultLogger.log(Level.INFO, room);
         String stunned = name + ".isStunned : " + ((isStunned > 0) ? "positive" : "0");
         resultLogger.log(Level.INFO, stunned);
