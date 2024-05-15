@@ -16,8 +16,9 @@ public class Cleaner extends Character
      * @param name The name of the Cleaner.
      * @param r    The room where the Cleaner will be assigned.
      */
-    public Cleaner(String name, Room r) {
-        super(name,r);
+    public Cleaner(String name, Room location) {
+        super(name);
+        EnterRoom(location);
     }
 
     /**
@@ -67,11 +68,14 @@ public class Cleaner extends Character
             resultLogger.log(Level.INFO, msg);
             return false;
         }
-        if(!this.location.GetNeighbours().contains(r)){
+        if(location != null && !this.location.GetNeighbours().contains(r)){
             resultLogger.log(Level.INFO, "Room "+r.name+" is not neighbour of the character's current room");
             return false;
         }
-        location.CharacterLeft(this);
+        if(location != null){
+            location.CharacterLeft(this);
+        }
+
         r.CharacterEntered(this);
         location=r;
         String msg = "Character "+ name + " has entered Room " + r.name;

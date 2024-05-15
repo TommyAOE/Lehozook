@@ -13,7 +13,7 @@ public class GameController implements PropertyChangeListener{
 
     private Model model;
     private GameView view;
-    private Student currentPlayer = new Student(null, null);
+    private Student currentPlayer;
 
     GameController(){
         model = new Model(5, 5, 5);

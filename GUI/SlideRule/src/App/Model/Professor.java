@@ -24,7 +24,8 @@ public class Professor extends Character implements IFighter {
      * @param location the initial location of the professor
      */
     public Professor(String name, Room location) {
-        super(name, location);
+        super(name);
+        EnterRoom(location);
         isStunned = 0;
         inCombat = false;
     }
@@ -68,11 +69,13 @@ public class Professor extends Character implements IFighter {
             resultLogger.log(Level.INFO, msg);
             return false;
         }
-        if(!this.location.GetNeighbours().contains(r)){
+        if(location != null && !this.location.GetNeighbours().contains(r)){
             resultLogger.log(Level.INFO, "Room "+r.name+" is not neighbour of the character's current room");
             return false;
         }
-        location.CharacterLeft(this);
+        if(location != null){
+            location.CharacterLeft(this);
+        }
         r.CharacterEntered(this);
         location = r;
         while(location.items.size() != 0){

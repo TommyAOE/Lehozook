@@ -27,9 +27,9 @@ public class Chart {
         for(String[] command : lines){
             BuildMap(command);
         }
-        for(Room r : rooms){
+        /*for(Room r : rooms){
             r.Info_Test();
-        }
+        }*/
     }
 
     private ArrayList<String[]> ReadFile(File input) {
@@ -76,7 +76,7 @@ public class Chart {
                 break;
         }
     }
-    private Room FindRoomByName(String name){
+    public Room FindRoomByName(String name){
         for (Room room : rooms) {
             if (room.name.equals(name)) {
                 return room;
@@ -96,6 +96,15 @@ public class Chart {
             }
         }
         return neighbours;
+    }
+    /**
+     * Adds a room to the chart.
+     *
+     * @param r The room to be added.
+     */
+    public void AddRoom(Room r) {
+        rooms.add(r);
+        //System.out.println("added " + r.name);
     }
 
     /** 
@@ -149,15 +158,7 @@ public class Chart {
         }
     }
 
-    /**
-     * Adds a room to the chart.
-     *
-     * @param r The room to be added.
-     */
-    public void AddRoom(Room r) {
-        rooms.add(r);
-        System.out.println("added " + r.name);
-    }
+
 
     /**
      * Finds a room in the chart by its name.

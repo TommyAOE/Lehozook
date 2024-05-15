@@ -48,7 +48,8 @@ public class Student extends Character implements IFighter {
      */
 
     public Student(String name, Room location){
-        super(name, location);
+        super(name);
+        EnterRoom(location);
         isProtected = 0;
         isStunned = 0;
         items = new ArrayList<>();
@@ -182,11 +183,13 @@ public class Student extends Character implements IFighter {
             resultLogger.log(Level.INFO, "Room "+r.name+" is full");
             return false;
         }
-        if(!this.location.GetNeighbours().contains(r)){
+        //May cause problems with using Transistor
+        if(location != null && !this.location.GetNeighbours().contains(r)){
             resultLogger.log(Level.INFO, "Room "+r.name+" is not neighbour of the character's current room");
             return false;
         }
-        location.CharacterLeft(this);
+        if(location != null)
+            location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;
         resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.name);
@@ -205,7 +208,10 @@ public class Student extends Character implements IFighter {
             resultLogger.log(Level.INFO, "Room "+r.name+" is full");
             return false;
         }
-        location.CharacterLeft(this);
+        if(location != null){
+            location.CharacterLeft(this);
+        }
+
         r.CharacterEntered(this);
         location=r;
         resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.name);

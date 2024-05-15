@@ -61,6 +61,7 @@ public class Room {
         this.professors = new ArrayList<Professor>();
         this.students = new ArrayList<Student>();
         this.cleaners = new ArrayList<Cleaner>();
+        this.maximumcapacity = new Random().nextInt(7) + 1;
         this.isFull = false;
         this.isCursed = false;
     }
@@ -74,6 +75,10 @@ public class Room {
     }
     public String GetName(){
         return name;
+    }
+    //we need it at initialization
+    public void SetCapacity(int maximum){
+        maximumcapacity = maximum;
     }
     /**
      * Sets the given room as a neighbour of this room.
@@ -479,9 +484,9 @@ public class Room {
      */
     public void InfoAll_Test() {
         resultLogger.log(Level.INFO, "Room "+name);
-        for (Item item : items) {
+        /*for (Item item : items) {
             item.InfoAll_Test();
-        }
+        }*/
         for (Professor professor : professors) {
             professor.InfoAll_Test();
         }
