@@ -17,7 +17,7 @@ public class Student extends Character implements IFighter {
     /**
      * The list of items the student possesses.
      */
-    ArrayList<Item> items;
+    ArrayList<Item> items = new ArrayList<>();
 
     /**
      * Indicates whether the student is in combat.
@@ -260,6 +260,7 @@ public class Student extends Character implements IFighter {
     public boolean Stun(int stunDuration) {
         boolean stun = false;
         boolean hasMask = false;
+        if(items == null)   return false;
         for (Item i :items) {
             if(i.GetType().equals("FFP2Mask"))
             {

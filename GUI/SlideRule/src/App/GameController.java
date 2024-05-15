@@ -17,6 +17,7 @@ public class GameController implements PropertyChangeListener{
 
     GameController(){
         model = new Model(5, 5, 5);
+        view = new GameView(model);
     }
 
     @Override

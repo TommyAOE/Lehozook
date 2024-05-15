@@ -5,6 +5,11 @@ public class Coordinates {
     private int x;
     private int y;
 
+    public Coordinates(){
+        x = 0;
+        y = 0;
+    }
+
     public int GetX(){
         return x;
     }

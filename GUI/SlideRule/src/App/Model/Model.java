@@ -44,4 +44,8 @@ public class Model {
 
         chart.InfoAll_Test();
     }
+
+    public Chart GetChart(){
+        return chart;
+    }
 }

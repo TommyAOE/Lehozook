@@ -50,7 +50,7 @@ public class Room {
      */
     public Room(String name, String type, Chart chart) {
         this.name = name;
-        this.isCursed= Objects.equals(type, "Cursed");
+        this.isCursed= Objects.equals(type, "cursed");
         this.neighbours = new ArrayList<Room>();
         this.items = new ArrayList<Item>();
         this.professors = new ArrayList<Professor>();
@@ -473,6 +473,8 @@ public class Room {
      */
     public void InfoAll_Test() {
         resultLogger.log(Level.INFO, "Room "+name);
+        resultLogger.log(Level.INFO, name+".gas : "+ ((gas == null) ? "NULL" : "notnull"));
+        resultLogger.log(Level.INFO, name+".isCursed : "+ ((isCursed) ? "true" : "false"));
         for (Item item : items) {
             item.InfoAll_Test();
         }

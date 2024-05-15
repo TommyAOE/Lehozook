@@ -15,7 +15,7 @@ public class Program {
      * Main method to start the game and execute commands.
      * @param args Command line arguments (not used).
      */
-    public static void main(String[] args) {
+    public static void main(String[] args){
         SimpleFormatter formatter = new SimpleFormatter(){
             private static final String format = "[%1$tT] %2$-7s %3$s %n";
             @Override
