@@ -9,8 +9,13 @@ import java.util.logging.Level;
  */
 public class Airfreshener extends Item{
     /**
+     * Constructs an air freshener item
+     */
+    public Airfreshener(){
+        super("Airfreshener");
+    }
+    /**
      * Constructs an air freshener item with the given name.
-     *
      * @param name The name of the air freshener.
      */
     public Airfreshener(String name){
@@ -18,7 +23,6 @@ public class Airfreshener extends Item{
     }
     /**
      * Constructs an air freshener item with the given name and owner.
-     *
      * @param name  The name of the air freshener.
      * @param owner The owner of the air freshener.
      */
@@ -26,15 +30,7 @@ public class Airfreshener extends Item{
         super(name, "Airfreshener", owner);
     }
     /**
-     * Applies the effect of the air freshener by indicating that gas has expired at the owner's location.
-     */
-    @Override
-    public void ApplyEffect() {
-        owner.GetLocation().GasExpired();
-    }
-    /**
      * Gets the name of the air freshener.
-     *
      * @return The name of the air freshener.
      */
     @Override
@@ -43,13 +39,20 @@ public class Airfreshener extends Item{
     }
     /**
      * Gets the type of the air freshener.
-     *
      * @return The type of the air freshener.
      */
     @Override
     public String GetType() {
         return type;
     }
+    /**
+     * Applies the effect of the air freshener by indicating that gas has expired at the owner's location.
+     */
+    @Override
+    public void ApplyEffect() {
+        owner.GetLocation().GasExpired();
+    }
+    //------------------Functions for testing------------------
     /**
      * Logs information about the air freshener.
      */

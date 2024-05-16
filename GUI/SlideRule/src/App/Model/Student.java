@@ -48,7 +48,8 @@ public class Student extends Character implements IFighter {
      */
 
     public Student(String name, Room location){
-        super(name, location);
+        super(name);
+        EnterRoom(location);
         isProtected = 0;
         isStunned = 0;
         items = new ArrayList<>();
@@ -108,9 +109,9 @@ public class Student extends Character implements IFighter {
             int action = new Scanner(System.in).nextInt();
             switch (action) {
                 case 1 -> {
-                    System.out.println("Add meg a szobaszámot(" + 0 + "-" + location.neighbours.size() + "): ");
+                    System.out.println("Add meg a szobaszámot(" + 0 + "-" + location.GetNeighbours().size() + "): ");
                     int room = new Scanner(System.in).nextInt();
-                    if(!EnterRoom(location.neighbours.get(room))){
+                    if(!EnterRoom(location.GetNeighbours().get(room))){
                         System.out.println("A szoba tele van!");
                         i--;
                     }
@@ -178,18 +179,20 @@ public class Student extends Character implements IFighter {
      */
     @Override
     public boolean EnterRoom(Room r) {
-        if (r.isFull){
-            resultLogger.log(Level.INFO, "Room "+r.name+" is full");
+        if (r.IsFull()){
+            resultLogger.log(Level.INFO, "Room "+r.GetName()+" is full");
             return false;
         }
-        if(!this.location.GetNeighbours().contains(r)){
-            resultLogger.log(Level.INFO, "Room "+r.name+" is not neighbour of the character's current room");
+        //May cause problems with using Transistor
+        if(location != null && !this.location.GetNeighbours().contains(r)){
+            resultLogger.log(Level.INFO, "Room "+r.GetName()+" is not neighbour of the character's current room");
             return false;
         }
-        location.CharacterLeft(this);
+        if(location != null)
+            location.CharacterLeft(this);
         r.CharacterEntered(this);
         location=r;
-        resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.name);
+        resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.GetName());
         if (!location.GetProfessors().isEmpty()){
             inCombat = true;
             for(Professor p: location.GetProfessors()){
@@ -201,14 +204,17 @@ public class Student extends Character implements IFighter {
     }
 
     public boolean TravelWithTransistor(Room r) {
-        if (r.isFull){
-            resultLogger.log(Level.INFO, "Room "+r.name+" is full");
+        if (r.IsFull()){
+            resultLogger.log(Level.INFO, "Room "+r.GetName()+" is full");
             return false;
         }
-        location.CharacterLeft(this);
+        if(location != null){
+            location.CharacterLeft(this);
+        }
+
         r.CharacterEntered(this);
         location=r;
-        resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.name);
+        resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.GetName());
         if (!location.GetProfessors().isEmpty()){
             inCombat = true;
             for(Professor p: location.GetProfessors()){
@@ -232,7 +238,7 @@ public class Student extends Character implements IFighter {
      * Logs detailed information about the student, including location, items, combat status, protection status, and stun status.
      */
     public void Info_Test() {
-        resultLogger.log(Level.INFO, name+".location : "+location.name);
+        resultLogger.log(Level.INFO, name+".location : "+location.GetName());
         resultLogger.log(Level.INFO, name+".items : "+items.size());
         resultLogger.log(Level.INFO, name+".inCombat : "+inCombat);
         resultLogger.log(Level.INFO, name+".isProtected : "+isProtected);
@@ -432,7 +438,7 @@ public class Student extends Character implements IFighter {
             if (i.GetName().equals(name))
             {
                 DropItem(i);
-                resultLogger.log(Level.INFO,"Character "+ this.name+" dropped Item "+i.GetName()+" in Room " +location.name);
+                resultLogger.log(Level.INFO,"Character "+ this.name+" dropped Item "+i.GetName()+" in Room " +location.GetName());
                 break;
             }
         }

@@ -16,9 +16,8 @@ public abstract class Character {
      * The current location of the character.
      */
     protected Room location;
-    public Character(String name, Room location) {
+    public Character(String name) {
         this.name = name;
-        this.location = location;
     }
     /**
      * Performs the character's turn action.

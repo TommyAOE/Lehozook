@@ -9,30 +9,46 @@ import java.util.logging.Level;
  * Represents a TVSZ item in the game.
  * Extends the Item class.
  */
-public class TVSZ extends Item{
-    int uses; // The number of uses remaining for the TVSZ item
+public class TVSZ extends Item {
 
+    private int uses = 3;
+    /**
+     * Constructs a TVSZ item
+     */
+    public TVSZ() {
+        super("TVSZ");
+    }
     /**
      * Constructs a TVSZ item with the given name and initializes the number of uses.
-     *
      * @param name The name of the TVSZ item.
      */
     public TVSZ(String name) {
         super(name, "TVSZ");
-        uses = 3;
     }
-
     /**
      * Constructs a TVSZ item with the given name and owner, and initializes the number of uses.
-     *
      * @param name  The name of the TVSZ item.
      * @param owner The owner of the TVSZ item.
      */
     public TVSZ(String name, Student owner) {
         super(name, "TVSZ", owner);
-        uses = 3;
     }
-
+    /**
+     * Gets the name of the TVSZ item.
+     * @return The name of the TVSZ item.
+     */
+    @Override
+    public String GetName() {
+        return name;
+    }
+    /**
+     * Gets the type of the TVSZ item.
+     * @return The type of the TVSZ item.
+     */
+    @Override
+    public String GetType() {
+        return type;
+    }
     /**
      * Applies the effect of the TVSZ item.
      * Protects all students in the same room as the owner from professors' attacks.
@@ -50,26 +66,7 @@ public class TVSZ extends Item{
         }
     }
 
-    /**
-     * Gets the name of the TVSZ item.
-     *
-     * @return The name of the TVSZ item.
-     */
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    /**
-     * Gets the type of the TVSZ item.
-     *
-     * @return The type of the TVSZ item.
-     */
-    @Override
-    public String GetType() {
-        return type;
-    }
-
+    //------------------Functions for testing------------------
     /**
      * Logs information about the TVSZ item, including its owner and the number of uses remaining.
      */

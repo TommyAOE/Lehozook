@@ -9,24 +9,29 @@ import static App.Program.*;
  * Represents a transistor item in the game.
  * Extends the Item class.
  */
-public class Transistor extends Item{
+public class Transistor extends Item {
     
-    Transistor pair; // The paired transistor
-    public Room location; // The location of the transistor
+    private Transistor pair;
+    public Room location;
 
     /**
+     * Constructs a Transistor item and sets its location.
+     * @param location The room where the Transistor is located.
+     */
+    public Transistor(Room location) {
+        super("Transistor");
+        this.location = location;
+    }
+    /**
      * Constructs a transistor with the given ID and owner.
-     *
      * @param name  The ID of the transistor.
      * @param owner The owner of the transistor.
      */
     public Transistor(String name, Student owner) {
         super(name, "Transistor", owner);
     }
-
     /**
      * Constructs a transistor with the given ID and location.
-     *
      * @param name     The ID of the transistor.
      * @param location The location of the transistor.
      */
@@ -34,7 +39,39 @@ public class Transistor extends Item{
         super(name, "Transistor");
         this.location = location;
     }
-
+        /**
+     * Gets the name of the transistor item.
+     *
+     * @return The name of the transistor item.
+     */
+    @Override
+    public String GetName() {
+        return name;
+    }
+    /**
+     * Gets the type of the transistor item.
+     *
+     * @return The type of the transistor item.
+     */
+    @Override
+    public String GetType() {
+        return type;
+    }
+    /**
+     * Checks if the transistor has a pair.
+     * @return true if the transistor has a pair, false otherwise.
+     */
+    public boolean HasPair() {
+        return pair != null;
+    }
+    /**
+     * Sets a pair for the transistor.
+     * @param t The transistor to pair with.
+     */
+    public void SetPair(Transistor t) {
+        this.pair = t;
+        if (!t.HasPair()) t.SetPair(this);
+    }
     /**
      * Applies the effect of the transistor item.
      * If the transistor has a pair, it drops itself from the owner.
@@ -45,17 +82,6 @@ public class Transistor extends Item{
             owner = null;
         }
     }
-
-    /**
-     * Sets a pair for the transistor.
-     *
-     * @param t The transistor to pair with.
-     */
-    public void SetPair(Transistor t) {
-        this.pair = t;
-        if (!t.HasPair()) t.SetPair(this);
-    }
-
     /**
      * Activates the transistor.
      * If the transistor has a pair, it moves the owner to the pair's location.
@@ -72,35 +98,7 @@ public class Transistor extends Item{
         }
     }
 
-    /**
-     * Checks if the transistor has a pair.
-     *
-     * @return true if the transistor has a pair, false otherwise.
-     */
-    public boolean HasPair() {
-        return pair != null;
-    }
-
-    /**
-     * Gets the name of the transistor item.
-     *
-     * @return The name of the transistor item.
-     */
-    @Override
-    public String GetName() {
-        return name;
-    }
-
-    /**
-     * Gets the type of the transistor item.
-     *
-     * @return The type of the transistor item.
-     */
-    @Override
-    public String GetType() {
-        return type;
-    }
-
+    //------------------Functions for testing------------------
     /**
      * Logs information about the transistor item.
      */

@@ -1,6 +1,7 @@
 package App.Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -15,20 +16,30 @@ import static App.Program.resultLogger;
  */
 public class Room {
 
-    Random rand = new Random();
-    String name;
-    int maximumcapacity;
-    int characterCount;
-    ArrayList<Room> neighbours;
-    boolean isCursed;
-    ArrayList<Item> items;
-    ArrayList<Professor> professors;
-    ArrayList<Student> students;
-    ArrayList<Cleaner> cleaners;
-    Gas gas;
-    Goo goo;
-    Chart chart;
-    boolean isFull;
+    private Random rand = new Random();
+    private String name;
+    private int maximumcapacity;
+    private int characterCount;
+    private ArrayList<Room> neighbours;
+    private boolean isCursed;
+    private ArrayList<Item> items;
+    private ArrayList<Professor> professors;
+    private ArrayList<Student> students;
+    private ArrayList<Cleaner> cleaners;
+    private Gas gas;
+    private Goo goo;
+    private Chart chart;
+    private boolean isFull;
+    
+    private String[] itemNames = {
+        "FFP2Mask",
+        "Airfreshener",
+        "Camembert",
+        "StBeerCups",
+        "Transistor",
+        "TVSZ",
+        "WetRag"
+    };
 
     /**
      * Constructs a room with the specified name, type, and chart.
@@ -60,215 +71,122 @@ public class Room {
         this.professors = new ArrayList<Professor>();
         this.students = new ArrayList<Student>();
         this.cleaners = new ArrayList<Cleaner>();
+        this.maximumcapacity = rand.nextInt(7) + 1;
         this.isFull = false;
         this.isCursed = false;
     }
     /**
+     * Return the name of the room.
+     * @return name.
+     */
+    public String GetName() {
+        return name;
+    }
+    /** 
+     * Gets the professors in the room.
+     */
+    public List<Professor> GetProfessors() {
+        return professors;
+    }
+    /** 
+     * Gets the students in the room.
+     */
+    public List<Student> GetStudents() {
+        return students;
+    }
+    /** 
+     * Gets the cleaners in the room.
+     */
+    public List<Cleaner> GetCleaners() {
+        return cleaners;
+    }
+    /**
      * Checks if the room is full.
-     *
      * @return true if the room is full, false otherwise.
      */
     public boolean IsFull() {
         return isFull;
     }
-    public String GetName(){
-        return name;
+    /**
+     * Sets the maximum capacity of the room.
+     *@param maximum The maximum capacity to set for the room.
+     */
+    public void SetCapacity(int maximum) {
+        maximumcapacity = maximum;
+    }
+    /** 
+     * Gets the neighbors of the room.
+     */
+    public ArrayList<Room> GetNeighbours() {
+        return neighbours;
+    }
+    /**
+     * Checks if the given room is a neighbor of this room.
+     * @param r The room to check for neighbor relationship.
+     * @return true if the given room is a neighbor, false otherwise.
+     */
+    private boolean isNeighbour(Room r) {
+        boolean isNeighbour = false;
+        for(Room current: neighbours){
+            if(current == r)
+                isNeighbour = true;
+        }
+        return isNeighbour;
     }
     /**
      * Sets the given room as a neighbour of this room.
      *
      * @param r The room to set as a neighbour.
      */
-    public void SetNeighbours(Room r){
-        neighbours.add(r);
-        resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
+    public void SetNeighboursOneWay(ArrayList<Room> rooms) {
+        for (Room r : rooms) {
+            if(!isNeighbour(r)){
+                neighbours.add(r);
+                //resultLogger.log(Level.INFO,"new neighbours: " + name + " " + r.name);
+            }
+            else{
+                //resultLogger.log(Level.INFO,"already neighbours: " + name + " " + r.name);
+            }
+            //resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
+        }
+    }
+    public void SetNeighboursTwoWay(ArrayList<Room> rooms) {
+        for (Room r : rooms) {
+            if(!isNeighbour(r)){
+                neighbours.add(r);
+                r.SetNeighboursOneWay(new ArrayList<Room>(Collections.singletonList(this)));
+                //resultLogger.log(Level.INFO,"new neighbours: " + name + " " + r.name);
+            }
+            else{
+                //resultLogger.log(Level.INFO,"already neighbours: " + name + " " + r.name);
+            }
+            //resultLogger.log(Level.INFO, "Room " + r.name + " set as neighbour of Room " + this.name);
+        }
+    }
+    /** 
+     * Adds gas to the room.
+     */
+    public void AddGas() {
+        gas = new Gas(this);
+    }
+    /** 
+     * Signals that the gas in the room has expired.
+     */
+    public void GasExpired() {
+        this.gas=null;
     }
     /**
-     * Curses the room by modifying its neighbours.
-     *
-     * @param rooms The list of rooms in the game.
+     * Checks if the room has gas.
+     * @return true if the room has gas, false otherwise.
      */
-    public void Curse(List<Room> rooms)
-    {
-        Room curRoom = new Room("whatever");
-        Room delRoom = new Room("whatever");
-        while(true) {
-            curRoom = rooms.get(rand.nextInt(rooms.size() - 1));
-            if(!neighbours.contains(curRoom)){
-                neighbours.add(curRoom);
-                curRoom.SetNeighbours(this);
-                while(true){
-                    delRoom = rooms.get(rand.nextInt(neighbours.size() - 1));
-                    if(delRoom!=curRoom){
-                        rooms.remove(delRoom);
-                        try {
-                            delRoom.neighbours.remove(this);
-                        }
-                        catch (Exception e){}
-                        break;
-                    }
-                }
-                break;
-            }
-        }
-        resultLogger.log(Level.INFO,"Room Curse() "+curRoom.name+" added "+delRoom.name+" deleted");
+    public boolean HasGas() {
+        return gas != null;
     }
-    /**
-     * Splits the room into two rooms.
-     */
-    public void Split()
-    {
-        if(professors.size()+ students.size()+cleaners.size()>0){
-            resultLogger.log(Level.INFO,"Split is impossible, characters exist in the Room");
-            return;
-        }
-        Room newRoom = new Room("Whatever");
-        newRoom.maximumcapacity=this.maximumcapacity/2+1;
-        for(int i=neighbours.size()/2;i<neighbours.size();i++){
-            newRoom.SetNeighbours(neighbours.get(i));
-        }
-        for (Room roomsOfNew:newRoom.neighbours) {
-            neighbours.remove(roomsOfNew);
-            try{
-                roomsOfNew.neighbours.remove(this);
-                roomsOfNew.SetNeighbours(newRoom);
-            }
-            catch (Exception e){}
-        }
-
-        for(int i=items.size()/2;i<items.size();i++){
-            newRoom.AddItem(items.get(i));
-        }
-        for (Item itemsOfNew:newRoom.items) {
-            items.remove(itemsOfNew);
-        }
-        newRoom.SetNeighbours(this);
-        SetNeighbours(newRoom);
-        chart.AddRoom(newRoom);
-        resultLogger.log(Level.INFO,"Split");
-
-    }
-    /**
-     * Merges this room with the given room.
-     *
-     * @param r The room to merge with.
-     */
-    public void Merge(Room r)
-    {
-        if(r.maximumcapacity<maximumcapacity){
-            for(Item itemsOfSmaller : r.items){
-                items.add(itemsOfSmaller);
-            }
-            for(Room neighboursOfSmaller : r.neighbours){
-                neighbours.add(neighboursOfSmaller);
-                neighboursOfSmaller.neighbours.remove(r);
-                neighboursOfSmaller.SetNeighbours(this);
-            }
-            chart.removeRoom(this);
-        }
-        else{
-            for(Item itemsOfSmaller : this.items){
-                r.items.add(itemsOfSmaller);
-            }
-            for(Room neighboursOfSmaller : this.neighbours){
-                r.neighbours.add(neighboursOfSmaller);
-                neighboursOfSmaller.neighbours.remove(this);
-                neighboursOfSmaller.SetNeighbours(r);
-            }
-            chart.removeRoom(this);
-        }
-        resultLogger.log(Level.INFO,"Room merged");
-    }
-    /** 
-     * Gets the neighbors of the room.
-     */
-    public ArrayList<Room> GetNeighbours()
-    {
-        return neighbours;
-    }
-    /**
-     * Changes the room.
-     */
-    public void Change(List<Room> rooms)
-    {
-        if (isCursed)
-        {
-            Curse(rooms);
-        }else{
-            switch (rand.nextInt(2)) {
-                case 0 -> Merge(neighbours.get(rand.nextInt(neighbours.size() + 1)));
-                case 1 -> Split();
-                default -> {
-                }
-            }
-        }
-    }
-
-    /** 
-     * Searches for an item in the room.
-     */
-    public ArrayList<Item> SearchItem()
-    {
-        return items;
-    }
-
-    /** 
-     * Adds an item to the room.
-     * @param item
-     */
-    public void AddItem(Item item)
-    {
-        items.add(item);
-    }
-
-    /** 
-     * Pops an item from the room.
-     */
-    public Item PopItem(Item item)
-    {
-        Item tempItem = null;
-        for (int i = 0; i < items.size(); i++) 
-        {
-            if(items.get(i).equals(item))
-            {
-                if(!items.get(i).IsGlued()){
-                    tempItem = items.get(i);
-                    items.remove(i);
-                }
-            }
-        }
-        return tempItem;
-        
-    }
-
-    /** 
-     * Gets the professors in the room.
-     */
-    public List<Professor> GetProfessors()//visszaadja a professzorokat az adott szobaban
-    {
-        return professors;
-    }
-
-    /** 
-     * Gets the students in the room.
-     */
-    public List<Student> GetStudents()//visszaadja a tanulokat az adott szobaban
-    {
-        return students;
-    }
-
-    public List<Cleaner> GetCleaners()
-    {
-        return cleaners;
-    }
-
     /** 
     * Signals that a character has entered the room.
     */
-    public void CharacterEntered(Character c)
-    {
-        switch (c.GetName().charAt(0))
-        {
+    public void CharacterEntered(Character c) {
+        switch (c.GetName().charAt(0)){
             case 'p':
                 professors.add((Professor)c);
                 if(this.gas != null)
@@ -287,30 +205,25 @@ public class Room {
                 resultLogger.log(Level.INFO,"Something went wrong with the character");
                 break;
         }
-
     }
-
      /** 
      * Signals that a character has left the room.
      */
-    public void CharacterLeft(Character c)
-    {
-        switch (c.GetName().charAt(0))
-        {
+    public void CharacterLeft(Character c) {
+        switch (c.GetName().charAt(0)){
             case 'p':
                 professors.remove(c);
                 break;
             case 's':
                 students.remove(c);
-                //A Grafikusnál nem itt lesz implementálva, hanem a schedulerben
-                if(((Student)c).location == null){
+                if(((Student)c).location == null) {
                     int studentCounter = 0;
                     for (Room room : chart.GetAllRooms()) {
                         if(room.GetStudents().size() > 0){
                             studentCounter += room.GetStudents().size();
                         }
                     }
-                    if(studentCounter <= 0){
+                    if(studentCounter <= 0) {
                         resultLogger.log(Level.INFO, "Professors have won");
                         System.exit(0);
                     }
@@ -324,69 +237,183 @@ public class Room {
                 break;
         }
     }
-
-    /** 
-     * Adds gas to the room.
-     */
-    public void AddGas()
-    {
-        gas = new Gas(this);
-    }
-
-    /** 
-     * Signals that the gas in the room has expired.
-     */
-    public void GasExpired()//
-    {
-        this.gas=null;
-    }
-    /**
-     * Checks if the room has gas.
-     *
-     * @return true if the room has gas, false otherwise.
-     */
-    public boolean HasGas()
-    {
-        return gas != null;
-    }
     /**
      * Cleans the room by resetting the visitor count.
      */
-    public void Clean()
-    {
+    public void Clean() {
         int studentCounter = 0;
         while(students.size() > studentCounter) {
-            if(students.get(studentCounter).IsStunned() == 0){
-                Room newRoom = this.neighbours.get(new Random().nextInt(this.neighbours.size()));
+            if(students.get(studentCounter).IsStunned() == 0) {
+                Room newRoom = this.neighbours.get(rand.nextInt(this.neighbours.size()));
                 while(!(students.get(studentCounter).EnterRoom(newRoom)))
-                    newRoom = this.neighbours.get(new Random().nextInt(this.neighbours.size()));
-            }
-            else {
+                    newRoom = this.neighbours.get(rand.nextInt(this.neighbours.size()));
+            } else {
                 studentCounter++;
             }
         }
         int professorCounter = 0;
         while(professors.size() > professorCounter) {
-            if(professors.get(professorCounter).IsStunned() == 0){
-                Room newRoom = this.neighbours.get(new Random().nextInt(this.neighbours.size()));
+            if(professors.get(professorCounter).IsStunned() == 0) {
+                Room newRoom = this.neighbours.get(rand.nextInt(this.neighbours.size()));
                 while(!(professors.get(professorCounter).EnterRoom(newRoom)))
-                    newRoom = this.neighbours.get(new Random().nextInt(this.neighbours.size()));
-            }
-            else {
+                    newRoom = this.neighbours.get(rand.nextInt(this.neighbours.size()));
+            } else {
                 professorCounter++;
             }
         }
-        if(goo == null){
+        if(goo == null) {
             goo = new Goo(this);
-        }
-        else{
+        } else {
             goo.ResetVisitorsCount();
         }
-
-        if(gas != null){
+        if(gas != null) {
             gas = null;
         }
     }
+    /** 
+     * Searches for an item in the room.
+     */
+    public ArrayList<Item> SearchItem() {
+        return items;
+    }
+    /** 
+     * Adds an item to the room.
+     * @param item
+     */
+    public void AddItem(Item item) {
+        items.add(item);
+    }
+    /** 
+     * Spawns an item to the room randomly.
+     */
+    public void SpawnItem() {
+        String type = itemNames[rand.nextInt(itemNames.length)];
+        boolean real = rand.nextInt(100) < 80;
+        switch (type) {
+            case "FFP2Mask" -> items.add(real ? new FFP2Mask() : new FakeItem("FFP2Mask"));
+            case "Airfreshener" -> items.add(real ? new Airfreshener() : new FakeItem("Airfreshener"));
+            case "Camembert" -> items.add(real ? new Camembert() : new FakeItem("Camambert"));
+            case "SlideRule" -> items.add(real ? new SlideRule() : new FakeItem("SlideRule"));
+            case "StBeerCups" -> items.add(real ? new StBeerCups() : new FakeItem("StBeerCups"));
+            case "Transistor" -> items.add(real ? new Transistor(this) : new FakeItem("Transistor"));
+            case "TVSZ" -> items.add(real ? new TVSZ() : new FakeItem("TVSZ"));
+            case "WetRag" -> items.add(real ? new WetRag() : new FakeItem("WetRag"));
+        }
+    }
+    /** 
+     * Pops an item from the room.
+     */
+    public Item PopItem(Item item) {
+        Item tempItem = null;
+        for (int i = 0; i < items.size(); i++) {
+            if(items.get(i).equals(item)) {
+                if(!items.get(i).IsGlued()) {
+                    tempItem = items.get(i);
+                    items.remove(i);
+                }
+            }
+        }
+        return tempItem;
+    }
+    /**
+     * Changes the room.
+     */
+    public void Change(List<Room> rooms) {
+        if (isCursed) {
+            Curse(rooms);
+        } else {
+            switch (rand.nextInt(2)) {
+                case 0 -> Merge(neighbours.get(rand.nextInt(neighbours.size() + 1)));
+                case 1 -> Split();
+            }
+        }
+    }
+    /**
+     * Curses the room by modifying its neighbours.
+     * @param rooms The list of rooms in the game.
+     */
+    public void Curse(List<Room> rooms) {
+        Room curRoom = new Room("whatever");
+        Room delRoom = new Room("whatever");
+        while(true) {
+            curRoom = rooms.get(rand.nextInt(rooms.size() - 1));
+            if(!neighbours.contains(curRoom)){
+                curRoom.SetNeighboursTwoWay(new ArrayList<Room>(Collections.singletonList(this)));
+                while(true) {
+                    delRoom = rooms.get(rand.nextInt(neighbours.size() - 1));
+                    if(delRoom!=curRoom){
+                        rooms.remove(delRoom);
+                        try {
+                            delRoom.neighbours.remove(this);
+                        } catch (Exception e){}
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        resultLogger.log(Level.INFO,"Room Curse() "+curRoom.name+" added "+delRoom.name+" deleted");
+    }
+    /**
+     * Splits the room into two rooms.
+     */
+    public void Split() {
+        if(professors.size()+ students.size()+cleaners.size()>0) {
+            resultLogger.log(Level.INFO,"Split is impossible, characters exist in the Room");
+            return;
+        }
+        Room newRoom = new Room("Whatever");
+        newRoom.maximumcapacity=this.maximumcapacity/2+1;
+        ArrayList<Room> rooms = new ArrayList<>();
+        for(int i = neighbours.size() / 2; i < neighbours.size(); i++) {
+            rooms.add(neighbours.get(i));
+        }
+        newRoom.SetNeighboursOneWay(rooms);
+        for (Room roomsOfNew : newRoom.neighbours) {
+            neighbours.remove(roomsOfNew);
+            try {
+                roomsOfNew.neighbours.remove(this);
+            } catch (Exception e){}
+        }
+        for(int i=items.size()/2;i<items.size();i++) {
+            newRoom.AddItem(items.get(i));
+        }
+        for (Item itemsOfNew:newRoom.items) {
+            items.remove(itemsOfNew);
+        }
+        SetNeighboursTwoWay(new ArrayList<Room>(Collections.singletonList(newRoom)));
+        chart.AddRoom(newRoom);
+        resultLogger.log(Level.INFO,"Split");
+
+    }
+    /**
+     * Merges this room with the given room.
+     * @param r The room to merge with.
+     */
+    public void Merge(Room r) {
+        if(r.maximumcapacity<maximumcapacity) {
+            for(Item itemsOfSmaller : r.items) {
+                items.add(itemsOfSmaller);
+            }
+            for(Room neighboursOfSmaller : r.neighbours) {
+                SetNeighboursTwoWay(r.neighbours);
+                neighboursOfSmaller.neighbours.remove(r);
+            }
+            chart.RemoveRoom(r);
+        } else {
+            for(Item itemsOfSmaller : this.items) {
+                r.items.add(itemsOfSmaller);
+            }
+            for(Room neighboursOfSmaller : this.neighbours) {
+                SetNeighboursTwoWay(this.neighbours);
+                neighboursOfSmaller.neighbours.remove(this);
+            }
+            chart.RemoveRoom(this);
+        }
+        resultLogger.log(Level.INFO,"Room merged");
+    }
+
+    //------------------Functions for testing------------------
     /**
      * Adds an item to the room for testing purposes.
      *
@@ -394,8 +421,7 @@ public class Room {
      * @param name The name of the item.
      * @param real Indicates whether the item is real.
      */
-    public void AddItem_Test(String type, String name,boolean real)
-    {
+    public void AddItem_Test(String type, String name,boolean real) {
         switch (type) {
             case "FFP2Mask" -> items.add(real ? new FFP2Mask(name) : new FakeItem(name, "FFP2Mask"));
             case "Airfreshener" -> items.add(real ? new Airfreshener(name) : new FakeItem(name, "Airfreshener"));
@@ -405,33 +431,9 @@ public class Room {
             case "Transistor" -> items.add(real ? new Transistor(name, this) : new FakeItem(name,"Transistor"));
             case "TVSZ" -> items.add(real ? new TVSZ(name) : new FakeItem(name, "TVSZ"));
             case "WetRag" -> items.add(real ? new WetRag(name) : new FakeItem(name, "WetRag"));
-            default -> {
-                return;
-            }
         }
         String msg = (real ? "Normal" : "Fake") + " Item " + type +" "+ name + " has been added to Room " + this.name;
         resultLogger.log(Level.INFO, msg);
-    }
-    /**
-     * Changes the room based on the given type for testing purposes.
-     *
-     * @param type The type of change to apply.
-     */
-    public void Change_Test(String type) {
-        switch (type) {
-            case "Curse" -> Curse(chart.GetAllRooms());
-            case "Split" -> Split();
-            default -> {
-            }
-        }
-    }
-    /**
-     * Initiates combat for all professors in the room for testing purposes.
-     */
-    public void CombatRoom_Test(){
-        for (Professor prof : this.professors) {
-            prof.Combat();
-        }
     }
     /**
      * Initiates the goo glue effect for testing purposes.
@@ -446,6 +448,25 @@ public class Room {
     public void GooUnglue_Test() {
         goo.ResetVisitorsCount();
         resultLogger.log(Level.INFO, "Goo deactivated in Room " + this.name + ", items unglued");
+    }
+    /**
+     * Initiates combat for all professors in the room for testing purposes.
+     */
+    public void CombatRoom_Test() {
+        for (Professor prof : this.professors) {
+            prof.Combat();
+        }
+    }
+    /**
+     * Changes the room based on the given type for testing purposes.
+     *
+     * @param type The type of change to apply.
+     */
+    public void Change_Test(String type) {
+        switch (type) {
+            case "Curse" -> Curse(chart.GetAllRooms());
+            case "Split" -> Split();
+        }
     }
     /**
      * Logs information about the room and its contents for testing purposes.
@@ -464,7 +485,6 @@ public class Room {
         for (Cleaner cleaner : cleaners) {
             cleaner.InfoAll_Test();
         }
-
     }
     /**
      * Logs basic information about the room for testing purposes.
@@ -472,7 +492,7 @@ public class Room {
     public void Info_Test() {
         resultLogger.log(Level.INFO, name+".neighbours "+neighbours.size());
         for (Room room : neighbours) {
-            resultLogger.log(Level.INFO, "Room "+room.name);
+            resultLogger.log(Level.INFO, room.name);
         }
         resultLogger.log(Level.INFO, name+".items "+items.size());
         for (Item item : items) {
