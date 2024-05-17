@@ -1,21 +1,28 @@
 package App.View;
 
-import java.awt.Component;
-import javax.swing.JList;
-import javax.swing.ListCellRenderer;
+import java.awt.*;
+import javax.swing.*;
+import App.Model.Items.*;
 
-public class ItemCellRenderer implements ListCellRenderer {
+public class ItemCellRenderer extends JLabel implements ListCellRenderer {
 
-    private String iconPath;
 
-    public ItemCellRenderer(){
-
+    public ItemCellRenderer() {
+        setOpaque(true);
     }
-
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getListCellRendererComponent'");
+        Item item = (Item) value;
+        ImageIcon imageIcon = new ImageIcon("resources\\items\\"+item.GetType()+".png"); // load the image to a imageIcon
+        Image image = imageIcon.getImage(); // transform it
+        Image newimg = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        imageIcon = new ImageIcon(newimg);  // transform it back
+        setIcon(imageIcon);
+        setBorder(BorderFactory.createLineBorder(Color.decode("#69430A"), 1));
+        setBackground(Color.decode("#FDB69A"));
+        setSize(50,50);
+        return this;
+
     }
 
 }
