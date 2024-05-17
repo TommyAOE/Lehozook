@@ -1,5 +1,7 @@
 package App.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -13,7 +15,13 @@ import App.Model.Items.*;
  * Represents a student character in the game.
  */
 public class Student extends Character implements IFighter {
-
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    public void AddPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
+    }
+    public void RemovePropertyChangeListener(PropertyChangeListener listener) {
+        pcs.removePropertyChangeListener(listener);
+    }
     /**
      * The list of items the student possesses.
      */

@@ -25,7 +25,9 @@ public class ItemListView extends JList<Item> implements PropertyChangeListener{
         }else if(evt.getPropertyName().equals("BackpackChanged")&&Objects.equals(type, "Player")){
             this.setListData(student.GetItems().toArray());
         }else if(evt.getPropertyName().equals("StudentChanged")){
+            student.RemovePropertyChangeListener(this);
             student = (Student) evt.getNewValue();
+            student.AddPropertyChangeListener(this);
             if (Objects.equals(type, "Room")){
                 this.setListData(student.GetLocation().SearchItem().toArray());}
             else if (Objects.equals(type, "Player")){
@@ -102,6 +104,7 @@ public class ItemListView extends JList<Item> implements PropertyChangeListener{
                 }
             });
             this.setBounds(300,300,53* student.GetLocation().SearchItem().size(),56);
+            student.AddPropertyChangeListener(this);
         }
         else{
             throw new IllegalArgumentException("Invalid type");
