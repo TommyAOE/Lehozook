@@ -29,9 +29,7 @@ public class Program {
         consoleHandler.setFormatter(formatter);
         resultLogger.setUseParentHandlers(false);
         resultLogger.addHandler(consoleHandler);
-        Model model = new Model(5, 5, 5);
-
-        GameView view = new GameView(model);
-
+        GameController gc = new GameController();
+        Menu menu=new Menu();
     }
 }

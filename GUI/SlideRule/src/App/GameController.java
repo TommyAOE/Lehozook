@@ -19,6 +19,12 @@ public class GameController implements PropertyChangeListener{
         model.AddPropertyChangeListener(this);
     }
 
+    public GameController(int maxPlayers, int maxProfessors, int maxRounds)
+    {
+        model=new Model(maxPlayers, maxProfessors, maxRounds);
+    }
+
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("GameOver")){

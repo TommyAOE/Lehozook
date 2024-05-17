@@ -167,6 +167,14 @@ public class GameView extends JFrame implements PropertyChangeListener {
             }
         }
     }
+
+    public GameView(int maxPlayers, int maxProfessors, int maxRounds)
+    {
+        controller=new GameController(maxPlayers, maxProfessors, maxRounds);
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
     /**
      * Get the list of student views.
      *
