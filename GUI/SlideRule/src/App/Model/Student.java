@@ -82,6 +82,7 @@ public class Student extends Character implements IFighter {
             if(item.GetType() == "Transistor"){
                 ((Transistor)item).location = location;
             }
+            pcs.firePropertyChange("BackpackChanged", null, item);
         }
     }
     /**
@@ -208,6 +209,7 @@ public class Student extends Character implements IFighter {
                     p.inCombat = true;
             }
         }
+        pcs.firePropertyChange("RoomChanged", null, null);
         return true;
     }
 
@@ -456,6 +458,9 @@ public class Student extends Character implements IFighter {
     public void UseItem(Item i) {
         i.ApplyEffect();
     }
+    public void ActivateTransistor(Transistor t){
+        t.Activate();
+    }
 
     /**
      * Uses the specified item from the student's inventory.
@@ -476,7 +481,7 @@ public class Student extends Character implements IFighter {
     /**
      * Picks up the specified item from the current room and adds it to the student's inventory.
      *
-     * @param name the name of the item to pick up
+     * @param i the name of the item to pick up
      */
     public void PickUpItem(Item i) {
         Item tempItem = location.PopItem(i);
@@ -491,6 +496,7 @@ public class Student extends Character implements IFighter {
             if(tempItem.GetType() == "FakeItem"){
                 tempItem.ApplyEffect();
             }
+            pcs.firePropertyChange("BackpackChanged", null, null);
 
         }else{
             resultLogger.log(Level.INFO,"Character "+ this.name+ " could not pick up Item "+ i.GetName());

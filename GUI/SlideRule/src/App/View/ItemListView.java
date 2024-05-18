@@ -1,5 +1,6 @@
 package App.View;
 
+import App.ListController;
 import App.Model.Items.*;
 import App.Model.*;
 
@@ -14,31 +15,32 @@ import javax.swing.*;
 
 public class ItemListView extends JList<Item> implements PropertyChangeListener{
 
-    private Coordinates coordinates;
+    ListController controller;
     private Student student;
     private String type;
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt.getPropertyName().equals("RoomChanged")&&Objects.equals(type, "Room")){
-                this.setListData(student.GetLocation().SearchItem().toArray());
+                this.setListData(student.GetLocation().SearchItem().toArray(new Item[0]));
         }else if(evt.getPropertyName().equals("BackpackChanged")&&Objects.equals(type, "Player")){
-            this.setListData(student.GetItems().toArray());
+            this.setListData(student.GetItems().toArray(new Item[0]));
         }else if(evt.getPropertyName().equals("StudentChanged")){
             student.RemovePropertyChangeListener(this);
             student = (Student) evt.getNewValue();
             student.AddPropertyChangeListener(this);
             if (Objects.equals(type, "Room")){
-                this.setListData(student.GetLocation().SearchItem().toArray());}
+                this.setListData(student.GetLocation().SearchItem().toArray(new Item[0]));}
             else if (Objects.equals(type, "Player")){
-                this.setListData(student.GetItems().toArray());
+                this.setListData(student.GetItems().toArray(new Item[0]));
             }
         }
     }
-    public ItemListView(Coordinates c, Student s, String t){
-        coordinates = c;
+    public ItemListView(Point p, Student s, String t,Model m){
+        controller = new ListController(m);
         student = s;
         type = t;
+        m.AddPropertyChangeListener(this);
         this.setBorder(BorderFactory.createEtchedBorder());
         this.setVisible(true);
         this.setCellRenderer(new ItemCellRenderer());
@@ -46,7 +48,7 @@ public class ItemListView extends JList<Item> implements PropertyChangeListener{
         setVisibleRowCount(-1);
         setLayoutOrientation(JList.HORIZONTAL_WRAP);
         if(Objects.equals(t, "Room")){
-            this.setListData(student.GetLocation().SearchItem().toArray());
+            this.setListData(student.GetLocation().SearchItem().toArray(new Item[0]));
             this.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -56,7 +58,7 @@ public class ItemListView extends JList<Item> implements PropertyChangeListener{
                     pickUp.setAction(new AbstractAction("Pick Up") {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            student.PickUpItem(item);
+                            controller.PickUpItem(item);
                         }
                     });
                     popup.add(pickUp);
@@ -64,10 +66,10 @@ public class ItemListView extends JList<Item> implements PropertyChangeListener{
                     clearSelection(); //clear the selection
                 }
             });
-            this.setBounds(300,400,53* student.GetItems().size(),56);
+            this.setBounds(p.x,p.y,53* student.GetItems().size(),56);
         }
         else if(Objects.equals(t, "Player")){
-            this.setListData(student.GetItems().toArray());
+            this.setListData(student.GetItems().toArray(new Item[0]));
             this.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -81,20 +83,20 @@ public class ItemListView extends JList<Item> implements PropertyChangeListener{
                         activate.setAction(new AbstractAction() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                transistor.Activate();
+                                controller.ActivateItem(transistor);
                             }
                         });
                     }
                     use.setAction(new AbstractAction("Use") {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            item.ApplyEffect();
+                            controller.UseItem(item);
                         }
                     });
                     drop.setAction(new AbstractAction("Drop") {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            student.DropItem(item);
+                            controller.DropItem(item);
                         }
                     });
                     popup.add(use);
