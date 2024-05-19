@@ -1,6 +1,6 @@
 package App.View;
 
-import App.ListController;
+import App.ItemListController;
 import App.Model.Items.*;
 import App.Model.*;
 
@@ -15,7 +15,7 @@ import javax.swing.*;
 
 public class ItemListView extends JList<Item> implements PropertyChangeListener{
 
-    ListController controller;
+    ItemListController controller;
     Point p;
     private Student student;
     private String type;
@@ -44,7 +44,7 @@ public class ItemListView extends JList<Item> implements PropertyChangeListener{
     }
 
     public ItemListView(Point p, Student s, String t,Model m){
-        controller = new ListController(m);
+        controller = new ItemListController(m);
         student = s;
         type = t;
         this.p = p;

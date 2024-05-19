@@ -4,9 +4,9 @@ import App.Model.Items.Item;
 import App.Model.Items.Transistor;
 import App.Model.Model;
 
-public class ListController {
+public class ItemListController {
     Model model;
-    public ListController(Model model){
+    public ItemListController(Model model){
         this.model = model;
     }
     public void DropItem(Item item){
