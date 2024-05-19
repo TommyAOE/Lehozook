@@ -17,7 +17,7 @@ public class ItemCellRenderer extends JLabel implements ListCellRenderer {
         if (item.GetType().startsWith("Fake")) {
             type = item.GetType().substring(4);
         }
-        ImageIcon imageIcon = new ImageIcon("resources\\items\\"+type+".png"); // load the image to a imageIcon
+        ImageIcon imageIcon = new ImageIcon("resources/items/"+type.toLowerCase()+".png"); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it
         Image newimg = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         imageIcon = new ImageIcon(newimg);  // transform it back
