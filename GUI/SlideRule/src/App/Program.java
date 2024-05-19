@@ -1,6 +1,8 @@
 package App;
 
 import App.Model.Items.*;
+import App.Model.Model;
+import App.View.GameView;
 
 import java.util.logging.ConsoleHandler;
 import java.util.logging.LogRecord;
@@ -27,7 +29,10 @@ public class Program {
         consoleHandler.setFormatter(formatter);
         resultLogger.setUseParentHandlers(false);
         resultLogger.addHandler(consoleHandler);
-        GameController gc = new GameController();
+        Model model = new Model(5, 5, 5);
+
+        GameView view = new GameView(model);
+
     }
 
 }

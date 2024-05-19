@@ -13,7 +13,11 @@ public class ItemCellRenderer extends JLabel implements ListCellRenderer {
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         Item item = (Item) value;
-        ImageIcon imageIcon = new ImageIcon("resources\\items\\"+item.GetType()+".png"); // load the image to a imageIcon
+        String type = item.GetType();
+        if (item.GetType().startsWith("Fake")) {
+            type = item.GetType().substring(4);
+        }
+        ImageIcon imageIcon = new ImageIcon("resources\\items\\"+type+".png"); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it
         Image newimg = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         imageIcon = new ImageIcon(newimg);  // transform it back

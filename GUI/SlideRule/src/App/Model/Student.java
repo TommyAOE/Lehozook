@@ -79,6 +79,7 @@ public class Student extends Character implements IFighter {
         if(items.contains(item)){
             items.remove(item);
             location.AddItem(item);
+
             if(item.GetType() == "Transistor"){
                 ((Transistor)item).location = location;
             }
@@ -350,6 +351,7 @@ public class Student extends Character implements IFighter {
             Room temp = location;
             location = null;
             temp.CharacterLeft(this);
+            pcs.firePropertyChange("BackpackChanged", null, null);
         }
     }
 
@@ -368,7 +370,14 @@ public class Student extends Character implements IFighter {
      */
     public void Drunk()
     {
-        location.AddItem(items.remove(new Random().nextInt(items.size())));
+        if (items.size() == 1){
+            Item item = items.remove(0);
+            location.AddItem(item);
+        }else if (items.size() > 1){
+            location.AddItem(items.remove(new Random().nextInt(items.size())));
+        }
+        pcs.firePropertyChange("BackpackChanged", null, null);
+
     }
     /**
      * Returns the current stun state of the student.
@@ -490,10 +499,10 @@ public class Student extends Character implements IFighter {
             items.add(tempItem);
             tempItem.SetOwner(this);
             resultLogger.log(Level.INFO,"Character "+ this.name+ " picked up Item "+ tempItem.GetName());
-            if (tempItem.GetType()=="SlideRule"){
+            if (tempItem.GetType().startsWith("Fake")){
                 tempItem.ApplyEffect();
             }
-            if(tempItem.GetType() == "FakeItem"){
+            if(tempItem.GetType() == "SlideRule"){
                 tempItem.ApplyEffect();
             }
             pcs.firePropertyChange("BackpackChanged", null, null);

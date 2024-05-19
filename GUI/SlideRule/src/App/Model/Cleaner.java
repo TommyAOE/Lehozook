@@ -13,7 +13,7 @@ public class Cleaner extends Character
      * Constructs a Cleaner object with the given name and assigns it to the specified room.
      *
      * @param name The name of the Cleaner.
-     * @param r    The room where the Cleaner will be assigned.
+     * @param location   The room where the Cleaner will be assigned.
      */
     public Cleaner(String name, Room location) {
         super(name);
@@ -29,16 +29,16 @@ public class Cleaner extends Character
     @Override
     public void Turn() {
         int safe=100;
-        Room newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1));
+        Room newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()));
         while (newRoom.IsFull() && --safe>0)
-            newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1));
+            newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()));
         EnterRoom(newRoom);
 
         for (Student s :location.GetStudents()) {
             if (s.isStunned()==0){
                 safe=100;
                 while (newRoom.IsFull() && --safe>0)
-                    newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1));
+                    newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()));
                 s.EnterRoom(newRoom);
             }
 
@@ -47,7 +47,7 @@ public class Cleaner extends Character
             if(p.IsStunned()==0) {
                 safe=100;
                 while (newRoom.IsFull() && --safe>0)
-                    newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()+1));
+                    newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()));
                 p.EnterRoom(newRoom);
             }
         }
