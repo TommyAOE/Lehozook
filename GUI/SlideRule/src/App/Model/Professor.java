@@ -43,9 +43,9 @@ public class Professor extends Character implements IFighter {
             return;
         }
         int safe = 100;
-        Room newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size() + 1));
+        Room newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()));
         while (newRoom.IsFull() && --safe > 0)
-            newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size() + 1));
+            newRoom = location.GetNeighbours().get(new Random().nextInt(location.GetNeighbours().size()));
         EnterRoom(newRoom);
         if (!inCombat) {
             for (Item i : location.SearchItem()) {

@@ -136,7 +136,7 @@ public class Room {
     /**
      * Sets the given room as a neighbour of this room.
      *
-     * @param r The room to set as a neighbour.
+     * @param rooms The room to set as a neighbour.
      */
     public void SetNeighboursOneWay(ArrayList<Room> rooms) {
         for (Room r : rooms) {
@@ -292,7 +292,7 @@ public class Room {
         switch (type) {
             case "FFP2Mask" -> items.add(real ? new FFP2Mask() : new FakeItem("FFP2Mask"));
             case "Airfreshener" -> items.add(real ? new Airfreshener() : new FakeItem("Airfreshener"));
-            case "Camembert" -> items.add(real ? new Camembert() : new FakeItem("Camambert"));
+            case "Camembert" -> items.add(real ? new Camembert() : new FakeItem("Camembert"));
             case "SlideRule" -> items.add(real ? new SlideRule() : new FakeItem("SlideRule"));
             case "StBeerCups" -> items.add(real ? new StBeerCups() : new FakeItem("StBeerCups"));
             case "Transistor" -> items.add(real ? new Transistor(this) : new FakeItem("Transistor"));
@@ -305,13 +305,17 @@ public class Room {
      */
     public Item PopItem(Item item) {
         Item tempItem = null;
+        int index = -1;
         for (int i = 0; i < items.size(); i++) {
             if(items.get(i).equals(item)) {
                 if(!items.get(i).IsGlued()) {
                     tempItem = items.get(i);
-                    items.remove(i);
+                    index = i;
                 }
             }
+        }
+        if(index != -1) {
+            items.remove(index);
         }
         return tempItem;
     }

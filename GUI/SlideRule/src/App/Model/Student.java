@@ -1,5 +1,7 @@
 package App.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -13,7 +15,13 @@ import App.Model.Items.*;
  * Represents a student character in the game.
  */
 public class Student extends Character implements IFighter {
-
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    public void AddPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
+    }
+    public void RemovePropertyChangeListener(PropertyChangeListener listener) {
+        pcs.removePropertyChangeListener(listener);
+    }
     /**
      * The list of items the student possesses.
      */
@@ -71,9 +79,11 @@ public class Student extends Character implements IFighter {
         if(items.contains(item)){
             items.remove(item);
             location.AddItem(item);
+
             if(item.GetType() == "Transistor"){
                 ((Transistor)item).location = location;
             }
+            pcs.firePropertyChange("BackpackChanged", null, item);
         }
     }
     /**
@@ -200,6 +210,7 @@ public class Student extends Character implements IFighter {
                     p.inCombat = true;
             }
         }
+        pcs.firePropertyChange("RoomChanged", null, null);
         return true;
     }
 
@@ -340,6 +351,7 @@ public class Student extends Character implements IFighter {
             Room temp = location;
             location = null;
             temp.CharacterLeft(this);
+            pcs.firePropertyChange("BackpackChanged", null, null);
         }
     }
 
@@ -358,7 +370,14 @@ public class Student extends Character implements IFighter {
      */
     public void Drunk()
     {
-        location.AddItem(items.remove(new Random().nextInt(items.size())));
+        if (items.size() == 1){
+            Item item = items.remove(0);
+            location.AddItem(item);
+        }else if (items.size() > 1){
+            location.AddItem(items.remove(new Random().nextInt(items.size())));
+        }
+        pcs.firePropertyChange("BackpackChanged", null, null);
+
     }
     /**
      * Returns the current stun state of the student.
@@ -448,6 +467,9 @@ public class Student extends Character implements IFighter {
     public void UseItem(Item i) {
         i.ApplyEffect();
     }
+    public void ActivateTransistor(Transistor t){
+        t.Activate();
+    }
 
     /**
      * Uses the specified item from the student's inventory.
@@ -468,7 +490,7 @@ public class Student extends Character implements IFighter {
     /**
      * Picks up the specified item from the current room and adds it to the student's inventory.
      *
-     * @param name the name of the item to pick up
+     * @param i the name of the item to pick up
      */
     public void PickUpItem(Item i) {
         Item tempItem = location.PopItem(i);
@@ -477,12 +499,13 @@ public class Student extends Character implements IFighter {
             items.add(tempItem);
             tempItem.SetOwner(this);
             resultLogger.log(Level.INFO,"Character "+ this.name+ " picked up Item "+ tempItem.GetName());
-            if (tempItem.GetType()=="SlideRule"){
+            if (tempItem.GetType().startsWith("Fake")){
                 tempItem.ApplyEffect();
             }
-            if(tempItem.GetType() == "FakeItem"){
+            if(tempItem.GetType() == "SlideRule"){
                 tempItem.ApplyEffect();
             }
+            pcs.firePropertyChange("BackpackChanged", null, null);
 
         }else{
             resultLogger.log(Level.INFO,"Character "+ this.name+ " could not pick up Item "+ i.GetName());

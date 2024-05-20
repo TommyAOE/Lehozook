@@ -48,7 +48,7 @@ public class FakeItem extends Item {
      */
     @Override
     public String GetType() {
-        return "FakeItem";
+        return "Fake"+type;
     }
     /**
      * Gets the represented type of the fake item.
@@ -67,8 +67,9 @@ public class FakeItem extends Item {
             resultLogger.log(Level.WARNING, "The room has no neighbours");
             return;
         }
+        int safe = 100;
         Room newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size()));
-        while(!owner.EnterRoom(newRoom))
+        while(!owner.EnterRoom(newRoom)&&--safe>0)
             newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size()));
     }
 

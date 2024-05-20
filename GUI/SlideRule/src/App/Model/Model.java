@@ -1,5 +1,7 @@
 package App.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -7,12 +9,20 @@ import java.util.Random;
  * Represents a scheduler in the game.
  */
 public class Model {
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    public void AddPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
+    }
+    public void RemovePropertyChangeListener(PropertyChangeListener listener) {
+        pcs.removePropertyChangeListener(listener);
+    }
     private Chart chart;
     private ArrayList<Character> NPCs = new ArrayList<>();
     private ArrayList<Student> players = new ArrayList<>();
     private int playerCount;
     private int professorCount;
     private int maxRounds;
+    public Student currentPlayer;
 
     Random random = new Random();
 
@@ -23,7 +33,23 @@ public class Model {
         this.maxRounds = maxRounds;
 
         Init();
+        Play();
+
     }
+
+    private void Play() {
+        for(int i = 0; i < maxRounds; i++){
+            for (Character c : NPCs) {
+                c.Turn();
+            }
+            for(Student s : players){
+                currentPlayer = s;
+                pcs.firePropertyChange("StudentChanged", null, s);
+                s.Turn();
+            }
+        }
+    }
+
     public void Init(){
 
         chart = new Chart();
@@ -43,5 +69,13 @@ public class Model {
         chart.IterateForItemSpawn(true, playerCount);
 
         chart.InfoAll_Test();
+    }
+
+    public ArrayList<Character> GetNPCs() {
+        return NPCs;
+    }
+
+    public ArrayList<Student> GetPlayers() {
+        return players;
     }
 }
