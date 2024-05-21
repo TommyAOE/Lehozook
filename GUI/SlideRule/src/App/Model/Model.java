@@ -39,8 +39,9 @@ public class Model {
         return chart;
     }
     public void NextPlayer(){
+        int index;
         if (inCombat.isEmpty()) {
-            int index = players.indexOf(currentPlayer);
+            index = players.indexOf(currentPlayer);
             if(index == players.size() - 1){
                 NpcTurn();
                 CombatTurn();
@@ -61,9 +62,9 @@ public class Model {
                 currentPlayer = players.get(index + 1);
                 currentPlayer.canMove = true;
             }
-            pcs.firePropertyChange("StudentChanged", null, currentPlayer);
         }else{
-            int index = inCombat.indexOf(currentPlayer);
+            System.out.println("In combat");
+            index = inCombat.indexOf(currentPlayer);
             if(index == inCombat.size() - 1){
                 for (Character c: NPCs) {
                     if (c.GetName().startsWith("p")) {
@@ -80,8 +81,8 @@ public class Model {
             else{
                 currentPlayer = inCombat.get(index + 1);
             }
-            pcs.firePropertyChange("StudentChanged", null, currentPlayer);
         }
+        pcs.firePropertyChange("StudentChanged", null, currentPlayer);
     }
 
     private void CombatTurn() {

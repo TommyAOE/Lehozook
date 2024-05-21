@@ -30,6 +30,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
     private ArrayList<CharacterView> cleanerViews = new ArrayList<>();
     private ItemListView roomItemsView;
     private ItemListView backpackView;
+    private JLayeredPane layeredPane;
     public GameView(Model model){
         model.AddPropertyChangeListener(this);
         controller = new GameController(model);
@@ -55,12 +56,15 @@ public class GameView extends JFrame implements PropertyChangeListener {
         currentPlayer.setBounds(1300, 10, 200, 50);
         counter = new JLabel("Turns: "+controller.GetModel().maxRounds);
         counter.setBounds(1300, 50, 200, 50);
+        layeredPane = new JLayeredPane();
+        layeredPane.setBounds(0,0,750,750);
         add(roomItemsView);
         add(backpackView);
         add(button);
         add(currentPlayer);
         add(scroll);
         add(counter);
+        add(layeredPane);
         SetUpRooms();
         SetUpPlayers();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +79,9 @@ public class GameView extends JFrame implements PropertyChangeListener {
             RoomView rv = new RoomView(r);
             roomViews.add(rv);
             rv.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            add(rv);
+            layeredPane.add(rv,0);
+            r.AddPropertyChangeListener(this);
+            //add(rv);
         }
         int i = 0;
         for(int x=0;x<5*150;x+=150){
@@ -88,27 +94,61 @@ public class GameView extends JFrame implements PropertyChangeListener {
             }
         }
     }
-    private Point SearchRoom(Character c){
-        Point p = new Point();
-        for (RoomView rv : roomViews){
-            if (rv.GetRoom()==c.GetLocation()){
-                p=rv.point;
-            }
-        }
-        return p;
-    }
     private void SetUpPlayers(){
-        for (Student s : controller.GetModel().GetPlayers()){
-            CharacterView cv = new CharacterView(s,controller.GetModel().GetPlayers().indexOf(s),SearchRoom(s));
-            studentViews.add(cv);
-            cv.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            add(cv);
-        }
-        for (Character c : controller.GetModel().GetNPCs()){
-                CharacterView cv = new CharacterView(c,0,SearchRoom(c));
-                cleanerViews.add(cv);
-                cv.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                add(cv);
+        for (RoomView r: roomViews){
+            int i = 0;
+            int j = 0;
+            for (Student s:r.GetRoom().GetStudents()){
+                if (i<4){
+                CharacterView cv = new CharacterView(s,controller.GetModel().GetPlayers().indexOf(s),r.point);
+                cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
+                studentViews.add(cv);
+                layeredPane.add(cv,1);
+                i++;}
+                else{
+                    i = 0;
+                    j++;
+                    CharacterView cv = new CharacterView(s,controller.GetModel().GetPlayers().indexOf(s),r.point);
+                    cv.setBounds(cv.point.x,cv.point.y+j*30,50,50);
+                    studentViews.add(cv);
+                    layeredPane.add(cv,1);
+                    i++;
+                }
+            }
+            for (Professor p:r.GetRoom().GetProfessors()){
+                if (i<4){
+                    CharacterView cv = new CharacterView(p,0,r.point);
+                    cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
+                    professorViews.add(cv);
+                    layeredPane.add(cv,1);
+                    i++;}
+                else{
+                    i = 0;
+                    j++;
+                    CharacterView cv = new CharacterView(p,0,r.point);
+                    cv.setBounds(cv.point.x,cv.point.y+j*30,50,50);
+                    professorViews.add(cv);
+                    layeredPane.add(cv,1);
+                    i++;
+                }
+            }
+            for (Cleaner c:r.GetRoom().GetCleaners()){
+                if (i<4){
+                    CharacterView cv = new CharacterView(c,0,r.point);
+                    cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
+                    cleanerViews.add(cv);
+                    layeredPane.add(cv,1);
+                    i++;}
+                else{
+                    i = 0;
+                    j++;
+                    CharacterView cv = new CharacterView(c,0,r.point);
+                    cv.setBounds(cv.point.x,cv.point.y+j*25,50,50);
+                    cleanerViews.add(cv);
+                    layeredPane.add(cv,1);
+                    i++;
+                }
+            }
         }
     }
     /**
@@ -147,7 +187,103 @@ public class GameView extends JFrame implements PropertyChangeListener {
             counter.setText("Turns: "+evt.getNewValue());
         }
         if (evt.getPropertyName().equals("ListUpdate")){
-            //UpdatePlyers();
+            UpdatePlyers();
+        }
+        if (evt.getPropertyName().equals("CharacterMoved")){
+            MoveCharacter((Character) evt.getNewValue());
+        }
+    }
+    private Point SearchLocation(Character c){
+        for (RoomView rv:roomViews){
+            if(c.GetName().startsWith("s")){
+                if (rv.GetRoom().GetStudents().contains(c)){
+                    Point p;
+                    if (rv.GetRoom().characterCount>4){
+                        p= new Point(rv.point.x+(rv.GetRoom().characterCount-5)*30,rv.point.y+30);
+                    }else {
+                        p = new Point(rv.point.x + (rv.GetRoom().characterCount-1) * 30, rv.point.y);
+                    }
+                    return p;
+                }
+            }else if (c.GetName().startsWith("p")){
+                if (rv.GetRoom().GetProfessors().contains( c)){
+                    Point p;
+                    if (rv.GetRoom().characterCount>4){
+                        p= new Point(rv.point.x+(rv.GetRoom().characterCount-5)*30,rv.point.y+30);
+                    }else {
+                        p = new Point(rv.point.x + (rv.GetRoom().characterCount-1) * 30, rv.point.y);
+                    }
+                    return p;
+                }
+            }else if (c.GetName().startsWith("c")){
+                if (rv.GetRoom().GetCleaners().contains(c)){
+                    Point p;
+                    if (rv.GetRoom().characterCount>4){
+                        p= new Point(rv.point.x+(rv.GetRoom().characterCount-5)*30,rv.point.y+30);
+                    }else {
+                        p = new Point(rv.point.x + (rv.GetRoom().characterCount-1) * 30, rv.point.y);
+                    }
+                    return p;
+                }
+            }
+        }
+        return null;
+    }
+    private void MoveCharacter(Character c){
+        if (c.GetName().startsWith("s")){
+            for (CharacterView cv:studentViews){
+                if (cv.character.GetName().equals(c.GetName())){
+                    Point p = SearchLocation(c);
+                    if (p!=null){
+                        cv.setBounds(p.x,p.y,50,50);
+                    }
+                }
+            }
+        }else if (c.GetName().startsWith("p")){
+            for (CharacterView cv:professorViews){
+                if (cv.character.GetName().equals(c.GetName())){
+                    Point p = SearchLocation(c);
+                    if (p!=null){
+
+                        cv.setBounds(p.x,p.y,50,50);
+                    }
+                }
+            }
+        }else if (c.GetName().startsWith("c")){
+            for (CharacterView cv:cleanerViews){
+                if (cv.character.GetName().equals(c.GetName())){
+                    Point p = SearchLocation(c);
+                    if (p!=null){
+                        cv.setBounds(p.x,p.y,50,50);
+                    }
+                }
+            }
+        }
+    }
+    private void UpdatePlyers() {
+        for (CharacterView cv : studentViews) {
+            layeredPane.remove(cv);
+        }
+        for (RoomView r: roomViews){
+            int i = 0;
+            int j = 0;
+            for (Student s:r.GetRoom().GetStudents()){
+                if (i<4){
+                    CharacterView cv = new CharacterView(s,controller.GetModel().GetPlayers().indexOf(s),r.point);
+                    cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
+                    studentViews.add(cv);
+                    layeredPane.add(cv,1);
+                    i++;}
+                else{
+                    i = 0;
+                    j++;
+                    CharacterView cv = new CharacterView(s,controller.GetModel().GetPlayers().indexOf(s),r.point);
+                    cv.setBounds(cv.point.x,cv.point.y+j*30,50,50);
+                    studentViews.add(cv);
+                    layeredPane.add(cv,1);
+                    i++;
+                }
+            }
         }
     }
 }

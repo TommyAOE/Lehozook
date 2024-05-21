@@ -17,7 +17,6 @@ public class RoomView extends JPanel implements PropertyChangeListener{
     private Room room;
     private GasView gas;
     private GooView goo;
-
     private JButton button;
     private ArrayList<JLabel> doors = new ArrayList<>();
     private JLabel floor;
