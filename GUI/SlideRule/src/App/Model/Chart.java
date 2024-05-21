@@ -134,6 +134,8 @@ public class Chart {
      * @param r The room to be added.
      */
     public void AddRoom(Room r) {
+        if(new Random().nextInt(100) < 30)
+            r.AddGas();
         rooms.add(r);
         //System.out.println("added " + r.name);
     }

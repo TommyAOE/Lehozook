@@ -19,7 +19,7 @@ import javax.swing.*;
 public class GameView extends JFrame implements PropertyChangeListener {
     
     protected ArrayList<RoomView> roomViews = new ArrayList<>();
-    protected GameController controller;
+    protected static GameController controller;
     JButton button;
     JTextArea info;
     JScrollPane scroll;
@@ -31,10 +31,10 @@ public class GameView extends JFrame implements PropertyChangeListener {
     private ItemListView roomItemsView;
     private ItemListView backpackView;
     private JLayeredPane layeredPane;
-    public GameView(Model model){
+
+    public GameView(Model model) {
         model.AddPropertyChangeListener(this);
         controller = new GameController(model);
-
 
         button = new JButton("Next Turn");
         button.setBounds(1200, 600, 100, 50);
@@ -42,6 +42,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.NextTurn();
+                UpdateRoomButtonsEnabled(true);
             }
         });
         roomItemsView = new ItemListView(new Point(1200, 400), controller.GetModel().currentPlayer, "Room", controller.GetModel());
@@ -76,20 +77,19 @@ public class GameView extends JFrame implements PropertyChangeListener {
     private void SetUpRooms(){
         ArrayList<Room> rooms = (ArrayList<Room>) controller.GetModel().GetChart().GetAllRooms();
         for (Room r : rooms){
-            RoomView rv = new RoomView(r);
+            RoomView rv = new RoomView(r, this);
             roomViews.add(rv);
             layeredPane.add(rv,1);
             r.AddPropertyChangeListener(this);
             //add(rv);
         }
         int i = 0;
-        for(int x=0;x<5*150;x+=150){
-            for(int y=0;y<5*150;y+=150){
-                for (y = 0; y < 5 * 150; y += 150) {
-                    roomViews.get(i).setBounds(x, y, 150, 150);
-                    roomViews.get(i).point = new Point(x, y);
-                    i++;
-                }
+        for(int y = 0; y < 5 * 150; y += 150) {
+            for(int x = 0; x < 5 * 150; x += 150) {
+                roomViews.get(i).setBounds(x, y, 150, 150);
+                roomViews.get(i).point = new Point(x, y);
+                i++;
+                
             }
         }
     }
@@ -118,6 +118,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                 if (i<4){
                     CharacterView cv = new CharacterView(p,0,r.point);
                     cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
+                    //cv.setVisible(!cv.character.GetLocation().GetStudents().isEmpty());
                     professorViews.add(cv);
                     layeredPane.add(cv,0);
                     i++;}
@@ -126,6 +127,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                     j++;
                     CharacterView cv = new CharacterView(p,0,r.point);
                     cv.setBounds(cv.point.x,cv.point.y+j*30,50,50);
+                    //cv.setVisible(!cv.character.GetLocation().GetStudents().isEmpty());
                     professorViews.add(cv);
                     layeredPane.add(cv,0);
                     i++;
@@ -135,6 +137,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                 if (i<4){
                     CharacterView cv = new CharacterView(c,0,r.point);
                     cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
+                    //cv.setVisible(!cv.character.GetLocation().GetStudents().isEmpty());
                     cleanerViews.add(cv);
                     layeredPane.add(cv,0);
                     i++;}
@@ -143,6 +146,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                     j++;
                     CharacterView cv = new CharacterView(c,0,r.point);
                     cv.setBounds(cv.point.x,cv.point.y+j*25,50,50);
+                    //cv.setVisible(!cv.character.GetLocation().GetStudents().isEmpty());
                     cleanerViews.add(cv);
                     layeredPane.add(cv,0);
                     i++;
@@ -243,7 +247,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                 if (cv.character.GetName().equals(c.GetName())){
                     Point p = SearchLocation(c);
                     if (p!=null){
-
+                        //cv.setVisible(!cv.character.GetLocation().GetStudents().isEmpty());
                         cv.setBounds(p.x,p.y,50,50);
                     }
                 }
@@ -253,6 +257,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                 if (cv.character.GetName().equals(c.GetName())){
                     Point p = SearchLocation(c);
                     if (p!=null){
+                        //cv.setVisible(!cv.character.GetLocation().GetStudents().isEmpty());
                         cv.setBounds(p.x,p.y,50,50);
                     }
                 }
@@ -283,6 +288,12 @@ public class GameView extends JFrame implements PropertyChangeListener {
                     i++;
                 }
             }
+        }
+    }
+
+    public void UpdateRoomButtonsEnabled(boolean enabled){
+        for(RoomView current : roomViews){
+            current.GetRoomButton().setEnabled(enabled);
         }
     }
 }

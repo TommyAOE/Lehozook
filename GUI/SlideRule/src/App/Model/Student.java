@@ -277,6 +277,7 @@ public class Student extends Character implements IFighter {
     public boolean Stun(int stunDuration) {
         boolean stun = false;
         boolean hasMask = false;
+        if(items == null)   return false;
         for (Item i :items) {
             if(i.GetType().equals("FFP2Mask"))
             {

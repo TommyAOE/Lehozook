@@ -13,9 +13,9 @@ public class GameController implements PropertyChangeListener{
 
     private Model model;
     private GameView view;
-    private Student currentPlayer;
+
     public GameController(Model m){
-        model=m;
+        model = m;
         model.AddPropertyChangeListener(this);
     }
 
@@ -40,14 +40,14 @@ public class GameController implements PropertyChangeListener{
      * @return The current player.
      */
     public Student GetCurrentPlayer(){
-        return currentPlayer;
+        return model.currentPlayer;
     }
     /**
      * Enter a room in the game.
      * @param r The room to enter.
      */
-    public void EnterRoom(Room r){
-        currentPlayer.EnterRoom(r);
+    public boolean EnterRoom(Room r){
+        return model.currentPlayer.EnterRoom(r);
     }
 
     public void NextTurn() {

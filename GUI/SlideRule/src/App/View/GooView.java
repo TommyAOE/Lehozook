@@ -1,9 +1,12 @@
 package App.View;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class GooView extends JLabel{
 
-    private Coordinates coordinates;
-    private RoomView room;
+    public GooView(){
+        super(new ImageIcon("resources/room/goo.png"));
+        setBounds(0, 0, 150, 150);
+    }
 }

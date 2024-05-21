@@ -183,6 +183,8 @@ public class Room {
      */
     public void GasExpired() {
         this.gas=null;
+        pcs.firePropertyChange("GasExpired", null, null);
+        
     }
     /**
      * Checks if the room has gas.
@@ -190,6 +192,14 @@ public class Room {
      */
     public boolean HasGas() {
         return gas != null;
+    }
+
+    /**
+     * Checks if the room has goo.
+     * @return true if the room has goo, false otherwise.
+     */
+    public boolean HasGoo() {
+        return goo != null;
     }
     /** 
     * Signals that a character has entered the room.
@@ -209,6 +219,7 @@ public class Room {
             }
             case 's' -> {
                 students.add((Student) c);
+                pcs.firePropertyChange("StudentEntered", null, c);
                 if (this.gas != null)
                     this.gas.Gasify();
             }
@@ -231,6 +242,7 @@ public class Room {
                 break;
             case 's':
                 students.remove(c);
+                pcs.firePropertyChange("StudentLeft", null, c);
                 if(((Student)c).location == null) {
                     int studentCounter = 0;
                     for (Room room : chart.GetAllRooms()) {

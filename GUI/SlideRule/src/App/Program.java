@@ -34,5 +34,4 @@ public class Program {
         GameView view = new GameView(model);
 
     }
-
 }
