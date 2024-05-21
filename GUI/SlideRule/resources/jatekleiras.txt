@@ -1,0 +1,82 @@
+Játékleírás:
+	Turn based játék, többjátékos játszhatósággal, melynek célja, hogy a hallgatók megtalálják a logarlécet a labirintus szobáiban.
+
+A játékos által irányított karakterek, a hallgatók különböző lépéseket végezhetnek egy körben. Szobákról szobákra lépnek, amelyekben lévő tárgyakat felvenni, használni és eldobni tudják. 
+Hátizsákkal rendelkeznek, amelyben maximum 5 eszköz fér el. Alapvető célja a Logarléc megszerzése, ellenfelük az oktatók akikkel a játék során harcolnak.
+
+Az oktatók, olyan karakterek amelyeket nem a játékosok irányítanak. 
+Körönként lépnek egyik szobából annak valamelyik szomszédjába, az ott lévő tárgyakat eltüntetik. 
+Ha egy szobában tartózkodnak hallgatókkal, akkor a lelküket elszívják, kivéve bizonyos eseteket (lásd később: tárgyak és képességeik).
+
+Egy harmadik karakter a takarító aki ha belép egy szobába, minden mozogni képes (nem bénult / ájult) embert kitessékel onnan.
+A későbbiekben lesz kifejtve hogy egy karakter hogyan lehet bénult vagy ájult.
+
+A labirintus pálya szobákból épül fel, melyek között ajtók teremtik a kapcsolatot (átjárhatóságot). 
+A szobákba itemek kerülhetnek, melyeknek hatásai segítik a játékost.
+Minden szobának vannak tulajdonságai, mint a befogadóképessége, ami megadja, hogy maximum hány karakter (játékos oktató és takarító) lehet benne egy időben. 
+Egy szoba el lehet árasztva mérgező gázzal vagy ragaccsal illetve az ajtajai el lehet átkozva, vagyis azok időnként eltűnnek majd megjelennek.
+Gázos szobában azon hallgatók, akiken nincsen FFP2 maszk, elbénulnak és eldobják a hátizsákjukban lévő itemeket. Az oktatók a szobában lebénulnak. 
+Ha a gáz hatása érvényesül, akkor a gáz kiürül a szobából (ez a hatás nem érvényesül, ha a hallgató visel maszkot, tehát a szoba állapota egyenlőre marad).
+
+A szobák képesek osztódni, valamint egyesülni, amennyiben nem tartózkodik benne senki (se oktató, se hallgató). 
+Egy osztódás során az anyaszoba két szobára válik szét, amely szobák között a tulajdonságai és itemei megoszlanak. 
+Az új szobák közül az egyik megőrzi az ősszobának a befogadó képességét, a másik pedig lefelezi azt és a felső egész értékét állítja be. 
+Ezek a szobák egymás szomszédai lesznek (van közöttük egy átjáró), valamint az eredeti szobának a szomszédain is megosztoznak (nincs duplikáció).
+
+Egyesüléskor az új szoba megkapja mindkét szobának tulajdonságait, tárgyait és szomszédait, viszont a befogadóképessége a magasabb értékét veszi fel. 
+Ez a folyamat csak két szomszédos szoba között történhet meg.
+
+Az ajtókon keresztül tudnak a karakterek eljutni egyik szobából a másikba. 
+Vannak ajtók amelyek csak egy irányban használhatóak. 
+Egy szobából legalább egy másikba van átjáró.
+
+A szobákban talált eszközöket a hallgatók felvehetik, legfeljebb ötöt, ha a hátizsákjuk megtelik, el is dobhatnak belőlük (nem kell, hogy megteljen ahhoz hogy el tudjon dobni tárgyakat a hallgató). 
+A hallgatók a játék során használhatják is a tárgyakat, amelyek képességei elősegítik a cél elérését. 
+Az oktatók megemésztik ezeket, vagyis eltűnnek a pályáról (kivéve a Logarléc).
+
+Tárgyak és képességeik:
+	Logarléc: Ha a játékosok egyike felveszi ezt a tárgyat a játéknak vége, a hallgatók nyertek, az oktatók ezt nem tudják felvenni.
+
+TVSZ denevér bőrre nyomtatott példánya: 3 alkalommal védi meg a hallgatókat az oktatóktól, utána elhasználódik és eltűnik a hátizsákból. 
+Hatása vonatkozik a szobában tartózkodó hallgatókra. 
+A hallgató hátizsákjában a felvett példány aktiválódik, oktatóval való találkozáskor megvédi a szobában lévő hallgatókat, ez a használat számít egy alkalomnak.
+
+Szent Sörös Pohár: Egy hallgatóra vonatkozik csak (aki megitta a sört), elfogyasztás után adott számú körig tart a hatása és eltűnik a hátizsákból, ez idő alatt a hallgató immunis az oktatókkal való találkozásra, ugyanakkor a még aktív söröskorsót használva a hallgatók elejtik az egyik náluk lévő tárgyat.
+
+Nedves Táblatörlő Rongy: A szobában tartózkodó összes oktatót megbénítja (hallgatókra nincs jelentősége) adott számú körig, a hatás kifejtéséhez a hallgatónak aktiválnia kell, aktiválásra eltűnik. 
+A felhasználhatósági ideje függ a törlőrongy nedvességétől (pl. enyhén nedves rongy - 1 körig bénít).
+
+Dobozolt Káposztás Camembert: Aktiválásra elgázosítja a szobát és eltűnik. 
+
+FFP2 maszk: A gázos szobákban védelmet nyújt a hallgatónak bizonyos számú körig. 
+Miután a játékos felvette a tárgyat, ez automatikusan aktiválódik, gázos szobában körönként csökken a felhasználhatósága, ha elfogyott, akkor eltűnik.
+
+Tranzisztor: A hallgatók közül bárkinek, ha a hátizsákjában megjelenik kettő tranzisztor, akkor ezek összekapcsolódnak. 
+Az összekapcsolt tranzisztorokat le lehet rakni és aktiválni. A teleportáláshoz az adott tranzisztor pár mindkét tagját le kell rakni(feltételei, hogy nincs senkinek a hátizsákjában, létezik párja). 
+Aktiváláskor a bekapcsolt tranzisztor szobájából a kikapcsolt tranzisztor szobájába kerül a használó hallgató, majd az aktivált tranzisztor deaktiválódik. 
+A már összekapcsolt tranzisztorokat az oktatók nem tudják felvenni.
+
+Légfrissítő. Egyszerhasználatos tárgy. 
+Gázos szobában lerakva semlegesíti a gázhatást.
+
+Egyes tárgyaknak (tvsz, maszk, logarléc) létezik "hamis" változata, amelyiknek nincs az eredeti tárgyra jellemző jó tulajdonsága. 
+Például a hamis logarléc felvételével nem lehet nyerni.
+
+Ha legalább egy hallgató és oktató azonos szobában van, akkor harc helyzet alakul ki. 
+Melynek során először a hallgatók felhasználhatják a hátizsákukban lévő tárgyakat, hogy az oktató támadását kivédjék vagy annak erejét elvegyék (lebénítsák őt). 
+A harc közben a hallgatók és oktatók nem léphetnek. 
+Egy harc szituáció a felek lépései után kiértékelődik és véget ér. 
+Új kör kezdődik. 
+A kiértékelés során derül ki a játékosok sorsa a felhasznált tárgyak alapján, az oktató megöli azon hallgatókat, akik nem tudták megvédeni magukat.
+
+Egy kör felépítése:
+Szobák változása (osztódás, egyesülés, elátkozott szobák ajtajainak változása, új tárgyak generálása és hozzáadása a tartalmazottakhoz)
+Az oktatók lépései szobák között.
+A hallgatók szobák közötti lépései egymás után sorban, tárgyak felvétele, használata, eldobása. 
+Ha egy hallgató olyan szobába lép, ahol oktató tartózkodik, a lépésének vége, a harc helyzet alatt folytathatja a játékot és a következő játékos lépése kezdődik.
+(mert ilyenkor a szobában lévő tárgyakat az oktató elnyelte)
+Ha harc helyzet alakult ki az érintett játékosok használhatják a tárgyaikat, majd az utolsó harchelyzet végeztével ezek kiértékelődnek.
+
+A játék 2 féle képpen érhet véget,
+a hallgatók nyernek, ha megszerzik a Logarlécet.
+az oktatók nyernek, ha az összes hallgató lelkét elszívták vagy a menüben megadott maximum körök száma alatt nem nyernek a tanulók.

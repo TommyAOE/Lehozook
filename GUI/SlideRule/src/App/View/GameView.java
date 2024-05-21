@@ -167,6 +167,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
             }
         }
     }
+
     /**
      * Get the list of student views.
      *
