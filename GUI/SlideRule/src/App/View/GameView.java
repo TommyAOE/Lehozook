@@ -53,7 +53,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
         info.setEditable(false);
         scroll = new JScrollPane(info);
         scroll.setBounds(10, 750, 700, 200);
-        currentPlayer = new JLabel("Current Player: "+controller.GetModel().currentPlayer.GetName());
+        currentPlayer = new JLabel("Normal turn: Alice");
         currentPlayer.setBounds(1300, 10, 200, 50);
         counter = new JLabel("Turns: "+controller.GetModel().maxRounds);
         counter.setBounds(1300, 50, 200, 50);
@@ -72,8 +72,19 @@ public class GameView extends JFrame implements PropertyChangeListener {
         this.setSize(1600, 1000);
         this.setLayout(null);
         this.setVisible(true);
+        Subscribe();
 
     }
+
+    private void Subscribe() {
+        for (Student s : controller.GetModel().GetPlayers()) {
+            s.AddPropertyChangeListener(this);
+        }
+        for (Room r : controller.GetModel().GetChart().GetAllRooms()) {
+            r.AddPropertyChangeListener(this);
+        }
+    }
+
     private void SetUpRooms(){
         ArrayList<Room> rooms = (ArrayList<Room>) controller.GetModel().GetChart().GetAllRooms();
         for (Room r : rooms){
@@ -184,8 +195,56 @@ public class GameView extends JFrame implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt.getPropertyName().equals("StudentChanged")){
-            currentPlayer.setText("Current Player: "+controller.GetModel().currentPlayer.GetName());
+            roomItemsView.setVisible(true);
+            backpackView.setVisible(true);
+
+            switch (controller.GetModel().currentPlayer.GetName()) {
+
+                    case "s0" -> {
+                        if (controller.GetModel().currentPlayer.inCombat) {
+                            currentPlayer.setText("Combat turn: Alice");
+                        }else {
+                            currentPlayer.setText("Normal turn: Alice");
+                        }
+                    }
+                    case "s1" -> {
+                        if (controller.GetModel().currentPlayer.inCombat) {
+                            currentPlayer.setText("Combat turn: Claus");
+                        }else {
+                            currentPlayer.setText("Normal turn: Claus");
+                        }
+                    }
+                    case "s2" -> {
+                        if (controller.GetModel().currentPlayer.inCombat) {
+                            currentPlayer.setText("Combat turn: Felicity");
+                        }else {
+                            currentPlayer.setText("Normal turn: Felicity");
+                        }
+                    }
+                    case "s3" -> {
+                        if (controller.GetModel().currentPlayer.inCombat) {
+                            currentPlayer.setText("Combat turn: Jeremy");
+                        }else {
+                            currentPlayer.setText("Normal turn: Jeremy");
+                        }
+                    }
+                    case "s4" -> {
+                        if (controller.GetModel().currentPlayer.inCombat) {
+                            currentPlayer.setText("Combat turn: Lee");
+                        }else {
+                            currentPlayer.setText("Normal turn: Lee");
+                        }
+                    }
+                    default -> currentPlayer.setText("Combat turn: Error");
+                }
+            if (((Student) evt.getNewValue()).isStunned()>0){
+                info.append("\n You are Stunned! You can't move for "+((Student) evt.getNewValue()).isStunned()+" turns.");
+                backpackView.setVisible(false);
+                roomItemsView.setVisible(false);
+            }
         }
+
+
         if (evt.getPropertyName().equals("NextTurn")){
             counter.setText("Turns: "+evt.getNewValue());
         }
@@ -193,72 +252,44 @@ public class GameView extends JFrame implements PropertyChangeListener {
             UpdatePlyers();
         }
         if (evt.getPropertyName().equals("CharacterMoved")){
-            MoveCharacter((Character) evt.getNewValue());
+            RoomUpdate((Room) evt.getNewValue());
         }
     }
-    private Point SearchLocation(Character c){
+    private void RoomUpdate(Room r){
         for (RoomView rv:roomViews){
-            if(c.GetName().startsWith("s")){
-                if (rv.GetRoom().GetStudents().contains(c)){
-                    Point p;
-                    if (rv.GetRoom().characterCount>4){
-                        p= new Point(rv.point.x+(rv.GetRoom().characterCount-5)*30,rv.point.y+30);
-                    }else {
-                        p = new Point(rv.point.x + (rv.GetRoom().characterCount-1) * 30, rv.point.y);
-                    }
-                    return p;
-                }
-            }else if (c.GetName().startsWith("p")){
-                if (rv.GetRoom().GetProfessors().contains( c)){
-                    Point p;
-                    if (rv.GetRoom().characterCount>4){
-                        p= new Point(rv.point.x+(rv.GetRoom().characterCount-5)*30,rv.point.y+30);
-                    }else {
-                        p = new Point(rv.point.x + (rv.GetRoom().characterCount-1) * 30, rv.point.y);
-                    }
-                    return p;
-                }
-            }else if (c.GetName().startsWith("c")){
-                if (rv.GetRoom().GetCleaners().contains(c)){
-                    Point p;
-                    if (rv.GetRoom().characterCount>4){
-                        p= new Point(rv.point.x+(rv.GetRoom().characterCount-5)*30,rv.point.y+30);
-                    }else {
-                        p = new Point(rv.point.x + (rv.GetRoom().characterCount-1) * 30, rv.point.y);
-                    }
-                    return p;
-                }
-            }
-        }
-        return null;
-    }
-    private void MoveCharacter(Character c){
-        if (c.GetName().startsWith("s")){
-            for (CharacterView cv:studentViews){
-                if (cv.character.GetName().equals(c.GetName())){
-                    Point p = SearchLocation(c);
-                    if (p!=null){
-                        cv.setBounds(p.x,p.y,50,50);
+            if (rv.GetRoom().GetName().equals(r.GetName())){
+                int i = 0;
+                for (CharacterView cv:studentViews){
+                    if (rv.GetRoom().GetStudents().contains(cv.character)){
+                        if (i<4){
+                            cv.setBounds(rv.point.x+i*30,rv.point.y,50,50);
+                        }
+                        else{
+                            cv.setBounds(rv.point.x+(i-4)*30,rv.point.y+30,50,50);
+                        }
+                        i++;
                     }
                 }
-            }
-        }else if (c.GetName().startsWith("p")){
-            for (CharacterView cv:professorViews){
-                if (cv.character.GetName().equals(c.GetName())){
-                    Point p = SearchLocation(c);
-                    if (p!=null){
-                        //cv.setVisible(!cv.character.GetLocation().GetStudents().isEmpty());
-                        cv.setBounds(p.x,p.y,50,50);
+                for (CharacterView cv:professorViews){
+                    if (rv.GetRoom().GetProfessors().contains(cv.character)){
+                        if (i<4){
+                            cv.setBounds(rv.point.x+i*30,rv.point.y,50,50);
+                        }
+                        else{
+                            cv.setBounds(rv.point.x+(i-4)*30,rv.point.y+30,50,50);
+                        }
+                        i++;
                     }
                 }
-            }
-        }else if (c.GetName().startsWith("c")){
-            for (CharacterView cv:cleanerViews){
-                if (cv.character.GetName().equals(c.GetName())){
-                    Point p = SearchLocation(c);
-                    if (p!=null){
-                        //cv.setVisible(!cv.character.GetLocation().GetStudents().isEmpty());
-                        cv.setBounds(p.x,p.y,50,50);
+                for (CharacterView cv:cleanerViews){
+                    if (rv.GetRoom().GetCleaners().contains(cv.character)){
+                        if (i<4){
+                            cv.setBounds(rv.point.x+i*30,rv.point.y,50,50);
+                        }
+                        else{
+                            cv.setBounds(rv.point.x+(i-4)*30,rv.point.y+30,50,50);
+                        }
+                        i++;
                     }
                 }
             }
@@ -268,26 +299,16 @@ public class GameView extends JFrame implements PropertyChangeListener {
         for (CharacterView cv : studentViews) {
             layeredPane.remove(cv);
         }
+        studentViews.clear();
         for (RoomView r: roomViews){
-            int i = 0;
-            int j = 0;
             for (Student s:r.GetRoom().GetStudents()){
-                if (i<4){
                     CharacterView cv = new CharacterView(s,controller.GetModel().GetPlayers().indexOf(s),r.point);
-                    cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
+                    cv.setBounds(cv.point.x,cv.point.y,50,50);
                     studentViews.add(cv);
                     layeredPane.add(cv,1);
-                    i++;}
-                else{
-                    i = 0;
-                    j++;
-                    CharacterView cv = new CharacterView(s,controller.GetModel().GetPlayers().indexOf(s),r.point);
-                    cv.setBounds(cv.point.x,cv.point.y+j*30,50,50);
-                    studentViews.add(cv);
-                    layeredPane.add(cv,1);
-                    i++;
-                }
+
             }
+            RoomUpdate(r.GetRoom());
         }
     }
 

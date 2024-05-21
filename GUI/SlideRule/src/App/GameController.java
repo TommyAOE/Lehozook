@@ -21,8 +21,6 @@ public class GameController implements PropertyChangeListener{
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals("RoomChanged")){
-        }
         if (evt.getPropertyName().equals("GameOver")){
             System.exit(0);
         }
@@ -47,7 +45,11 @@ public class GameController implements PropertyChangeListener{
      * @param r The room to enter.
      */
     public boolean EnterRoom(Room r){
-        return model.currentPlayer.EnterRoom(r);
+        System.out.println(model.currentPlayer.isStunned());
+        if (model.currentPlayer.isStunned()==0&&!model.currentPlayer.inCombat) {
+            return model.currentPlayer.EnterRoom(r);
+        }
+        return false;
     }
 
     public void NextTurn() {

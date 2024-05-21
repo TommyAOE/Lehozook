@@ -20,12 +20,12 @@ public class CharacterView extends JLabel implements PropertyChangeListener{
         ImageIcon imageIcon = switch (c.GetName().charAt(0)) {
             case 'p' -> new ImageIcon("resources/characters/professor.png");
             case 's' ->
-                switch (index) {
-                    case 0 -> new ImageIcon("resources/characters/Alice.png");
-                    case 1 -> new ImageIcon("resources/characters/Claus.png");
-                    case 2 -> new ImageIcon("resources/characters/Felicity.png");
-                    case 3 -> new ImageIcon("resources/characters/Jeremy.png");
-                    case 4 -> new ImageIcon("resources/characters/Lee.png");
+                switch (c.GetName()) {
+                    case "s0" ->new ImageIcon("resources/characters/Alice.png");
+                    case "s1" -> new ImageIcon("resources/characters/Claus.png");
+                    case "s2" -> new ImageIcon("resources/characters/Felicity.png");
+                    case "s3" -> new ImageIcon("resources/characters/Jeremy.png");
+                    case "s4" -> new ImageIcon("resources/characters/Lee.png");
                     default -> throw new IllegalStateException("Unexpected value: " + index);
                 };
             case 'c' -> new ImageIcon("resources/characters/cleaner.png");
