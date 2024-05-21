@@ -40,6 +40,8 @@ public class Model {
         if (inCombat.isEmpty()) {
             index = players.indexOf(currentPlayer);
             if(index == players.size() - 1){
+                chart.IterateForRoomChanges();
+                chart.IterateForItemSpawn(false, playerCount);
                 NpcTurn();
                 CombatTurn();
                 if (!inCombat.isEmpty()) {

@@ -23,6 +23,7 @@ public class Room {
     private int maximumcapacity;
     public int characterCount;
     private ArrayList<Room> neighbours;
+    private ArrayList<Room> cursedNeighbours = new ArrayList<>();
     private boolean isCursed;
     private ArrayList<Item> items;
     private ArrayList<Professor> professors;
@@ -59,7 +60,7 @@ public class Room {
      */
     public Room(String name, String type, Chart chart) {
         this.name = name;
-        this.isCursed= Objects.equals(type, "Cursed");
+        this.isCursed= Objects.equals(type, "cursed");
         this.neighbours = new ArrayList<Room>();
         this.items = new ArrayList<Item>();
         this.professors = new ArrayList<Professor>();
@@ -115,6 +116,13 @@ public class Room {
      */
     public boolean IsFull() {
         return isFull;
+    }
+    /**
+     * Checks if the room is cursed.
+     * @return true if the room is cursed, false otherwise.
+     */
+    public boolean IsCursed() {
+        return isCursed;
     }
     /**
      * Sets the maximum capacity of the room.
@@ -356,38 +364,35 @@ public class Room {
     public void Change(List<Room> rooms) {
         if (isCursed) {
             Curse(rooms);
-        } else {
+        } /*else {
             switch (rand.nextInt(2)) {
                 case 0 -> Merge(neighbours.get(rand.nextInt(neighbours.size() + 1)));
                 case 1 -> Split();
             }
-        }
+        }*/
     }
     /**
      * Curses the room by modifying its neighbours.
      * @param rooms The list of rooms in the game.
      */
     public void Curse(List<Room> rooms) {
-        Room curRoom = new Room("whatever");
-        Room delRoom = new Room("whatever");
-        while(true) {
-            curRoom = rooms.get(rand.nextInt(rooms.size() - 1));
-            if(!neighbours.contains(curRoom)){
-                curRoom.SetNeighboursTwoWay(new ArrayList<Room>(Collections.singletonList(this)));
-                while(true) {
-                    delRoom = rooms.get(rand.nextInt(neighbours.size() - 1));
-                    if(delRoom!=curRoom){
-                        rooms.remove(delRoom);
-                        try {
-                            delRoom.neighbours.remove(this);
-                        } catch (Exception e){}
-                        break;
-                    }
-                }
-                break;
-            }
+        Room removedNeighbour = neighbours.get(rand.nextInt(neighbours.size()));
+
+        if(!cursedNeighbours.isEmpty()){
+            Room addedNeighbour = cursedNeighbours.get(rand.nextInt(cursedNeighbours.size()));
+            SetNeighboursOneWay(new ArrayList<>(Collections.singletonList(addedNeighbour)));
+            cursedNeighbours.remove(addedNeighbour);
         }
-        resultLogger.log(Level.INFO,"Room Curse() "+curRoom.name+" added "+delRoom.name+" deleted");
+        cursedNeighbours.add(removedNeighbour);
+        neighbours.remove(removedNeighbour);
+
+        for (Room room : neighbours) {
+            System.out.println(this.name + ", neighbour room " + room.name);
+        }   
+
+        pcs.firePropertyChange("Cursed", null, null);
+
+        resultLogger.log(Level.INFO,"Room " + this.name + " cursed");
     }
     /**
      * Splits the room into two rooms.

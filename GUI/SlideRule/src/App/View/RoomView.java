@@ -42,15 +42,6 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
 
         button = new JButton();
         SetUpButton();
-        //CreateDoors();
-        for (JLabel d : doors) {
-            add(d);
-        }
-        add(button);
-        add(darkLayer);
-        add(goo);
-        add(gas);
-        add(floor);
         
         UpdateRoomView();
     }
@@ -58,6 +49,9 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
             UpdateRoomView();
+            if(evt.getPropertyName().equals("Cursed")){
+                CreateDoors();
+            }
     }
 
     public JButton GetRoomButton(){
@@ -83,31 +77,42 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
         button.setBounds(0, 0, 150, 150);
     }
 
-    private void CreateDoors() {
-        ArrayList<Room> neighbours = room.GetNeighbours();
-        ArrayList<RoomView> neighboursView = gameView.roomViews;
-
-        for(Room currentNeighbour : neighbours){
-            for(RoomView currentView : neighboursView){
+    public void CreateDoors() {
+        doors.clear();
+        for(Room currentNeighbour : room.GetNeighbours()){
+            for(RoomView currentView : gameView.roomViews){
                 if(currentNeighbour.GetName().equals(currentView.room.GetName())){
+
                     int coordinateDifference = Integer.parseInt(currentNeighbour.GetName().substring(1)) - Integer.parseInt(room.GetName().substring(1));
-                    int halfwidth = 75;
-                    int doorSize = 10;
-                    Point middle = new Point(halfwidth, halfwidth);
-                    Point doorplace = new Point();
-                    if(coordinateDifference > 1){
+                    int doorSize = 20;
+
+                    JLabel door = new JLabel();
+                    Point doorPoint = new Point(75 - doorSize / 2, 75 - doorSize / 2);
+
+                    if(Math.abs(coordinateDifference) > 1){
                         coordinateDifference /= 10;
-                        doorplace.setLocation(middle.x, middle.y + halfwidth);
-                        JLabel door = new JLabel();
-                        door.setBackground(Color.BLACK);
-                        door.setBounds(10, 10, 50, doorSize);
-                        door.setOpaque(true);
-                        doors.add(door);
+                        doorPoint.translate(0, coordinateDifference * 75);
+                    }else{
+                        doorPoint.translate(coordinateDifference * 75, 0);
                     }
+                    if(room.IsCursed()) door.setBackground(new Color(128,0,128));
+                    else                door.setBackground(Color.BLACK);
+                    door.setOpaque(true);
+                    door.setBounds(doorPoint.x, doorPoint.y, doorSize, doorSize);
+                    doors.add(door);
                     
                 }
             }
         }
+        removeAll();
+        for (JLabel d : doors) {
+            add(d);
+        }
+        add(button);
+        add(darkLayer);
+        add(goo);
+        add(gas);
+        add(floor);
     }
     
     private void OnChange(){}
