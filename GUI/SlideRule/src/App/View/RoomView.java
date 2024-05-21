@@ -49,6 +49,9 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
             UpdateRoomView();
+            if(evt.getPropertyName().equals("Cursed")){
+                CreateDoors();
+            }
     }
 
     public JButton GetRoomButton(){
@@ -75,6 +78,7 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
     }
 
     public void CreateDoors() {
+        doors.clear();
         for(Room currentNeighbour : room.GetNeighbours()){
             for(RoomView currentView : gameView.roomViews){
                 if(currentNeighbour.GetName().equals(currentView.room.GetName())){
@@ -101,11 +105,11 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
             }
         }
         removeAll();
-        add(button);
-        add(darkLayer);
         for (JLabel d : doors) {
             add(d);
         }
+        add(button);
+        add(darkLayer);
         add(goo);
         add(gas);
         add(floor);
