@@ -55,6 +55,7 @@ public class Camembert extends Item {
     @Override
     public void ApplyEffect() {
         owner.GetLocation().AddGas();
+        owner.RemoveItem(this);
     }
 
     //------------------Functions for testing------------------

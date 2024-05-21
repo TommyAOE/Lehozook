@@ -71,6 +71,7 @@ public class FakeItem extends Item {
         Room newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size()));
         while(!owner.EnterRoom(newRoom)&&--safe>0)
             newRoom = owner.GetLocation().GetNeighbours().get(new Random().nextInt(owner.GetLocation().GetNeighbours().size()));
+        owner.RemoveItem(this);
     }
 
     //------------------Functions for testing------------------

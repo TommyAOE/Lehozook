@@ -97,7 +97,7 @@ public class FFP2Mask extends Item {
         --counter;
         if (counter == 0) {
             if (--durability == 0) {
-                broken = true;
+                owner.RemoveItem(this);
             }
         } else if (counter == -1) {
             counter = durability;

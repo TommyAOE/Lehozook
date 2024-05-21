@@ -51,6 +51,7 @@ public class Airfreshener extends Item{
     @Override
     public void ApplyEffect() {
         owner.GetLocation().GasExpired();
+        owner.RemoveItem(this);
     }
     //------------------Functions for testing------------------
     /**

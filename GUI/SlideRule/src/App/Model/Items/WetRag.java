@@ -65,6 +65,8 @@ public class WetRag extends Item {
         for (Professor prof : owner.GetLocation().GetProfessors()) {
             prof.Stun(moistureLevel);
         }
+        moistureLevel--;
+        if(moistureLevel <= 0)  owner.RemoveItem(this);
     }
 
     //------------------Functions for testing------------------

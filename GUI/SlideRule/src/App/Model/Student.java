@@ -99,6 +99,7 @@ public class Student extends Character implements IFighter {
     public void RemoveItem(Item item){
         if(items.contains(item)){
             items.remove(item);
+            pcs.firePropertyChange("BackpackChanged", null, item);
         }
     }
     /**
