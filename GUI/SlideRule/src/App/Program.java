@@ -29,7 +29,6 @@ public class Program {
         consoleHandler.setFormatter(formatter);
         resultLogger.setUseParentHandlers(false);
         resultLogger.addHandler(consoleHandler);
-        GameController gc = new GameController();
         Menu menu=new Menu();
     }
 }

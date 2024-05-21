@@ -27,8 +27,12 @@ public class Model {
     public Model(int playerCount, int professorCount, int maxRounds){
         if(playerCount > 5) playerCount = 5;
         this.playerCount = playerCount;
+
+        if(professorCount > 5) professorCount = 5;
         this.professorCount = professorCount;
+
         this.maxRounds = maxRounds;
+        
         Init();
         currentPlayer = players.get(0);
     }

@@ -2,6 +2,7 @@ package App;
 
 import javax.swing.*;
 
+import App.Model.Model;
 import App.View.GameView;
 
 import java.awt.*;
@@ -33,7 +34,7 @@ public class Menu extends JFrame {
 
         // Setting a background (source:https://stackoverflow.com/questions/1064977/setting-background-images-in-jframe)
         try {//itt majd be kell allitani a kep helyet,csak at kell irni a fajl helyet
-            this.setContentPane(new JLabel(new ImageIcon(("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\menulogo.png"))));
+            this.setContentPane(new JLabel(new ImageIcon(("resources/menulogo.png"))));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,35 +97,25 @@ public class Menu extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 4;
         JButton playButton = new JButton("Play");
+        playButton.setBackground(Color.WHITE);
         add(playButton, gbc);
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int maxPlayers, maxProfessors, maxRounds;
-                boolean mindenjoe=false;
-                int megengedett[]={1,2,3,4,5,6,7,8,9};
-                //Checking if the user gives allowed parameters for the game
-                //if the user gives characters instead of numbers the program will throw an exception
-                for(int i=0; i<8; i++)
-                {
-                    if((Integer.parseInt(PlayerNumber.getText())==megengedett[i])&&(Integer.parseInt(ProfNumber.getText())==megengedett[i])&&(Integer.parseInt(RoundNumber.getText())==megengedett[i]))
-                        mindenjoe=true;
-                }
-                //if the parameters are allowed than we set them for the game
-                if(mindenjoe)
-                {
+                int maxPlayers = 5, maxProfessors = 5, maxRounds = 10;
+
+                if(!PlayerNumber.getText().equals(""))
                     maxPlayers=Integer.parseInt(PlayerNumber.getText());
-                    maxProfessors=Integer.parseInt(ProfNumber.getText());
+                
+                if(!ProfNumber.getText().equals(""))
+                    maxProfessors=Integer.parseInt(ProfNumber.getText()); 
+
+                if(!RoundNumber.getText().equals(""))
                     maxRounds=Integer.parseInt(RoundNumber.getText());
-                }
-                //if not than we use a default setting
-                else
-                {
-                    maxPlayers=5;
-                    maxProfessors=5;
-                    maxRounds=5;
-                }
-                GameView gv = new GameView(maxPlayers, maxProfessors, maxRounds);
+
+                Model model = new Model(maxPlayers, maxProfessors, maxRounds);
+
+                GameView gv = new GameView(model);
                 gv.setVisible(true);
                 
                 
@@ -134,11 +125,13 @@ public class Menu extends JFrame {
 
         gbc.gridy = 5;
         JButton helpButton = new JButton("Help");
+        helpButton.setBackground(Color.WHITE);
         add(helpButton, gbc);
         helpButton.addActionListener(new helpButtonFunc());
 
         gbc.gridy = 6;
         JButton exitButton = new JButton("Exit");
+        exitButton.setBackground(Color.WHITE);
         add(exitButton, gbc);
         exitButton.addActionListener(new ExitButtonFunc());
        
@@ -158,7 +151,7 @@ public class Menu extends JFrame {
 
             //reading the rules from a text file 
                 try {//itt majd csak be kell allitani a txt uj helyet
-                    rulesArea.read(new BufferedReader(new FileReader("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\jatekleiras.txt")), null);
+                    rulesArea.read(new BufferedReader(new FileReader("resources/jatekleiras.txt")), null);
 
               } catch (Exception a){
 
