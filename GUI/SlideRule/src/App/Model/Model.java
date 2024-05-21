@@ -108,12 +108,12 @@ public class Model {
             players.add(new Student("s" + i, chart.FindRoomByName("r11")));
         }
         
-        /*for(int i = 0; i < professorCount; i++){
+        for(int i = 0; i < professorCount; i++){
             Room r = chart.GetAllRooms().get(random.nextInt(chart.GetAllRooms().size()));
             NPCs.add(new Professor("p" + i, r));
         }
         NPCs.add(new Cleaner("c1", chart.FindRoomByName("r31")));
-        NPCs.add(new Cleaner("c2", chart.FindRoomByName("r35")));*/
+        NPCs.add(new Cleaner("c2", chart.FindRoomByName("r35")));
 
         chart.IterateForItemSpawn(true, playerCount);
 
