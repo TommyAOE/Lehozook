@@ -13,9 +13,6 @@ public class Model {
     public void AddPropertyChangeListener(PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(listener);
     }
-    public void RemovePropertyChangeListener(PropertyChangeListener listener) {
-        pcs.removePropertyChangeListener(listener);
-    }
     private Chart chart;
     private ArrayList<Character> NPCs = new ArrayList<>();
     private ArrayList<Student> players = new ArrayList<>();
@@ -47,10 +44,11 @@ public class Model {
                 CombatTurn();
                 if (!inCombat.isEmpty()) {
                     currentPlayer=inCombat.get(0);
+                    pcs.firePropertyChange("StudentChanged", null, currentPlayer);
                     return;
                 }
                 currentPlayer = players.get(0);
-                currentPlayer.canMove = true;
+                currentPlayer.NextTurn();
                 if (maxRounds > 1){
                     pcs.firePropertyChange("NextTurn", null, --maxRounds);
                 }
@@ -60,10 +58,9 @@ public class Model {
                 }
             }else{
                 currentPlayer = players.get(index + 1);
-                currentPlayer.canMove = true;
+                currentPlayer.NextTurn();
             }
         }else{
-            System.out.println("In combat");
             index = inCombat.indexOf(currentPlayer);
             if(index == inCombat.size() - 1){
                 for (Character c: NPCs) {
@@ -75,7 +72,7 @@ public class Model {
                 UpdatePlayerList();
                 pcs.firePropertyChange("ListUpdate", null, null);
                 currentPlayer = players.get(0);
-
+                currentPlayer.NextTurn();
                 inCombat.clear();
             }
             else{
@@ -86,7 +83,6 @@ public class Model {
     }
 
     private void CombatTurn() {
-        pcs.firePropertyChange("CombatTurn", null, null);
         for (Student s : players) {
             if (s.inCombat) {
                 inCombat.add(s);
@@ -134,7 +130,11 @@ public class Model {
         for (Room room : chart.GetAllRooms()) {
             students.addAll(room.GetStudents());
         }
-        players = students;
+        if (students.isEmpty()) {
+            pcs.firePropertyChange("GameOver", null, null);
+        }
+        players.clear();
+        players.addAll(students);
         pcs.firePropertyChange("ListUpdate", null, null);
     }
 }

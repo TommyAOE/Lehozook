@@ -33,8 +33,8 @@ public class Student extends Character implements IFighter {
      * Indicates whether the student is in combat.
      */
     //new
-    boolean inCombat;
-    boolean canMove;
+    public boolean inCombat;
+    public boolean canMove;
 
     public void SetIsProtected(int isProtected) {
         this.isProtected += isProtected;
@@ -350,17 +350,22 @@ public class Student extends Character implements IFighter {
     public int IsStunned() {
         return isStunned;
     }
-
+    public void NextTurn(){
+        if (isStunned > 0) isStunned--;
+        inCombat = false;
+        canMove = true;
+    }
     /**
      * Custom method to handle student's death.
      */
-    public void Death(){
+    public boolean Death(){
         if (--isProtected==-1){
             Room temp = location;
             location = null;
             temp.CharacterLeft(this);
-            pcs.firePropertyChange("BackpackChanged", null, null);
+            return true;
         }
+        return false;
     }
 
     /**

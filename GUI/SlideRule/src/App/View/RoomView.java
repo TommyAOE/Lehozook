@@ -64,7 +64,7 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
         return button;
     }
     public void UpdateRoomView() {
-        System.out.println(room.GetStudents().size());
+
         darkLayer.setVisible(room.GetStudents().isEmpty());
         gas.setVisible(room.HasGas());
         goo.setVisible(room.HasGoo());

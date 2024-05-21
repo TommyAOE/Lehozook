@@ -26,7 +26,6 @@ public class ItemCellRenderer extends JLabel implements ListCellRenderer {
         setBackground(Color.decode("#FDB69A"));
         setSize(50,50);
         return this;
-
     }
 
 }

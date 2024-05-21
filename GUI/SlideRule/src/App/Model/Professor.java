@@ -141,7 +141,8 @@ public class Professor extends Character implements IFighter {
         for (int i = 0; i < location.GetStudents().size(); i++) {
             String msg = "Attack Student : " + location.GetStudents().get(i).name;
             resultLogger.log(Level.INFO, msg);
-            location.GetStudents().get(i).Death();
+            boolean suc=location.GetStudents().get(i).Death();
+            if(suc) i--;
         }
     }
 

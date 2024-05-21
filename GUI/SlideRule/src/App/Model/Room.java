@@ -209,6 +209,7 @@ public class Room {
             case 'p' -> {
                 professors.add((Professor) c);
                 if (!students.isEmpty()) {
+                    ((Professor) c).inCombat = true;
                     for (Student s : students) {
                         s.inCombat = true;
                         s.canMove = false;
@@ -222,6 +223,7 @@ public class Room {
                 pcs.firePropertyChange("StudentEntered", null, c);
                 if (this.gas != null)
                     this.gas.Gasify();
+                if (!professors.isEmpty()) ((Student) c).inCombat = true;
             }
             case 'c' -> {
                 cleaners.add((Cleaner) c);
@@ -230,7 +232,7 @@ public class Room {
             default -> resultLogger.log(Level.INFO, "Something went wrong with the character");
         }
         characterCount++;
-        pcs.firePropertyChange("CharacterMoved", null, c);
+        pcs.firePropertyChange("CharacterMoved", null, this);
     }
      /** 
      * Signals that a character has left the room.
@@ -264,7 +266,7 @@ public class Room {
                 break;
         }
         characterCount--;
-        pcs.firePropertyChange("CharacterMoved", null, c);
+        pcs.firePropertyChange("CharacterMoved", null, this);
     }
     /**
      * Cleans the room by resetting the visitor count.
