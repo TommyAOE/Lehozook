@@ -1,5 +1,7 @@
 package App.Model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +21,7 @@ public class Room {
     private Random rand = new Random();
     private String name;
     private int maximumcapacity;
-    private int characterCount;
+    public int characterCount;
     private ArrayList<Room> neighbours;
     private boolean isCursed;
     private ArrayList<Item> items;
@@ -40,6 +42,13 @@ public class Room {
         "TVSZ",
         "WetRag"
     };
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    public void AddPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
+    }
+    public void RemovePropertyChangeListener(PropertyChangeListener listener) {
+        pcs.removePropertyChangeListener(listener);
+    }
 
     /**
      * Constructs a room with the specified name, type, and chart.
@@ -186,25 +195,31 @@ public class Room {
     * Signals that a character has entered the room.
     */
     public void CharacterEntered(Character c) {
-        switch (c.GetName().charAt(0)){
-            case 'p':
-                professors.add((Professor)c);
-                if(this.gas != null)
+        switch (c.GetName().charAt(0)) {
+            case 'p' -> {
+                professors.add((Professor) c);
+                if (!students.isEmpty()) {
+                    for (Student s : students) {
+                        s.inCombat = true;
+                        s.canMove = false;
+                    }
+                }
+                if (this.gas != null)
                     this.gas.Gasify();
-                break;
-            case 's':
-                students.add((Student)c);
-                if(this.gas != null)
+            }
+            case 's' -> {
+                students.add((Student) c);
+                if (this.gas != null)
                     this.gas.Gasify();
-                break;
-            case 'c':
-                cleaners.add((Cleaner)c);
+            }
+            case 'c' -> {
+                cleaners.add((Cleaner) c);
                 this.Clean();
-                break;
-            default:
-                resultLogger.log(Level.INFO,"Something went wrong with the character");
-                break;
+            }
+            default -> resultLogger.log(Level.INFO, "Something went wrong with the character");
         }
+        characterCount++;
+        pcs.firePropertyChange("CharacterMoved", null, c);
     }
      /** 
      * Signals that a character has left the room.
@@ -236,6 +251,8 @@ public class Room {
             resultLogger.log(Level.INFO,"Character could not be found in this Room");
                 break;
         }
+        characterCount--;
+        pcs.firePropertyChange("CharacterMoved", null, c);
     }
     /**
      * Cleans the room by resetting the visitor count.

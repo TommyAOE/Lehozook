@@ -53,4 +53,8 @@ public abstract class Character {
     public void Reset_Test(){
         location = null;
     };
+
+    public Room GetLocation() {
+        return location;
+    }
 }
