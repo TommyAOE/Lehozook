@@ -78,8 +78,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
         for (Room r : rooms){
             RoomView rv = new RoomView(r);
             roomViews.add(rv);
-            rv.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            layeredPane.add(rv,0);
+            layeredPane.add(rv,1);
             r.AddPropertyChangeListener(this);
             //add(rv);
         }
@@ -103,7 +102,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                 CharacterView cv = new CharacterView(s,controller.GetModel().GetPlayers().indexOf(s),r.point);
                 cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
                 studentViews.add(cv);
-                layeredPane.add(cv,1);
+                layeredPane.add(cv,0);
                 i++;}
                 else{
                     i = 0;
@@ -111,7 +110,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                     CharacterView cv = new CharacterView(s,controller.GetModel().GetPlayers().indexOf(s),r.point);
                     cv.setBounds(cv.point.x,cv.point.y+j*30,50,50);
                     studentViews.add(cv);
-                    layeredPane.add(cv,1);
+                    layeredPane.add(cv,0);
                     i++;
                 }
             }
@@ -120,7 +119,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                     CharacterView cv = new CharacterView(p,0,r.point);
                     cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
                     professorViews.add(cv);
-                    layeredPane.add(cv,1);
+                    layeredPane.add(cv,0);
                     i++;}
                 else{
                     i = 0;
@@ -128,7 +127,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                     CharacterView cv = new CharacterView(p,0,r.point);
                     cv.setBounds(cv.point.x,cv.point.y+j*30,50,50);
                     professorViews.add(cv);
-                    layeredPane.add(cv,1);
+                    layeredPane.add(cv,0);
                     i++;
                 }
             }
@@ -137,7 +136,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                     CharacterView cv = new CharacterView(c,0,r.point);
                     cv.setBounds(cv.point.x+i*30,cv.point.y+j*30,50,50);
                     cleanerViews.add(cv);
-                    layeredPane.add(cv,1);
+                    layeredPane.add(cv,0);
                     i++;}
                 else{
                     i = 0;
@@ -145,7 +144,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
                     CharacterView cv = new CharacterView(c,0,r.point);
                     cv.setBounds(cv.point.x,cv.point.y+j*25,50,50);
                     cleanerViews.add(cv);
-                    layeredPane.add(cv,1);
+                    layeredPane.add(cv,0);
                     i++;
                 }
             }
