@@ -14,15 +14,18 @@ public class GameController implements PropertyChangeListener{
     private Model model;
     private GameView view;
     private Student currentPlayer;
-
     public GameController(Model m){
         model=m;
+        model.AddPropertyChangeListener(this);
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'propertyChange'");
+        if (evt.getPropertyName().equals("RoomChanged")){
+        }
+        if (evt.getPropertyName().equals("GameOver")){
+            System.exit(0);
+        }
     }
     /**
      * Get the model of the game.
@@ -46,32 +49,8 @@ public class GameController implements PropertyChangeListener{
     public void EnterRoom(Room r){
         currentPlayer.EnterRoom(r);
     }
-    /**
-     * Pick up an item in the room.
-     * @param i The item to pick up.
-     */
-    public void PickUpItem(Item i){
-        currentPlayer.PickUpItem(i);
-    }
-    /**
-     * Drop an item in the room.
-     * @param i The item to drop.
-     */
-    public void DropItem(Item i){
-        currentPlayer.DropItem(i);
-    }
-    /**
-     * Use an item.
-     * @param i The item to use.
-     */
-    public void UseItem(Item i){
-        currentPlayer.UseItem(i);
-    }
-    /**
-     * Activate a transistor.
-     * @param t The transistor to activate.
-     */
-    public void ActivateTransistor(Transistor t){
-        t.Activate();
+
+    public void NextTurn() {
+        model.NextPlayer();
     }
 }

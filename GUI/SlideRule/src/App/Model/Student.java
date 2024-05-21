@@ -9,6 +9,8 @@ import java.util.logging.Level;
 
 import static App.Program.resultLogger;
 import App.Model.Items.*;
+import App.Model.*;
+import App.*;
 
 
 /**
@@ -32,6 +34,7 @@ public class Student extends Character implements IFighter {
      */
     //new
     boolean inCombat;
+    boolean canMove;
 
     public void SetIsProtected(int isProtected) {
         this.isProtected += isProtected;
@@ -61,6 +64,8 @@ public class Student extends Character implements IFighter {
         isProtected = 0;
         isStunned = 0;
         items = new ArrayList<>();
+        canMove = true;
+        inCombat = false;
     }
     /**
      * Retrieves a list of items in the room.
@@ -210,6 +215,7 @@ public class Student extends Character implements IFighter {
                     p.inCombat = true;
             }
         }
+        canMove = false;
         pcs.firePropertyChange("RoomChanged", null, null);
         return true;
     }

@@ -19,9 +19,10 @@ public class Model {
     private Chart chart;
     private ArrayList<Character> NPCs = new ArrayList<>();
     private ArrayList<Student> players = new ArrayList<>();
+    private ArrayList<Student> inCombat = new ArrayList<>();
     private int playerCount;
     private int professorCount;
-    private int maxRounds;
+    public int maxRounds;
     public Student currentPlayer;
 
     Random random = new Random();
@@ -31,24 +32,73 @@ public class Model {
         this.playerCount = playerCount;
         this.professorCount = professorCount;
         this.maxRounds = maxRounds;
-
         Init();
-        Play();
+        currentPlayer = players.get(0);
+    }
+    public Chart GetChart(){
+        return chart;
+    }
+    public void NextPlayer(){
+        if (inCombat.isEmpty()) {
+            int index = players.indexOf(currentPlayer);
+            if(index == players.size() - 1){
+                NpcTurn();
+                CombatTurn();
+                if (!inCombat.isEmpty()) {
+                    currentPlayer=inCombat.get(0);
+                    return;
+                }
+                currentPlayer = players.get(0);
+                currentPlayer.canMove = true;
+                if (maxRounds > 1){
+                    pcs.firePropertyChange("NextTurn", null, --maxRounds);
+                }
+                else{
+                    pcs.firePropertyChange("GameOver", null, null);
+                    System.exit(0);
+                }
+            }else{
+                currentPlayer = players.get(index + 1);
+                currentPlayer.canMove = true;
+            }
+            pcs.firePropertyChange("StudentChanged", null, currentPlayer);
+        }else{
+            int index = inCombat.indexOf(currentPlayer);
+            if(index == inCombat.size() - 1){
+                for (Character c: NPCs) {
+                    if (c.GetName().startsWith("p")) {
+                        Professor p = (Professor) c;
+                        if (p.inCombat) p.Combat();
+                    }
+                }
+                UpdatePlayerList();
+                pcs.firePropertyChange("ListUpdate", null, null);
+                currentPlayer = players.get(0);
 
+                inCombat.clear();
+            }
+            else{
+                currentPlayer = inCombat.get(index + 1);
+            }
+            pcs.firePropertyChange("StudentChanged", null, currentPlayer);
+        }
     }
 
-    private void Play() {
-        for(int i = 0; i < maxRounds; i++){
-            for (Character c : NPCs) {
-                c.Turn();
-            }
-            for(Student s : players){
-                currentPlayer = s;
-                pcs.firePropertyChange("StudentChanged", null, s);
-                s.Turn();
+    private void CombatTurn() {
+        pcs.firePropertyChange("CombatTurn", null, null);
+        for (Student s : players) {
+            if (s.inCombat) {
+                inCombat.add(s);
             }
         }
     }
+
+    private void NpcTurn() {
+        for (Character c : NPCs) {
+            c.Turn();
+        }
+    }
+
 
     public void Init(){
 
@@ -77,5 +127,13 @@ public class Model {
 
     public ArrayList<Student> GetPlayers() {
         return players;
+    }
+    public void UpdatePlayerList(){
+        ArrayList<Student> students = new ArrayList<>();
+        for (Room room : chart.GetAllRooms()) {
+            students.addAll(room.GetStudents());
+        }
+        players = students;
+        pcs.firePropertyChange("ListUpdate", null, null);
     }
 }

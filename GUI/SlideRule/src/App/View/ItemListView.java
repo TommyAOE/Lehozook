@@ -25,6 +25,7 @@ public class ItemListView extends JList<Item> implements PropertyChangeListener{
         if((evt.getPropertyName().equals("RoomChanged")||evt.getPropertyName().equals("BackpackChanged"))&&Objects.equals(type, "Room")){
                 this.setListData(student.GetLocation().SearchItem().toArray(new Item[0]));
                 this.setBounds(p.x,p.y,54* (student.GetLocation().SearchItem().isEmpty()?1:student.GetLocation().SearchItem().size()),56);
+
         }else if(evt.getPropertyName().equals("BackpackChanged")&&Objects.equals(type, "Player")){
             this.setListData(student.GetItems().toArray(new Item[0]));
             this.setBounds(p.x,p.y,54* (student.GetItems().isEmpty()?1:student.GetItems().size()),56);
