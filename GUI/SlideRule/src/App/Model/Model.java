@@ -111,7 +111,12 @@ public class Model {
         }
         
         for(int i = 0; i < professorCount; i++){
+            //at start professors wont spawn in the same room as the students
             Room r = chart.GetAllRooms().get(random.nextInt(chart.GetAllRooms().size()));
+            while(r==chart.FindRoomByName("r11"))
+            {
+                r = chart.GetAllRooms().get(random.nextInt(chart.GetAllRooms().size()));
+            }
             NPCs.add(new Professor("p" + i, r));
         }
         NPCs.add(new Cleaner("c1", chart.FindRoomByName("r31")));

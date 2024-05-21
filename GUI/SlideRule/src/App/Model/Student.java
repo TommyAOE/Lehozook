@@ -9,6 +9,7 @@ import java.util.logging.Level;
 
 import static App.Program.resultLogger;
 import App.Model.Items.*;
+import App.View.GameView;
 import App.Model.*;
 import App.*;
 
@@ -197,11 +198,13 @@ public class Student extends Character implements IFighter {
     public boolean EnterRoom(Room r) {
         if (r.IsFull()){
             resultLogger.log(Level.INFO, "Room "+r.GetName()+" is full");
+            pcs.firePropertyChange("Info", null, "Room "+r.GetName()+" is full");
             return false;
         }
         //May cause problems with using Transistor
         if(location != null && !this.location.GetNeighbours().contains(r)){
             resultLogger.log(Level.INFO, "Room "+r.GetName()+" is not neighbour of the character's current room");
+            pcs.firePropertyChange("Info", null, "Room "+r.GetName()+" is not neighbour of the character's current room");
             return false;
         }
         if(location != null)
@@ -209,6 +212,7 @@ public class Student extends Character implements IFighter {
         r.CharacterEntered(this);
         location=r;
         resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.GetName());
+        pcs.firePropertyChange("Info", null, "Character "+ name + " has entered Room " + r.GetName());
         if (!location.GetProfessors().isEmpty()){
             inCombat = true;
             for(Professor p: location.GetProfessors()){
@@ -224,6 +228,7 @@ public class Student extends Character implements IFighter {
     public boolean TravelWithTransistor(Room r) {
         if (r.IsFull()){
             resultLogger.log(Level.INFO, "Room "+r.GetName()+" is full");
+            pcs.firePropertyChange("Info", null, "Room "+r.GetName()+" is full");
             return false;
         }
         if(location != null){
@@ -233,6 +238,7 @@ public class Student extends Character implements IFighter {
         r.CharacterEntered(this);
         location=r;
         resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.GetName());
+        pcs.firePropertyChange("Info", null,"Character "+ name + " has entered Room " + r.GetName());
         if (!location.GetProfessors().isEmpty()){
             inCombat = true;
             for(Professor p: location.GetProfessors()){
@@ -323,10 +329,12 @@ public class Student extends Character implements IFighter {
     public void Combat() {
         if (items.size() == 0) {
             System.out.println("Nincs tárgyad, amit használhatsz!");
+            pcs.firePropertyChange("Info", null, "Nincs tárgyad, amit használhatsz!");
             return;
         }
         while (true) {
             System.out.println("Válassz egy itemet, amit használni szeretnél:");
+            
             for (int i = 0; i < items.size(); i++) {
 
                 System.out.println(i + "" + items.get(i).GetType());
@@ -337,6 +345,7 @@ public class Student extends Character implements IFighter {
                 break;
             } else {
                 System.out.println("Nem megfelelő számot adtál meg");
+                pcs.firePropertyChange("Info", null, "Nem megfelelő számot adtál meg");
             }
         }
 

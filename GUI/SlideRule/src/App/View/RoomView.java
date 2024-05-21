@@ -24,6 +24,7 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
     private ArrayList<JLabel> doors = new ArrayList<>();
     private JLabel floor;
     private JLabel darkLayer;
+    private JPanel glass;
 
     public RoomView(Room r, GameView gView) {
         room = r;
@@ -31,26 +32,32 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
         room.AddPropertyChangeListener(this);
 
         floor = new JLabel();
-        floor.setIcon(new ImageIcon("resources/room/room.png"));
+        floor.setIcon(new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\room\\room.png"));
         floor.setBounds(0, 0, 150, 150);
         
         gas = new GasView();
         goo = new GooView();
-        darkLayer = new JLabel(new ImageIcon("resources/room/darkroom.png"));
+        darkLayer = new JLabel(new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\room\\darkroom.png"));
         darkLayer.setBounds(0, 0, 150, 150);
         button = new JButton();
 
+        
+
         button = new JButton();
         SetUpButton();
+        // Példa karakterek hozzáadására a RoomView-ban
+        
+
         //CreateDoors();
         for (JLabel d : doors) {
             add(d);
         }
-        add(button);
-        add(darkLayer);
-        add(goo);
-        add(gas);
-        add(floor);
+        add(button, JLayeredPane.DEFAULT_LAYER);
+        add(floor, JLayeredPane.DEFAULT_LAYER);
+        add(gas, JLayeredPane.PALETTE_LAYER);
+        add(goo, JLayeredPane.PALETTE_LAYER);
+        add(darkLayer, JLayeredPane.DRAG_LAYER);
+        
         
         UpdateRoomView();
     }
@@ -66,6 +73,7 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
     public void UpdateRoomView() {
         System.out.println(room.GetStudents().size());
         darkLayer.setVisible(room.GetStudents().isEmpty());
+
         gas.setVisible(room.HasGas());
         goo.setVisible(room.HasGoo());
 

@@ -32,6 +32,7 @@ public class Program {
         Model model = new Model(5, 5, 5);
 
         GameView view = new GameView(model);
+        
 
     }
 }

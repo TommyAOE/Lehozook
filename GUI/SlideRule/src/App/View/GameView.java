@@ -4,6 +4,7 @@ import App.*;
 import App.Model.*;
 import App.Model.Character;
 
+import static App.Program.resultLogger;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -69,11 +70,22 @@ public class GameView extends JFrame implements PropertyChangeListener {
         SetUpRooms();
         SetUpPlayers();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1600, 1000);
+        this.setSize(800, 500);
         this.setLayout(null);
         this.setVisible(true);
+        this.Subscribe();
 
     }
+
+    private void Subscribe() {
+        for (Student s : controller.GetModel().GetPlayers()) {
+            s.AddPropertyChangeListener(this);
+        }
+        for (Room r : controller.GetModel().GetChart().GetAllRooms()) {
+            r.AddPropertyChangeListener(this);
+        }
+    }
+
     private void SetUpRooms(){
         ArrayList<Room> rooms = (ArrayList<Room>) controller.GetModel().GetChart().GetAllRooms();
         for (Room r : rooms){
@@ -93,6 +105,11 @@ public class GameView extends JFrame implements PropertyChangeListener {
             }
         }
     }
+    public void Toappend(String msg)
+    {
+        info.append("\n"+msg);
+    }
+
     private void SetUpPlayers(){
         for (RoomView r: roomViews){
             int i = 0;
@@ -194,6 +211,10 @@ public class GameView extends JFrame implements PropertyChangeListener {
         }
         if (evt.getPropertyName().equals("CharacterMoved")){
             MoveCharacter((Character) evt.getNewValue());
+        }
+        if(evt.getPropertyName().equals("Info"))
+        {
+            Toappend((String)evt.getNewValue());
         }
     }
     private Point SearchLocation(Character c){

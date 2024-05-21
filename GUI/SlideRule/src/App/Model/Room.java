@@ -386,6 +386,7 @@ public class Room {
             }
         }
         resultLogger.log(Level.INFO,"Room Curse() "+curRoom.name+" added "+delRoom.name+" deleted");
+        pcs.firePropertyChange("Info", null, "Room Curse() "+curRoom.name+" added "+delRoom.name+" deleted");
     }
     /**
      * Splits the room into two rooms.
@@ -393,6 +394,7 @@ public class Room {
     public void Split() {
         if(professors.size()+ students.size()+cleaners.size()>0) {
             resultLogger.log(Level.INFO,"Split is impossible, characters exist in the Room");
+            pcs.firePropertyChange("Info", null, "Split is impossible, characters exist in the Room");
             return;
         }
         Room newRoom = new Room("Whatever");
@@ -417,6 +419,7 @@ public class Room {
         SetNeighboursTwoWay(new ArrayList<Room>(Collections.singletonList(newRoom)));
         chart.AddRoom(newRoom);
         resultLogger.log(Level.INFO,"Split");
+        pcs.firePropertyChange("Info", null, "Split");
 
     }
     /**
@@ -444,6 +447,7 @@ public class Room {
             chart.RemoveRoom(this);
         }
         resultLogger.log(Level.INFO,"Room merged");
+        pcs.firePropertyChange("Info", null, "Room merged");
     }
 
     //------------------Functions for testing------------------

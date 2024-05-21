@@ -67,6 +67,7 @@ public class Professor extends Character implements IFighter {
         if (r.IsFull()) {
             String msg = "Room " + r.GetName() + " is full";
             resultLogger.log(Level.INFO, msg);
+            
             return false;
         }
         if(location != null && !this.location.GetNeighbours().contains(r)){

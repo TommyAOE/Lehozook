@@ -26,7 +26,7 @@ public class Chart {
      */
     public Chart() {
         rooms = new ArrayList<Room>();
-        ArrayList<String[]> lines = ReadFile(new File("resources/map.txt"));
+        ArrayList<String[]> lines = ReadFile(new File("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\map.txt"));
         for(String[] command : lines){
             BuildMap(command);
         }
@@ -160,7 +160,10 @@ public class Chart {
 
     public void IterateForItemSpawn(boolean initial, int playerCount){
         if(initial){
-            rooms.get(new Random().nextInt(1, rooms.size())).AddItem(new SlideRule());
+            //theoretically if we choose from 2-rooms.size we never choose room r11
+            rooms.get(new Random().nextInt(2, rooms.size())).AddItem(new SlideRule());
+            
+            
             if(playerCount < 3){
                 for (Room room : rooms) {
                     room.SpawnItem();
