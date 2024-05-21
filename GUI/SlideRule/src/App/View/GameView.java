@@ -92,7 +92,6 @@ public class GameView extends JFrame implements PropertyChangeListener {
             roomViews.add(rv);
             layeredPane.add(rv,1);
             r.AddPropertyChangeListener(this);
-            //add(rv);
         }
         int i = 0;
         for(int y = 0; y < 5 * 150; y += 150) {
@@ -102,6 +101,9 @@ public class GameView extends JFrame implements PropertyChangeListener {
                 i++;
                 
             }
+        }
+        for (RoomView roomView : roomViews) {
+            roomView.CreateDoors();
         }
     }
     private void SetUpPlayers(){
