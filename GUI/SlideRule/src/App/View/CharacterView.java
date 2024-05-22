@@ -32,7 +32,7 @@ public class CharacterView extends JLabel implements PropertyChangeListener{
             default -> null;
         };
         Image image = Objects.requireNonNull(imageIcon).getImage(); // transform it
-        Image newimg = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        Image newimg = image.getScaledInstance(50, 65,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         imageIcon = new ImageIcon(newimg);  // transform it back
         setIcon(imageIcon);
         this.point = point;
