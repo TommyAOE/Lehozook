@@ -26,7 +26,7 @@ public class Chart {
      */
     public Chart() {
         rooms = new ArrayList<Room>();
-        ArrayList<String[]> lines = ReadFile(new File("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\map.txt"));
+        ArrayList<String[]> lines = ReadFile(new File("SlideRule/resources/map.txt"));
         for(String[] command : lines){
             BuildMap(command);
         }

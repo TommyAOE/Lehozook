@@ -207,7 +207,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
             counter.setText("Turns: "+evt.getNewValue());
         }
         if (evt.getPropertyName().equals("ListUpdate")){
-            UpdatePlyers();
+            UpdatePlayers();
         }
         if (evt.getPropertyName().equals("CharacterMoved")){
             MoveCharacter((Character) evt.getNewValue());
@@ -285,7 +285,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
             }
         }
     }
-    private void UpdatePlyers() {
+    private void UpdatePlayers() {
         for (CharacterView cv : studentViews) {
             layeredPane.remove(cv);
         }

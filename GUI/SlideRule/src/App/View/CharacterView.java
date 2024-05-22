@@ -17,34 +17,32 @@ public class CharacterView extends JLabel implements PropertyChangeListener{
     public Point point;
     public Character character;
 
-    public CharacterView(Character c,int index, Point point) {
+    public CharacterView(Character c, int index, Point point) {
         character = c;
         //c.AddPropertyChangeListener(this);
         ImageIcon imageIcon = switch (c.GetName().charAt(0)) {
-            case 'p' -> new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\characters\\professor.png");
+            case 'p' -> new ImageIcon("SlideRule/resources/characters/professor.png");
             case 's' ->
                 switch (index) {
-                    case 0 -> new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\characters\\Alice.png");
-                    case 1 -> new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\characters\\Claus.png");
-                    case 2 -> new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\characters\\Felicity.png");
-                    case 3 -> new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\characters\\Jeremy.png");
-                    case 4 -> new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\characters\\Lee.png");
+                    case 0 -> new ImageIcon("SlideRule/resources/characters/Alice.png");
+                    case 1 -> new ImageIcon("SlideRule/resources/characters/Claus.png");
+                    case 2 -> new ImageIcon("SlideRule/resources/characters/Felicity.png");
+                    case 3 -> new ImageIcon("SlideRule/resources/characters/Jeremy.png");
+                    case 4 -> new ImageIcon("SlideRule/resources/characters/Lee.png");
                     default -> throw new IllegalStateException("Unexpected value: " + index);
                 };
-            case 'c' -> new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\characters\\cleaner.png");
+            case 'c' -> new ImageIcon("SlideRule/resources/characters/cleaner.png");
             default -> null;
         };
         Image image = Objects.requireNonNull(imageIcon).getImage(); // transform it
         Image newimg = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         imageIcon = new ImageIcon(newimg);  // transform it back
-        BufferedImage temp=imageIconToBufferedImage(imageIcon);
-        rotate(temp, 90);
-        setIcon(new ImageIcon(temp));
-        
+        setIcon(imageIcon);
+        UpdateImage(index);
         this.point = point;
     }
 
-
+    /*
     public static BufferedImage imageIconToBufferedImage(ImageIcon icon) {
         BufferedImage bufferedImage = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(),
                 BufferedImage.TYPE_INT_ARGB);
@@ -52,7 +50,7 @@ public class CharacterView extends JLabel implements PropertyChangeListener{
         icon.paintIcon(null, graphics, 0, 0);
         graphics.dispose();
         return bufferedImage;
-    }
+    }*/
 
 
     @Override
@@ -60,12 +58,67 @@ public class CharacterView extends JLabel implements PropertyChangeListener{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'propertyChange'");
     }
+
+    public void UpdateImage(int index){
+        if(character.GetName().startsWith("s")) {
+            Student temp = (Student)character;
+            if(temp.isStunned() > 0)
+                CharacterImageRotate(character.GetName(), index);
+        } else if(character.GetName().startsWith("p")) {
+            Professor temp = (Professor)character;
+            if(temp.IsStunned() > 0)
+                CharacterImageRotate(character.GetName(), index);
+        } else {
+            CharacterImageNormal(character.GetName(), index);
+        }
+    }
+
+    private void CharacterImageRotate(String name, int index){
+        ImageIcon imageIcon = switch (name.charAt(0)) {
+            case 'p' -> new ImageIcon("SlideRule/resources/characters laying/professor2.png");
+            case 's' ->
+                switch (index) {
+                    case 0 -> new ImageIcon("SlideRule/resources/characters laying/Alice2.png");
+                    case 1 -> new ImageIcon("SlideRule/resources/characters laying/Claus2.png");
+                    case 2 -> new ImageIcon("SlideRule/resources/characters laying/Felicity2.png"); 
+                    case 3 -> new ImageIcon("SlideRule/resources/characters laying/Jeremy2.png"); 
+                    case 4 -> new ImageIcon("SlideRule/resources/characters laying/Lee2.png");
+                    default -> throw new IllegalStateException("Unexpected value: " + index);
+                };
+            default -> null;
+        };
+        Image image = Objects.requireNonNull(imageIcon).getImage(); // transform it
+        Image newimg = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        imageIcon = new ImageIcon(newimg);  // transform it back
+        this.setIcon(imageIcon);
+    }
+    
+    private void CharacterImageNormal(String name, int index){
+        ImageIcon imageIcon = switch (name.charAt(0)) {
+            case 'p' -> new ImageIcon("SlideRule/resources/characters/professor.png");
+            case 's' ->
+                switch (index) {
+                    case 0 -> new ImageIcon("SlideRule/resources/characters/Alice.png");
+                    case 1 -> new ImageIcon("SlideRule/resources/characters/Claus.png");
+                    case 2 -> new ImageIcon("SlideRule/resources/characters/Felicity.png");
+                    case 3 -> new ImageIcon("SlideRule/resources/characters/Jeremy.png");
+                    case 4 -> new ImageIcon("SlideRule/resources/characters/Lee.png");
+                    default -> throw new IllegalStateException("Unexpected value: " + index);
+                };
+            case 'c' -> new ImageIcon("SlideRule/resources/characters/cleaner.png");
+            default -> null;
+        };
+        Image image = Objects.requireNonNull(imageIcon).getImage(); // transform it
+        Image newimg = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        imageIcon = new ImageIcon(newimg);  // transform it back
+        this.setIcon(imageIcon);
+    }
     private void OnMove(){
     }
     private void OnDeath(){
 
     }
-
+    /*
     private Image turn90degrees(BufferedImage image,double degrees)
     {
         // Calculate the new size of the image based on the angle of rotaion
@@ -90,7 +143,8 @@ public class CharacterView extends JLabel implements PropertyChangeListener{
     g2d.drawImage(image, 0, 0, null);
     g2d.dispose();
     return rotate;
-    }
+    }*/
+    /*
     public static Image rotate(Image image, double angle) {
         BufferedImage bufImg = toBufferedImage(image);
         double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
@@ -103,8 +157,8 @@ public class CharacterView extends JLabel implements PropertyChangeListener{
         g.drawRenderedImage(bufImg, null);
         g.dispose();
         return result;
-     } 
-
+     }*/
+    /*
      public static BufferedImage toBufferedImage(Image image) {
         if (image instanceof BufferedImage) {
            return (BufferedImage) image;
@@ -116,7 +170,7 @@ public class CharacterView extends JLabel implements PropertyChangeListener{
         g.dispose();
         return buff;
      }
-
+     */
     private void OnEnterRoom(Room r){
 
     }

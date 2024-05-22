@@ -32,31 +32,29 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
         room.AddPropertyChangeListener(this);
 
         floor = new JLabel();
-        floor.setIcon(new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\room\\room.png"));
+        floor.setIcon(new ImageIcon("SlideRule/resources/items/room.png"));
         floor.setBounds(0, 0, 150, 150);
         
         gas = new GasView();
         goo = new GooView();
-        darkLayer = new JLabel(new ImageIcon("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\room\\darkroom.png"));
+        darkLayer = new JLabel(new ImageIcon("SlideRule/resources/room/darkroom.png"));
         darkLayer.setBounds(0, 0, 150, 150);
         button = new JButton();
 
         
 
         button = new JButton();
-        SetUpButton();
-        // Példa karakterek hozzáadására a RoomView-ban
-        
+        SetUpButton(); 
 
         //CreateDoors();
         for (JLabel d : doors) {
             add(d);
         }
-        add(button, JLayeredPane.DEFAULT_LAYER);
-        add(floor, JLayeredPane.DEFAULT_LAYER);
-        add(gas, JLayeredPane.PALETTE_LAYER);
-        add(goo, JLayeredPane.PALETTE_LAYER);
-        add(darkLayer, JLayeredPane.DRAG_LAYER);
+        add(button);
+        add(floor);
+        add(gas);
+        add(goo);
+        add(darkLayer);
         
         
         UpdateRoomView();
@@ -71,7 +69,7 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
         return button;
     }
     public void UpdateRoomView() {
-        System.out.println(room.GetStudents().size());
+        //System.out.println(room.GetStudents().size());
         darkLayer.setVisible(room.GetStudents().isEmpty());
 
         gas.setVisible(room.HasGas());
