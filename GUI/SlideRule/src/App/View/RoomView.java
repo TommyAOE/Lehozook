@@ -31,12 +31,12 @@ public class RoomView extends JLayeredPane implements PropertyChangeListener{
         room.AddPropertyChangeListener(this);
 
         floor = new JLabel();
-        floor.setIcon(new ImageIcon("resources/room/room.png"));
+        floor.setIcon(new ImageIcon("SlideRule/resources/room/room.png"));
         floor.setBounds(0, 0, 150, 150);
         
         gas = new GasView();
         goo = new GooView();
-        darkLayer = new JLabel(new ImageIcon("resources/room/darkroom.png"));
+        darkLayer = new JLabel(new ImageIcon("SlideRule/resources/room/darkroom.png"));
         darkLayer.setBounds(0, 0, 150, 150);
         button = new JButton();
 

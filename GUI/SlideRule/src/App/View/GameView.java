@@ -261,6 +261,13 @@ public class GameView extends JFrame implements PropertyChangeListener {
                 info.append("\n You are Stunned! You can't move for "+((Student) evt.getNewValue()).isStunned()+" turns.");
                 backpackView.setVisible(false);
                 roomItemsView.setVisible(false);
+                UpdatePlayers();
+            }
+            if (((Student) evt.getNewValue()).isStunned() == 0){
+                //info.append("\n You are Stunned! You can't move for "+((Student) evt.getNewValue()).isStunned()+" turns.");
+                backpackView.setVisible(true);
+                roomItemsView.setVisible(true);
+                UpdatePlayers();
             }
         }
 
@@ -269,7 +276,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
             counter.setText("Turns: "+evt.getNewValue());
         }
         if (evt.getPropertyName().equals("ListUpdate")){
-            UpdatePlyers();
+            UpdatePlayers();
         }
         if (evt.getPropertyName().equals("CharacterMoved")){
             RoomUpdate((Room) evt.getNewValue());
@@ -315,7 +322,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
             }
         }
     }
-    private void UpdatePlyers() {
+    private void UpdatePlayers() {
         for (CharacterView cv : studentViews) {
             layeredPane.remove(cv);
         }
