@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 public class GooView extends JLabel{
 
     public GooView(){
-        super(new ImageIcon("resources/room/goo.png"));
+        super(new ImageIcon("SlideRule/resources/room/goo.png"));
         setBounds(0, 0, 150, 150);
     }
 }

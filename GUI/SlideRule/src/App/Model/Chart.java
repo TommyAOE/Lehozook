@@ -26,7 +26,7 @@ public class Chart {
      */
     public Chart() {
         rooms = new ArrayList<Room>();
-        ArrayList<String[]> lines = ReadFile(new File("resources/map.txt"));
+        ArrayList<String[]> lines = ReadFile(new File("SlideRule/resources/map.txt"));
         for(String[] command : lines){
             BuildMap(command);
         }
@@ -134,7 +134,7 @@ public class Chart {
      * @param r The room to be added.
      */
     public void AddRoom(Room r) {
-        if(new Random().nextInt(100) < 30)
+        if(!(r.GetName().equals("r11")) && new Random().nextInt(100) < 30)
             r.AddGas();
         rooms.add(r);
         //System.out.println("added " + r.name);

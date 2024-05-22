@@ -34,7 +34,7 @@ public class Menu extends JFrame {
 
         // Setting a background (source:https://stackoverflow.com/questions/1064977/setting-background-images-in-jframe)
         try {//itt majd be kell allitani a kep helyet,csak at kell irni a fajl helyet
-            this.setContentPane(new JLabel(new ImageIcon(("resources/menulogo.png"))));
+            this.setContentPane(new JLabel(new ImageIcon(("SlideRule/resources/menulogo.png"))));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -151,7 +151,7 @@ public class Menu extends JFrame {
 
             //reading the rules from a text file 
                 try {//itt majd csak be kell allitani a txt uj helyet
-                    rulesArea.read(new BufferedReader(new FileReader("resources/jatekleiras.txt")), null);
+                    rulesArea.read(new BufferedReader(new FileReader("SlideRule/resources/jatekleiras.txt")), null);
 
               } catch (Exception a){
 
@@ -166,7 +166,7 @@ public class Menu extends JFrame {
 
                 //setting a background the same way as in the menu frame
                 try {//itt majd be kell allitani a kep helyet,csak at kell irni a fajl helyet
-                    frame.setContentPane(new JLabel(new ImageIcon(("C:\\digitkomp gaphor\\lehozook_git\\Lehozook\\GUI\\SlideRule\\resources\\menulogo.png"))));
+                    frame.setContentPane(new JLabel(new ImageIcon(("SlideRule/resources/menulogo.png"))));
                 } catch (Exception k) {
                     k.printStackTrace();
                 }
@@ -196,10 +196,8 @@ public class Menu extends JFrame {
                 //Adding scrollpane for the frame
                 frame.add(rulesJScrollPane,gbc);
                 frame.setResizable(false);
-                frame.setVisible(true);
-        
+                frame.setVisible(true);  
             }
-
     }
 
 
