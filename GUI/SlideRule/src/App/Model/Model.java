@@ -46,8 +46,8 @@ public class Model {
             if(index == players.size() - 1){
                 chart.IterateForRoomChanges();
                 chart.IterateForItemSpawn(false, playerCount);
-                NpcTurn();
                 CombatTurn();
+                NpcTurn();
                 if (!inCombat.isEmpty()) {
                     currentPlayer=inCombat.get(0);
                     pcs.firePropertyChange("StudentChanged", null, currentPlayer);
