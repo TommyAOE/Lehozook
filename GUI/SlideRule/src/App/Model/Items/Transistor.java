@@ -3,6 +3,8 @@ package App.Model.Items;
 import java.util.logging.Level;
 
 import App.Model.*;
+import App.View.GameView;
+
 import static App.Program.*;
 
 /**
@@ -87,6 +89,10 @@ public class Transistor extends Item {
      * If the transistor has a pair, it moves the owner to the pair's location.
      */
     public void Activate() {
+        if(owner.IsStunned() > 0){
+            GameView.info.append("Invalid operation, you are stunned\n");
+            return;
+        } 
         resultLogger.log(Level.INFO, "Transistor activated");
         if (pair != null) {
             resultLogger.log(Level.INFO, "The transistor has a pair");

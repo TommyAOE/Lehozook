@@ -55,6 +55,11 @@ public class GameController implements PropertyChangeListener{
         if (model.currentPlayer.isStunned()==0&&!model.currentPlayer.inCombat) {
             return model.currentPlayer.EnterRoom(r);
         }
+        if(model.currentPlayer.isStunned() != 0){
+            GameView.info.append("Cannot move, stunned" + "\n");
+            return false;
+        }
+        GameView.info.append("Cannot move, in combat" + "\n");
         return false;
     }
 

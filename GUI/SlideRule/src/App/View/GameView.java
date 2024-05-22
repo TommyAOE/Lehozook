@@ -21,7 +21,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
     protected ArrayList<RoomView> roomViews = new ArrayList<>();
     protected static GameController controller;
     JButton button;
-    JTextArea info;
+    public static JTextArea info = new JTextArea();
     JScrollPane scroll;
     JLabel currentPlayer;
     JLabel counter;
@@ -58,7 +58,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
         inventoryText.setBounds(775, 150, 300, 50);
         backpackView = new ItemListView(new Point(775, 200), controller.GetModel().currentPlayer, "Player", controller.GetModel());
         info = new JTextArea();
-        info.setText("Welcome to the game!");
+        info.setText("Welcome to the game!" + "\n");
         info.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         info.setEditable(false);
         scroll = new JScrollPane(info);
@@ -70,7 +70,7 @@ public class GameView extends JFrame implements PropertyChangeListener {
         counter = new JLabel("Turns letf: "+controller.GetModel().maxRounds);
         counter.setFont(new Font("Arial", Font.BOLD, 15));
         counter.setForeground(Color.WHITE);
-        counter.setBounds(1050, 10, 150, 50);
+        counter.setBounds(775, 50, 150, 50);
         layeredPane = new JLayeredPane();
         layeredPane.setBounds(0,0,750,750);
         add(roomItemsText);

@@ -9,6 +9,7 @@ import java.util.logging.Level;
 
 import static App.Program.resultLogger;
 import App.Model.Items.*;
+import App.View.GameView;
 import App.Model.*;
 import App.*;
 
@@ -81,6 +82,10 @@ public class Student extends Character implements IFighter {
      * @param item The item to drop.
      */
     public void DropItem(Item item){
+        if(isStunned > 0){
+            GameView.info.append("Invalid operation, you are stunned" + "\n");
+            return;
+        }   
         if(items.contains(item)){
             items.remove(item);
             location.AddItem(item);
@@ -112,80 +117,7 @@ public class Student extends Character implements IFighter {
      */
 
     @Override
-    public void Turn() {
-        if (--isStunned > 0) {
-            return;
-        }else if(!location.GetProfessors().isEmpty()){
-        for (int i = 0; i < 3&&!inCombat; i++) {
-            System.out.println("Add meg az akciódat: ");
-            System.out.println("1. Mozgás");
-            System.out.println("2. Tárgy felvétele");
-            System.out.println("3. Tárgy eldobása");
-            System.out.println("4. Tárgy használata");
-            int action = new Scanner(System.in).nextInt();
-            switch (action) {
-                case 1 -> {
-                    System.out.println("Add meg a szobaszámot(" + 0 + "-" + location.GetNeighbours().size() + "): ");
-                    int room = new Scanner(System.in).nextInt();
-                    if(!EnterRoom(location.GetNeighbours().get(room))){
-                        System.out.println("A szoba tele van!");
-                        i--;
-                    }
-                }
-                case 2 -> {
-                    System.out.println("Add meg a tárgy számát: ");
-                    for (int j = 0; j < location.SearchItem().size(); j++) {
-                        System.out.println(j + ". " + location.SearchItem().get(j).GetType());
-                    }
-                    int item = Integer.parseInt(new Scanner(System.in).nextLine());
-                    Item seged=location.PopItem(location.SearchItem().get(item));
-                    if (seged!=null){
-                        items.add(seged);
-                    }
-                    else {
-                        System.out.println("Sikertelen felvétel!");
-                        i--;
-                    }
-                }
-                case 3 -> {
-                    System.out.println("Add meg a tárgy számát: ");
-                    for (int j = 0; j < items.size(); j++) {
-                        System.out.println(j + ". " + items.get(j).GetType());
-                    }
-                    int item2 = Integer.parseInt(new Scanner(System.in).nextLine());
-                    location.AddItem(items.get(item2));
-                }
-                case 4 -> {
-                    System.out.println("Add meg a tárgy számát: ");
-                    for (int j = 0; j < items.size(); j++) {
-                        System.out.println(j + ". " + items.get(j).GetType());
-                    }
-                    int item3 = Integer.parseInt(new Scanner(System.in).nextLine());
-                    if (items.get(item3).GetType()=="Transistor"){
-                        System.out.println("Add meg, az akciód: ");
-                        System.out.println("1. Aktiválás");
-                        System.out.println("2. Használat");
-                        int action2 = Integer.parseInt(new Scanner(System.in).nextLine());
-                        switch (action2){
-                            case 1 -> (items.get(item3)).ApplyEffect();
-                            case 2 -> ((Transistor) items.get(item3)).Activate();
-                            default -> {
-                                System.out.println("Nem megfelelő számot adtál meg!");
-                                i--;
-                            }
-                        }
-                    }else
-                    items.get(item3).ApplyEffect();
-                }
-                default -> {
-                    System.out.println("Nem megfelelő számot adtál meg!");
-                    i--;
-                }
-            }
-        }
-        }
-        System.out.println("App.Student: Turn()");
-    }
+    public void Turn() {}
     /**
      * Moves the student to the specified room. Before moving, the student is removed from their current location
      * and added to the new room. If the new room contains professors, indicating combat,
@@ -197,11 +129,13 @@ public class Student extends Character implements IFighter {
     public boolean EnterRoom(Room r) {
         if (r.IsFull()){
             resultLogger.log(Level.INFO, "Room "+r.GetName()+" is full");
+            GameView.info.append("Room "+r.GetName()+" is full \n");
             return false;
         }
         //May cause problems with using Transistor
         if(location != null && !this.location.GetNeighbours().contains(r)){
             resultLogger.log(Level.INFO, "Room "+r.GetName()+" is not neighbour of the character's current room");
+            GameView.info.append("Room "+r.GetName()+" is not neighbour of the character's current room");
             return false;
         }
         if(location != null)
@@ -209,6 +143,7 @@ public class Student extends Character implements IFighter {
         r.CharacterEntered(this);
         location=r;
         resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.GetName());
+        GameView.info.append("Character "+ name + " has entered Room " + r.GetName() + "\n");
         if (!location.GetProfessors().isEmpty()){
             inCombat = true;
             for(Professor p: location.GetProfessors()){
@@ -224,6 +159,7 @@ public class Student extends Character implements IFighter {
     public boolean TravelWithTransistor(Room r) {
         if (r.IsFull()){
             resultLogger.log(Level.INFO, "Room "+r.GetName()+" is full");
+            GameView.info.append("Room "+r.GetName()+" is full" + "\n");
             return false;
         }
         if(location != null){
@@ -233,6 +169,7 @@ public class Student extends Character implements IFighter {
         r.CharacterEntered(this);
         location=r;
         resultLogger.log(Level.INFO, "Character "+ name + " has entered Room " + r.GetName());
+        GameView.info.append("Character "+ name + " has entered Room " + r.GetName() + "\n");
         if (!location.GetProfessors().isEmpty()){
             inCombat = true;
             for(Professor p: location.GetProfessors()){
@@ -304,6 +241,7 @@ public class Student extends Character implements IFighter {
         }
         if(!hasMask){
             stun= true;
+            GameView.info.append("Player " + this.GetName() + " stunned" + "\n");
             isStunned+=stunDuration;
         }
         return stun;
@@ -322,6 +260,7 @@ public class Student extends Character implements IFighter {
     @Override
     public void Combat() {
         if (items.size() == 0) {
+            GameView.info.append("No items to use" + "\n");
             System.out.println("Nincs tárgyad, amit használhatsz!");
             return;
         }
@@ -363,6 +302,7 @@ public class Student extends Character implements IFighter {
             Room temp = location;
             location = null;
             temp.CharacterLeft(this);
+            GameView.info.append("Student " + name + " died" + "\n");
             return true;
         }
         return false;
@@ -478,6 +418,10 @@ public class Student extends Character implements IFighter {
     }
 
     public void UseItem(Item i) {
+        if(isStunned > 0){
+            GameView.info.append("Invalid operation, you are stunned" + "\n");
+            return;
+        } 
         i.ApplyEffect();
     }
     public void ActivateTransistor(Transistor t){
@@ -506,6 +450,10 @@ public class Student extends Character implements IFighter {
      * @param i the name of the item to pick up
      */
     public void PickUpItem(Item i) {
+        if(isStunned > 0){
+            GameView.info.append("Invalid operation, you are stunned" + "\n");
+            return;
+        } 
         Item tempItem = location.PopItem(i);
         if (tempItem != null)
         {
