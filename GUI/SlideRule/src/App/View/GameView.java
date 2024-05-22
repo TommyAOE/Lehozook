@@ -36,8 +36,10 @@ public class GameView extends JFrame implements PropertyChangeListener {
         model.AddPropertyChangeListener(this);
         controller = new GameController(model);
 
-        button = new JButton("Next Turn");
-        button.setBounds(1200, 600, 100, 50);
+        button = new JButton("END TURN");
+        button.setFont(new Font("Arial", Font.BOLD, 25));
+        button.setBounds(825, 600, 300, 50);
+        button.setBackground(Color.WHITE);
         button.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,8 +47,16 @@ public class GameView extends JFrame implements PropertyChangeListener {
                 UpdateRoomButtonsEnabled(true);
             }
         });
-        roomItemsView = new ItemListView(new Point(1200, 400), controller.GetModel().currentPlayer, "Room", controller.GetModel());
-        backpackView = new ItemListView(new Point(1200, 100), controller.GetModel().currentPlayer, "Player", controller.GetModel());
+        JLabel roomItemsText = new JLabel("Items in room");
+        roomItemsText.setFont(new Font("Arial", Font.BOLD, 25));
+        roomItemsText.setForeground(Color.WHITE);
+        roomItemsText.setBounds(775, 300, 300, 50);
+        roomItemsView = new ItemListView(new Point(775, 350), controller.GetModel().currentPlayer, "Room", controller.GetModel());
+        JLabel inventoryText = new JLabel("Backpack");
+        inventoryText.setFont(new Font("Arial", Font.BOLD, 25));
+        inventoryText.setForeground(Color.WHITE);
+        inventoryText.setBounds(775, 150, 300, 50);
+        backpackView = new ItemListView(new Point(775, 200), controller.GetModel().currentPlayer, "Player", controller.GetModel());
         info = new JTextArea();
         info.setText("Welcome to the game!");
         info.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -54,11 +64,17 @@ public class GameView extends JFrame implements PropertyChangeListener {
         scroll = new JScrollPane(info);
         scroll.setBounds(10, 750, 700, 200);
         currentPlayer = new JLabel("Normal turn: Alice");
-        currentPlayer.setBounds(1300, 10, 200, 50);
-        counter = new JLabel("Turns: "+controller.GetModel().maxRounds);
-        counter.setBounds(1300, 50, 200, 50);
+        currentPlayer.setFont(new Font("Arial", Font.BOLD, 25));
+        currentPlayer.setForeground(Color.WHITE);
+        currentPlayer.setBounds(775, 10, 300, 50);
+        counter = new JLabel("Turns letf: "+controller.GetModel().maxRounds);
+        counter.setFont(new Font("Arial", Font.BOLD, 15));
+        counter.setForeground(Color.WHITE);
+        counter.setBounds(1050, 10, 150, 50);
         layeredPane = new JLayeredPane();
         layeredPane.setBounds(0,0,750,750);
+        add(roomItemsText);
+        add(inventoryText);
         add(roomItemsView);
         add(backpackView);
         add(button);
@@ -69,8 +85,9 @@ public class GameView extends JFrame implements PropertyChangeListener {
         SetUpRooms();
         SetUpPlayers();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1600, 1000);
+        this.setSize(1200, 1000);
         this.setLayout(null);
+        this.getContentPane().setBackground(Color.BLACK);
         this.setVisible(true);
         Subscribe();
 
